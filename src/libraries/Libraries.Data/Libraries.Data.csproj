@@ -6,11 +6,22 @@
     <VersionPrefix>1.0.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <AssemblyName>DevQuiz.Libraries.Data</AssemblyName>
-    <DefaultNamespace>DevQuiz.Libraries.Data</DefaultNamespace>
+    <RootNamespace>DevQuiz.Libraries.Data</RootNamespace>
+    <DocumentationFile>$(MSBuildProjectDirectory)\DevQuiz.Libraries.Data.xml</DocumentationFile>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../Libraries.Core/Libraries.Core.csproj" />
   </ItemGroup>
+
+ <ItemGroup>
+   <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.2" />
+ </ItemGroup>
 
 </Project>

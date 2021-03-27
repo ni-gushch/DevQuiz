@@ -4,12 +4,19 @@
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AssemblyName>DevQuiz.TelegramBot</AssemblyName>
-    <DefaultNamespace>DevQuiz.TelegramBot</DefaultNamespace>
+    <RootNamespace>DevQuiz.TelegramBot</RootNamespace>
+    <DocumentationFile>$(MSBuildProjectDirectory)\DevQuiz.TelegramBot.xml</DocumentationFile>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
  <ItemGroup>
   <ProjectReference Include="../libraries/Libraries.Services/Libraries.Services.csproj" />
   <ProjectReference Include="../libraries/Libraries.Data/Libraries.Data.csproj" />
+ </ItemGroup>
+
+ <ItemGroup>
+   <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.1.1" />
+   <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.1" />
  </ItemGroup>
 
 </Project>

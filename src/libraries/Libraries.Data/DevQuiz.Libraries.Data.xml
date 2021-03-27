@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevQuiz.Libraries.Data</name>
+    </assembly>
+    <members>
+        <member name="T:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext">
+            <summary>
+            Db context for connecting DevQuiz data
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="options">Optins for creating DevQuiz context</param>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.Users">
+            <summary>
+            DevQuiz Users
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method executing while models creating
+            </summary>
+            <param name="modelBuilder">Model builder</param>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Models.User">
+            <summary>
+            User db model
+            </summary>
+        </member>
+    </members>
+</doc>

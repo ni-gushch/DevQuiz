@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevQuiz.Libraries.Core</name>
+    </assembly>
+    <members>
+        <member name="T:DevQuiz.Libraries.Core.Configurations.DbConfiguration">
+            <summary>
+            Configurations for db connection
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Configurations.DbConfiguration.ConnectionString">
+            <summary>
+            Db Connection sctring
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Extensions.StringExtensions">
+            <summary>
+            Extensions for string objects
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Extensions.StringExtensions.ToSnakeCase(System.String)">
+            <summary>
+            Extension method for transforming string to SnakeCase format
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Base.Answer">
+            <summary>
+            Base answer model
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Answer.Id">
+            <summary>
+            Get or set unique identifier of answer
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Answer.Text">
+            <summary>
+            Get or set answer text
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Base.Category">
+            <summary>
+            Base model of question category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Category.Id">
+            <summary>
+            Get or set unique identifier of question category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Category.Name">
+            <summary>
+            Get or set category name
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Category.Questions">
+            <summary>
+            Linked questions
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Base.Question">
+            <summary>
+            Base question model
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Question.Id">
+            <summary>
+            Get or set unique identifier of question
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Question.Test">
+            <summary>
+            Get or set question text
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Question.Answers">
+            <summary>
+            Get or set list of answers
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Question.RightAnswerId">
+            <summary>
+            Get or set unique identifier right answer
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Question.RightAnswerExplanation">
+            <summary>
+            Get or set right answer explanation
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Base.QuestionsTags">
+            <summary>
+            Model for creating many-to-many link between Question and tag
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.QuestionsTags.QuestionId">
+            <summary>
+            Get or set unique identifier of question
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.QuestionsTags.Question">
+            <summary>
+            Get or set question object
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.QuestionsTags.TagId">
+            <summary>
+            Get or set unique identifier of question tag
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.QuestionsTags.Tag">
+            <summary>
+            Get or set tag object
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Base.Tag">
+            <summary>
+            Base model of question tag
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Tag.Id">
+            <summary>
+            Get or set unique identifier of question tag
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.Tag.Name">
+            <summary>
+            Get or set tag name
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Base.User`1">
+            <summary>
+            Base UserModel
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.User`1.Id">
+            <summary>
+            Get or set unique identifier of user
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.User`1.UserName">
+            <summary>
+            Get or set user name (login)
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.User`1.FirstName">
+            <summary>
+            Get or set user first name
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Base.User`1.LastName">
+            <summary>
+            Get or set user last name
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.UserDto`1">
+            <summary>
+            User dto model
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto`1.Id">
+            <summary>
+            Get or set unique identifier of user
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto`1.UserName">
+            <summary>
+            Get or set user name (login)
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto`1.FirstName">
+            <summary>
+            Get or set user first name
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto`1.LastName">
+            <summary>
+            Get or set user last name
+            </summary>
+        </member>
+    </members>
+</doc>

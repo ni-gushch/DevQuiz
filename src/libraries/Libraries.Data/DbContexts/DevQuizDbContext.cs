@@ -1,0 +1,64 @@
+using DevQuiz.Libraries.Core.Extensions;
+using DevQuiz.Libraries.Data.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+
+namespace DevQuiz.Libraries.Data.DbContexts
+{
+    /// <summary>
+    /// Db context for connecting DevQuiz data
+    /// </summary>
+    public class DevQuizDbContext : DbContext
+    {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="options">Optins for creating DevQuiz context</param>
+        public DevQuizDbContext(DbContextOptions<DevQuizDbContext> options)
+            : base(options)
+        {
+        }
+
+        /// <summary>
+        /// DevQuiz Users
+        /// </summary>
+        public DbSet<User> Users { get; set; }
+
+        /// <summary>
+        /// Method executing while models creating
+        /// </summary>
+        /// <param name="modelBuilder">Model builder</param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            foreach (var entity in modelBuilder.Model.GetEntityTypes())
+            {
+
+                // Replace table names
+                entity.SetTableName(entity.GetTableName().ToSnakeCase());
+
+                // Replace column names
+                foreach (var property in entity.GetProperties())
+                {
+                    property.SetColumnName(property.Name.ToSnakeCase());
+                }
+
+                foreach (var key in entity.GetKeys())
+                {
+                    key.SetName(key.GetName().ToSnakeCase());
+                }
+
+                foreach (var key in entity.GetForeignKeys())
+                {
+                    key.PrincipalKey.SetName(key.PrincipalKey.GetName().ToSnakeCase());
+                }
+
+                foreach (var index in entity.GetIndexes())
+                {
+                    index.SetDatabaseName(index.GetDatabaseName().ToSnakeCase());
+                }
+            }
+        }
+    }
+}
