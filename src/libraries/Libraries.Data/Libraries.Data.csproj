@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+    <AssemblyName>DevQuiz.Libraries.Data</AssemblyName>
+    <DefaultNamespace>DevQuiz.Libraries.Data</DefaultNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Libraries.Core/Libraries.Core.csproj" />
+  </ItemGroup>
+
+</Project>
