@@ -83,6 +83,15 @@
             User db model
             </summary>
         </member>
+        <member name="T:DevQuiz.Libraries.Data.Repositories.QuestionRepository`4">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IQuestionRepository`4" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.QuestionRepository`4.#ctor(DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dbContext">instance of DevQuizDbContext</param>
+        </member>
         <member name="T:DevQuiz.Libraries.Data.Repositories.Repository`3">
             <summary>
             Base repository class
@@ -92,7 +101,7 @@
             <summary>
             Get db set for entity
             </summary>
-            <returns>DbSet of entitys</returns>
+            <returns>DbSet of entities</returns>
         </member>
         <member name="P:DevQuiz.Libraries.Data.Repositories.Repository`3.UnitOfWork">
             <inheritdoc cref="P:DevQuiz.Libraries.Core.Repositories.IRepository`2.UnitOfWork" />
@@ -109,6 +118,12 @@
         <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.CreateAsync(`1,System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.CreateAsync(`0,System.Threading.CancellationToken)" />
         </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.UpdateAsync(`1,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.UpdateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.Delete(`1)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Delete(`0)" />
+        </member>
         <member name="T:DevQuiz.Libraries.Data.Repositories.UserRepository">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IUserRepository`2" />
         </member>
@@ -118,14 +133,8 @@
             </summary>
             <param name="dbContext">DevQuizDbContext instance</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.Delete(System.Guid)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.Delete(`1)" />
-        </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.GetOne">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOne" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.Update(DevQuiz.Libraries.Data.Models.User)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.Update(`0)" />
         </member>
     </members>
 </doc>

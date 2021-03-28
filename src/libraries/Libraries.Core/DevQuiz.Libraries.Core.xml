@@ -11,7 +11,7 @@
         </member>
         <member name="P:DevQuiz.Libraries.Core.Configurations.DbConfiguration.ConnectionString">
             <summary>
-            Db Connection sctring
+            Db Connection string
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Extensions.StringExtensions">
@@ -194,6 +194,15 @@
             Get or set user last name
             </summary>
         </member>
+        <member name="T:DevQuiz.Libraries.Core.Repositories.IQuestionRepository`4">
+            <summary>
+            Repository for manage DevQuiz question entities
+            </summary>
+            <typeparam name="TQuestion">Question model</typeparam>
+            <typeparam name="TAnswer">Question answer model</typeparam>
+            <typeparam name="TCategory">Question category model</typeparam>
+            <typeparam name="TTag">Question tag model</typeparam>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IRepository`2">
             <summary>
             Base repository interface
@@ -218,6 +227,21 @@
             <param name="entity">Entity model</param>
             <param name="cancellationToken">Cancellation token</param>
             <returns>New entity information</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.UpdateAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            Update entity information
+            </summary>
+            <param name="entity">Entity information</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Entity information</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Delete(`0)">
+            <summary>
+            Delete user from the store
+            </summary>
+            <param name="entity">Entity instance</param>
+            <returns>Operation status</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IUnitOfWork">
             <summary>
@@ -273,20 +297,6 @@
             Get one user from the store
             </summary>
             <returns>User information about one user</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.Update(`0)">
-            <summary>
-            Update user information
-            </summary>
-            <param name="user">User information</param>
-            <returns>User information</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.Delete(`1)">
-            <summary>
-            Delete user from the store
-            </summary>
-            <param name="userId">Unique identifier of user</param>
-            <returns>Operation status</returns>
         </member>
     </members>
 </doc>

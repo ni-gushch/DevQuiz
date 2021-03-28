@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
 
@@ -34,6 +35,16 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
             }
 
             return context;
+        }
+
+        public static void Commit(this DevQuizDbContext context)
+        {
+            context.SaveChanges();
+        }
+
+        public static async Task CommitAsync(this DevQuizDbContext context)
+        {
+            await context.SaveChangesAsync();
         }
     }
 }
