@@ -20,6 +20,26 @@
             DevQuiz Users
             </summary>
         </member>
+        <member name="P:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.Questions">
+            <summary>
+            DevQuiz Questions
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.Categories">
+            <summary>
+            DevQuiz Categories
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.Tags">
+            <summary>
+            DevQuiz Tags
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.Answers">
+            <summary>
+            DevQuiz Answers
+            </summary>
+        </member>
         <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method executing while models creating
@@ -28,12 +48,12 @@
         </member>
         <member name="T:DevQuiz.Libraries.Data.Models.Answer">
             <summary>
-            Base answer model
+            Answer model
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Data.Models.Category">
             <summary>
-            Base model of question category
+            Model of question category
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Data.Models.Question">
@@ -50,6 +70,24 @@
             <summary>
             User db model
             </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Repositories.UserRepository">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IUserRepository`2" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.Create(DevQuiz.Libraries.Data.Models.User)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.Create(`0)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.Delete(System.Guid)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.Delete(`1)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.GetAll">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetAll" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.GetOne">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOne" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.Update(DevQuiz.Libraries.Data.Models.User)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.Update(`0)" />
         </member>
     </members>
 </doc>
