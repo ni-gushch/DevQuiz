@@ -6,7 +6,7 @@ namespace DevQuiz.Libraries.Core.Configurations
     public class DbConfiguration
     {
         /// <summary>
-        /// Db Connection sctring
+        /// Db Connection string
         /// </summary>
         public string ConnectionString { get;set; }
     }

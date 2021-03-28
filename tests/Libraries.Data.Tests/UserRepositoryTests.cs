@@ -5,6 +5,11 @@ namespace DevQuiz.Libraries.Data.Tests
 {
     public class UserRepositoryTests
     {
+        public UserRepositoryTests()
+        {
+            
+        }
+
         [Fact]
         public void UserRepository_CreateUser()
         {

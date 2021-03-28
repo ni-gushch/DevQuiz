@@ -40,6 +40,18 @@
             DevQuiz Answers
             </summary>
         </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.BeginTransaction(System.Data.IsolationLevel)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.BeginTransaction(System.Data.IsolationLevel)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.CommitTransaction">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.CommitTransaction" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.CommitTransactionAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.CommitTransactionAsync(System.Threading.CancellationToken)" />
+        </member>
         <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method executing while models creating
@@ -71,17 +83,43 @@
             User db model
             </summary>
         </member>
+        <member name="T:DevQuiz.Libraries.Data.Repositories.Repository`3">
+            <summary>
+            Base repository class
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.Repositories.Repository`3.EntityDbSet">
+            <summary>
+            Get db set for entity
+            </summary>
+            <returns>DbSet of entitys</returns>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.Repositories.Repository`3.UnitOfWork">
+            <inheritdoc cref="P:DevQuiz.Libraries.Core.Repositories.IRepository`2.UnitOfWork" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.#ctor(`0)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dbContext">Db context</param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.GetAll">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.GetAll" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.CreateAsync(`1,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.CreateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
         <member name="T:DevQuiz.Libraries.Data.Repositories.UserRepository">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IUserRepository`2" />
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.Create(DevQuiz.Libraries.Data.Models.User)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.Create(`0)" />
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.#ctor(DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dbContext">DevQuizDbContext instance</param>
         </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.Delete(System.Guid)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.Delete(`1)" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.GetAll">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetAll" />
         </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.GetOne">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOne" />

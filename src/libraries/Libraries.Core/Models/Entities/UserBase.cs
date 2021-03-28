@@ -5,13 +5,9 @@ namespace DevQuiz.Libraries.Core.Models.Entities
     /// <summary>
     /// Base UserModel
     /// </summary>
-    public class UserBase<TKey>
+    public class UserBase<TKey> : AggregateEntity<TKey>
         where TKey : IEquatable<TKey>
     {
-        /// <summary>
-        /// Get or set unique identifier of user
-        /// </summary>
-        public TKey Id { get; set; }
         /// <summary>
         /// Get or set user name (login)
         /// </summary>

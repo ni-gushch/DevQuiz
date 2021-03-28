@@ -1,39 +1,26 @@
 using System;
-using System.Collections.Generic;
 using DevQuiz.Libraries.Core.Repositories;
+using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
 
 namespace DevQuiz.Libraries.Data.Repositories
 {
     /// <inheritdoc cref="IUserRepository{TUser,TKey}" />
-    public class UserRepository : IUserRepository<User, Guid>
+    public class UserRepository : Repository<DevQuizDbContext, User, Guid>, IUserRepository<User, Guid>
     {
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.Create" />
-        public User Create(User user)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly DevQuizDbContext _devQuizDbContext;
 
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.Delete" />
-        public bool Delete(Guid userId)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="dbContext">DevQuizDbContext instance</param>
+        public UserRepository(DevQuizDbContext dbContext) : base(dbContext: dbContext)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetAll" />
-        public List<User> GetAll()
-        {
-            throw new NotImplementedException();
+            _devQuizDbContext = dbContext;
         }
 
         /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetOne" />
         public User GetOne()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.Update" />
-        public User Update(User user)
         {
             throw new NotImplementedException();
         }
