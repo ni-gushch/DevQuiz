@@ -3,9 +3,8 @@ using DevQuiz.Libraries.Core.Models.Entities;
 namespace DevQuiz.Libraries.Data.Models
 {
     /// <summary>
-    /// Question model
+    /// Model of question category
     /// </summary>
-    public class Question : QuestionBase<Answer, Category, Tag>
-    {
-    }
+    public class Category : CategoryBase<Question>
+    {}
 }

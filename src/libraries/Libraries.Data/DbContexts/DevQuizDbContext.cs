@@ -23,6 +23,22 @@ namespace DevQuiz.Libraries.Data.DbContexts
         /// DevQuiz Users
         /// </summary>
         public DbSet<User> Users { get; set; }
+        /// <summary>
+        /// DevQuiz Questions
+        /// </summary>
+        public DbSet<Question> Questions { get; set; }
+        /// <summary>
+        /// DevQuiz Categories
+        /// </summary>
+        public DbSet<Category> Categories { get; set; }
+        /// <summary>
+        /// DevQuiz Tags
+        /// </summary>
+        public DbSet<Tag> Tags { get; set; }
+        /// <summary>
+        /// DevQuiz Answers
+        /// </summary>
+        public DbSet<Answer> Answers { get; set; }
 
         /// <summary>
         /// Method executing while models creating

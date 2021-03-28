@@ -1,11 +1,11 @@
 using System;
 
-namespace DevQuiz.Libraries.Core.Models.Base
+namespace DevQuiz.Libraries.Core.Models.Entities
 {
     /// <summary>
     /// Base UserModel
     /// </summary>
-    public class User<TKey>
+    public class UserBase<TKey>
         where TKey : IEquatable<TKey>
     {
         /// <summary>

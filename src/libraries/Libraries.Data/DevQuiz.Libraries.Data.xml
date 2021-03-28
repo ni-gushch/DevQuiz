@@ -26,6 +26,26 @@
             </summary>
             <param name="modelBuilder">Model builder</param>
         </member>
+        <member name="T:DevQuiz.Libraries.Data.Models.Answer">
+            <summary>
+            Base answer model
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Models.Category">
+            <summary>
+            Base model of question category
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Models.Question">
+            <summary>
+            Question model
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Models.Tag">
+            <summary>
+            Model of question tag
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Data.Models.User">
             <summary>
             User db model

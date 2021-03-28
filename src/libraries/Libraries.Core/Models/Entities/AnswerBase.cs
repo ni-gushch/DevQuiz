@@ -1,9 +1,9 @@
-namespace DevQuiz.Libraries.Core.Models.Base
+namespace DevQuiz.Libraries.Core.Models.Entities
 {
     /// <summary>
     /// Base answer model
     /// </summary>
-    public class Answer
+    public class AnswerBase
     {
         /// <summary>
         /// Get or set unique identifier of answer
@@ -13,5 +13,9 @@ namespace DevQuiz.Libraries.Core.Models.Base
         /// Get or set answer text
         /// </summary>
         public string Text { get; set; }
+        /// <summary>
+        /// Get or set unique identitfier of question
+        /// </summary>
+        public int QuestionId { get; set; }
     }
 }
