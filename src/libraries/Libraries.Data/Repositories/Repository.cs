@@ -42,18 +42,18 @@ namespace DevQuiz.Libraries.Data.Repositories
         public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             entity.CreatedTime = DateTime.Now;
-            await EntityDbSet.AddAsync(entity, cancellationToken);
+            var result = await EntityDbSet.AddAsync(entity, cancellationToken);
             
-            return entity;
+            return result.Entity;
         }       
 
-        /// <inheritdoc cref="IRepository{TEntity, TKey}.UpdateAsync(TEntity, CancellationToken)" />
-        public async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
+        /// <inheritdoc cref="IRepository{TEntity, TKey}.Update(TEntity)" />
+        public TEntity Update(TEntity entity)
         {
             entity.UpdatedTime = DateTime.Now;
-            await EntityDbSet.AddAsync(entity, cancellationToken);
+            var result = EntityDbSet.Update(entity);
             
-            return entity;
+            return result.Entity;
         }
 
         /// <inheritdoc cref="IRepository{TEntity, TKey}.Delete(TEntity)" />

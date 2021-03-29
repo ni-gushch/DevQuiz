@@ -1,7 +1,9 @@
 using System;
+using System.Threading.Tasks;
 using DevQuiz.Libraries.Core.Repositories;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevQuiz.Libraries.Data.Repositories
 {
@@ -19,10 +21,10 @@ namespace DevQuiz.Libraries.Data.Repositories
             _devQuizDbContext = dbContext;
         }
 
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetOne" />
-        public User GetOne()
+        /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetOneAsync(Guid)" />
+        public async Task<User> GetOneAsync(Guid entityId)
         {
-            throw new NotImplementedException();
+            return await this.EntityDbSet.SingleOrDefaultAsync(it => it.Id.Equals(entityId));
         }
     }
 }

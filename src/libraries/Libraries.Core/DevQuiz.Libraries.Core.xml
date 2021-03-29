@@ -228,13 +228,11 @@
             <param name="cancellationToken">Cancellation token</param>
             <returns>New entity information</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.UpdateAsync(`0,System.Threading.CancellationToken)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Update(`0)">
             <summary>
             Update entity information
             </summary>
             <param name="entity">Entity information</param>
-            <param name="cancellationToken">Cancellation token</param>
-            <returns>Entity information</returns>
         </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Delete(`0)">
             <summary>
@@ -292,10 +290,11 @@
             Repository for manage DevQuiz user entities
             </summary>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOne">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOneAsync(`1)">
             <summary>
             Get one user from the store
             </summary>
+            <param name="entityId">Unique identifier of entity</param>
             <returns>User information about one user</returns>
         </member>
     </members>

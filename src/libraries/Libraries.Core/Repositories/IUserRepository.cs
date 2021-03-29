@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using DevQuiz.Libraries.Core.Models.Entities;
 
 namespace DevQuiz.Libraries.Core.Repositories
@@ -13,7 +14,8 @@ namespace DevQuiz.Libraries.Core.Repositories
         /// <summary>
         /// Get one user from the store
         /// </summary>
+        /// <param name="entityId">Unique identifier of entity</param>
         /// <returns>User information about one user</returns>
-        TUser GetOne();
+        Task<TUser> GetOneAsync(TKey entityId);
     }
 }

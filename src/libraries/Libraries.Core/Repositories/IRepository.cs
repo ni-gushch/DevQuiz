@@ -33,9 +33,7 @@ namespace DevQuiz.Libraries.Core.Repositories
         /// Update entity information
         /// </summary>
         /// <param name="entity">Entity information</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Entity information</returns>
-        Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
+        TEntity Update(TEntity entity);
 
         /// <summary>
         /// Delete user from the store

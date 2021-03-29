@@ -118,8 +118,8 @@
         <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.CreateAsync(`1,System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.CreateAsync(`0,System.Threading.CancellationToken)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.UpdateAsync(`1,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.UpdateAsync(`0,System.Threading.CancellationToken)" />
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.Update(`1)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Update(`0)" />
         </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.Delete(`1)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Delete(`0)" />
@@ -133,8 +133,8 @@
             </summary>
             <param name="dbContext">DevQuizDbContext instance</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.GetOne">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOne" />
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.GetOneAsync(System.Guid)">
+            <inheritdoc cref="!:IUserRepository&lt;TUser,TKey&gt;.GetOneAsync(Guid)" />
         </member>
     </members>
 </doc>

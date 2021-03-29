@@ -4,36 +4,36 @@
         <name>DevQuiz.TelegramBot</name>
     </assembly>
     <members>
-        <member name="T:TelegramBot.Program">
+        <member name="T:DevQuiz.TelegramBot.Program">
             <summary>
             App entry point
             </summary>
         </member>
-        <member name="M:TelegramBot.Program.Main(System.String[])">
+        <member name="M:DevQuiz.TelegramBot.Program.Main(System.String[])">
             <summary>
             Main class
             </summary>
             <param name="args">Application arguments</param>
         </member>
-        <member name="M:TelegramBot.Program.CreateHostBuilder(System.String[])">
+        <member name="M:DevQuiz.TelegramBot.Program.CreateHostBuilder(System.String[])">
             <summary>
             Creating web app host
             </summary>
             <param name="args">Application arguments</param>
             <returns>Web app host object</returns>
         </member>
-        <member name="T:TelegramBot.Startup">
+        <member name="T:DevQuiz.TelegramBot.Startup">
             <summary>
             Startup class
             </summary>
         </member>
-        <member name="M:TelegramBot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:DevQuiz.TelegramBot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Method for configure web app services
             </summary>
             <param name="services">Web app services collection</param>
         </member>
-        <member name="M:TelegramBot.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:DevQuiz.TelegramBot.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
              This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             </summary>
