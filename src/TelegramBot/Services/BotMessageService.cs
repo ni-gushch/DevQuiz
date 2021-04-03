@@ -51,7 +51,7 @@ namespace DevQuiz.TelegramBot.Services
                     break;
             }
         }
-
+        
         private async Task ProcessMessageAsync(Message message)
         {
 

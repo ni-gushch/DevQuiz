@@ -26,27 +26,27 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Dto.UserDto`1">
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.UserBaseDto`1">
             <summary>
             User dto model
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto`1.Id">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserBaseDto`1.Id">
             <summary>
             Get or set unique identifier of user
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto`1.UserName">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserBaseDto`1.UserName">
             <summary>
             Get or set user name (login)
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto`1.FirstName">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserBaseDto`1.FirstName">
             <summary>
             Get or set user first name
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto`1.LastName">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserBaseDto`1.LastName">
             <summary>
             Get or set user last name
             </summary>

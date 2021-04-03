@@ -58,6 +58,26 @@
             </summary>
             <param name="modelBuilder">Model builder</param>
         </member>
+        <member name="T:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions">
+            <summary>
+            Extensions for IServiceCollection instance
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions.AddDevQuizDbContexts(Microsoft.Extensions.DependencyInjection.IServiceCollection,AutoMapper.Configuration.IConfiguration)">
+            <summary>
+            Register DbContexts for DevQuiz
+            </summary>
+            <param name="services">IServiceCollestion instance</param>
+            <param name="configuration">IConfiguration instance</param>
+            <returns>IServiceCollection</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions.AddDevQuizRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register Repositories for DevQuiz
+            </summary>
+            <param name="services">IServiceCollestion instance</param>
+            <returns>IServiceCollection</returns>
+        </member>
         <member name="T:DevQuiz.Libraries.Data.Models.Answer">
             <summary>
             Answer model
@@ -127,14 +147,15 @@
         <member name="T:DevQuiz.Libraries.Data.Repositories.UserRepository">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IUserRepository`2" />
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.#ctor(DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext)">
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.#ctor(DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Data.Repositories.UserRepository})">
             <summary>
             Constructor
             </summary>
             <param name="dbContext">DevQuizDbContext instance</param>
+            <param name="logger">Logger instance</param>
         </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository.GetOneAsync(System.Guid)">
-            <inheritdoc cref="!:IUserRepository&lt;TUser,TKey&gt;.GetOneAsync(Guid)" />
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOneAsync(`1)" />
         </member>
     </members>
 </doc>

@@ -36,6 +36,13 @@
             <param name="botMeggaseService">Service for manage bot messages</param>
             <param name="logger">Logger instance</param>
         </member>
+        <member name="M:DevQuiz.TelegramBot.Controllers.UpdateController.Post(Telegram.Bot.Types.Update)">
+            <summary>
+            Post method for receive messages from Bot (Using webhook)
+            </summary>
+            <param name="update">New Update from bot</param>
+            <returns>Ok Action or error</returns>
+        </member>
         <member name="T:DevQuiz.TelegramBot.Extensions.ServiceCollectionExtensions">
             <summary>
             Extensions for IServiceCollection instance
