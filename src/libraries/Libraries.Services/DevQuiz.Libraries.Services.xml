@@ -4,5 +4,30 @@
         <name>DevQuiz.Libraries.Services</name>
     </assembly>
     <members>
+        <member name="T:DevQuiz.Libraries.Services.UserService`2">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.UserService`2.#ctor(DevQuiz.Libraries.Core.Repositories.IUserRepository{`0,`1},AutoMapper.IMapper)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="userRepository"></param>
+            <param name="mapper">Mapper instance</param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.UserService`2.Create(DevQuiz.Libraries.Core.Models.Dto.UserDto{System.Guid})">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.UserService`2.Delete(System.Guid)">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.UserService`2.GetAll">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.UserService`2.GetOne(System.Guid)">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.UserService`2.Update(DevQuiz.Libraries.Core.Models.Dto.UserDto{System.Guid})">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        </member>
     </members>
 </doc>

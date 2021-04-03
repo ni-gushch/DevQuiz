@@ -29,6 +29,13 @@
             Update controller
             </summary>
         </member>
+        <member name="M:DevQuiz.TelegramBot.Controllers.UpdateController.#ctor(DevQuiz.TelegramBot.Interfaces.IBotMessageService,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Controllers.UpdateController})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="botMeggaseService">Service for manage bot messages</param>
+            <param name="logger">Logger instance</param>
+        </member>
         <member name="T:DevQuiz.TelegramBot.Extensions.ServiceCollectionExtensions">
             <summary>
             Extensions for IServiceCollection instance
@@ -39,7 +46,7 @@
             Service for processing messages received from the bot
             </summary>
         </member>
-        <member name="M:DevQuiz.TelegramBot.Interfaces.IBotMessageService.ProcessMessageAsync(Telegram.Bot.Types.Update)">
+        <member name="M:DevQuiz.TelegramBot.Interfaces.IBotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)">
             <summary>
             Processing a message
             </summary>
@@ -84,8 +91,8 @@
             <param name="botService">Instance of bot service</param>
             <param name="logger">Logger</param>
         </member>
-        <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.ProcessMessageAsync(Telegram.Bot.Types.Update)">
-            <inheritdoc cref="M:DevQuiz.TelegramBot.Interfaces.IBotMessageService.ProcessMessageAsync(Telegram.Bot.Types.Update)" />
+        <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)">
+            <inheritdoc cref="M:DevQuiz.TelegramBot.Interfaces.IBotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)" />
         </member>
         <member name="T:DevQuiz.TelegramBot.Services.BotService">
             <inheritdoc cref="T:DevQuiz.TelegramBot.Interfaces.IBotService" />
@@ -133,6 +140,16 @@
             </summary>
             <param name="app">IApplication Builder object</param>
             <param name="env">IWwbHostEnvironment object</param>
+        </member>
+        <member name="T:TelegramBot.Constants.BotCommands">
+            <summary>
+            List of bot commands
+            </summary>
+        </member>
+        <member name="F:TelegramBot.Constants.BotCommands.Start">
+            <summary>
+            Start command
+            </summary>
         </member>
     </members>
 </doc>

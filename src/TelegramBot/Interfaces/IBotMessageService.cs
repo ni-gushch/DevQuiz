@@ -12,6 +12,6 @@ namespace DevQuiz.TelegramBot.Interfaces
         /// Processing a message
         /// </summary>
         /// <param name="updateMessage">New message</param>
-        Task ProcessMessageAsync(Update updateMessage);
+        Task ProcessUpdateAsync(Update updateMessage);
     }
 }

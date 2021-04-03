@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using DevQuiz.TelegramBot.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Telegram.Bot.Types;
 
 namespace DevQuiz.TelegramBot.Controllers
@@ -12,17 +14,28 @@ namespace DevQuiz.TelegramBot.Controllers
     public class UpdateController : Controller
     {
         private readonly IBotMessageService _botMessageService;
+        private readonly ILogger<UpdateController> _logger;
 
-        public UpdateController(IBotMessageService botMeggaseService)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="botMeggaseService">Service for manage bot messages</param>
+        /// <param name="logger">Logger instance</param>
+        public UpdateController(IBotMessageService botMeggaseService, ILogger<UpdateController> logger = null)
         {
             _botMessageService = botMeggaseService;
+            _logger = logger ?? NullLogger<UpdateController>.Instance;
         }
 
-        // POST api/update
+        /// <summary>
+        /// Post method for receive messages from Bot (Using webhook)
+        /// </summary>
+        /// <param name="update">New Update from bot</param>
+        /// <returns>Ok Action or error</returns>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Update update)
         {
-            await _botMessageService.ProcessMessageAsync(update);
+            await _botMessageService.ProcessUpdateAsync(update);
             return Ok();
         }
     }

@@ -24,9 +24,18 @@ namespace DevQuiz.TelegramBot.Services
             _logger = logger ?? NullLogger<BotMessageService>.Instance;
         }
 
-        /// <inheritdoc cref="IBotMessageService.ProcessMessageAsync(Update)" />
-        public async Task ProcessMessageAsync(Update updateMessage)
+        /// <inheritdoc cref="IBotMessageService.ProcessUpdateAsync(Update)" />
+        public async Task ProcessUpdateAsync(Update updateMessage)
         {
+            switch(updateMessage.Type)
+            {
+                case UpdateType.Message:
+                    await ProcessMessageAsync(updateMessage.Message);
+                    break;
+                case UpdateType.EditedMessage:
+                    await ProcessEditedMessage(updateMessage.Message, updateMessage.EditedMessage);
+                    break;
+            }
             if (updateMessage.Type != UpdateType.Message)
                 return;
 
@@ -41,6 +50,16 @@ namespace DevQuiz.TelegramBot.Services
                     await _botService.Client.SendTextMessageAsync(message.Chat.Id, message.Text);
                     break;
             }
+        }
+
+        private async Task ProcessMessageAsync(Message message)
+        {
+
+        }
+
+        private async Task ProcessEditedMessage(Message originalMessage, Message editedMessage)
+        {
+
         }
     }
 }

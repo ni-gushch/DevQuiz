@@ -297,5 +297,54 @@
             <param name="entityId">Unique identifier of entity</param>
             <returns>User information about one user</returns>
         </member>
+        <member name="T:DevQuiz.Libraries.Core.Services.IBaseService`5">
+            <summary>
+            Base service for manage entries
+            </summary>
+            <typeparam name="TEntryDto">Entry dto for add or update</typeparam>
+            <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
+            <typeparam name="TOneEntryResult">Get one entry result</typeparam>
+            <typeparam name="TAllEntriesResult">Get all entries result</typeparam>
+            <typeparam name="TStatusResult">Method status result</typeparam>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.GetAll">
+            <summary>
+            Get all entries
+            </summary>
+            <returns>All entries result</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.GetOne(`4)">
+            <summary>
+            Get one entry
+            </summary>
+            <param name="idDto">Parameter with unique identifier</param>
+            <returns>One entry result</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.Create(`0)">
+            <summary>
+            Create new entry
+            </summary>
+            <param name="entryToAdd">Model with information about new entry</param>
+            <returns>New entry information</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.Update(`0)">
+            <summary>
+            Update entry
+            </summary>
+            <param name="entryToUpdate">Model with information to update</param>
+            <returns>Update entry information</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.Delete(`4)">
+            <summary>
+            Delete entry
+            </summary>
+            <param name="idDto">Parameter with unique identifier</param>
+            <returns>Method execution status</returns>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Services.IUserService`5">
+            <summary>
+            Service for manage users
+            </summary>
+        </member>
     </members>
 </doc>
