@@ -9,6 +9,18 @@
             Dto model for user
             </summary>
         </member>
+        <member name="T:DevQuiz.Libraries.Services.Extensions.ServiceCollectionExtensions">
+            <summary>
+            Extensions methods for IServiceCollection instance
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Extensions.ServiceCollectionExtensions.AddDevQuizServices``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add services for working with DevQuiz db
+            </summary>
+            <param name="services">IServiceCollection instance</param>
+            <returns>IServiceCollection</returns>
+        </member>
         <member name="T:DevQuiz.Libraries.Services.UserService`2">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
         </member>

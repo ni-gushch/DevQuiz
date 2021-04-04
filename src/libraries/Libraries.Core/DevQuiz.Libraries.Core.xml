@@ -79,7 +79,7 @@
         </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.AnswerBase.QuestionId">
             <summary>
-            Get or set unique identitfier of question
+            Get or set unique identifier of question
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.CategoryBase`1">
@@ -146,7 +146,7 @@
         </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.CategoryId">
             <summary>
-            Get or set unique identitfier of category
+            Get or set unique identifier of category
             </summary>
         </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Category">

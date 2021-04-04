@@ -1,7 +1,7 @@
 using System;
-using DevQuiz.Libraries.Core.Configurations;
 using DevQuiz.Libraries.Data.Extensions;
 using DevQuiz.Libraries.Data.Models;
+using DevQuiz.Libraries.Services.Extensions;
 using DevQuiz.TelegramBot.Extensions;
 using DevQuiz.TelegramBot.Interfaces;
 using DevQuiz.TelegramBot.Services;
@@ -46,10 +46,9 @@ namespace DevQuiz.TelegramBot
         {
             services.AddCustomOptions(Configuration);
 
-            Configuration.GetSection("asd").Get<DbConfiguration>();
-
-            services.AddDevQuizDbContexts(Configuration);
-            services.AddDevQuizRepositories<User, Guid>();
+            // services.AddDevQuizDbContexts(Configuration);
+            // services.AddDevQuizRepositories<User, Guid>();
+            // services.AddDevQuizServices<User, Guid>();
 
             services.AddSingleton<IBotService, BotService>();
             services.AddScoped<IBotMessageService, BotMessageService>();
@@ -57,7 +56,6 @@ namespace DevQuiz.TelegramBot
             services.AddControllers()
                 .AddNewtonsoftJson();
         }
-
 
         /// <summary>
         ///  This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

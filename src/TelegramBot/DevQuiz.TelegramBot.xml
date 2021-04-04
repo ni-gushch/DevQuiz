@@ -6,7 +6,7 @@
     <members>
         <member name="T:DevQuiz.TelegramBot.Configurations.BotConfiguration">
             <summary>
-            Cofigurations for bot
+            Configurations for bot
             </summary>
         </member>
         <member name="P:DevQuiz.TelegramBot.Configurations.BotConfiguration.AccessToken">
@@ -22,6 +22,16 @@
         <member name="P:DevQuiz.TelegramBot.Configurations.BotConfiguration.Socks5Port">
             <summary>
             Socks 5 port
+            </summary>
+        </member>
+        <member name="T:DevQuiz.TelegramBot.Constants.BotCommands">
+            <summary>
+            List of bot commands
+            </summary>
+        </member>
+        <member name="F:DevQuiz.TelegramBot.Constants.BotCommands.Start">
+            <summary>
+            Start command
             </summary>
         </member>
         <member name="T:DevQuiz.TelegramBot.Controllers.UpdateController">
@@ -147,16 +157,6 @@
             </summary>
             <param name="app">IApplication Builder object</param>
             <param name="env">IWwbHostEnvironment object</param>
-        </member>
-        <member name="T:TelegramBot.Constants.BotCommands">
-            <summary>
-            List of bot commands
-            </summary>
-        </member>
-        <member name="F:TelegramBot.Constants.BotCommands.Start">
-            <summary>
-            Start command
-            </summary>
         </member>
     </members>
 </doc>

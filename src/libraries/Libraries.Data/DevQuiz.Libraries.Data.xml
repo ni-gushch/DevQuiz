@@ -13,7 +13,7 @@
             <summary>
             Constructor
             </summary>
-            <param name="options">Optins for creating DevQuiz context</param>
+            <param name="options">Options for creating DevQuiz context</param>
         </member>
         <member name="P:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.Users">
             <summary>
@@ -67,7 +67,7 @@
             <summary>
             Register DbContexts for DevQuiz
             </summary>
-            <param name="services">IServiceCollestion instance</param>
+            <param name="services">IServiceCollection instance</param>
             <param name="configuration">IConfiguration instance</param>
             <returns>IServiceCollection</returns>
         </member>
@@ -75,7 +75,7 @@
             <summary>
             Register Repositories for DevQuiz
             </summary>
-            <param name="services">IServiceCollestion instance</param>
+            <param name="services">IServiceCollection instance</param>
             <returns>IServiceCollection</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Data.Models.Answer">
