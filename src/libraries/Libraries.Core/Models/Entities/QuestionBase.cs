@@ -17,7 +17,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// <summary>
         /// Get or set question text
         /// </summary>
-        public string Test { get; set; }
+        public string Text { get; set; }
         /// <summary>
         /// Get or set list of answers
         /// </summary>

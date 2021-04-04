@@ -2,6 +2,7 @@ using DevQuiz.Libraries.Core.Extensions;
 using DevQuiz.Libraries.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace DevQuiz.Libraries.Data.DbContexts
 {
@@ -10,6 +11,16 @@ namespace DevQuiz.Libraries.Data.DbContexts
     /// </summary>
     public class DevQuizDbContext : DbContext
     {
+        private string _dbConnectionString;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public DevQuizDbContext(IConfiguration config)
+        {
+            _dbConnectionString = config.GetSection("DB:ConnectionString").Value;
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -17,6 +28,18 @@ namespace DevQuiz.Libraries.Data.DbContexts
         public DevQuizDbContext(DbContextOptions<DevQuizDbContext> options)
             : base(options)
         {
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql(_dbConnectionString);
+            }
         }
 
         /// <summary>
