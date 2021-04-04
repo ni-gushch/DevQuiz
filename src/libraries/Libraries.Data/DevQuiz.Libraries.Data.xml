@@ -58,6 +58,44 @@
             </summary>
             <param name="modelBuilder">Model builder</param>
         </member>
+        <member name="T:DevQuiz.Libraries.Data.DbContexts.Factories.CustomDesignTimeDbContextFactory`1">
+            <summary>
+            Custom db context abstract factory
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.Factories.CustomDesignTimeDbContextFactory`1.CreateDbContext(System.String[])">
+            <summary>
+            Создать объект БД
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.Factories.CustomDesignTimeDbContextFactory`1.CreateNewInstance(Microsoft.EntityFrameworkCore.DbContextOptions{`0})">
+            <summary>
+            Создание нового объекта
+            </summary>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.Factories.CustomDesignTimeDbContextFactory`1.Create">
+            <summary>
+            Создание объекта фабрики
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.DbContexts.Factories.DevQuizDbContextFactory">
+            <summary>
+            DevQuiz db context factory
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.Factories.DevQuizDbContextFactory.CreateNewInstance(Microsoft.EntityFrameworkCore.DbContextOptions{DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext})">
+            <summary>
+            Creating new object
+            </summary>
+            <param name="options">Db context options</param>
+            <returns>Db context instance</returns>
+        </member>
         <member name="T:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions">
             <summary>
             Extensions for IServiceCollection instance

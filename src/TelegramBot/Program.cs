@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+using DevQuiz.Libraries.Core.Configurations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -16,42 +18,50 @@ namespace DevQuiz.TelegramBot
         /// Main class
         /// </summary>
         /// <param name="args">Application arguments</param>
-        public static void Main(string[] args)
-        {
-            var netCoreEnvironmentVariable = Environment.GetEnvironmentVariable(AspNetCoreEnvironmentName) ?? Environments.Production;
-            var configuration = BuildConfigurations(args, netCoreEnvironmentVariable);
-
-            CreateHostBuilder(args, configuration)
+        public static async Task Main(string[] args) => 
+            await CreateHostBuilder(args)
                 .Build()
-                .Run();
-        }
+                .RunAsync();
+        
 
         /// <summary>
         /// Creating web app host
         /// </summary>
         /// <param name="args">Application arguments</param>
-        /// <param name="configuration">IConfiguration instance</param>
         /// <returns>Web app host object</returns>
-        public static IHostBuilder CreateHostBuilder(string[] args, IConfiguration configuration) =>
-            Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args) 
+        {
+            var netCoreEnvironmentVariable = Environment.GetEnvironmentVariable(AspNetCoreEnvironmentName) ?? Environments.Production;
+            var configuration = BuildConfigurations(args, netCoreEnvironmentVariable);
+
+#if(DEBUG)
+            var connectionString = configuration.GetSection(nameof(DbConfiguration)).Get<DbConfiguration>();
+            Environment.SetEnvironmentVariable($"{nameof(DbConfiguration)}:{nameof(DbConfiguration.ConnectionString)}", connectionString.ConnectionString);
+#endif
+
+            return Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostContext, builder) => 
                 {
                     builder.AddConfiguration(configuration);
-                    if(hostContext.HostingEnvironment.IsDevelopment())
-                        builder.AddUserSecrets<Program>();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
+        }
+            
         private static IConfiguration BuildConfigurations(string[] args, string aspNetCoreEnvironment)
         {
-            return new ConfigurationBuilder()
+            var configurationBuilder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional:false, reloadOnChange:true)
                 .AddJsonFile($"appsettings.{aspNetCoreEnvironment}.json", optional:true, reloadOnChange:true)
-                .Build();
-        } 
-        
+                .AddEnvironmentVariables();
+
+            if(aspNetCoreEnvironment.Equals(Environments.Development))
+                configurationBuilder.AddUserSecrets<Startup>();
+
+            configurationBuilder.AddCommandLine(args);
+            return configurationBuilder.Build();
+        }
     }
 }

@@ -79,6 +79,16 @@
             Instance of telegram bot client
             </summary>
         </member>
+        <member name="T:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile">
+            <summary>
+            Mapper profile for convert Telegram User information to Dto
+            </summary>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="T:DevQuiz.TelegramBot.Program">
             <summary>
             App entry point
@@ -90,12 +100,11 @@
             </summary>
             <param name="args">Application arguments</param>
         </member>
-        <member name="M:DevQuiz.TelegramBot.Program.CreateHostBuilder(System.String[],Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:DevQuiz.TelegramBot.Program.CreateHostBuilder(System.String[])">
             <summary>
             Creating web app host
             </summary>
             <param name="args">Application arguments</param>
-            <param name="configuration">IConfiguration instance</param>
             <returns>Web app host object</returns>
         </member>
         <member name="T:DevQuiz.TelegramBot.Services.BotMessageService">

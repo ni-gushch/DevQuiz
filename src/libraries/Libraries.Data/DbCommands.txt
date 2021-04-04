@@ -1,0 +1,5 @@
+Create new migration
+dotnet ef migrations add InitialMigration -c DevQuizDbContext -p .\src\libraries\Libraries.Data\Libraries.Data.csproj -s .\src\TelegramBot\TelegramBot.csproj
+
+Update migration
+dotnet ef database update -c DevQuizDbContext -p .\src\libraries\Libraries.Data\Libraries.Data.csproj -s .\src\TelegramBot\TelegramBot.csproj
