@@ -8,7 +8,7 @@ namespace DevQuiz.Libraries.Core.Services
     /// </summary>
     public interface IUserService<in TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey> : 
         IBaseService<TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey>
-        where TUserDto : UserBaseDto<TKey>
+        where TUserDto : UserDtoBase<TKey>
         where TOneUserResult : class
         where TAllUsersResult : class
         where TKey : IEquatable<TKey>

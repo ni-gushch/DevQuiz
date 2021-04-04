@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using DevQuiz.Libraries.Core.Configurations;
-using System.Reflection;
-using System.Linq;
 
 namespace DevQuiz.Libraries.Data.DbContexts.Factories
 {

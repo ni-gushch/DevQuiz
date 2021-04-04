@@ -8,6 +8,9 @@ namespace DevQuiz.Libraries.Data.Models
     /// </summary>
     public class User : UserBase<Guid>
     {
-        
+        /// <summary>
+        /// Unique identifier of user in Telegram
+        /// </summary>
+        public int TelegramId { get; set; }
     }
 }

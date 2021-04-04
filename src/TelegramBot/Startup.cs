@@ -50,7 +50,7 @@ namespace DevQuiz.TelegramBot
 
             services.AddDevQuizDbContexts(Configuration);
             services.AddDevQuizRepositories<User, Guid>();
-            services.AddDevQuizServices<User, Guid>();
+            services.AddDevQuizServices<User, UserDto, Guid>();
             
             services.AddAutoMapper(new [] {
                 typeof(Startup),

@@ -10,7 +10,7 @@ namespace DevQuiz.Libraries.Core.Mappers
     /// </summary>
     public class UserMapperProfile<TUser, TUserDto, TKey> : Profile
         where TUser : UserBase<TKey>
-        where TUserDto : UserBaseDto<TKey>
+        where TUserDto : UserDtoBase<TKey>
         where TKey : IEquatable<TKey>
     {
         /// <summary>

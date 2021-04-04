@@ -141,6 +141,11 @@
             User db model
             </summary>
         </member>
+        <member name="P:DevQuiz.Libraries.Data.Models.User.TelegramId">
+            <summary>
+            Unique identifier of user in Telegram
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Data.Repositories.QuestionRepository`4">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IQuestionRepository`4" />
         </member>

@@ -14,13 +14,14 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace DevQuiz.Libraries.Services
 {
     /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-    public class UserService<TUser, TKey> : IUserService<UserDto, UserDto, List<UserDto>, bool, Guid>
+    public class UserService<TUser, TUserDto, TKey> : IUserService<TUserDto, TUserDto, List<TUserDto>, bool, TKey>
+        where TUserDto : UserDtoBase<TKey>
         where TUser : UserBase<TKey>
         where TKey : IEquatable<TKey>
     {
         private readonly IUserRepository<TUser, TKey> _userRepository;
         private readonly IMapper _mapper;
-        private readonly ILogger<UserService<TUser, TKey>> _logger;
+        private readonly ILogger<UserService<TUser, TUserDto, TKey>> _logger;
 
         /// <summary>
         /// Constructor
@@ -30,37 +31,50 @@ namespace DevQuiz.Libraries.Services
         /// <param name="logger">Logger instance</param>
         public UserService(IUserRepository<TUser, TKey> userRepository, 
             IMapper mapper,
-            ILogger<UserService<TUser, TKey>> logger = null)
+            ILogger<UserService<TUser, TUserDto, TKey>> logger = null)
         {
             _userRepository = userRepository;
             _mapper = mapper;
-            _logger = logger ?? NullLogger<UserService<TUser, TKey>>.Instance;
+            _logger = logger ?? NullLogger<UserService<TUser, TUserDto, TKey>>.Instance;
         }
 
         /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<UserDto> Create(UserDto entryToAdd)
+        public async Task<TUserDto> Create(TUserDto entryToAdd)
         {
-            throw new NotImplementedException();
+            _logger.LogDebug("Start creating new user");
+            var addUserEntity = _mapper.Map<TUser>(entryToAdd);
+            addUserEntity.CreatedTime = DateTime.Now;
+            var addedUser = await _userRepository.CreateAsync(addUserEntity);
+            var status = await _userRepository.UnitOfWork.SaveChangesAsync();
+            return _mapper.Map<TUserDto>(addedUser);
         }
+
         /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<bool> Delete(Guid idDto)
+        public async Task<bool> Delete(TKey idDto)
         {
-            throw new NotImplementedException();
+            _logger.LogDebug($"Start deleting user with id {idDto}");
+            var userToDelete = await _userRepository.GetOneAsync(idDto);
+            _userRepository.Delete(userToDelete);
+            var result = await _userRepository.UnitOfWork.SaveChangesAsync();
+            return result > 0;
         }
+
         /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<List<UserDto>> GetAll()
+        public Task<List<TUserDto>> GetAll()
         {
             var allUsers = _userRepository.GetAll().ToList();
-            var result = _mapper.Map<List<UserDto>>(allUsers);
+            var result = _mapper.Map<List<TUserDto>>(allUsers);
             throw new NotImplementedException();
         }
+
         /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<UserDto> GetOne(Guid idDto)
+        public Task<TUserDto> GetOne(TKey idDto)
         {
             throw new NotImplementedException();
         }
+
         /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<UserDto> Update(UserDto entryToUpdate)
+        public Task<TUserDto> Update(TUserDto entryToUpdate)
         {
             throw new NotImplementedException();
         }

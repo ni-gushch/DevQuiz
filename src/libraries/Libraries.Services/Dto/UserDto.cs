@@ -6,8 +6,11 @@ namespace DevQuiz.Libraries.Services.Dto
     /// <summary>
     /// Dto model for user
     /// </summary>
-    public class UserDto : UserBaseDto<Guid>
+    public class UserDto : UserDtoBase<Guid>
     {
-        
+        /// <summary>
+        /// Unique identifier of user in Telegram
+        /// </summary>
+        public int TelegramId { get; set; }
     }
 }
