@@ -10,7 +10,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// </summary>
         public string Text { get; set; }
         /// <summary>
-        /// Get or set unique identitfier of question
+        /// Get or set unique identifier of question
         /// </summary>
         public int QuestionId { get; set; }
     }

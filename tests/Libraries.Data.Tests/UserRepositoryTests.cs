@@ -29,7 +29,7 @@ namespace DevQuiz.Libraries.Data.Tests
                             .CommitAsync();
 
             //create user repo instance
-            var userRepository = new UserRepository(devQuizContext);
+            var userRepository = new UserRepository<User, Guid>(devQuizContext);
 
             //prepare user entity
             var userToAdd = new User
@@ -67,7 +67,7 @@ namespace DevQuiz.Libraries.Data.Tests
                             .CommitAsync();
 
             //create user repo instance
-            var userRepository = new UserRepository(devQuizContext);
+            var userRepository = new UserRepository<User, Guid>(devQuizContext);
 
             //prepare user entity
             var userToAdd = new User
@@ -111,7 +111,7 @@ namespace DevQuiz.Libraries.Data.Tests
                             .CommitAsync();
 
             //create user repo instance
-            var userRepository = new UserRepository(devQuizContext);
+            var userRepository = new UserRepository<User, Guid>(devQuizContext);
 
             //prepare user entity
             var userToAdd = new User

@@ -1,7 +1,7 @@
 namespace DevQuiz.TelegramBot.Configurations
 {
     /// <summary>
-    /// Cofigurations for bot
+    /// Configurations for bot
     /// </summary>
     public class BotConfiguration
     {

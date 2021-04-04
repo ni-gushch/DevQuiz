@@ -1,3 +1,7 @@
+using System;
+using DevQuiz.Libraries.Core.Configurations;
+using DevQuiz.Libraries.Data.Extensions;
+using DevQuiz.Libraries.Data.Models;
 using DevQuiz.TelegramBot.Extensions;
 using DevQuiz.TelegramBot.Interfaces;
 using DevQuiz.TelegramBot.Services;
@@ -41,6 +45,11 @@ namespace DevQuiz.TelegramBot
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCustomOptions(Configuration);
+
+            Configuration.GetSection("asd").Get<DbConfiguration>();
+
+            services.AddDevQuizDbContexts(Configuration);
+            services.AddDevQuizRepositories<User, Guid>();
 
             services.AddSingleton<IBotService, BotService>();
             services.AddScoped<IBotMessageService, BotMessageService>();

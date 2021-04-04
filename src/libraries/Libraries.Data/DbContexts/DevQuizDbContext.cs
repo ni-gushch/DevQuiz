@@ -20,7 +20,7 @@ namespace DevQuiz.Libraries.Data.DbContexts
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="options">Optins for creating DevQuiz context</param>
+        /// <param name="options">Options for creating DevQuiz context</param>
         public DevQuizDbContext(DbContextOptions<DevQuizDbContext> options)
             : base(options)
         {

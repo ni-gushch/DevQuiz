@@ -11,7 +11,7 @@ namespace DevQuiz.Libraries.Core.Services
     /// <typeparam name="TOneEntryResult">Get one entry result</typeparam>
     /// <typeparam name="TAllEntriesResult">Get all entries result</typeparam>
     /// <typeparam name="TStatusResult">Method status result</typeparam>
-    public interface IBaseService<TEntryDto, TOneEntryResult, TAllEntriesResult, TStatusResult, TKey>
+    public interface IBaseService<in TEntryDto, TOneEntryResult, TAllEntriesResult, TStatusResult, TKey>
         where TEntryDto : class
         where TOneEntryResult : class
         where TAllEntriesResult : class

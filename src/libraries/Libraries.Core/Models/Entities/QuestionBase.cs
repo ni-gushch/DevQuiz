@@ -27,7 +27,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// </summary>
         public string RightAnswerExplanation  { get; set; }
         /// <summary>
-        /// Get or set unique identitfier of category
+        /// Get or set unique identifier of category
         /// </summary>
         public int CategoryId { get; set; }
         /// <summary>

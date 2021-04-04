@@ -1,4 +1,4 @@
-namespace TelegramBot.Constants
+namespace DevQuiz.TelegramBot.Constants
 {
     /// <summary>
     /// List of bot commands
