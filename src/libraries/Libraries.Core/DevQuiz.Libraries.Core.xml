@@ -26,6 +26,16 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="T:DevQuiz.Libraries.Core.Mappers.UserMapperProfile`3">
+            <summary>
+            Profile class for mapper user models
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Mappers.UserMapperProfile`3.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Dto.UserBaseDto`1">
             <summary>
             User dto model
@@ -124,7 +134,7 @@
             Base question model
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Test">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Text">
             <summary>
             Get or set question text
             </summary>
