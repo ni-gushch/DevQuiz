@@ -124,7 +124,7 @@
             Base question model
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Test">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Text">
             <summary>
             Get or set question text
             </summary>
