@@ -1,41 +1,38 @@
 using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
-using DevQuiz.Libraries.Data.Models;
+using DevQuiz.Libraries.Data.DbContexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace DevQuiz.Libraries.Data.Repositories
 {
     /// <inheritdoc cref="IUserRepository{TUser,TKey}" />
-    public class UserRepository : IUserRepository<User, Guid>
+    public class UserRepository<TUser, TKey> : Repository<DevQuizDbContext, TUser, TKey>, IUserRepository<TUser, TKey>
+        where TUser : UserBase<TKey>
+        where TKey : IEquatable<TKey>
     {
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.Create" />
-        public User Create(User user)
+        private readonly DevQuizDbContext _devQuizDbContext;
+        private readonly ILogger<UserRepository<TUser, TKey>> _logger;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="dbContext">DevQuizDbContext instance</param>
+        /// <param name="logger">Logger instance</param>
+        public UserRepository(DevQuizDbContext dbContext,
+            ILogger<UserRepository<TUser, TKey>> logger = null) : base(dbContext: dbContext)
         {
-            throw new NotImplementedException();
+            _devQuizDbContext = dbContext;
+            _logger = logger ?? NullLogger<UserRepository<TUser, TKey>>.Instance;
         }
 
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.Delete" />
-        public bool Delete(Guid userId)
+        /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetOneAsync(TKey)" />
+        public async Task<TUser> GetOneAsync(TKey entityId)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetAll" />
-        public List<User> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetOne" />
-        public User GetOne()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.Update" />
-        public User Update(User user)
-        {
-            throw new NotImplementedException();
+            return await this.EntityDbSet.SingleOrDefaultAsync(it => it.Id.Equals(entityId));
         }
     }
 }

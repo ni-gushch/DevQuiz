@@ -5,19 +5,15 @@ namespace DevQuiz.Libraries.Core.Models.Entities
     /// <summary>
     /// Base question model
     /// </summary>
-    public class QuestionBase<TAnswer, TCategory, TTag>
+    public class QuestionBase<TAnswer, TCategory, TTag> : AggregateEntity<int>
         where TAnswer : class
         where TCategory : class
         where TTag : class
     {
         /// <summary>
-        /// Get or set unique identifier of question
-        /// </summary>
-        public int Id { get; set; }
-        /// <summary>
         /// Get or set question text
         /// </summary>
-        public string Test { get; set; }
+        public string Text { get; set; }
         /// <summary>
         /// Get or set list of answers
         /// </summary>
@@ -31,7 +27,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// </summary>
         public string RightAnswerExplanation  { get; set; }
         /// <summary>
-        /// Get or set unique identitfier of category
+        /// Get or set unique identifier of category
         /// </summary>
         public int CategoryId { get; set; }
         /// <summary>

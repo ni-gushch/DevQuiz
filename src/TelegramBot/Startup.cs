@@ -1,14 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using DevQuiz.Libraries.Data.Extensions;
+using DevQuiz.Libraries.Data.Models;
+using DevQuiz.Libraries.Services.Extensions;
+using DevQuiz.TelegramBot.Extensions;
+using DevQuiz.TelegramBot.Interfaces;
+using DevQuiz.TelegramBot.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace TelegramBot
+namespace DevQuiz.TelegramBot
 {
     /// <summary>
     /// Startup class
@@ -16,13 +19,43 @@ namespace TelegramBot
     public class Startup
     {
         /// <summary>
+        /// Configuration of web application
+        /// </summary>
+        public IConfiguration Configuration{ get; }
+        /// <summary>
+        /// Application web host environment
+        /// </summary>
+        public IWebHostEnvironment WebHostEnvironment { get; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="configuration">IConfiguration instance</param>
+        /// <param name="webHostEnvironment">WebHostEnvironment instance</param>
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        {
+            Configuration = configuration;
+            WebHostEnvironment = webHostEnvironment;
+        }
+
+        /// <summary>
         /// Method for configure web app services
         /// </summary>
         /// <param name="services">Web app services collection</param>
         public void ConfigureServices(IServiceCollection services)
         {
-        }
+            services.AddCustomOptions(Configuration);
 
+            // services.AddDevQuizDbContexts(Configuration);
+            // services.AddDevQuizRepositories<User, Guid>();
+            // services.AddDevQuizServices<User, Guid>();
+
+            services.AddSingleton<IBotService, BotService>();
+            services.AddScoped<IBotMessageService, BotMessageService>();
+
+            services.AddControllers()
+                .AddNewtonsoftJson();
+        }
 
         /// <summary>
         ///  This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,13 +70,11 @@ namespace TelegramBot
             }
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }

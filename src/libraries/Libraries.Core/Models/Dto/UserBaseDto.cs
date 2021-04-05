@@ -5,7 +5,7 @@ namespace DevQuiz.Libraries.Core.Models.Dto
     /// <summary>
     /// User dto model
     /// </summary>
-    public class UserDto<TKey>
+    public class UserBaseDto<TKey>
         where TKey : IEquatable<TKey>
     {
         /// <summary>
