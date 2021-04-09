@@ -6,15 +6,14 @@ namespace DevQuiz.Libraries.Core.Models.Entities
     /// Base model for aggregated entities
     /// </summary>
     /// <typeparam name="TKey">Type of entity unique index </typeparam>
-    public class AggregateEntity<TKey> : Entity<TKey>
+    public class AggregateEntity<TKey> : EntityBase<TKey>, IAuditEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
-        /// <summary>
-        /// DateTime when entity was created
-        /// </summary>
-        public DateTime CreatedTime { get; set; }
-        /// <summary>
-        /// DateTime when entity was updated
-        /// </summary>
-        public DateTime UpdatedTime { get; set; }
+        /// <inheritdoc cref="IAuditEntity{TKey}.CreatedDate />
+        public DateTime CreatedDate { get; set; }
+        /// <inheritdoc cref="IAuditEntity{TKey}.CreatedBy" />
+        public string CreatedBy { get; set; }   
+        /// <inheritdoc cref="IAuditEntity{TKey}.UpdatedDate" />
+        public DateTime? UpdatedDate { get; set; }
     }
 }

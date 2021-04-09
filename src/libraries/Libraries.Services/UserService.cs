@@ -13,8 +13,8 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace DevQuiz.Libraries.Services
 {
-    /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-    public class UserService<TUser, TUserDto, TKey> : IUserService<TUserDto, TUserDto, List<TUserDto>, bool, TKey>
+    /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}" />
+    public class UserService<TUser, TUserDto, TKey> : IUserService<TUserDto, TUserDto, List<TUserDto>, bool, bool, bool, TKey>
         where TUserDto : UserDtoBase<TKey>
         where TUser : UserBase<TKey>
         where TKey : IEquatable<TKey>
@@ -38,15 +38,14 @@ namespace DevQuiz.Libraries.Services
             _logger = logger ?? NullLogger<UserService<TUser, TUserDto, TKey>>.Instance;
         }
 
-        /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public async Task<TUserDto> Create(TUserDto entryToAdd)
+        /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.Create(TUserDto)" />
+        public async Task<bool> Create(TUserDto entryToAdd)
         {
             _logger.LogDebug("Start creating new user");
             var addUserEntity = _mapper.Map<TUser>(entryToAdd);
-            addUserEntity.CreatedTime = DateTime.Now;
-            var addedUser = await _userRepository.CreateAsync(addUserEntity);
-            var status = await _userRepository.UnitOfWork.SaveChangesAsync();
-            return _mapper.Map<TUserDto>(addedUser);
+            addUserEntity.CreatedDate = DateTime.Now;
+            await _userRepository.CreateAsync(addUserEntity);
+            return true;
         }
 
         /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
@@ -55,8 +54,8 @@ namespace DevQuiz.Libraries.Services
             _logger.LogDebug($"Start deleting user with id {idDto}");
             var userToDelete = await _userRepository.GetOneAsync(idDto);
             _userRepository.Delete(userToDelete);
-            var result = await _userRepository.UnitOfWork.SaveChangesAsync();
-            return result > 0;
+            
+            return true;
         }
 
         /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
@@ -74,7 +73,7 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<TUserDto> Update(TUserDto entryToUpdate)
+        public Task<bool> Update(TUserDto entryToUpdate)
         {
             throw new NotImplementedException();
         }

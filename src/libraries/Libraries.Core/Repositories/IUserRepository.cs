@@ -7,7 +7,7 @@ namespace DevQuiz.Libraries.Core.Repositories
     /// <summary>
     /// Repository for manage DevQuiz user entities
     /// </summary>
-    public interface IUserRepository<TUser, TKey> : IRepository<TUser, TKey>
+    public interface IUserRepository<TUser, TKey> : IRepository<TUser>
         where TUser : UserBase<TKey>
         where TKey : IEquatable<TKey>
     {

@@ -3,7 +3,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
     /// <summary>
     /// Base answer model
     /// </summary>
-    public class AnswerBase : Entity<int>
+    public class AnswerBase : EntityBase<int>
     {
         /// <summary>
         /// Get or set answer text

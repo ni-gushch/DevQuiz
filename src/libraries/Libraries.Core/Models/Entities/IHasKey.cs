@@ -1,14 +1,17 @@
+using System;
+
 namespace DevQuiz.Libraries.Core.Models.Entities
 {
     /// <summary>
     /// Generic interface for entities whitch has a unique key
     /// </summary>
-    /// <typeparam name="T">Unique key type</typeparam>
-    public interface IHasKey<T>
+    /// <typeparam name="TKey">Unique key type</typeparam>
+    public interface IHasKey<TKey>
+        where TKey : IEquatable<TKey>
     {
         /// <summary>
         /// Unique key
         /// </summary>
-        T Id { get; set; }
+        TKey Id { get; set; }
     }
 }

@@ -67,15 +67,12 @@
             </summary>
             <typeparam name="TKey">Type of entity unique index </typeparam>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.CreatedTime">
-            <summary>
-            DateTime when entity was created
-            </summary>
+        <!-- Badly formed XML comment ignored for member "P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.CreatedDate" -->
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.CreatedBy">
+            <inheritdoc cref="!:IAuditEntity&lt;TKey&gt;.CreatedBy" />
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.UpdatedTime">
-            <summary>
-            DateTime when entity was updated
-            </summary>
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.UpdatedDate">
+            <inheritdoc cref="!:IAuditEntity&lt;TKey&gt;.UpdatedDate" />
         </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.AnswerBase">
             <summary>
@@ -107,22 +104,47 @@
             Linked questions
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Entities.Entity`1">
+        <member name="T:DevQuiz.Libraries.Core.Models.Entities.EntityBase`1">
             <summary>
             Base entity class
             </summary>
             <typeparam name="TKey">Type of unique identifier</typeparam>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Entity`1.Id">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.EntityBase`1.Id">
             <summary>
             Get or set unique identifier of entity
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity">
+            <summary>
+            Interface for models whitch need audit information
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity.CreatedDate">
+            <summary>
+            Created Date
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity.CreatedBy">
+            <summary>
+            Who create entity
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity.UpdatedDate">
+            <summary>
+            Update Date
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity`1">
+            <summary>
+            Interface for models whitch need audit information
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.IHasKey`1">
             <summary>
             Generic interface for entities whitch has a unique key
             </summary>
-            <typeparam name="T">Unique key type</typeparam>
+            <typeparam name="TKey">Unique key type</typeparam>
         </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.IHasKey`1.Id">
             <summary>
@@ -213,87 +235,60 @@
             <typeparam name="TCategory">Question category model</typeparam>
             <typeparam name="TTag">Question tag model</typeparam>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Repositories.IRepository`2">
+        <member name="T:DevQuiz.Libraries.Core.Repositories.IRepository`1">
             <summary>
             Base repository interface
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Repositories.IRepository`2.UnitOfWork">
-            <summary>
-            Unit of work
-            </summary>
-            <value>Unit of work instance</value>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.GetAll">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.GetAll">
             <summary>
             Get all entities query from the store
             </summary>
             <returns>List of all users</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.CreateAsync(`0,System.Threading.CancellationToken)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Get list entities by passed expression
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.CreateAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Create new entity
             </summary>
             <param name="entity">Entity model</param>
             <param name="cancellationToken">Cancellation token</param>
-            <returns>New entity information</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Update(`0)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.Update(`0)">
             <summary>
             Update entity information
             </summary>
             <param name="entity">Entity information</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Delete(`0)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.Delete(`0)">
             <summary>
             Delete user from the store
             </summary>
             <param name="entity">Entity instance</param>
-            <returns>Operation status</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IUnitOfWork">
             <summary>
             Unit of work interface
             </summary>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.SaveChanges">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.Commit">
             <summary>
             Save all changes
             </summary>
             <returns>Operation status</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.SaveChangesAsync(System.Threading.CancellationToken)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.CommitAsync(System.Threading.CancellationToken)">
             <summary>
             Save all changes
             </summary>
             <param name="cancellationToken">Token for cancel operation</param>
             <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.BeginTransaction(System.Data.IsolationLevel)">
-            <summary>
-            Start transaction
-            </summary>
-            <param name="isolationLevel">Isolation level</param>
-            <returns><see cref="T:System.IDisposable"/> object</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)">
-            <summary>
-            Start transaction
-            </summary>
-            <param name="isolationLevel">Isolation level</param>
-            <param name="cancellationToken">Token for cancel operation</param>
-            <returns><see cref="T:System.IDisposable"/> object</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.CommitTransaction">
-            <summary>
-            Save all changes in transaction
-            </summary>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.CommitTransactionAsync(System.Threading.CancellationToken)">
-            <summary>
-            Save all changes in transaction
-            </summary>
-            <param name="cancellationToken">Token for cancel operation</param>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IUserRepository`2">
             <summary>
@@ -307,7 +302,7 @@
             <param name="entityId">Unique identifier of entity</param>
             <returns>User information about one user</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Services.IBaseService`5">
+        <member name="T:DevQuiz.Libraries.Core.Services.IBaseService`7">
             <summary>
             Base service for manage entries
             </summary>
@@ -315,46 +310,55 @@
             <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
             <typeparam name="TOneEntryResult">Get one entry result</typeparam>
             <typeparam name="TAllEntriesResult">Get all entries result</typeparam>
-            <typeparam name="TStatusResult">Method status result</typeparam>
+            <typeparam name="TCreateEntryResult">Result after create entry</typeparam>
+            <typeparam name="TUpdateEntryResult">Result after update entry</typeparam>
+            <typeparam name="TDeleteEntryResult">Result after delete entry</typeparam>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.GetAll">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetAll">
             <summary>
             Get all entries
             </summary>
             <returns>All entries result</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.GetOne(`4)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetOne(`6)">
             <summary>
             Get one entry
             </summary>
             <param name="idDto">Parameter with unique identifier</param>
             <returns>One entry result</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.Create(`0)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Create(`0)">
             <summary>
             Create new entry
             </summary>
             <param name="entryToAdd">Model with information about new entry</param>
             <returns>New entry information</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.Update(`0)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Update(`0)">
             <summary>
             Update entry
             </summary>
             <param name="entryToUpdate">Model with information to update</param>
             <returns>Update entry information</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`5.Delete(`4)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Delete(`6)">
             <summary>
             Delete entry
             </summary>
             <param name="idDto">Parameter with unique identifier</param>
             <returns>Method execution status</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Services.IUserService`5">
+        <member name="T:DevQuiz.Libraries.Core.Services.IUserService`7">
             <summary>
             Service for manage users
             </summary>
+            <typeparam name="TUserDto">User dto for add or update</typeparam>
+            <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
+            <typeparam name="TOneUserResult">Get one user result</typeparam>
+            <typeparam name="TAllUsersResult">Get all users result</typeparam>
+            <typeparam name="TCreateUserResult">Result after create user</typeparam>
+            <typeparam name="TUpdateUserResult">Result after update user</typeparam>
+            <typeparam name="TDeleteUserResult">Result after delete user</typeparam>
         </member>
     </members>
 </doc>

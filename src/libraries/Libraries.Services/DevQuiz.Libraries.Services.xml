@@ -27,7 +27,7 @@
             <returns>IServiceCollection</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Services.UserService`3">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`7" />
         </member>
         <member name="M:DevQuiz.Libraries.Services.UserService`3.#ctor(DevQuiz.Libraries.Core.Repositories.IUserRepository{`0,`2},AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.UserService{`0,`1,`2}})">
             <summary>
@@ -38,19 +38,19 @@
             <param name="logger">Logger instance</param>
         </member>
         <member name="M:DevQuiz.Libraries.Services.UserService`3.Create(`1)">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+            <inheritdoc cref="!:IUserService&lt;TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey&gt;.Create(TUserDto)" />
         </member>
         <member name="M:DevQuiz.Libraries.Services.UserService`3.Delete(`2)">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+            <inheritdoc cref="!:IUserService&lt;TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey&gt;" />
         </member>
         <member name="M:DevQuiz.Libraries.Services.UserService`3.GetAll">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+            <inheritdoc cref="!:IUserService&lt;TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey&gt;" />
         </member>
         <member name="M:DevQuiz.Libraries.Services.UserService`3.GetOne(`2)">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+            <inheritdoc cref="!:IUserService&lt;TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey&gt;" />
         </member>
         <member name="M:DevQuiz.Libraries.Services.UserService`3.Update(`1)">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+            <inheritdoc cref="!:IUserService&lt;TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey&gt;" />
         </member>
     </members>
 </doc>
