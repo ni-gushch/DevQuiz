@@ -10,6 +10,7 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
     public class DevQuizContextSeedDataHelper : IDisposable
     {
         protected readonly DbConnection _connection;
+
         protected DbContextOptions<DevQuizDbContext> ContextOptions { get; }
 
         public DevQuizContextSeedDataHelper()
@@ -18,7 +19,9 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
                 .UseSqlite(CreateInMemoryDatabase())
                 .Options;
 
-            _connection = RelationalOptionsExtension.Extract(ContextOptions).Connection;
+            _connection = RelationalOptionsExtension
+                .Extract(ContextOptions)
+                .Connection;
 
             using var context = new DevQuizDbContext(ContextOptions);
             context.EnsureDb();
@@ -28,7 +31,6 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
         {
             var connection = new SqliteConnection("Filename=:memory:");
             connection.Open();
-
             return connection;
         }
 
