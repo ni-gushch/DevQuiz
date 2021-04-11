@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
@@ -19,14 +18,15 @@ namespace DevQuiz.Libraries.Data.Tests
         }
 
         [Fact]
-        public async Task UserRepository_CreateUser()
+        public async Task CreateUser()
         {
             //Arrange
             //create context
-            await using var devQuizContext = new DevQuizDbContext(this.ContextOptions);
+            await using var devQuizContext = new DevQuizDbContext(ContextOptions);
             //Create several entities
-            await devQuizContext.SeedUsers(3)
-                            .CommitAsync();
+            await devQuizContext
+                .SeedUsers(3)
+                .CommitAsync();
 
             //create user repo instance
             var userRepository = new UserRepository<User, Guid>(devQuizContext);
@@ -49,22 +49,26 @@ namespace DevQuiz.Libraries.Data.Tests
 
             //Assert
             Assert.NotNull(createResult);
+
             Assert.Equal(userToAdd.UserName, createResult.UserName);
             Assert.Equal(userToAdd.FirstName, createResult.FirstName);
             Assert.Equal(userToAdd.LastName, createResult.LastName);
+
             Assert.NotEqual(Guid.Empty, createResult.Id);
+
             Assert.Equal(DateTime.Now.Date, createResult.CreatedTime.Date);
         }
 
         [Fact]
-        public async Task UserRepository_UpdateUser()
+        public async Task UpdateUser()
         {
             //Arrange
             //create context
-            await using var devQuizContext = new DevQuizDbContext(this.ContextOptions);
+            await using var devQuizContext = new DevQuizDbContext(ContextOptions);
             //Create several entities
-            await devQuizContext.SeedUsers(3)
-                            .CommitAsync();
+            await devQuizContext
+                .SeedUsers(3)
+                .CommitAsync();
 
             //create user repo instance
             var userRepository = new UserRepository<User, Guid>(devQuizContext);
@@ -92,23 +96,26 @@ namespace DevQuiz.Libraries.Data.Tests
             
             //Assert
             Assert.NotNull(updatedUser);
+
             Assert.Equal(findUserAfterSave.UserName, findUserAfterUpdate.UserName);
             Assert.Equal(findUserAfterSave.FirstName, findUserAfterUpdate.FirstName);
             Assert.Equal(findUserAfterSave.LastName, findUserAfterUpdate.LastName);
             Assert.Equal(findUserAfterSave.Id, findUserAfterUpdate.Id);
+
             Assert.Equal(DateTime.Now.Date, findUserAfterUpdate.CreatedTime.Date);
-            Assert.Equal(DateTime.Now.Date, findUserAfterUpdate.CreatedTime.Date);
+            Assert.Equal(DateTime.Now.Date, findUserAfterUpdate.UpdatedTime.Date);
         }
 
         [Fact]
-        public async Task UserRepository_DeleteUser_NullAfterDeleteSuccess_ThrowDbUpdateConcurrencyExceptionWhiteRepeatDelete()
+        public async Task DeleteUser_NullAfterDeleteSuccess_ThrowDbUpdateConcurrencyExceptionWhileRepeatDelete()
         {
             //Arrange
             //create context
-            await using var devQuizContext = new DevQuizDbContext(this.ContextOptions);
+            await using var devQuizContext = new DevQuizDbContext(ContextOptions);
             //Create several entities
-            await devQuizContext.SeedUsers(3)
-                            .CommitAsync();
+            await devQuizContext
+                .SeedUsers(3)
+                .CommitAsync();
 
             //create user repo instance
             var userRepository = new UserRepository<User, Guid>(devQuizContext);
@@ -129,19 +136,36 @@ namespace DevQuiz.Libraries.Data.Tests
             userRepository.Delete(findUserAfterSave);
             await userRepository.UnitOfWork.SaveChangesAsync();
 
-            var fingDeletedUser = await userRepository.GetOneAsync(findUserAfterSave.Id);
+            var findDeletedUser = await userRepository.GetOneAsync(findUserAfterSave.Id);
 
             userRepository.Delete(findUserAfterSave);
             await Assert.ThrowsAsync<DbUpdateConcurrencyException>(() => userRepository.UnitOfWork.SaveChangesAsync());
 
             //Assert
-            Assert.Null(fingDeletedUser);
+            Assert.Null(findDeletedUser);
         }
 
         [Fact]
-        public void UserRepository_GetAllUsers()
+        public async Task GetAll()
         {
+            //Arrange
+            var usersCount = 3;
+            //create context
+            await using var devQuizContext = new DevQuizDbContext(ContextOptions);
+            //Create several entities
+            await devQuizContext
+                .SeedUsers(usersCount)
+                .CommitAsync();
 
+            //create user repo instance
+            var userRepository = new UserRepository<User, Guid>(devQuizContext);
+
+            //Act
+            var users = userRepository.GetAll();
+
+            //Assert
+            Assert.Equal(usersCount, await users.CountAsync());
+            Assert.NotNull(await users.FirstOrDefaultAsync());
         }
     }
 }
