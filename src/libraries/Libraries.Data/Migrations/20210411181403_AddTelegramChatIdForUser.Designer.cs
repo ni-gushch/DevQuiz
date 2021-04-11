@@ -3,15 +3,17 @@ using System;
 using DevQuiz.Libraries.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DevQuiz.Libraries.Data.Migrations
 {
     [DbContext(typeof(DevQuizDbContext))]
-    partial class DevQuizDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210411181403_AddTelegramChatIdForUser")]
+    partial class AddTelegramChatIdForUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

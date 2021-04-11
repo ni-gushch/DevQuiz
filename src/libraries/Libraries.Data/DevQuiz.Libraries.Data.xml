@@ -157,6 +157,11 @@
             Unique identifier of user in Telegram
             </summary>
         </member>
+        <member name="P:DevQuiz.Libraries.Data.Models.User.TelegramChatId">
+            <summary>
+            Unique identifier of telegram chat for current user
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Data.Repositories.QuestionRepository`5">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IQuestionRepository`4" />
         </member>
