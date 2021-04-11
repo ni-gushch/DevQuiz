@@ -30,7 +30,7 @@ namespace DevQuiz.Libraries.Core.Services
         /// </summary>
         /// <param name="idDto">Parameter with unique identifier</param>
         /// <returns>One entry result</returns>
-        Task<TOneEntryResult> GetOne(TKey idDto);
+        Task<TOneEntryResult> GetById(TKey idDto);
         /// <summary>
         /// Create new entry
         /// </summary>

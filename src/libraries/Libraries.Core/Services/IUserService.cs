@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using DevQuiz.Libraries.Core.Models.Dto;
 
 namespace DevQuiz.Libraries.Core.Services
@@ -13,7 +14,7 @@ namespace DevQuiz.Libraries.Core.Services
     /// <typeparam name="TCreateUserResult">Result after create user</typeparam>
     /// <typeparam name="TUpdateUserResult">Result after update user</typeparam>
     /// <typeparam name="TDeleteUserResult">Result after delete user</typeparam>
-    public interface IUserService<in TUserDto, 
+    public interface IUserService<TUserDto, 
         TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey> : 
         IBaseService<TUserDto, 
         TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey>
@@ -22,6 +23,11 @@ namespace DevQuiz.Libraries.Core.Services
         where TAllUsersResult : class
         where TKey : IEquatable<TKey>
     {
-
+        /// <summary>
+        /// Get user information by chat id
+        /// </summary>
+        /// <param name="telegramChatId">User chat id with current bot</param>
+        /// <returns>Information about user</returns>
+        Task<TUserDto> GetByChatIdAsync(int telegramChatId);
     }
 }

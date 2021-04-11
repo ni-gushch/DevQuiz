@@ -54,11 +54,11 @@ namespace DevQuiz.Libraries.Data.Tests
 
             //Act
             await _userRepository.CreateAsync(userToAdd);
-            var findUserBeforeSave = await _userRepository.GetOneAsync(userToAdd.Id);
+            var findUserBeforeSave = await _userRepository.GetByIdAsync(userToAdd.Id);
 
             var createCommitResult = await _unitOfWork.CommitAsync();
 
-            var findUserAfterSave = await _userRepository.GetOneAsync(userToAdd.Id);
+            var findUserAfterSave = await _userRepository.GetByIdAsync(userToAdd.Id);
 
             //Assert
             Assert.NotNull(findUserAfterSave);
@@ -89,7 +89,7 @@ namespace DevQuiz.Libraries.Data.Tests
 
             await _userRepository.CreateAsync(userToAdd);
             var createCommitResult = await _unitOfWork.CommitAsync();
-            var findUserAfterSave = await _userRepository.GetOneAsync(userToAdd.Id);
+            var findUserAfterSave = await _userRepository.GetByIdAsync(userToAdd.Id);
             findUserAfterSave.FirstName = "UpdatetFirstName";
             findUserAfterSave.LastName = "UpdatetLastName";
             findUserAfterSave.UserName = "UpdatetUserName";
@@ -98,7 +98,7 @@ namespace DevQuiz.Libraries.Data.Tests
             _userRepository.Update(findUserAfterSave);
             var saveResult = await _unitOfWork.CommitAsync();
 
-            var findUserAfterUpdate = await _userRepository.GetOneAsync(findUserAfterSave.Id);
+            var findUserAfterUpdate = await _userRepository.GetByIdAsync(findUserAfterSave.Id);
             
             //Assert
             Assert.NotNull(findUserAfterUpdate);
@@ -130,13 +130,13 @@ namespace DevQuiz.Libraries.Data.Tests
 
             await _userRepository.CreateAsync(userToAdd);
             var createCommitResult = await _unitOfWork.CommitAsync();
-            var findUserAfterSave = await _userRepository.GetOneAsync(userToAdd.Id);
+            var findUserAfterSave = await _userRepository.GetByIdAsync(userToAdd.Id);
 
             //Act
             _userRepository.Delete(findUserAfterSave);
             await _unitOfWork.CommitAsync();
 
-            var fingDeletedUser = await _userRepository.GetOneAsync(findUserAfterSave.Id);
+            var fingDeletedUser = await _userRepository.GetByIdAsync(findUserAfterSave.Id);
 
             _userRepository.Delete(findUserAfterSave);
             await Assert.ThrowsAsync<DbUpdateConcurrencyException>(() => _unitOfWork.CommitAsync());

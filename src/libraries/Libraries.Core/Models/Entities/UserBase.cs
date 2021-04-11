@@ -20,5 +20,9 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// Get or set user last name
         /// </summary>
         public string LastName { get; set; }
+        /// <summary>
+        /// Unique identifier of telegram chat for current user
+        /// </summary>
+        public int TelegramChatId { get; set; }
     }
 }

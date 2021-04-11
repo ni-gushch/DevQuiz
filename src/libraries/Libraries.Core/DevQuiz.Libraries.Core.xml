@@ -61,6 +61,11 @@
             Get or set user last name
             </summary>
         </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDtoBase`1.TelegramChatId">
+            <summary>
+            Unique identifier of telegram chat for current user
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1">
             <summary>
             Base model for aggregated entities
@@ -223,6 +228,11 @@
             Get or set user last name
             </summary>
         </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.UserBase`1.TelegramChatId">
+            <summary>
+            Unique identifier of telegram chat for current user
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IQuestionRepository`4">
             <summary>
             Repository for manage DevQuiz question entities
@@ -292,12 +302,19 @@
             Repository for manage DevQuiz user entities
             </summary>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOneAsync(`1)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetByIdAsync(`1)">
             <summary>
             Get one user from the store
             </summary>
             <param name="entityId">Unique identifier of entity</param>
-            <returns>User information about one user</returns>
+            <returns>Information about one user</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetByChatIdAsync(System.Int32)">
+            <summary>
+            Get user information by telegram chat id
+            </summary>
+            <param name="telegramChatId">Uniq identifier of telegram chat</param>
+            <returns>Information about one user</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Services.IBaseService`7">
             <summary>
@@ -317,7 +334,7 @@
             </summary>
             <returns>All entries result</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetOne(`6)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetById(`6)">
             <summary>
             Get one entry
             </summary>
@@ -356,6 +373,13 @@
             <typeparam name="TCreateUserResult">Result after create user</typeparam>
             <typeparam name="TUpdateUserResult">Result after update user</typeparam>
             <typeparam name="TDeleteUserResult">Result after delete user</typeparam>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IUserService`7.GetByChatIdAsync(System.Int32)">
+            <summary>
+            Get user information by chat id
+            </summary>
+            <param name="telegramChatId">User chat id with current bot</param>
+            <returns>Information about user</returns>
         </member>
     </members>
 </doc>

@@ -157,11 +157,6 @@
             Unique identifier of user in Telegram
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.Models.User.TelegramChatId">
-            <summary>
-            Unique identifier of telegram chat for current user
-            </summary>
-        </member>
         <member name="T:DevQuiz.Libraries.Data.Repositories.QuestionRepository`5">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IQuestionRepository`4" />
         </member>
@@ -235,8 +230,11 @@
         <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`3.GetAll">
             <inheritdoc cref="M:DevQuiz.Libraries.Data.Repositories.Repository`2.GetAll" />
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`3.GetOneAsync(`2)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOneAsync(`1)" />
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`3.GetByIdAsync(`2)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetByIdAsync(`1)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`3.GetByChatIdAsync(System.Int32)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetByIdAsync(`1)" />
         </member>
     </members>
 </doc>

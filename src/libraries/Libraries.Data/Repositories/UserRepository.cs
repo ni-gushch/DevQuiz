@@ -36,10 +36,16 @@ namespace DevQuiz.Libraries.Data.Repositories
             return base.GetAll();
         }
 
-        /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetOneAsync(TKey)" />
-        public async Task<TUser> GetOneAsync(TKey entityId)
+        /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetByIdAsync(TKey)" />
+        public async Task<TUser> GetByIdAsync(TKey entityId)
         {
             return await this.DbSet.SingleOrDefaultAsync(it => it.Id.Equals(entityId));
+        }
+
+        /// <inheritdoc cref="IUserRepository{TUser,TKey}.GetByIdAsync(TKey)" />
+        public async Task<TUser> GetByChatIdAsync(int telegramChatId)
+        {
+            return await this.DbSet.SingleOrDefaultAsync(it => it.TelegramChatId.Equals(telegramChatId));
         }
     }
 }

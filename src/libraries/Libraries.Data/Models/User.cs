@@ -14,9 +14,5 @@ namespace DevQuiz.Libraries.Data.Models
         /// Unique identifier of user in Telegram
         /// </summary>
         public int TelegramId { get; set; }
-        /// <summary>
-        /// Unique identifier of telegram chat for current user
-        /// </summary>
-        public int TelegramChatId{ get; set; }
     }
 }

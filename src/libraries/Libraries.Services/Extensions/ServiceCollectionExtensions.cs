@@ -23,7 +23,7 @@ namespace DevQuiz.Libraries.Services.Extensions
             where TUserDto : UserDtoBase<TKey>
             where TKey : IEquatable<TKey>
         {
-            services.AddTransient<IUserService<TUserDto, TUserDto, List<TUserDto>, bool, bool, bool, TKey>, 
+            services.AddTransient<IUserService<TUserDto, TUserDto, List<TUserDto>, TKey, bool, bool, TKey>, 
                 UserService<TUser, TUserDto, TKey>>();
 
             return services;
