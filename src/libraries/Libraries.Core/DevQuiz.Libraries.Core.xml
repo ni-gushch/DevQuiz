@@ -21,10 +21,10 @@
         </member>
         <member name="M:DevQuiz.Libraries.Core.Extensions.StringExtensions.ToSnakeCase(System.String)">
             <summary>
-            Extension method for transforming string to SnakeCase format
+            Extension method for transforming string in CamelCase to SnakeCase format.
             </summary>
-            <param name="input"></param>
-            <returns></returns>
+            <param name="input"> Format string. </param>
+            <returns> Formatted string. </returns>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Dto.UserBaseDto`1">
             <summary>
@@ -124,7 +124,7 @@
             Base question model
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Test">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Text">
             <summary>
             Get or set question text
             </summary>
