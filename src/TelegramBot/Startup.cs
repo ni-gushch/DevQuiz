@@ -49,7 +49,7 @@ namespace DevQuiz.TelegramBot
             services.AddCustomOptions(Configuration);
 
             services.AddDevQuizDbContexts(Configuration);
-            services.AddDevQuizRepositories<User, Guid>();
+            services.AddDevQuizRepositories<User, Question, Answer, Category, Tag, Guid>();
             services.AddDevQuizServices<User, UserDto, Guid>();
             
             services.AddAutoMapper(new [] {

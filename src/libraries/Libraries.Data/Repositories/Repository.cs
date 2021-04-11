@@ -51,6 +51,7 @@ namespace DevQuiz.Libraries.Data.Repositories
         public virtual async Task CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             _logger.LogTrace($"Start create entry {typeof(TEntity)} in repository");
+            var type = typeof(TEntity);
             if (typeof(IAuditEntity).IsAssignableFrom(typeof(TEntity)))   
             {   
                 _logger.LogTrace("Set creation date in creating entry");

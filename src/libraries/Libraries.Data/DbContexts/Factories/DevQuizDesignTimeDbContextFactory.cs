@@ -6,7 +6,7 @@ namespace DevQuiz.Libraries.Data.DbContexts.Factories
     /// <summary>
     /// DevQuiz db context factory
     /// </summary>
-    public class DevQuizDbContextFactory : CustomDesignTimeDbContextFactory<DevQuizDbContext>
+    public class DevQuizDesignTimeDbContextFactory : DesignTimeDbContextFactory<DevQuizDbContext>
     {
         /// <summary>
         /// Creating new object

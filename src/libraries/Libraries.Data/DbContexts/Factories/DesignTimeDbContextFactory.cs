@@ -11,7 +11,7 @@ namespace DevQuiz.Libraries.Data.DbContexts.Factories
     /// Custom db context abstract factory
     /// </summary>
     /// <typeparam name="TContext"></typeparam>
-    public abstract class CustomDesignTimeDbContextFactory<TContext> : IDesignTimeDbContextFactory<TContext>
+    public abstract class DesignTimeDbContextFactory<TContext> : IDesignTimeDbContextFactory<TContext>
         where TContext : DbContext
     {
         /// <summary>

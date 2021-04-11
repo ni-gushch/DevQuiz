@@ -16,7 +16,7 @@ namespace DevQuiz.Libraries.Data.DbContexts
         /// Get DbContext instance
         /// </summary>
         /// <returns></returns>
-        public TDbContext DbContext => _dbContext ?? (_dbContext = _instanceFunc.Invoke());
+        public TDbContext DbContext => _dbContext ??= _instanceFunc.Invoke();
 
         /// <summary>
         /// Constructor

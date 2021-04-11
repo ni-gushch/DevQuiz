@@ -67,12 +67,14 @@
             </summary>
             <typeparam name="TKey">Type of entity unique index </typeparam>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.CreatedDate" -->
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.CreatedDate">
+            <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity.CreatedDate" />
+        </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.CreatedBy">
-            <inheritdoc cref="!:IAuditEntity&lt;TKey&gt;.CreatedBy" />
+            <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity.CreatedBy" />
         </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.UpdatedDate">
-            <inheritdoc cref="!:IAuditEntity&lt;TKey&gt;.UpdatedDate" />
+            <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity.UpdatedDate" />
         </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.AnswerBase">
             <summary>
@@ -135,11 +137,6 @@
             Update Date
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity`1">
-            <summary>
-            Interface for models whitch need audit information
-            </summary>
-        </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.IHasKey`1">
             <summary>
             Generic interface for entities whitch has a unique key
@@ -161,11 +158,6 @@
             Get or set question text
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Answers">
-            <summary>
-            Get or set list of answers
-            </summary>
-        </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.RightAnswerId">
             <summary>
             Get or set unique identifier right answer
@@ -179,6 +171,11 @@
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.CategoryId">
             <summary>
             Get or set unique identifier of category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Answers">
+            <summary>
+            Get or set list of answers
             </summary>
         </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Category">

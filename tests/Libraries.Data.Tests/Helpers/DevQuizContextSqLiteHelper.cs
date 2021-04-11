@@ -28,8 +28,8 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
                     UserName = $"UserName_{tempUserId}",
                     FirstName = $"FirstName_{tempUserId}",
                     LastName = $"LastName_{tempUserId}",
-                    CreatedTime = DateTime.Now,
-                    UpdatedTime = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now
                 };
                 usersDbSet.Add(tempUserEntity);
             }
