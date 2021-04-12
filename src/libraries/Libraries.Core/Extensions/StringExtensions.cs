@@ -8,16 +8,17 @@ namespace DevQuiz.Libraries.Core.Extensions
     public static class StringExtensions
     {
         /// <summary>
-        /// Extension method for transforming string to SnakeCase format
+        /// Extension method for transforming string in CamelCase to SnakeCase format.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input"> Format string. </param>
+        /// <returns> Formatted string. </returns>
         public static string ToSnakeCase(this string input)
         {
-            if (string.IsNullOrEmpty(input)) { return input; }
-            var startUnderscores = Regex.Match(input, @"^+");
-            var result = startUnderscores + Regex.Replace(input, @"([a-z0-9])([A-Z])", "$1_$2").ToLower();
-            return result;
+            return string.IsNullOrEmpty(input)
+                ? input
+                : Regex
+                    .Replace(input, @"([a-z0-9])([A-Z])", "$1_$2")
+                    .ToLower();
         }
     }
 }
