@@ -15,10 +15,6 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// </summary>
         public string Text { get; set; }
         /// <summary>
-        /// Get or set list of answers
-        /// </summary>
-        public List<TAnswer> Answers { get; set; }
-        /// <summary>
         /// Get or set unique identifier right answer
         /// </summary>
         public int RightAnswerId { get; set; }
@@ -30,6 +26,10 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// Get or set unique identifier of category
         /// </summary>
         public int CategoryId { get; set; }
+        /// <summary>
+        /// Get or set list of answers
+        /// </summary>
+        public List<TAnswer> Answers { get; set; }
         /// <summary>
         /// Category object
         /// </summary>

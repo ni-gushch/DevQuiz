@@ -31,6 +31,9 @@ namespace DevQuiz.Libraries.Data.Extensions
                 opt.UseNpgsql(dbConfiguration.ConnectionString, options =>
                     options.MigrationsAssembly(migrationAssembly)));
 
+            services.AddScoped<DbFactory<DevQuizDbContext>>();   
+            services.AddScoped<IUnitOfWork , UnitOfWork<DevQuizDbContext>>(); 
+
             return services;
         }
 
@@ -39,11 +42,17 @@ namespace DevQuiz.Libraries.Data.Extensions
         /// </summary>
         /// <param name="services">IServiceCollection instance</param>
         /// <returns>IServiceCollection</returns>
-        public static IServiceCollection AddDevQuizRepositories<TUser, TKey>(this IServiceCollection services)
+        public static IServiceCollection AddDevQuizRepositories<TUser,
+            TQuestion, TAnswer, TCategory, TTag, TKey>(this IServiceCollection services)
             where TUser : UserBase<TKey>
+            where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
+            where TAnswer : AnswerBase
+            where TCategory : CategoryBase<TQuestion>
+            where TTag : TagBase<TQuestion>
             where TKey : IEquatable<TKey>
         {
-            services.AddTransient<IUserRepository<TUser, TKey>, UserRepository<TUser, TKey>>();
+            services.AddTransient<IUserRepository<TUser, TKey>, UserRepository<DevQuizDbContext, TUser, TKey>>();
+            services.AddTransient<IQuestionRepository<TQuestion, TAnswer, TCategory, TTag>, QuestionRepository<DevQuizDbContext, TQuestion, TAnswer, TCategory, TTag>>();
 
             return services;
         }

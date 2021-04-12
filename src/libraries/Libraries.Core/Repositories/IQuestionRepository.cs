@@ -9,7 +9,7 @@ namespace DevQuiz.Libraries.Core.Repositories
     /// <typeparam name="TAnswer">Question answer model</typeparam>
     /// <typeparam name="TCategory">Question category model</typeparam>
     /// <typeparam name="TTag">Question tag model</typeparam>
-    public interface IQuestionRepository<TQuestion, TAnswer, TCategory, TTag> : IRepository<TQuestion, int>
+    public interface IQuestionRepository<TQuestion, TAnswer, TCategory, TTag> : IRepository<TQuestion>
         where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
         where TAnswer : AnswerBase
         where TCategory : CategoryBase<TQuestion>

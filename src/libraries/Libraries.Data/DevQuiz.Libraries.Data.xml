@@ -40,23 +40,72 @@
             DevQuiz Answers
             </summary>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.BeginTransaction(System.Data.IsolationLevel)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.BeginTransaction(System.Data.IsolationLevel)" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.BeginTransactionAsync(System.Data.IsolationLevel,System.Threading.CancellationToken)" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.CommitTransaction">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.CommitTransaction" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.CommitTransactionAsync(System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.CommitTransactionAsync(System.Threading.CancellationToken)" />
-        </member>
         <member name="M:DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method executing while models creating
             </summary>
             <param name="modelBuilder">Model builder</param>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.DbContexts.DbFactory`1">
+            <summary>
+            Factory for creating DbContexts
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DbContexts.DbFactory`1.DbContext">
+            <summary>
+            Get DbContext instance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.DbFactory`1.#ctor(System.Func{`0})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dbContextFactory">Function for create DbContext instance</param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.DbFactory`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting <br/>
+            unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.DbContexts.Factories.DesignTimeDbContextFactory`1">
+            <summary>
+            Custom db context abstract factory
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.Factories.DesignTimeDbContextFactory`1.CreateDbContext(System.String[])">
+            <summary>
+            Создать объект БД
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.Factories.DesignTimeDbContextFactory`1.CreateNewInstance(Microsoft.EntityFrameworkCore.DbContextOptions{`0})">
+            <summary>
+            Создание нового объекта
+            </summary>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.Factories.DesignTimeDbContextFactory`1.Create">
+            <summary>
+            Создание объекта фабрики
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.DbContexts.Factories.DevQuizDesignTimeDbContextFactory">
+            <summary>
+            DevQuiz db context factory
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DbContexts.Factories.DevQuizDesignTimeDbContextFactory.CreateNewInstance(Microsoft.EntityFrameworkCore.DbContextOptions{DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext})">
+            <summary>
+            Creating new object
+            </summary>
+            <param name="options">Db context options</param>
+            <returns>Db context instance</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions">
             <summary>
@@ -71,7 +120,7 @@
             <param name="configuration">IConfiguration instance</param>
             <returns>IServiceCollection</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions.AddDevQuizRepositories``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions.AddDevQuizRepositories``6(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register Repositories for DevQuiz
             </summary>
@@ -103,59 +152,89 @@
             User db model
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.Repositories.QuestionRepository`4">
+        <member name="P:DevQuiz.Libraries.Data.Models.User.TelegramId">
+            <summary>
+            Unique identifier of user in Telegram
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Repositories.QuestionRepository`5">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IQuestionRepository`4" />
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.QuestionRepository`4.#ctor(DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext)">
+        <member name="M:DevQuiz.Libraries.Data.Repositories.QuestionRepository`5.#ctor(DevQuiz.Libraries.Data.DbContexts.DbFactory{`0},Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Data.Repositories.QuestionRepository{`0,`1,`2,`3,`4}})">
             <summary>
             Constructor
             </summary>
-            <param name="dbContext">instance of DevQuizDbContext</param>
+            <param name="dbFactory">TDbContext factory instance</param>
+            <param name="logger">Logger instance</param>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.Repositories.Repository`3">
+        <member name="M:DevQuiz.Libraries.Data.Repositories.QuestionRepository`5.GetAll">
+            <inheritdoc cref="M:DevQuiz.Libraries.Data.Repositories.Repository`2.GetAll" />
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Repositories.Repository`2">
             <summary>
             Base repository class
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.Repositories.Repository`3.EntityDbSet">
+        <member name="P:DevQuiz.Libraries.Data.Repositories.Repository`2.DbSet">
             <summary>
-            Get db set for entity
+            DbSet for current type of TEntity
             </summary>
-            <returns>DbSet of entities</returns>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.Repositories.Repository`3.UnitOfWork">
-            <inheritdoc cref="P:DevQuiz.Libraries.Core.Repositories.IRepository`2.UnitOfWork" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.#ctor(`0)">
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`2.#ctor(DevQuiz.Libraries.Data.DbContexts.DbFactory{`0},Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Data.Repositories.Repository{`0,`1}})">
             <summary>
             Constructor
             </summary>
-            <param name="dbContext">Db context</param>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.GetAll">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.GetAll" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.CreateAsync(`1,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.CreateAsync(`0,System.Threading.CancellationToken)" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.Update(`1)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Update(`0)" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`3.Delete(`1)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`2.Delete(`0)" />
-        </member>
-        <member name="T:DevQuiz.Libraries.Data.Repositories.UserRepository`2">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IUserRepository`2" />
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`2.#ctor(DevQuiz.Libraries.Data.DbContexts.DevQuizDbContext,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Data.Repositories.UserRepository{`0,`1}})">
-            <summary>
-            Constructor
-            </summary>
-            <param name="dbContext">DevQuizDbContext instance</param>
+            <param name="dbFactory">Factory for creating Db context</param>
             <param name="logger">Logger instance</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`2.GetOneAsync(`1)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetOneAsync(`1)" />
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`2.GetAll">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.GetAll" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`2.List(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`2.CreateAsync(`1,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.CreateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`2.Update(`1)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.Update(`0)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.Repository`2.Delete(`1)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.Delete(`0)" />
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Repositories.UnitOfWork`1">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IUnitOfWork" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UnitOfWork`1.#ctor(DevQuiz.Libraries.Data.DbContexts.DbFactory{`0})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dbFactory">Factory for TDbContext instances</param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UnitOfWork`1.Commit">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.Commit" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UnitOfWork`1.CommitAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.CommitAsync(System.Threading.CancellationToken)" />
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Repositories.UserRepository`3">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Repositories.IUserRepository`2" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`3.#ctor(DevQuiz.Libraries.Data.DbContexts.DbFactory{`0},Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Data.Repositories.UserRepository{`0,`1,`2}})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dbFactory">TDbContext factory instance</param>
+            <param name="logger">Logger instance</param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`3.GetAll">
+            <inheritdoc cref="M:DevQuiz.Libraries.Data.Repositories.Repository`2.GetAll" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`3.GetByIdAsync(`2)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetByIdAsync(`1)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Repositories.UserRepository`3.GetByChatIdAsync(System.Int32)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetByIdAsync(`1)" />
         </member>
     </members>
 </doc>

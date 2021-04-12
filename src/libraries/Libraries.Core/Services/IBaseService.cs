@@ -10,8 +10,11 @@ namespace DevQuiz.Libraries.Core.Services
     /// <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
     /// <typeparam name="TOneEntryResult">Get one entry result</typeparam>
     /// <typeparam name="TAllEntriesResult">Get all entries result</typeparam>
-    /// <typeparam name="TStatusResult">Method status result</typeparam>
-    public interface IBaseService<in TEntryDto, TOneEntryResult, TAllEntriesResult, TStatusResult, TKey>
+    /// <typeparam name="TCreateEntryResult">Result after create entry</typeparam>
+    /// <typeparam name="TUpdateEntryResult">Result after update entry</typeparam>
+    /// <typeparam name="TDeleteEntryResult">Result after delete entry</typeparam>
+    public interface IBaseService<in TEntryDto, 
+        TOneEntryResult, TAllEntriesResult, TCreateEntryResult, TUpdateEntryResult, TDeleteEntryResult, TKey>
         where TEntryDto : class
         where TOneEntryResult : class
         where TAllEntriesResult : class
@@ -27,24 +30,24 @@ namespace DevQuiz.Libraries.Core.Services
         /// </summary>
         /// <param name="idDto">Parameter with unique identifier</param>
         /// <returns>One entry result</returns>
-        Task<TOneEntryResult> GetOne(TKey idDto);
+        Task<TOneEntryResult> GetById(TKey idDto);
         /// <summary>
         /// Create new entry
         /// </summary>
         /// <param name="entryToAdd">Model with information about new entry</param>
         /// <returns>New entry information</returns>
-        Task<TOneEntryResult> Create(TEntryDto entryToAdd);
+        Task<TCreateEntryResult> Create(TEntryDto entryToAdd);
         /// <summary>
         /// Update entry
         /// </summary>
         /// <param name="entryToUpdate">Model with information to update</param>
         /// <returns>Update entry information</returns>
-        Task<TOneEntryResult> Update(TEntryDto entryToUpdate);
+        Task<TUpdateEntryResult> Update(TEntryDto entryToUpdate);
         /// <summary>
         /// Delete entry
         /// </summary>
         /// <param name="idDto">Parameter with unique identifier</param>
         /// <returns>Method execution status</returns>
-        Task<TStatusResult> Delete(TKey idDto);
+        Task<TDeleteEntryResult> Delete(TKey idDto);
     }
 }

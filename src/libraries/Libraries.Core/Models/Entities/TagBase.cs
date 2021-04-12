@@ -5,7 +5,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
     /// <summary>
     /// Base model of question tag
     /// </summary>
-    public class TagBase<TQuestion> : Entity<int>
+    public class TagBase<TQuestion> : EntityBase<int>
         where TQuestion : class
     {
         /// <summary>

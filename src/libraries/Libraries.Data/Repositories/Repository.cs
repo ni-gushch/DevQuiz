@@ -1,65 +1,81 @@
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
+using DevQuiz.Libraries.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace DevQuiz.Libraries.Data.Repositories
 {
     /// <summary>
     /// Base repository class
     /// </summary>
-    public class Repository<TDbContext, TEntity, TKey> : IRepository<TEntity, TKey>
-        where TDbContext : DbContext, IUnitOfWork
-        where TEntity : AggregateEntity<TKey>
+    public class Repository<TDbContext, TEntity> : IRepository<TEntity>
+        where TDbContext : DbContext
+        where TEntity : class
     {
-        private readonly TDbContext _dbContext;
-
+        private readonly DbFactory<TDbContext> _dbFactory;
+        private readonly DbSet<TEntity> _dbSet;
+        private readonly ILogger<Repository<TDbContext, TEntity>> _logger;
         /// <summary>
-        /// Get db set for entity
+        /// DbSet for current type of TEntity
         /// </summary>
-        /// <returns>DbSet of entities</returns>
-        protected DbSet<TEntity> EntityDbSet => _dbContext.Set<TEntity>();
-        
-        /// <inheritdoc cref="IRepository{TEntity, TKey}.UnitOfWork" />
-        public IUnitOfWork UnitOfWork => _dbContext;
+        protected DbSet<TEntity> DbSet => _dbSet ?? _dbFactory.DbContext.Set<TEntity>();
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="dbContext">Db context</param>
-        public Repository(TDbContext dbContext)
+        /// <param name="dbFactory">Factory for creating Db context</param>
+        /// <param name="logger">Logger instance</param>
+        public Repository(DbFactory<TDbContext> dbFactory, ILogger<Repository<TDbContext, TEntity>> logger = null)
         {
-            _dbContext = dbContext;
+            _dbFactory = dbFactory;
+            _logger = logger ?? NullLogger<Repository<TDbContext, TEntity>>.Instance;
         }
 
-        /// <inheritdoc cref="IRepository{TEntity, TKey}.GetAll" />
-        public IQueryable<TEntity> GetAll() => _dbContext.Set<TEntity>();
+        /// <inheritdoc cref="IRepository{TEntity}.GetAll" />
+        public virtual IQueryable<TEntity> GetAll() => DbSet;
 
-        /// <inheritdoc cref="IRepository{TEntity, TKey}.CreateAsync(TEntity, CancellationToken)" />
-        public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
+        /// <inheritdoc cref="IRepository{TEntity}.List(Expression{Func{TEntity, bool}})" />
+        public virtual IQueryable<TEntity> List(Expression<Func<TEntity, bool>> expression)
         {
-            entity.CreatedTime = DateTime.Now;
-            var result = await EntityDbSet.AddAsync(entity, cancellationToken);
-            
-            return result.Entity;
+            return DbSet.Where(expression);
+        }
+
+        /// <inheritdoc cref="IRepository{TEntity}.CreateAsync(TEntity, CancellationToken)" />
+        public virtual async Task CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
+        {
+            _logger.LogTrace($"Start create entry {typeof(TEntity)} in repository");
+            var type = typeof(TEntity);
+            if (typeof(IAuditEntity).IsAssignableFrom(typeof(TEntity)))   
+            {   
+                _logger.LogTrace("Set creation date in creating entry");
+                ((IAuditEntity)entity).CreatedDate = DateTime.UtcNow;   
+            }   
+            await DbSet.AddAsync(entity, cancellationToken);  
         }       
 
-        /// <inheritdoc cref="IRepository{TEntity, TKey}.Update(TEntity)" />
-        public TEntity Update(TEntity entity)
+        /// <inheritdoc cref="IRepository{TEntity}.Update(TEntity)" />
+        public virtual void Update(TEntity entity)
         {
-            entity.UpdatedTime = DateTime.Now;
-            var result = EntityDbSet.Update(entity);
-            
-            return result.Entity;
+            _logger.LogTrace($"Start update entry {typeof(TEntity)} in repository");
+            if (typeof(IAuditEntity).IsAssignableFrom(typeof(TEntity)))   
+            {   _logger.LogTrace("Set update date in updating entry");
+                ((IAuditEntity)entity).UpdatedDate = DateTime.UtcNow;   
+            }   
+            DbSet.Update(entity);  
         }
 
-        /// <inheritdoc cref="IRepository{TEntity, TKey}.Delete(TEntity)" />
-        public void Delete(TEntity entity)
+        /// <inheritdoc cref="IRepository{TEntity}.Delete(TEntity)" />
+        public virtual void Delete(TEntity entity)
         {
-            EntityDbSet.Remove(entity);
+            _logger.LogTrace($"Start delete entry {typeof(TEntity)} in repository");
+            DbSet.Remove(entity);
         }
     }
 }

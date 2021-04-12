@@ -7,62 +7,94 @@ using DevQuiz.Libraries.Core.Models.Dto;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
 using DevQuiz.Libraries.Core.Services;
-using DevQuiz.Libraries.Services.Dto;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace DevQuiz.Libraries.Services
 {
-    /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-    public class UserService<TUser, TKey> : IUserService<UserDto, UserDto, List<UserDto>, bool, Guid>
+    /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}" />
+    public class UserService<TUser, TUserDto, TKey> : IUserService<TUserDto, TUserDto, List<TUserDto>, TKey, bool, bool, TKey>
+        where TUserDto : UserDtoBase<TKey>
         where TUser : UserBase<TKey>
         where TKey : IEquatable<TKey>
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository<TUser, TKey> _userRepository;
         private readonly IMapper _mapper;
-        private readonly ILogger<UserService<TUser, TKey>> _logger;
+        private readonly ILogger<UserService<TUser, TUserDto, TKey>> _logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="userRepository"></param>
+        /// <param name="unitOfWork">Instance of UnitOfWork</param>
+        /// <param name="userRepository">Instance of User Repository</param>
         /// <param name="mapper">Mapper instance</param>
         /// <param name="logger">Logger instance</param>
-        public UserService(IUserRepository<TUser, TKey> userRepository, 
+        public UserService(IUnitOfWork unitOfWork,
+            IUserRepository<TUser, TKey> userRepository, 
             IMapper mapper,
-            ILogger<UserService<TUser, TKey>> logger = null)
+            ILogger<UserService<TUser, TUserDto, TKey>> logger = null)
         {
+            _unitOfWork = unitOfWork;
             _userRepository = userRepository;
             _mapper = mapper;
-            _logger = logger ?? NullLogger<UserService<TUser, TKey>>.Instance;
+            _logger = logger ?? NullLogger<UserService<TUser, TUserDto, TKey>>.Instance;
         }
 
-        /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<UserDto> Create(UserDto entryToAdd)
+        /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.Create(TUserDto)" />
+        public async Task<TKey> Create(TUserDto entryToAdd)
         {
-            throw new NotImplementedException();
+            _logger.LogDebug("Start creating new user");
+            var addUserEntity = _mapper.Map<TUser>(entryToAdd);
+            await _userRepository.CreateAsync(addUserEntity);
+            _logger.LogDebug("Create new user save changes");
+            var commitStatus = await _unitOfWork.CommitAsync();
+
+            return addUserEntity.Id;
         }
-        /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<bool> Delete(Guid idDto)
+
+        /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.Delete(TKey)" />
+        public async Task<bool> Delete(TKey idDto)
         {
-            throw new NotImplementedException();
+            _logger.LogDebug($"Start deleting user with id {idDto}");
+            var userToDelete = await _userRepository.GetByIdAsync(idDto);
+            _userRepository.Delete(userToDelete);
+            _logger.LogDebug("Delete user save changes");
+            var commitStatus = await _unitOfWork.CommitAsync();
+            
+            return commitStatus > 0;
         }
-        /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<List<UserDto>> GetAll()
+
+        /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.GetAll" />
+        public Task<List<TUserDto>> GetAll()
         {
             var allUsers = _userRepository.GetAll().ToList();
-            var result = _mapper.Map<List<UserDto>>(allUsers);
+            var result = _mapper.Map<List<TUserDto>>(allUsers);
             throw new NotImplementedException();
         }
-        /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<UserDto> GetOne(Guid idDto)
+
+        /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.GetById(TKey)" />
+        public async Task<TUserDto> GetById(TKey idDto)
         {
-            throw new NotImplementedException();
+            var userEntity = await _userRepository.GetByIdAsync(idDto);
+            return _mapper.Map<TUserDto>(userEntity);
         }
-        /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TStatusResult, TKey}" />
-        public Task<UserDto> Update(UserDto entryToUpdate)
+
+        /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.GetByChatIdAsync(int)" />
+        public async Task<TUserDto> GetByChatIdAsync(int telegramChatId)
         {
-            throw new NotImplementedException();
+            var userEntity = await _userRepository.GetByChatIdAsync(telegramChatId);
+            return _mapper.Map<TUserDto>(userEntity);
+        }
+
+        /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.Update(TUserDto)" />
+        public async Task<bool> Update(TUserDto entryToUpdate)
+        {
+            _logger.LogDebug("Start updating user");
+            var userEntity = _mapper.Map<TUser>(entryToUpdate);
+            _userRepository.Update(userEntity);
+            var commitResult = await _unitOfWork.CommitAsync();
+            return commitResult > 0;
         }
     }
 }

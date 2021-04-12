@@ -79,6 +79,16 @@
             Instance of telegram bot client
             </summary>
         </member>
+        <member name="T:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile">
+            <summary>
+            Mapper profile for convert Telegram User information to Dto
+            </summary>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="T:DevQuiz.TelegramBot.Program">
             <summary>
             App entry point
@@ -90,22 +100,22 @@
             </summary>
             <param name="args">Application arguments</param>
         </member>
-        <member name="M:DevQuiz.TelegramBot.Program.CreateHostBuilder(System.String[],Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:DevQuiz.TelegramBot.Program.CreateHostBuilder(System.String[])">
             <summary>
             Creating web app host
             </summary>
             <param name="args">Application arguments</param>
-            <param name="configuration">IConfiguration instance</param>
             <returns>Web app host object</returns>
         </member>
         <member name="T:DevQuiz.TelegramBot.Services.BotMessageService">
             <inheritdoc cref="T:DevQuiz.TelegramBot.Interfaces.IBotMessageService" />
         </member>
-        <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.#ctor(DevQuiz.TelegramBot.Interfaces.IBotService,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Services.BotMessageService})">
+        <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.#ctor(DevQuiz.TelegramBot.Interfaces.IBotService,DevQuiz.Libraries.Core.Services.IUserService{DevQuiz.Libraries.Services.Dto.UserDto,DevQuiz.Libraries.Services.Dto.UserDto,System.Collections.Generic.List{DevQuiz.Libraries.Services.Dto.UserDto},System.Guid,System.Boolean,System.Boolean,System.Guid},Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Services.BotMessageService})">
             <summary>
             Constructor
             </summary>
             <param name="botService">Instance of bot service</param>
+            <param name="userService">Instance of user service</param>
             <param name="logger">Logger</param>
         </member>
         <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)">

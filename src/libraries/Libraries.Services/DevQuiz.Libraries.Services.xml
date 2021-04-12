@@ -9,43 +9,52 @@
             Dto model for user
             </summary>
         </member>
+        <member name="P:DevQuiz.Libraries.Services.Dto.UserDto.TelegramId">
+            <summary>
+            Unique identifier of user in Telegram
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Services.Extensions.ServiceCollectionExtensions">
             <summary>
             Extensions methods for IServiceCollection instance
             </summary>
         </member>
-        <member name="M:DevQuiz.Libraries.Services.Extensions.ServiceCollectionExtensions.AddDevQuizServices``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:DevQuiz.Libraries.Services.Extensions.ServiceCollectionExtensions.AddDevQuizServices``3(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Add services for working with DevQuiz db
             </summary>
             <param name="services">IServiceCollection instance</param>
             <returns>IServiceCollection</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Services.UserService`2">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        <member name="T:DevQuiz.Libraries.Services.UserService`3">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`7" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`2.#ctor(DevQuiz.Libraries.Core.Repositories.IUserRepository{`0,`1},AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.UserService{`0,`1}})">
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.#ctor(DevQuiz.Libraries.Core.Repositories.IUnitOfWork,DevQuiz.Libraries.Core.Repositories.IUserRepository{`0,`2},AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.UserService{`0,`1,`2}})">
             <summary>
             Constructor
             </summary>
-            <param name="userRepository"></param>
+            <param name="unitOfWork">Instance of UnitOfWork</param>
+            <param name="userRepository">Instance of User Repository</param>
             <param name="mapper">Mapper instance</param>
             <param name="logger">Logger instance</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`2.Create(DevQuiz.Libraries.Services.Dto.UserDto)">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.Create(`1)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Create(`0)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`2.Delete(System.Guid)">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.Delete(`2)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Delete(`6)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`2.GetAll">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.GetAll">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetAll" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`2.GetOne(System.Guid)">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.GetById(`2)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetById(`6)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`2.Update(DevQuiz.Libraries.Services.Dto.UserDto)">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`5" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.GetByChatIdAsync(System.Int32)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IUserService`7.GetByChatIdAsync(System.Int32)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.Update(`1)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Update(`0)" />
         </member>
     </members>
 </doc>
