@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace DevQuiz.Libraries.Data.Repositories
 {
     /// <inheritdoc cref="IUserRepository{TUser,TKey}" />
-    public class UserRepository<TDbContext, TUser, TKey> : Repository<TDbContext, TUser>, IUserRepository<TUser, TKey>
+    public class UserRepository<TDbContext, TUser, TKey> : GenericRepository<TDbContext, TUser>, IUserRepository<TUser, TKey>
         where TDbContext : DbContext
         where TUser : UserBase<TKey>
         where TKey : IEquatable<TKey>
@@ -30,7 +30,7 @@ namespace DevQuiz.Libraries.Data.Repositories
             _logger = logger ?? NullLogger<UserRepository<TDbContext, TUser, TKey>>.Instance;
         }
 
-        /// <inheritdoc cref="Repository{TDbContext, TUser}.GetAll()" />
+        /// <inheritdoc cref="GenericRepository{TDbContext, TUser}.GetAll()" />
         public override IQueryable<TUser> GetAll()
         {
             return base.GetAll();

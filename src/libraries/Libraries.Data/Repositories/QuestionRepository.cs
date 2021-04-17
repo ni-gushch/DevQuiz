@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace DevQuiz.Libraries.Data.Repositories
 {
     /// <inheritdoc cref="IQuestionRepository{TQuestion, TAnswer, TCategory, TTag}" />
-    public class QuestionRepository<TDbContext, TQuestion, TAnswer, TCategory, TTag> : Repository<TDbContext, TQuestion>,
+    public class QuestionRepository<TDbContext, TQuestion, TAnswer, TCategory, TTag> : GenericRepository<TDbContext, TQuestion>,
         IQuestionRepository<TQuestion, TAnswer, TCategory, TTag>
         where TDbContext : DbContext
         where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
@@ -30,7 +30,7 @@ namespace DevQuiz.Libraries.Data.Repositories
             _logger = logger ?? NullLogger<QuestionRepository<TDbContext, TQuestion, TAnswer, TCategory, TTag>>.Instance;
         }
 
-        /// <inheritdoc cref="Repository{TDbContext, TUser}.GetAll()" />
+        /// <inheritdoc cref="GenericRepository{TDbContext, TUser}.GetAll()" />
         public override IQueryable<TQuestion> GetAll()
         {
             return base.GetAll()
