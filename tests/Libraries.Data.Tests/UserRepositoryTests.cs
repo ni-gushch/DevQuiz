@@ -139,7 +139,7 @@ namespace DevQuiz.Libraries.Data.Tests
             //Act
             _userRepository.Delete(findUserAfterSave);
             await _unitOfWork.CommitAsync();
-            var fingDeletedUser = await _userRepository.GetByIdAsync(findUserAfterSave.Id);
+            var findDeletedUser = await _userRepository.GetByIdAsync(findUserAfterSave.Id);
 
             _userRepository.Delete(findUserAfterSave);
             await Assert.ThrowsAsync<DbUpdateConcurrencyException>(() => _unitOfWork.CommitAsync());
@@ -154,17 +154,14 @@ namespace DevQuiz.Libraries.Data.Tests
             //Arrange
             var usersCount = 3;
             //create context
-            await using var devQuizContext = new DevQuizDbContext(ContextOptions);
+            await using var devQuizContext = _dbContextFactory.DbContext;
             //Create several entities
             await devQuizContext
                 .SeedUsers(usersCount)
                 .CommitAsync();
 
-            //create user repo instance
-            var userRepository = new UserRepository<User, Guid>(devQuizContext);
-
             //Act
-            var users = userRepository.GetAll();
+            var users = _userRepository.GetAll();
 
             //Assert
             Assert.Equal(usersCount, await users.CountAsync());
