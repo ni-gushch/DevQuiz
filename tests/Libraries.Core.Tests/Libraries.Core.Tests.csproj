@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-
+    <AssemblyName>DevQuiz.Libraties.Core.Tests</AssemblyName>
+    <RootNamespace>DevQuiz.Libraties.Core.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -20,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\libraries\Libraries.Core\Libraries.Core.csproj" />
+    <ProjectReference Include="../../src/libraries/Libraries.Core/Libraries.Core.csproj" />
   </ItemGroup>
 
 </Project>
