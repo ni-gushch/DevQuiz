@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Libraries.Core.Tests.Extensions
+namespace DevQuiz.Libraries.Core.Tests.Extensions
 {
     public class StringExtensionsTests
     {
