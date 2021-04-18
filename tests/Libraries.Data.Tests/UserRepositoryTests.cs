@@ -154,7 +154,7 @@ namespace DevQuiz.Libraries.Data.Tests
             //Arrange
             var usersCount = 3;
             //create context
-            await using var devQuizContext = _dbContextFactory.DbContext;
+            await using var devQuizContext = _dbContext;
             //Create several entities
             await devQuizContext
                 .SeedUsers(usersCount)
