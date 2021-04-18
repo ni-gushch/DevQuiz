@@ -4,9 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
-using DevQuiz.Libraries.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Logging;
@@ -21,22 +19,23 @@ namespace DevQuiz.Libraries.Data.Repositories
         where TDbContext : DbContext
         where TEntity : class
     {
-        private readonly DbFactory<TDbContext> _dbFactory;
-        private readonly DbSet<TEntity> _dbSet;
+        private readonly TDbContext _genericDbContext;
         private readonly ILogger<GenericRepository<TDbContext, TEntity>> _logger;
+
         /// <summary>
         /// DbSet for current type of TEntity
         /// </summary>
-        protected DbSet<TEntity> DbSet => _dbSet ?? _dbFactory.DbContext.Set<TEntity>();
+        protected DbSet<TEntity> DbSet { get; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="dbFactory">Factory for creating Db context</param>
+        /// <param name="genericDbContext">Generic db context</param>
         /// <param name="logger">Logger instance</param>
-        public GenericRepository(DbFactory<TDbContext> dbFactory, ILogger<GenericRepository<TDbContext, TEntity>> logger = null)
+        public GenericRepository(TDbContext genericDbContext, ILogger<GenericRepository<TDbContext, TEntity>> logger = null)
         {
-            _dbFactory = dbFactory;
+            _genericDbContext = genericDbContext;
+            DbSet = genericDbContext.Set<TEntity>();
             _logger = logger ?? NullLogger<GenericRepository<TDbContext, TEntity>>.Instance;
         }
 
@@ -58,24 +57,24 @@ namespace DevQuiz.Libraries.Data.Repositories
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.GetAll(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
-        public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate, 
+        public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
         {
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.GetAll(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?)"/>
-        public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate, 
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include, 
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy, 
-            int? skip = null, 
+        public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
+            int? skip = null,
             int? take = null)
         {
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.GetAll(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, string, string, int?, int?)"/>
-        public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate, 
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include, 
-            string orderBy, 
+        public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
+            string orderBy,
             string orderDirection = "asc",
             int? skip = null,
             int? take = null)
@@ -94,14 +93,14 @@ namespace DevQuiz.Libraries.Data.Repositories
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.GetAllAsync(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
-        public Task<IQueryable<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include, 
+        public Task<IQueryable<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.GetAllAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
-        public Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, 
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include, 
+        public Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
@@ -139,25 +138,25 @@ namespace DevQuiz.Libraries.Data.Repositories
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.List(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
-        public List<TEntity> List(Expression<Func<TEntity, bool>> predicate, 
+        public List<TEntity> List(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
         {
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.List(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?)"/>
         public List<TEntity> List(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include, 
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy, 
-            int? skip = null, 
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
+            int? skip = null,
             int? take = null)
         {
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.List(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, string, string, int?, int?)"/>
-        public List<TEntity> List(Expression<Func<TEntity, bool>> predicate, 
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include, 
-            string orderBy, 
-            string orderDirection = "asc", 
+        public List<TEntity> List(Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
+            string orderBy,
+            string orderDirection = "asc",
             int? skip = null,
             int? take = null)
         {
@@ -175,36 +174,36 @@ namespace DevQuiz.Libraries.Data.Repositories
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
-        public List<TEntity> ListAsync(Func<IQueryable<TEntity>, 
-            IIncludableQueryable<TEntity, object>> include, 
+        public List<TEntity> ListAsync(Func<IQueryable<TEntity>,
+            IIncludableQueryable<TEntity, object>> include,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
-        public List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate, 
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include, 
+        public List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?, CancellationToken)"/>
-        public List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate, 
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include, 
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy, 
-            int? skip = null, 
+        public List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
+            int? skip = null,
             int? take = null,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
         /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, string, string, int?, int?, CancellationToken)"/>
-        public List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate, 
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include, 
-            string orderBy, 
-            string orderDirection = "asc", 
+        public List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
+            string orderBy,
+            string orderDirection = "asc",
             int? skip = null,
-            int? take = null, 
+            int? take = null,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();

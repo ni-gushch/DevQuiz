@@ -19,7 +19,6 @@ namespace DevQuiz.Libraries.Services
         where TKey : IEquatable<TKey>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IUserRepository<TUser, TKey> _userRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<UserService<TUser, TUserDto, TKey>> _logger;
 
@@ -27,16 +26,13 @@ namespace DevQuiz.Libraries.Services
         /// Constructor
         /// </summary>
         /// <param name="unitOfWork">Instance of UnitOfWork</param>
-        /// <param name="userRepository">Instance of User Repository</param>
         /// <param name="mapper">Mapper instance</param>
         /// <param name="logger">Logger instance</param>
         public UserService(IUnitOfWork unitOfWork,
-            IUserRepository<TUser, TKey> userRepository, 
             IMapper mapper,
             ILogger<UserService<TUser, TUserDto, TKey>> logger = null)
         {
             _unitOfWork = unitOfWork;
-            _userRepository = userRepository;
             _mapper = mapper;
             _logger = logger ?? NullLogger<UserService<TUser, TUserDto, TKey>>.Instance;
         }

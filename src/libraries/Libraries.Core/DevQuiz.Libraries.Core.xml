@@ -233,51 +233,107 @@
             Unique identifier of telegram chat for current user
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Repositories.IQuestionRepository`4">
+        <member name="T:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1">
             <summary>
-            Repository for manage DevQuiz question entities
+            Base generic repository interface
             </summary>
-            <typeparam name="TQuestion">Question model</typeparam>
-            <typeparam name="TAnswer">Question answer model</typeparam>
-            <typeparam name="TCategory">Question category model</typeparam>
-            <typeparam name="TTag">Question tag model</typeparam>
+            <typeparam name="TEntity">Type of entity</typeparam>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Repositories.IRepository`1">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAll">
             <summary>
-            Base repository interface
+            Get all entities
             </summary>
+            <returns>IQueryable collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.GetAll">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
-            Get all entities query from the store
+            Get all entities with filter
             </summary>
-            <returns>List of all users</returns>
+            <param name="predicate">Filter for entities</param>
+            <returns>IQueryable collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAllAsync">
+            <summary>
+            Get all entities
+            </summary>
+            <returns>IQueryable collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Get all entities with filter
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <returns>IQueryable collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List">
             <summary>
             Get list entities by passed expression
             </summary>
-            <param name="expression"></param>
-            <returns></returns>
+            <returns>List collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.CreateAsync(`0,System.Threading.CancellationToken)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Get list entities by passed expression
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <returns>List collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync">
+            <summary>
+            Get list entities by passed expression
+            </summary>
+            <returns>List collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Get list entities by passed expression
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <returns>List collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.Count">
+            <summary>
+            Count of entities
+            </summary>
+            <returns>Number of entities in db</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Count of entities with filter
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <returns>Number of entities in db</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.Create(`0)">
+            <summary>
+            Create new entity
+            </summary>
+            <param name="entityToAdd">Entity to add model</param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.CreateAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Create new entity
             </summary>
             <param name="entity">Entity model</param>
             <param name="cancellationToken">Cancellation token</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.Update(`0)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.Update(`0)">
             <summary>
             Update entity information
             </summary>
-            <param name="entity">Entity information</param>
+            <param name="entityToUpdate">Entity information</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IRepository`1.Delete(`0)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.Delete(`0)">
             <summary>
-            Delete user from the store
+            Delete entity from the store
             </summary>
-            <param name="entity">Entity instance</param>
+            <param name="entityToDelete">Entity instance</param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Delete entity from the store
+            </summary>
+            <param name="predicate">Searching function</param>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IUnitOfWork">
             <summary>
@@ -297,24 +353,20 @@
             <param name="cancellationToken">Token for cancel operation</param>
             <returns>Operation status</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Repositories.IUserRepository`2">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.GetBaseRepository``1">
             <summary>
-            Repository for manage DevQuiz user entities
+            Get base repository instance
             </summary>
+            <typeparam name="TEntity">Type of TEntity</typeparam>
+            <returns>Base repository instance</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetByIdAsync(`1)">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.GetRepository``2">
             <summary>
-            Get one user from the store
+            Get instance of concrete repository
             </summary>
-            <param name="entityId">Unique identifier of entity</param>
-            <returns>Information about one user</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUserRepository`2.GetByChatIdAsync(System.Int32)">
-            <summary>
-            Get user information by telegram chat id
-            </summary>
-            <param name="telegramChatId">Uniq identifier of telegram chat</param>
-            <returns>Information about one user</returns>
+            <typeparam name="TRepository">Type of repository</typeparam>
+            <typeparam name="TEntity">Type of TEntity</typeparam>
+            <returns>Concrete repository instance</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Services.IBaseService`7">
             <summary>

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>DevQuiz.Libraties.Data.Tests</AssemblyName>
-    <RootNamespace>DevQuiz.Libraties.Data.Tests</RootNamespace>
+    <AssemblyName>DevQuiz.Libraries.Data.Tests</AssemblyName>
+    <RootNamespace>DevQuiz.Libraries.Data.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

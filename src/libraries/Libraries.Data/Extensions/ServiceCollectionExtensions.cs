@@ -8,6 +8,7 @@ using DevQuiz.Libraries.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace DevQuiz.Libraries.Data.Extensions
 {
@@ -30,9 +31,8 @@ namespace DevQuiz.Libraries.Data.Extensions
             services.AddDbContext<DevQuizDbContext>(opt =>
                 opt.UseNpgsql(dbConfiguration.ConnectionString, options =>
                     options.MigrationsAssembly(migrationAssembly)));
-
-            services.AddScoped<DbFactory<DevQuizDbContext>>();   
-            services.AddScoped<IUnitOfWork , UnitOfWork<DevQuizDbContext>>(); 
+            
+            services.TryAddScoped<IUnitOfWork , UnitOfWork<DevQuizDbContext>>(); 
 
             return services;
         }
@@ -51,8 +51,11 @@ namespace DevQuiz.Libraries.Data.Extensions
             where TTag : TagBase<TQuestion>
             where TKey : IEquatable<TKey>
         {
-            services.AddTransient<IUserRepository<TUser, TKey>, UserRepository<DevQuizDbContext, TUser, TKey>>();
-            services.AddTransient<IQuestionRepository<TQuestion, TAnswer, TCategory, TTag>, QuestionRepository<DevQuizDbContext, TQuestion, TAnswer, TCategory, TTag>>();
+            services.TryAddScoped<IGenericRepository<TUser>, GenericRepository<DevQuizDbContext, TUser>>();
+            services.TryAddScoped<IGenericRepository<TQuestion>, GenericRepository<DevQuizDbContext, TQuestion>>();
+            services.TryAddScoped<IGenericRepository<TAnswer>, GenericRepository<DevQuizDbContext, TAnswer>>();
+            services.TryAddScoped<IGenericRepository<TCategory>, GenericRepository<DevQuizDbContext, TCategory>>();
+            services.TryAddScoped<IGenericRepository<TTag>, GenericRepository<DevQuizDbContext, TTag>>();
 
             return services;
         }
