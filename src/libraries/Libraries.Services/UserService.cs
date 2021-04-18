@@ -19,6 +19,7 @@ namespace DevQuiz.Libraries.Services
         where TKey : IEquatable<TKey>
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IGenericRepositoryEntityFramework<TUser> _userRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<UserService<TUser, TUserDto, TKey>> _logger;
 
@@ -33,6 +34,7 @@ namespace DevQuiz.Libraries.Services
             ILogger<UserService<TUser, TUserDto, TKey>> logger = null)
         {
             _unitOfWork = unitOfWork;
+            _userRepository = _unitOfWork.GetRepository<IGenericRepositoryEntityFramework<TUser>, TUser>();
             _mapper = mapper;
             _logger = logger ?? NullLogger<UserService<TUser, TUserDto, TKey>>.Instance;
         }
@@ -53,7 +55,7 @@ namespace DevQuiz.Libraries.Services
         public async Task<bool> Delete(TKey idDto)
         {
             _logger.LogDebug($"Start deleting user with id {idDto}");
-            var userToDelete = await _userRepository.GetByIdAsync(idDto);
+            var userToDelete = await _userRepository.GetOneAsync(it => it.Id.Equals(idDto));
             _userRepository.Delete(userToDelete);
             _logger.LogDebug("Delete user save changes");
             var commitStatus = await _unitOfWork.CommitAsync();
@@ -72,14 +74,14 @@ namespace DevQuiz.Libraries.Services
         /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.GetById(TKey)" />
         public async Task<TUserDto> GetById(TKey idDto)
         {
-            var userEntity = await _userRepository.GetByIdAsync(idDto);
+            var userEntity = await _userRepository.GetOneAsync(it => it.Id.Equals(idDto));
             return _mapper.Map<TUserDto>(userEntity);
         }
 
         /// <inheritdoc cref="IUserService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.GetByChatIdAsync(int)" />
         public async Task<TUserDto> GetByChatIdAsync(int telegramChatId)
         {
-            var userEntity = await _userRepository.GetByChatIdAsync(telegramChatId);
+            var userEntity = await _userRepository.GetOneAsync(it => it.TelegramChatId.Equals(telegramChatId));
             return _mapper.Map<TUserDto>(userEntity);
         }
 

@@ -4,16 +4,15 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using DevQuiz.Libraries.Core.Repositories;
 using Microsoft.EntityFrameworkCore.Query;
 
-namespace DevQuiz.Libraries.Data.Repositories
+namespace DevQuiz.Libraries.Core.Repositories
 {
     /// <summary>
     /// Generic repository
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
-    public interface IGenericRepository<TEntity> : IGenericRepositoryBase<TEntity>
+    public interface IGenericRepositoryEntityFramework<TEntity> : IGenericRepositoryBase<TEntity>
         where TEntity : class
     {
         #region GetAll
@@ -45,22 +44,6 @@ namespace DevQuiz.Libraries.Data.Repositories
            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
            int? skip = null, int? take = null);
-        /// <summary>
-        /// Get all entities with filter order and paging and included tables
-        /// </summary>
-        /// <param name="predicate">Filter for entities</param>
-        /// <param name="include">Tables to include</param>
-        /// <param name="orderBy">Name of the field by which you want to sort</param>
-        /// <param name="orderDirection">Order direction</param>
-        /// <param name="skip">Number of skip entities</param>
-        /// <param name="take">Number of take entities</param>
-        /// <returns>IQueryable collection of entities</returns>
-        IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
-            string orderBy,
-            string orderDirection = "asc",
-            int? skip = null,
-            int? take = null);
 
         /// <summary>
         /// Get all entities and included tables
@@ -97,24 +80,6 @@ namespace DevQuiz.Libraries.Data.Repositories
             int? skip = null,
             int? take = null,
             CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Get all entities with filter order and paging and included tables
-        /// </summary>
-        /// <param name="predicate">Filter for entities</param>
-        /// <param name="include">Tables to include</param>
-        /// <param name="orderBy">Name of the field by which you want to sort</param>
-        /// <param name="orderDirection">Order direction</param>
-        /// <param name="skip">Number of skip entities</param>
-        /// <param name="take">Number of take entities</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>IQueryable collection of entities</returns>
-        Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate,
-             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
-             string orderBy,
-             string orderDirection = "asc",
-             int? skip = null,
-             int? take = null,
-             CancellationToken cancellationToken = default);
 
         #endregion
 
@@ -147,22 +112,6 @@ namespace DevQuiz.Libraries.Data.Repositories
            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
            int? skip = null, int? take = null);
-        /// <summary>
-        /// Get all entities with filter order and paging and included tables
-        /// </summary>
-        /// <param name="predicate">Filter for entities</param>
-        /// <param name="include">Tables to include</param>
-        /// <param name="orderBy">Name of the field by which you want to sort</param>
-        /// <param name="orderDirection">Order direction</param>
-        /// <param name="skip">Number of skip entities</param>
-        /// <param name="take">Number of take entities</param>
-        /// <returns>List of entities</returns>
-        List<TEntity> List(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
-            string orderBy,
-            string orderDirection = "asc",
-            int? skip = null,
-            int? take = null);
 
         /// <summary>
         /// Get all entities and included tables
@@ -170,7 +119,7 @@ namespace DevQuiz.Libraries.Data.Repositories
         /// <param name="include">Tables to include</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List of entities</returns>
-        List<TEntity> ListAsync(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
+        Task<List<TEntity>> ListAsync(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             CancellationToken cancellationToken = default);
         /// <summary>
         /// Get all entities with filter and included tables
@@ -179,7 +128,7 @@ namespace DevQuiz.Libraries.Data.Repositories
         /// <param name="include">Tables to include</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List of entities</returns>
-        List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate,
+        Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             CancellationToken cancellationToken = default);
         /// <summary>
@@ -192,29 +141,11 @@ namespace DevQuiz.Libraries.Data.Repositories
         /// <param name="take">Number of take entities</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List of entities</returns>
-        List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate,
+        Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate,
            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
            int? skip = null, int? take = null,
            CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Get all entities with filter order and paging and included tables
-        /// </summary>
-        /// <param name="predicate">Filter for entities</param>
-        /// <param name="include">Tables to include</param>
-        /// <param name="orderBy">Name of the field by which you want to sort</param>
-        /// <param name="orderDirection">Order direction</param>
-        /// <param name="skip">Number of skip entities</param>
-        /// <param name="take">Number of take entities</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>List of entities</returns>
-        List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
-            string orderBy,
-            string orderDirection = "asc",
-            int? skip = null,
-            int? take = null,
-            CancellationToken cancellationToken = default);
 
         #endregion
 

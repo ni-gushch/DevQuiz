@@ -31,14 +31,16 @@ namespace DevQuiz.Libraries.Core.Repositories
         /// <summary>
         /// Get all entities
         /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>IQueryable collection of entities</returns>
-        Task<IQueryable<TEntity>> GetAllAsync();
+        Task<IQueryable<TEntity>> GetAllAsync(CancellationToken cancellationToken);
         /// <summary>
         /// Get all entities with filter
         /// </summary>
         /// <param name="predicate">Filter for entities</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>IQueryable collection of entities</returns>
-        Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
         #endregion
 
@@ -59,14 +61,16 @@ namespace DevQuiz.Libraries.Core.Repositories
         /// <summary>
         /// Get list entities by passed expression
         /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List collection of entities</returns>
-        List<TEntity> ListAsync();
+        Task<List<TEntity>> ListAsync(CancellationToken cancellationToken);
         /// <summary>
         /// Get list entities by passed expression
         /// </summary>
         /// <param name="predicate">Filter for entities</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List collection of entities</returns>
-        List<TEntity> ListAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
         #endregion
 
@@ -96,9 +100,9 @@ namespace DevQuiz.Libraries.Core.Repositories
         /// <summary>
         /// Create new entity
         /// </summary>
-        /// <param name="entity">Entity model</param>
+        /// <param name="entityToAdd">Entity model</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        Task CreateAsync(TEntity entity, CancellationToken cancellationToken = default);
+        Task CreateAsync(TEntity entityToAdd, CancellationToken cancellationToken = default);
 
         #endregion
 

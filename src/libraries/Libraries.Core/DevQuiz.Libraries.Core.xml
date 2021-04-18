@@ -252,17 +252,19 @@
             <param name="predicate">Filter for entities</param>
             <returns>IQueryable collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAllAsync">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAllAsync(System.Threading.CancellationToken)">
             <summary>
             Get all entities
             </summary>
+            <param name="cancellationToken">Cancellation token</param>
             <returns>IQueryable collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)">
             <summary>
             Get all entities with filter
             </summary>
             <param name="predicate">Filter for entities</param>
+            <param name="cancellationToken">Cancellation token</param>
             <returns>IQueryable collection of entities</returns>
         </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List">
@@ -278,17 +280,19 @@
             <param name="predicate">Filter for entities</param>
             <returns>List collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Threading.CancellationToken)">
             <summary>
             Get list entities by passed expression
             </summary>
+            <param name="cancellationToken">Cancellation token</param>
             <returns>List collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)">
             <summary>
             Get list entities by passed expression
             </summary>
             <param name="predicate">Filter for entities</param>
+            <param name="cancellationToken">Cancellation token</param>
             <returns>List collection of entities</returns>
         </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.Count">
@@ -314,7 +318,7 @@
             <summary>
             Create new entity
             </summary>
-            <param name="entity">Entity model</param>
+            <param name="entityToAdd">Entity model</param>
             <param name="cancellationToken">Cancellation token</param>
         </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.Update(`0)">
@@ -334,6 +338,139 @@
             Delete entity from the store
             </summary>
             <param name="predicate">Searching function</param>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1">
+            <summary>
+            Generic repository
+            </summary>
+            <typeparam name="TEntity">Type of entity</typeparam>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetAll(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
+            <summary>
+            Get all entities and included tables
+            </summary>
+            <param name="include">Tables to include</param>
+            <returns>IQueryable collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
+            <summary>
+            Get all entities with filter and included tables
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <returns>IQueryable collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Get all entities with filter order and paging and included tables
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <param name="orderBy">Order by function</param>
+            <param name="skip">Number of skip entities</param>
+            <param name="take">Number of take entities</param>
+            <returns>IQueryable collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetAllAsync(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
+            <summary>
+            Get all entities and included tables
+            </summary>
+            <param name="include">Tables to include</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>IQueryable collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
+            <summary>
+            Get all entities and included tables
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>IQueryable collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get all entities with filter order and paging and included tables
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <param name="orderBy">Order by function</param>
+            <param name="skip">Number of skip entities</param>
+            <param name="take">Number of take entities</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>IQueryable collection of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.List(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
+            <summary>
+            Get all entities and included tables
+            </summary>
+            <param name="include">Tables to include</param>
+            <returns>List of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
+            <summary>
+            Get all entities with filter and included tables
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <returns>List of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Get all entities with filter order and paging and included tables
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <param name="orderBy">Order by function</param>
+            <param name="skip">Number of skip entities</param>
+            <param name="take">Number of take entities</param>
+            <returns>List of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.ListAsync(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
+            <summary>
+            Get all entities and included tables
+            </summary>
+            <param name="include">Tables to include</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>List of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
+            <summary>
+            Get all entities with filter and included tables
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>List of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get all entities with filter order and paging and included tables
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <param name="orderBy">Order by function</param>
+            <param name="skip">Number of skip entities</param>
+            <param name="take">Number of take entities</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>List of entities</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetOne(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
+            <summary>
+            Get one entity
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <returns>One entity</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetOneAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
+            <summary>
+            Get one entity
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <param name="include">Tables to include</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>One entity</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IUnitOfWork">
             <summary>
