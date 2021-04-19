@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DevQuiz.Libraries.Core;
 using DevQuiz.Libraries.Core.Repositories;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
@@ -47,7 +49,8 @@ namespace DevQuiz.Libraries.Data.Tests
             {
                 FirstName = "FirstName",
                 LastName = "LastName",
-                UserName = "UserName"
+                UserName = "UserName",
+                CreatedDate = DateTime.Now
             };
             var userRepository = _unitOfWork.GetRepository<IGenericRepositoryEntityFramework<User>, User>();
 
@@ -85,7 +88,8 @@ namespace DevQuiz.Libraries.Data.Tests
             {
                 FirstName = "FirstName",
                 LastName = "LastName",
-                UserName = "UserName"
+                UserName = "UserName",
+                CreatedDate = DateTime.Now
             };
             var userRepository = _unitOfWork.GetRepository<IGenericRepositoryEntityFramework<User>, User>();
 
@@ -95,6 +99,7 @@ namespace DevQuiz.Libraries.Data.Tests
             findUserAfterSave.FirstName = "UpdatedFirstName";
             findUserAfterSave.LastName = "UpdatedLastName";
             findUserAfterSave.UserName = "UpdatedUserName";
+            findUserAfterSave.UpdatedDate = DateTime.Now;
 
             //Act
             userRepository.Update(findUserAfterSave);
@@ -163,12 +168,15 @@ namespace DevQuiz.Libraries.Data.Tests
             //create user repo instance
             var userRepository = _unitOfWork.GetRepository<IGenericRepositoryEntityFramework<User>, User>();
 
+            var query = await userRepository.ListAsync().ConfigureAwait(false);
+
             //Act
-            var users = await userRepository.GetAllAsync(cancellationToken: CancellationToken.None);
+            var users = await userRepository.ListAsync()
+                .ConfigureAwait(false);
 
             //Assert
-            Assert.Equal(usersCount, await users.CountAsync());
-            Assert.NotNull(await users.FirstOrDefaultAsync());
+            Assert.Equal(usersCount, users.Count());
+            Assert.NotNull(users.FirstOrDefault());
         }
     }
 }

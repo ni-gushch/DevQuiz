@@ -29,7 +29,7 @@
         <member name="T:DevQuiz.Libraries.Services.UserService`3">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`7" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`3.#ctor(DevQuiz.Libraries.Core.Repositories.IUnitOfWork,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.UserService{`0,`1,`2}})">
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.#ctor(DevQuiz.Libraries.Core.IUnitOfWork,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.UserService{`0,`1,`2}})">
             <summary>
             Constructor
             </summary>

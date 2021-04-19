@@ -45,42 +45,6 @@ namespace DevQuiz.Libraries.Core.Repositories
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
            int? skip = null, int? take = null);
 
-        /// <summary>
-        /// Get all entities and included tables
-        /// </summary>
-        /// <param name="include">Tables to include</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>IQueryable collection of entities</returns>
-        Task<IQueryable<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, 
-            IIncludableQueryable<TEntity, object>> include,
-            CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Get all entities and included tables
-        /// </summary>
-        /// <param name="predicate">Filter for entities</param>
-        /// <param name="include">Tables to include</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>IQueryable collection of entities</returns>
-        Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
-            CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Get all entities with filter order and paging and included tables
-        /// </summary>
-        /// <param name="predicate">Filter for entities</param>
-        /// <param name="include">Tables to include</param>
-        /// <param name="orderBy">Order by function</param>
-        /// <param name="skip">Number of skip entities</param>
-        /// <param name="take">Number of take entities</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>IQueryable collection of entities</returns>
-        Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
-            int? skip = null,
-            int? take = null,
-            CancellationToken cancellationToken = default);
-
         #endregion
 
         #region List

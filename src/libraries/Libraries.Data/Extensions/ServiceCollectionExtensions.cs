@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using DevQuiz.Libraries.Core;
 using DevQuiz.Libraries.Core.Configurations;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;

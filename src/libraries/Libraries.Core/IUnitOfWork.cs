@@ -1,8 +1,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using DevQuiz.Libraries.Core.Repositories;
 
-namespace DevQuiz.Libraries.Core.Repositories
+namespace DevQuiz.Libraries.Core
 {
     /// <summary>
     /// Unit of work interface

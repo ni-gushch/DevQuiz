@@ -26,6 +26,39 @@
             <param name="input"> Format string. </param>
             <returns> Formatted string. </returns>
         </member>
+        <member name="T:DevQuiz.Libraries.Core.IUnitOfWork">
+            <summary>
+            Unit of work interface
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.Commit">
+            <summary>
+            Save all changes
+            </summary>
+            <returns>Operation status</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.CommitAsync(System.Threading.CancellationToken)">
+            <summary>
+            Save all changes
+            </summary>
+            <param name="cancellationToken">Token for cancel operation</param>
+            <returns>Operation status</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.GetBaseRepository``1">
+            <summary>
+            Get base repository instance
+            </summary>
+            <typeparam name="TEntity">Type of TEntity</typeparam>
+            <returns>Base repository instance</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.GetRepository``2">
+            <summary>
+            Get instance of concrete repository
+            </summary>
+            <typeparam name="TRepository">Type of repository</typeparam>
+            <typeparam name="TEntity">Type of TEntity</typeparam>
+            <returns>Concrete repository instance</returns>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Mappers.UserMapperProfile`3">
             <summary>
             Profile class for mapper user models
@@ -252,21 +285,6 @@
             <param name="predicate">Filter for entities</param>
             <returns>IQueryable collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAllAsync(System.Threading.CancellationToken)">
-            <summary>
-            Get all entities
-            </summary>
-            <param name="cancellationToken">Cancellation token</param>
-            <returns>IQueryable collection of entities</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)">
-            <summary>
-            Get all entities with filter
-            </summary>
-            <param name="predicate">Filter for entities</param>
-            <param name="cancellationToken">Cancellation token</param>
-            <returns>IQueryable collection of entities</returns>
-        </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List">
             <summary>
             Get list entities by passed expression
@@ -339,6 +357,13 @@
             </summary>
             <param name="predicate">Searching function</param>
         </member>
+        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetOne(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Get one entity
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <returns>One entity</returns>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1">
             <summary>
             Generic repository
@@ -369,35 +394,6 @@
             <param name="orderBy">Order by function</param>
             <param name="skip">Number of skip entities</param>
             <param name="take">Number of take entities</param>
-            <returns>IQueryable collection of entities</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetAllAsync(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
-            <summary>
-            Get all entities and included tables
-            </summary>
-            <param name="include">Tables to include</param>
-            <param name="cancellationToken">Cancellation token</param>
-            <returns>IQueryable collection of entities</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
-            <summary>
-            Get all entities and included tables
-            </summary>
-            <param name="predicate">Filter for entities</param>
-            <param name="include">Tables to include</param>
-            <param name="cancellationToken">Cancellation token</param>
-            <returns>IQueryable collection of entities</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
-            <summary>
-            Get all entities with filter order and paging and included tables
-            </summary>
-            <param name="predicate">Filter for entities</param>
-            <param name="include">Tables to include</param>
-            <param name="orderBy">Order by function</param>
-            <param name="skip">Number of skip entities</param>
-            <param name="take">Number of take entities</param>
-            <param name="cancellationToken">Cancellation token</param>
             <returns>IQueryable collection of entities</returns>
         </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryEntityFramework`1.List(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
@@ -471,39 +467,6 @@
             <param name="include">Tables to include</param>
             <param name="cancellationToken">Cancellation token</param>
             <returns>One entity</returns>
-        </member>
-        <member name="T:DevQuiz.Libraries.Core.Repositories.IUnitOfWork">
-            <summary>
-            Unit of work interface
-            </summary>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.Commit">
-            <summary>
-            Save all changes
-            </summary>
-            <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.CommitAsync(System.Threading.CancellationToken)">
-            <summary>
-            Save all changes
-            </summary>
-            <param name="cancellationToken">Token for cancel operation</param>
-            <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.GetBaseRepository``1">
-            <summary>
-            Get base repository instance
-            </summary>
-            <typeparam name="TEntity">Type of TEntity</typeparam>
-            <returns>Base repository instance</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IUnitOfWork.GetRepository``2">
-            <summary>
-            Get instance of concrete repository
-            </summary>
-            <typeparam name="TRepository">Type of repository</typeparam>
-            <typeparam name="TEntity">Type of TEntity</typeparam>
-            <returns>Concrete repository instance</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Services.IBaseService`7">
             <summary>

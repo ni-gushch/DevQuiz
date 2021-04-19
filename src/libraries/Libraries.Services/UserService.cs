@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using DevQuiz.Libraries.Core;
 using DevQuiz.Libraries.Core.Models.Dto;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
@@ -44,6 +45,7 @@ namespace DevQuiz.Libraries.Services
         {
             _logger.LogDebug("Start creating new user");
             var addUserEntity = _mapper.Map<TUser>(entryToAdd);
+            addUserEntity.CreatedDate = DateTime.Now;
             await _userRepository.CreateAsync(addUserEntity);
             _logger.LogDebug("Create new user save changes");
             var commitStatus = await _unitOfWork.CommitAsync();
@@ -64,11 +66,11 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.GetAll" />
-        public Task<List<TUserDto>> GetAll()
+        public async Task<List<TUserDto>> GetAll()
         {
-            var allUsers = _userRepository.GetAll().ToList();
+            var allUsers = await _userRepository.ListAsync().ConfigureAwait(false);
             var result = _mapper.Map<List<TUserDto>>(allUsers);
-            throw new NotImplementedException();
+            return result;
         }
 
         /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.GetById(TKey)" />
@@ -90,6 +92,7 @@ namespace DevQuiz.Libraries.Services
         {
             _logger.LogDebug("Start updating user");
             var userEntity = _mapper.Map<TUser>(entryToUpdate);
+            userEntity.UpdatedDate = DateTime.Now;
             _userRepository.Update(userEntity);
             var commitResult = await _unitOfWork.CommitAsync();
             return commitResult > 0;

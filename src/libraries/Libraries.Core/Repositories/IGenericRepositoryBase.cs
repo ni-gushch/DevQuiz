@@ -28,20 +28,6 @@ namespace DevQuiz.Libraries.Core.Repositories
         /// <returns>IQueryable collection of entities</returns>
         IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
 
-        /// <summary>
-        /// Get all entities
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>IQueryable collection of entities</returns>
-        Task<IQueryable<TEntity>> GetAllAsync(CancellationToken cancellationToken);
-        /// <summary>
-        /// Get all entities with filter
-        /// </summary>
-        /// <param name="predicate">Filter for entities</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>IQueryable collection of entities</returns>
-        Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
-
         #endregion
 
         #region List
@@ -63,14 +49,14 @@ namespace DevQuiz.Libraries.Core.Repositories
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List collection of entities</returns>
-        Task<List<TEntity>> ListAsync(CancellationToken cancellationToken);
+        Task<List<TEntity>> ListAsync(CancellationToken cancellationToken = default);
         /// <summary>
         /// Get list entities by passed expression
         /// </summary>
         /// <param name="predicate">Filter for entities</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List collection of entities</returns>
-        Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+        Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
         #endregion
 
@@ -128,6 +114,17 @@ namespace DevQuiz.Libraries.Core.Repositories
         /// </summary>
         /// <param name="predicate">Searching function</param>
         void Delete(Expression<Func<TEntity, bool>> predicate);
+
+        #endregion
+
+        #region GetOne
+
+        /// <summary>
+        /// Get one entity
+        /// </summary>
+        /// <param name="predicate">Filter for entities</param>
+        /// <returns>One entity</returns>
+        TEntity GetOne(Expression<Func<TEntity, bool>> predicate = null);
 
         #endregion
     }
