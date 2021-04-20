@@ -24,7 +24,7 @@ namespace DevQuiz.Libraries.Data.Tests
             var serviceCollection = new ServiceCollection()
                 .AddScoped(opt => new DevQuizDbContext(this.ContextOptions))
                 .AddScoped<IUnitOfWork, UnitOfWork<DevQuizDbContext>>()
-                .AddScoped<IGenericRepositoryEntityFramework<User>, GenericRepositoryEntityFramework<DevQuizDbContext, User>>();
+                .AddScoped<IGenericRepository<User>, GenericRepository<DevQuizDbContext, User>>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
             
@@ -52,7 +52,7 @@ namespace DevQuiz.Libraries.Data.Tests
                 UserName = "UserName",
                 CreatedDate = DateTime.Now
             };
-            var userRepository = _unitOfWork.GetRepository<IGenericRepositoryEntityFramework<User>, User>();
+            var userRepository = _unitOfWork.GetRepository<IGenericRepository<User>, User>();
 
             //Act
             await userRepository.CreateAsync(userToAdd);
@@ -91,7 +91,7 @@ namespace DevQuiz.Libraries.Data.Tests
                 UserName = "UserName",
                 CreatedDate = DateTime.Now
             };
-            var userRepository = _unitOfWork.GetRepository<IGenericRepositoryEntityFramework<User>, User>();
+            var userRepository = _unitOfWork.GetRepository<IGenericRepository<User>, User>();
 
             await userRepository.CreateAsync(userToAdd);
             var createCommitResult = await _unitOfWork.CommitAsync();
@@ -135,7 +135,7 @@ namespace DevQuiz.Libraries.Data.Tests
                 LastName = "LastName",
                 UserName = "UserName"
             };
-            var userRepository = _unitOfWork.GetRepository<IGenericRepositoryEntityFramework<User>, User>();
+            var userRepository = _unitOfWork.GetRepository<IGenericRepository<User>, User>();
 
             await userRepository.CreateAsync(userToAdd);
             var createCommitResult = await _unitOfWork.CommitAsync();
@@ -166,7 +166,7 @@ namespace DevQuiz.Libraries.Data.Tests
                 .CommitAsync();
 
             //create user repo instance
-            var userRepository = _unitOfWork.GetRepository<IGenericRepositoryEntityFramework<User>, User>();
+            var userRepository = _unitOfWork.GetRepository<IGenericRepository<User>, User>();
 
             var query = await userRepository.ListAsync().ConfigureAwait(false);
 

@@ -52,11 +52,11 @@ namespace DevQuiz.Libraries.Data.Extensions
             where TTag : TagBase<TQuestion>
             where TKey : IEquatable<TKey>
         {
-            services.TryAddScoped<IGenericRepositoryEntityFramework<TUser>, GenericRepositoryEntityFramework<DevQuizDbContext, TUser>>();
-            services.TryAddScoped<IGenericRepositoryEntityFramework<TQuestion>, GenericRepositoryEntityFramework<DevQuizDbContext, TQuestion>>();
-            services.TryAddScoped<IGenericRepositoryEntityFramework<TAnswer>, GenericRepositoryEntityFramework<DevQuizDbContext, TAnswer>>();
-            services.TryAddScoped<IGenericRepositoryEntityFramework<TCategory>, GenericRepositoryEntityFramework<DevQuizDbContext, TCategory>>();
-            services.TryAddScoped<IGenericRepositoryEntityFramework<TTag>, GenericRepositoryEntityFramework<DevQuizDbContext, TTag>>();
+            services.TryAddScoped<IGenericRepository<TUser>, GenericRepository<DevQuizDbContext, TUser>>();
+            services.TryAddScoped<IGenericRepository<TQuestion>, GenericRepository<DevQuizDbContext, TQuestion>>();
+            services.TryAddScoped<IGenericRepository<TAnswer>, GenericRepository<DevQuizDbContext, TAnswer>>();
+            services.TryAddScoped<IGenericRepository<TCategory>, GenericRepository<DevQuizDbContext, TCategory>>();
+            services.TryAddScoped<IGenericRepository<TTag>, GenericRepository<DevQuizDbContext, TTag>>();
 
             return services;
         }

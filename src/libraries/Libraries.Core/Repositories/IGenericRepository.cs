@@ -12,7 +12,7 @@ namespace DevQuiz.Libraries.Core.Repositories
     /// Generic repository
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
-    public interface IGenericRepositoryEntityFramework<TEntity> : IGenericRepositoryBase<TEntity>
+    public interface IGenericRepository<TEntity> : IGenericRepositoryBase<TEntity>
         where TEntity : class
     {
         #region GetAll

@@ -20,7 +20,7 @@ namespace DevQuiz.Libraries.Services
         where TKey : IEquatable<TKey>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IGenericRepositoryEntityFramework<TUser> _userRepository;
+        private readonly IGenericRepository<TUser> _userRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<UserService<TUser, TUserDto, TKey>> _logger;
 
@@ -35,7 +35,7 @@ namespace DevQuiz.Libraries.Services
             ILogger<UserService<TUser, TUserDto, TKey>> logger = null)
         {
             _unitOfWork = unitOfWork;
-            _userRepository = _unitOfWork.GetRepository<IGenericRepositoryEntityFramework<TUser>, TUser>();
+            _userRepository = _unitOfWork.GetRepository<IGenericRepository<TUser>, TUser>();
             _mapper = mapper;
             _logger = logger ?? NullLogger<UserService<TUser, TUserDto, TKey>>.Instance;
         }

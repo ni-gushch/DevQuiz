@@ -19,23 +19,23 @@ namespace DevQuiz.Libraries.Data
         /// <summary>
         /// User repository
         /// </summary>
-        public IGenericRepositoryEntityFramework<User> UserRepository { get; }
+        public IGenericRepository<User> UserRepository { get; }
         /// <summary>
         /// Question repository
         /// </summary>
-        public IGenericRepositoryEntityFramework<Question> QuestionRepository { get; }
+        public IGenericRepository<Question> QuestionRepository { get; }
         /// <summary>
         /// Category repository
         /// </summary>
-        public IGenericRepositoryEntityFramework<Category> CategoryRepository { get; }
+        public IGenericRepository<Category> CategoryRepository { get; }
         /// <summary>
         /// Tag repository
         /// </summary>
-        public IGenericRepositoryEntityFramework<Tag> TagRepository { get; }
+        public IGenericRepository<Tag> TagRepository { get; }
         /// <summary>
         /// Answer repository
         /// </summary>
-        public IGenericRepositoryEntityFramework<Answer> AnswerRepository { get; }
+        public IGenericRepository<Answer> AnswerRepository { get; }
 
         /// <summary>
         /// Constructor
@@ -47,11 +47,11 @@ namespace DevQuiz.Libraries.Data
         /// <param name="tagRepository">Tag repository instance</param>
         /// <param name="answerRepository">Answer repository instance</param>
         public UnitOfWork(TDbContext dbContext,
-            IGenericRepositoryEntityFramework<User> userRepository = null,
-            IGenericRepositoryEntityFramework<Question> questionRepository = null,
-            IGenericRepositoryEntityFramework<Category> categoryRepository = null,
-            IGenericRepositoryEntityFramework<Tag> tagRepository = null,
-            IGenericRepositoryEntityFramework<Answer> answerRepository = null)   
+            IGenericRepository<User> userRepository = null,
+            IGenericRepository<Question> questionRepository = null,
+            IGenericRepository<Category> categoryRepository = null,
+            IGenericRepository<Tag> tagRepository = null,
+            IGenericRepository<Answer> answerRepository = null)   
         {
             _dbContext = dbContext;
             UserRepository = userRepository; 

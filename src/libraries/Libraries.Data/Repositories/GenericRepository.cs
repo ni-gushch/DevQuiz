@@ -15,39 +15,39 @@ namespace DevQuiz.Libraries.Data.Repositories
     /// <summary>
     /// Base repository class
     /// </summary>
-    public class GenericRepositoryEntityFramework<TDbContext, TEntity> : GenericRepositoryBase<TDbContext, TEntity>, IGenericRepositoryEntityFramework<TEntity>
+    public class GenericRepository<TDbContext, TEntity> : GenericRepositoryBase<TDbContext, TEntity>, IGenericRepository<TEntity>
         where TDbContext : DbContext
         where TEntity : class
     {
         private readonly TDbContext _genericDbContext;
-        private readonly ILogger<GenericRepositoryEntityFramework<TDbContext, TEntity>> _logger;
+        private readonly ILogger<GenericRepository<TDbContext, TEntity>> _logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="genericDbContext">Generic db context</param>
         /// <param name="logger">Logger instance</param>
-        public GenericRepositoryEntityFramework(TDbContext genericDbContext, 
-            ILogger<GenericRepositoryEntityFramework<TDbContext, TEntity>> logger = null) : base(genericDbContext, logger)
+        public GenericRepository(TDbContext genericDbContext, 
+            ILogger<GenericRepository<TDbContext, TEntity>> logger = null) : base(genericDbContext, logger)
         {
             _genericDbContext = genericDbContext;
-            _logger = logger ?? NullLogger<GenericRepositoryEntityFramework<TDbContext, TEntity>>.Instance;
+            _logger = logger ?? NullLogger<GenericRepository<TDbContext, TEntity>>.Instance;
         }
 
         #region GetAll
         
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.GetAll(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.GetAll(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
         public virtual IQueryable<TEntity> GetAll(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
         {
             return GetAll(predicate: null, include: include, orderBy: null, skip: null, take: null);
         }
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.GetAll(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.GetAll(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
         public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
         {
             return GetAll(predicate: predicate, include: include, orderBy: null);
         }
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.GetAll(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?)"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.GetAll(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?)"/>
         public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
@@ -72,18 +72,18 @@ namespace DevQuiz.Libraries.Data.Repositories
 
         #region List
         
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.List(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.List(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
         public virtual List<TEntity> List(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
         {
             return List(predicate: null, include: include, orderBy: null, skip: null, take: null);
         }
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.List(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.List(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
         public virtual List<TEntity> List(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
         {
             return List(predicate: predicate, include: include, orderBy: null);
         }
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.List(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?)"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.List(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?)"/>
         public virtual List<TEntity> List(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
@@ -104,7 +104,7 @@ namespace DevQuiz.Libraries.Data.Repositories
             return query.ToList();
         }
 
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.ListAsync(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
         public virtual Task<List<TEntity>> ListAsync(Func<IQueryable<TEntity>,
             IIncludableQueryable<TEntity, object>> include,
             CancellationToken cancellationToken = default)
@@ -112,14 +112,14 @@ namespace DevQuiz.Libraries.Data.Repositories
             return ListAsync(predicate: null, include: include, orderBy: null, skip: null, take: null,
                 cancellationToken: cancellationToken);
         }
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
         public virtual Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             CancellationToken cancellationToken = default)
         {
             return ListAsync(predicate: predicate, include: include, orderBy: null, cancellationToken: cancellationToken);
         }
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?, CancellationToken)"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?, CancellationToken)"/>
         public virtual Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
@@ -145,14 +145,14 @@ namespace DevQuiz.Libraries.Data.Repositories
 
         #region GetOne
 
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.GetOne(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.GetOne(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
         public virtual TEntity GetOne(Expression<Func<TEntity, bool>> predicate = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null)
         {
             var baseQuery = GetQueryable(predicate: predicate, include: include);
 
             return baseQuery.FirstOrDefault();
         }
-        /// <inheritdoc cref="IGenericRepositoryEntityFramework{TEntity}.GetOneAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
+        /// <inheritdoc cref="IGenericRepository{TEntity}.GetOneAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
         public virtual Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> predicate = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, CancellationToken cancellationToken = default)
         {
             var baseQuery = GetQueryable(predicate: predicate, include: include);

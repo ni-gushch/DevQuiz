@@ -21,7 +21,7 @@ namespace DevQuiz.Libraries.Data.Repositories
         where TDbContext : DbContext
         where TEntity : class
     {
-        private readonly ILogger<GenericRepositoryEntityFramework<TDbContext, TEntity>> _logger;
+        private readonly ILogger<GenericRepository<TDbContext, TEntity>> _logger;
 
         /// <summary>
         /// DbSet for current type of TEntity
@@ -33,10 +33,10 @@ namespace DevQuiz.Libraries.Data.Repositories
         /// </summary>
         /// <param name="genericDbContext">Generic db context</param>
         /// <param name="logger">Logger instance</param>
-        public GenericRepositoryBase(TDbContext genericDbContext, ILogger<GenericRepositoryEntityFramework<TDbContext, TEntity>> logger = null)
+        public GenericRepositoryBase(TDbContext genericDbContext, ILogger<GenericRepository<TDbContext, TEntity>> logger = null)
         {
             DbSet = genericDbContext.Set<TEntity>();
-            _logger = logger ?? NullLogger<GenericRepositoryEntityFramework<TDbContext, TEntity>>.Instance;
+            _logger = logger ?? NullLogger<GenericRepository<TDbContext, TEntity>>.Instance;
         }
 
         #region GetAll
