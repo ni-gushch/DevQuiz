@@ -5,13 +5,9 @@ namespace DevQuiz.Libraries.Core.Models.Dto
     /// <summary>
     /// User dto model
     /// </summary>
-    public class UserDtoBase<TKey>
+    public class UserDtoBase<TKey> : DtoBase<TKey>
         where TKey : IEquatable<TKey>
     {
-        /// <summary>
-        /// Get or set unique identifier of user
-        /// </summary>
-        public TKey Id { get; set; }
         /// <summary>
         /// Get or set user name (login)
         /// </summary>
