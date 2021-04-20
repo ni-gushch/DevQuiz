@@ -92,7 +92,7 @@ namespace DevQuiz.Libraries.Services
         {
             _logger.LogDebug("Start updating user");
             var userEntity = _mapper.Map<TUser>(entryToUpdate);
-            userEntity.UpdatedDate = DateTime.Now;
+            userEntity.UpdatedDate = DateTime.UtcNow;
             _userRepository.Update(userEntity);
             var commitResult = await _unitOfWork.CommitAsync();
             return commitResult > 0;
