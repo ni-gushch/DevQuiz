@@ -146,29 +146,11 @@
             <param name="genericDbContext">Generic db context</param>
             <param name="logger">Logger instance</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.GetAll(System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}})">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.GetAll(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.GetAll(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}})">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})"/>
-        </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.GetAll(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Func{System.Linq.IQueryable{`1},System.Linq.IOrderedQueryable{`1}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})"/>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.List(System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}})">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.List(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.List(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}})">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})"/>
-        </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.List(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Func{System.Linq.IQueryable{`1},System.Linq.IOrderedQueryable{`1}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.ListAsync(System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.ListAsync(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.ListAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.ListAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Func{System.Linq.IQueryable{`1},System.Linq.IOrderedQueryable{`1}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)"/>
@@ -198,20 +180,11 @@
             <param name="genericDbContext">Generic db context</param>
             <param name="logger">Logger instance</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.GetAll">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAll"/>
-        </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.GetAll(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})"/>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.List">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List"/>
-        </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.List(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.ListAsync(System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Threading.CancellationToken)"/>
         </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.ListAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)"/>

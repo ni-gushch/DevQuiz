@@ -8,6 +8,7 @@ using DevQuiz.Libraries.Core.Models.Dto;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
 using DevQuiz.Libraries.Core.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -45,10 +46,12 @@ namespace DevQuiz.Libraries.Services
         {
             _logger.LogDebug("Start creating new user");
             var addUserEntity = _mapper.Map<TUser>(entryToAdd);
-            addUserEntity.CreatedDate = DateTime.Now;
+            addUserEntity.CreatedDate = DateTime.UtcNow;
             await _userRepository.CreateAsync(addUserEntity);
             _logger.LogDebug("Create new user save changes");
             var commitStatus = await _unitOfWork.CommitAsync();
+            if (commitStatus.Equals(0))
+                throw new DbUpdateException("Some error occurred white creating new user");
 
             return addUserEntity.Id;
         }
@@ -61,7 +64,22 @@ namespace DevQuiz.Libraries.Services
             _userRepository.Delete(userToDelete);
             _logger.LogDebug("Delete user save changes");
             var commitStatus = await _unitOfWork.CommitAsync();
-            
+            if (commitStatus.Equals(0))
+                throw new DbUpdateException($"Some error occurred white deleting user with id {idDto}");
+
+            return commitStatus > 0;
+        }
+
+        /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.Update(TUserDto)" />
+        public async Task<bool> Update(TUserDto entryToUpdate)
+        {
+            _logger.LogDebug("Start updating user");
+            var userEntity = _mapper.Map<TUser>(entryToUpdate);
+            userEntity.UpdatedDate = DateTime.UtcNow;
+            _userRepository.Update(userEntity);
+            var commitStatus = await _unitOfWork.CommitAsync();
+            if (commitStatus.Equals(0))
+                throw new DbUpdateException($"Some error occurred white updating user with id {entryToUpdate.Id}");
             return commitStatus > 0;
         }
 
@@ -85,17 +103,6 @@ namespace DevQuiz.Libraries.Services
         {
             var userEntity = await _userRepository.GetOneAsync(it => it.TelegramChatId.Equals(telegramChatId));
             return _mapper.Map<TUserDto>(userEntity);
-        }
-
-        /// <inheritdoc cref="IBaseService{TUserDto, TOneUserResult, TAllUsersResult, TCreateUserResult, TUpdateUserResult, TDeleteUserResult, TKey}.Update(TUserDto)" />
-        public async Task<bool> Update(TUserDto entryToUpdate)
-        {
-            _logger.LogDebug("Start updating user");
-            var userEntity = _mapper.Map<TUser>(entryToUpdate);
-            userEntity.UpdatedDate = DateTime.UtcNow;
-            _userRepository.Update(userEntity);
-            var commitResult = await _unitOfWork.CommitAsync();
-            return commitResult > 0;
         }
     }
 }
