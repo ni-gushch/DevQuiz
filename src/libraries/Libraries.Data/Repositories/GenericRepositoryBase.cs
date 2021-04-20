@@ -13,10 +13,10 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace DevQuiz.Libraries.Data.Repositories
 {
     /// <summary>
-    /// Базовый обобщенный репозиторий
+    /// Generic base repository implementation
     /// </summary>
-    /// <typeparam name="TDbContext">Тип подключаемого контекста БД</typeparam>
-    /// <typeparam name="TEntity">Тип сущности</typeparam>
+    /// <typeparam name="TDbContext">TDBContext instance</typeparam>
+    /// <typeparam name="TEntity">Entity instance</typeparam>
     public class GenericRepositoryBase<TDbContext, TEntity> : IGenericRepositoryBase<TEntity>
         where TDbContext : DbContext
         where TEntity : class
