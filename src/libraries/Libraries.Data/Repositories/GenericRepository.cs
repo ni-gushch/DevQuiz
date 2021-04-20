@@ -36,135 +36,65 @@ namespace DevQuiz.Libraries.Data.Repositories
 
         #region GetAll
         
-        /// <inheritdoc cref="IGenericRepository{TEntity}.GetAll(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
-        public virtual IQueryable<TEntity> GetAll(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
-        {
-            return GetAll(predicate: null, include: include, orderBy: null, skip: null, take: null);
-        }
-        /// <inheritdoc cref="IGenericRepository{TEntity}.GetAll(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
-        public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
-        {
-            return GetAll(predicate: predicate, include: include, orderBy: null);
-        }
         /// <inheritdoc cref="IGenericRepository{TEntity}.GetAll(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?)"/>
-        public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
+        public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             int? skip = null,
-            int? take = null)
-        {
-            var baseQuery = GetQueryable(predicate, include);
-
-            if (orderBy != null)
-                baseQuery = orderBy(baseQuery);
-            
-            if (skip.HasValue)
-                baseQuery = baseQuery.Skip(skip.Value);
-
-            if (take.HasValue)
-                baseQuery = baseQuery.Take(take.Value);
-
-            return baseQuery;
-        }
+            int? take = null) => 
+            GetQueryable(predicate, include, orderBy, skip, take);
 
         #endregion
 
         #region List
         
-        /// <inheritdoc cref="IGenericRepository{TEntity}.List(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
-        public virtual List<TEntity> List(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
-        {
-            return List(predicate: null, include: include, orderBy: null, skip: null, take: null);
-        }
-        /// <inheritdoc cref="IGenericRepository{TEntity}.List(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
-        public virtual List<TEntity> List(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include)
-        {
-            return List(predicate: predicate, include: include, orderBy: null);
-        }
         /// <inheritdoc cref="IGenericRepository{TEntity}.List(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?)"/>
-        public virtual List<TEntity> List(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
+        public virtual List<TEntity> List(Expression<Func<TEntity, bool>> predicate = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             int? skip = null,
-            int? take = null)
-        {
-            var query = GetQueryable(predicate, include);
-
-            if (orderBy != null)
-                query = orderBy(query);
-
-            if (skip.HasValue)
-                query = query.Skip(skip.Value);
-
-            if (take.HasValue)
-                query = query.Take(take.Value);
-
-            return query.ToList();
-        }
-
-        /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
-        public virtual Task<List<TEntity>> ListAsync(Func<IQueryable<TEntity>,
-            IIncludableQueryable<TEntity, object>> include,
-            CancellationToken cancellationToken = default)
-        {
-            return ListAsync(predicate: null, include: include, orderBy: null, skip: null, take: null,
-                cancellationToken: cancellationToken);
-        }
-        /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
-        public virtual Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
-            CancellationToken cancellationToken = default)
-        {
-            return ListAsync(predicate: predicate, include: include, orderBy: null, cancellationToken: cancellationToken);
-        }
+            int? take = null) => 
+            GetQueryable(predicate, include, orderBy, skip, take)
+                .ToList();
+        
+        
         /// <inheritdoc cref="IGenericRepository{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, Func{IQueryable{TEntity}, IOrderedQueryable{TEntity}}, int?, int?, CancellationToken)"/>
         public virtual Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
             int? skip = null,
             int? take = null,
-            CancellationToken cancellationToken = default)
-        {
-            var query = GetQueryable(predicate, include);
-
-            if (orderBy != null)
-                query = orderBy(query);
-
-            if (skip.HasValue)
-                query = query.Skip(skip.Value);
-
-            if (take.HasValue)
-                query = query.Take(take.Value);
-
-            return query.ToListAsync(cancellationToken);
-        }
+            CancellationToken cancellationToken = default) => 
+            GetQueryable(predicate, include, orderBy, skip, take)
+                .ToListAsync(cancellationToken);
 
         #endregion
 
         #region GetOne
 
         /// <inheritdoc cref="IGenericRepository{TEntity}.GetOne(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}})"/>
-        public virtual TEntity GetOne(Expression<Func<TEntity, bool>> predicate = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null)
-        {
-            var baseQuery = GetQueryable(predicate: predicate, include: include);
-
-            return baseQuery.FirstOrDefault();
-        }
+        public virtual TEntity GetOne(Expression<Func<TEntity, bool>> predicate = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null) => 
+            GetQueryable(predicate, include)
+                .FirstOrDefault();
+    
         /// <inheritdoc cref="IGenericRepository{TEntity}.GetOneAsync(Expression{Func{TEntity, bool}}, Func{IQueryable{TEntity}, IIncludableQueryable{TEntity, object}}, CancellationToken)"/>
-        public virtual Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> predicate = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, CancellationToken cancellationToken = default)
-        {
-            var baseQuery = GetQueryable(predicate: predicate, include: include);
-
-            return baseQuery.FirstOrDefaultAsync(cancellationToken);
-        }
+        public virtual Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> predicate = null, 
+                Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, 
+                CancellationToken cancellationToken = default) =>
+            GetQueryable(predicate, include)
+                .FirstOrDefaultAsync(cancellationToken);
+        
 
         #endregion
 
         #region Private
 
-        private IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> predicate = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null)
+        private IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> predicate = null, 
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            int? skip = null,
+            int? take = null)
         {
             IQueryable<TEntity> query = DbSet;
 
@@ -173,6 +103,15 @@ namespace DevQuiz.Libraries.Data.Repositories
 
             if (predicate != null)
                 query = query.Where(predicate);
+
+            if (orderBy != null)
+                query = orderBy(query);
+
+            if (skip.HasValue)
+                query = query.Skip(skip.Value);
+
+            if (take.HasValue)
+                query = query.Take(take.Value);
 
             return query;
         }

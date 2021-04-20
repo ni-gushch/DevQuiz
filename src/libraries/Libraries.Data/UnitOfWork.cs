@@ -89,7 +89,7 @@ namespace DevQuiz.Libraries.Data
         /// <inheritdoc cref="IUnitOfWork.GetBaseRepository{TEntity}"/>
         public IGenericRepositoryBase<TEntity> GetBaseRepository<TEntity>() where TEntity : class
         {
-            var getRepoState = _repositories.TryGetValue(nameof(TEntity), out var returnRepoObject);
+            _repositories.TryGetValue(nameof(TEntity), out var returnRepoObject);
             if (returnRepoObject is IGenericRepositoryBase<TEntity> returnRepo)
                 return returnRepo;
             throw new ArgumentNullException($"Repository for type {typeof(TEntity)} is not registered");
