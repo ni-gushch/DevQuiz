@@ -52,10 +52,7 @@ namespace DevQuiz.TelegramBot
             services.AddDevQuizRepositories<User, Question, Answer, Category, Tag, Guid>();
             services.AddDevQuizServices<User, UserDto, Guid>();
             
-            services.AddAutoMapper(new [] {
-                typeof(Startup),
-                typeof(UserMapperProfile<User, UserDto, Guid>)
-            });
+            services.AddAutoMapper(config => config.AddProfile<UserMapperProfile<User, UserDto, Guid>>());
 
             services.AddSingleton<IBotService, BotService>();
             services.AddScoped<IBotMessageService, BotMessageService>();
