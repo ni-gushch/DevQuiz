@@ -36,11 +36,8 @@ namespace DevQuiz.Libraries.Data.Tests
         public async Task CreateUser()
         {
             //Arrange
-            //create context
-            await using var devQuizContext = _dbContext;
-
             //Create several entities
-            await devQuizContext
+            await _dbContext
                 .SeedUsers(3)
                 .CommitAsync();
 
@@ -75,11 +72,8 @@ namespace DevQuiz.Libraries.Data.Tests
         public async Task UpdateUser()
         {
             //Arrange
-            //create context
-            await using var devQuizContext = _dbContext;
-
             //Create several entities
-            await devQuizContext
+            await _dbContext
                 .SeedUsers(3)
                 .CommitAsync();
 
@@ -121,10 +115,8 @@ namespace DevQuiz.Libraries.Data.Tests
         public async Task DeleteUser_NullAfterDeleteSuccess_ThrowDbUpdateConcurrencyExceptionWhileRepeatDelete()
         {
             //Arrange
-            //create context
-            await using var devQuizContext = _dbContext;
             //Create several entities
-            await devQuizContext
+            await _dbContext
                 .SeedUsers(3)
                 .CommitAsync();
 

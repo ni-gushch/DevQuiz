@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
@@ -7,6 +10,10 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
 {
     public static class DevQuizContextSqLiteHelper
     {
+        private static List<string> QuestionCategoryNames => new() { ".Net", "Java", "C++", "Python" };
+        private static List<string> QuestionTagNames => new() { "Tag1", "Tag2", "Tag3", "Tag4" };
+        private static List<string> QuestionAnswers => new() { "Ans1", "Ans2", "Ans3", "Ans4" };
+
         public static DevQuizDbContext EnsureDb(this DevQuizDbContext context)
         {
             context.Database.EnsureDeleted();
@@ -31,6 +38,81 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
                     UpdatedDate = DateTime.Now
                 };
                 usersDbSet.Add(tempUserEntity);
+            }
+
+            return context;
+        }
+
+        public static DevQuizDbContext SeedQuestions(this DevQuizDbContext context, int countQuestion,
+            bool includeAnswers,
+            bool includeCategories,
+            bool includeTags)
+        {
+            var questionsDbSet = context.Questions;
+            var newCategoriesList = new List<Category>();
+            var newTagsList = new List<Tag>();
+
+            if (includeCategories)
+            {
+                newCategoriesList = QuestionCategoryNames.Select(cat => new Category() { Name = cat })
+                    .ToList();
+                newCategoriesList.ForEach(it => context.Categories.Add(it));
+                context.SaveChanges();
+                context.ChangeTracker.Clear();
+            }
+
+            if (includeTags)
+            {
+                newTagsList = QuestionTagNames.Select(cat => new Tag() { Name = cat })
+                    .ToList();
+                newTagsList.ForEach(it => context.Tags.Add(it));
+                context.SaveChanges();
+                context.ChangeTracker.Clear();
+            }
+
+            for (var i = 1; i <= countQuestion; i++)
+            {
+                var tempQuestion = new Question()
+                {
+                    Text = $"Question number {i} Text",
+                    CreatedDate = DateTime.Now,
+                };
+                context.Questions.Add(tempQuestion);
+                context.SaveChanges();
+                context.ChangeTracker.Clear();
+
+                var newAnswers = new List<Answer>();
+                if (includeAnswers)
+                {
+                    newAnswers = QuestionAnswers.Select(it => new Answer() {QuestionId = tempQuestion.Id, Text = it}).ToList();
+                    newAnswers.ForEach(it => context.Answers.Add(it));
+                    context.SaveChanges();
+                    context.ChangeTracker.Clear();
+
+                    var tempRand = new Random().Next(5);
+                    tempQuestion.RightAnswerId = newAnswers.Select(it => it.Id).ToArray()[tempRand];
+                    tempQuestion.RightAnswerExplanation = Path.GetRandomFileName();
+                    context.Questions.Update(tempQuestion);
+                    context.SaveChanges();
+                    context.ChangeTracker.Clear();
+                }
+
+                if (includeCategories)
+                {
+                    var tempRand = new Random().Next(QuestionCategoryNames.Count);
+                    tempQuestion.CategoryId = newCategoriesList.Select(it => it.Id).ToArray()[tempRand];
+                    context.Questions.Update(tempQuestion);
+                    context.SaveChanges();
+                    context.ChangeTracker.Clear();
+                }
+                if (includeCategories)
+                {
+                    var tempRand = new Random().Next(QuestionTagNames.Count);
+                    tempQuestion.Tags = newTagsList;
+                    context.Questions.Update(tempQuestion);
+                    context.SaveChanges();
+                    context.ChangeTracker.Clear();
+                }
             }
 
             return context;

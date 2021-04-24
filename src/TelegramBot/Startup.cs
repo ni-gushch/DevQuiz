@@ -1,9 +1,7 @@
 using System;
 using DevQuiz.Libraries.Core.Mappers;
-using DevQuiz.Libraries.Data.Extensions;
 using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Services.Dto;
-using DevQuiz.Libraries.Services.Extensions;
 using DevQuiz.TelegramBot.Extensions;
 using DevQuiz.TelegramBot.Interfaces;
 using DevQuiz.TelegramBot.Services;
@@ -50,9 +48,14 @@ namespace DevQuiz.TelegramBot
 
             services.AddDevQuizDbContexts(Configuration);
             services.AddDevQuizRepositories<User, Question, Answer, Category, Tag, Guid>();
-            services.AddDevQuizServices<User, UserDto, Guid>();
+            services.AddDevQuizServices<User, UserDto, Guid,
+                Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>();
             
-            services.AddAutoMapper(config => config.AddProfile<UserMapperProfile<User, UserDto, Guid>>());
+            services.AddAutoMapper(config =>
+            {
+                config.AddProfile<UserMapperProfile<User, UserDto, Guid>>();
+                config.AddProfile<QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>>();
+            });
 
             services.AddSingleton<IBotService, BotService>();
             services.AddScoped<IBotMessageService, BotMessageService>();
