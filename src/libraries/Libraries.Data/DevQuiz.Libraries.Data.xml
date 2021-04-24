@@ -278,18 +278,20 @@
             Extensions for IServiceCollection instance
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizDbContexts(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizDbContexts``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Register DbContexts for DevQuiz
             </summary>
+            <typeparam name="TDbContext">Target db context</typeparam>
             <param name="services">IServiceCollection instance</param>
             <param name="configuration">IConfiguration instance</param>
             <returns>IServiceCollection</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizRepositories``6(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizRepositories``7(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register Repositories for DevQuiz
             </summary>
+            <typeparam name="TDbContext">Target db context</typeparam>
             <typeparam name="TUser">Generic User Entity</typeparam>
             <typeparam name="TQuestion">Generic Question Entity</typeparam>
             <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>

@@ -16,15 +16,20 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace DevQuiz.Libraries.Services
 {
     /// <inheritdoc cref="IUserService{TUserDto, TKey}" />
-    public class UserService<TUser, TUserDto, TKey> : IUserService<TUserDto, TKey>
-        where TUserDto : UserDtoBase<TKey>
-        where TUser : UserBase<TKey>
-        where TKey : IEquatable<TKey>
+    public class UserService<TUser, TUserDto, TUserKey, 
+        TQuestion, TAnswer, TCategory, TTag> : IUserService<TUserDto, TUserKey>
+        where TUserDto : UserDtoBase<TUserKey>
+        where TUser : UserBase<TUserKey>
+        where TUserKey : IEquatable<TUserKey>
+        where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
+        where TAnswer : AnswerBase
+        where TCategory : CategoryBase<TQuestion>
+        where TTag : TagBase<TQuestion>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> _unitOfWork;
         private readonly IGenericRepository<TUser> _userRepository;
         private readonly IMapper _mapper;
-        private readonly ILogger<UserService<TUser, TUserDto, TKey>> _logger;
+        private readonly ILogger<UserService<TUser, TUserDto, TUserKey, TQuestion, TAnswer, TCategory, TTag>> _logger;
 
         /// <summary>
         /// Constructor
@@ -32,14 +37,14 @@ namespace DevQuiz.Libraries.Services
         /// <param name="unitOfWork">Instance of UnitOfWork</param>
         /// <param name="mapper">Mapper instance</param>
         /// <param name="logger">Logger instance</param>
-        public UserService(IUnitOfWork unitOfWork,
+        public UserService(IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> unitOfWork,
             IMapper mapper,
-            ILogger<UserService<TUser, TUserDto, TKey>> logger = null)
+            ILogger<UserService<TUser, TUserDto, TUserKey, TQuestion, TAnswer, TCategory, TTag>> logger = null)
         {
             _unitOfWork = unitOfWork;
-            _userRepository = _unitOfWork.GetRepository<IGenericRepository<TUser>, TUser>();
+            _userRepository = _unitOfWork.UserRepository;
             _mapper = mapper;
-            _logger = logger ?? NullLogger<UserService<TUser, TUserDto, TKey>>.Instance;
+            _logger = logger ?? NullLogger<UserService<TUser, TUserDto, TUserKey, TQuestion, TAnswer, TCategory, TTag>>.Instance;
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetAllAsync" />
@@ -52,7 +57,7 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetByIdAsync" />
-        public async Task<TUserDto> GetByIdAsync(TKey idDto, CancellationToken cancellationToken = default)
+        public async Task<TUserDto> GetByIdAsync(TUserKey idDto, CancellationToken cancellationToken = default)
         {
             var userEntity = await _userRepository.GetOneAsync(it => it.Id.Equals(idDto),
                     cancellationToken: cancellationToken)
@@ -61,7 +66,7 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.CreateAsync" />
-        public async Task<TKey> CreateAsync(TUserDto entryToAdd, CancellationToken cancellationToken = default)
+        public async Task<TUserKey> CreateAsync(TUserDto entryToAdd, CancellationToken cancellationToken = default)
         {
             _logger.LogDebug("Start creating new user");
             var addUserEntity = _mapper.Map<TUser>(entryToAdd);
@@ -78,7 +83,7 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.DeleteAsync" />
-        public async Task<bool> DeleteAsync(TKey idDto, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteAsync(TUserKey idDto, CancellationToken cancellationToken = default)
         {
             _logger.LogDebug($"Start deleting user with id {idDto}");
             var userToDelete = await _userRepository.GetOneAsync(it => it.Id.Equals(idDto), cancellationToken: cancellationToken)

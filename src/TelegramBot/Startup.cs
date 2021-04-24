@@ -1,5 +1,6 @@
 using System;
 using DevQuiz.Libraries.Core.Mappers;
+using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Extensions;
@@ -46,8 +47,8 @@ namespace DevQuiz.TelegramBot
         {
             services.AddCustomOptions(Configuration);
 
-            services.AddDevQuizDbContexts(Configuration);
-            services.AddDevQuizRepositories<User, Question, Answer, Category, Tag, Guid>();
+            services.AddDevQuizDbContexts<DevQuizDbContext>(Configuration);
+            services.AddDevQuizRepositories<DevQuizDbContext, User, Question, Answer, Category, Tag, Guid>();
             services.AddDevQuizServices<User, UserDto, Guid,
                 Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>();
             

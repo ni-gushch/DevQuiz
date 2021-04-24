@@ -21,15 +21,17 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// Register DbContexts for DevQuiz
         /// </summary>
+        /// <typeparam name="TDbContext">Target db context</typeparam>
         /// <param name="services">IServiceCollection instance</param>
         /// <param name="configuration">IConfiguration instance</param>
         /// <returns>IServiceCollection</returns>
-        public static IServiceCollection AddDevQuizDbContexts(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDevQuizDbContexts<TDbContext>(this IServiceCollection services, IConfiguration configuration)
+            where TDbContext : DbContext
         {
             var migrationAssembly = typeof(ServiceCollectionExtensions).GetTypeInfo().Assembly.GetName().Name;
             var dbConfiguration = configuration.GetSection(nameof(DbConfiguration)).Get<DbConfiguration>();
 
-            services.AddDbContext<DevQuizDbContext>(opt =>
+            services.AddDbContext<TDbContext>(opt =>
                 opt.UseNpgsql(dbConfiguration.ConnectionString, options =>
                     options.MigrationsAssembly(migrationAssembly)));
 
@@ -39,6 +41,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// Register Repositories for DevQuiz
         /// </summary>
+        /// <typeparam name="TDbContext">Target db context</typeparam>
         /// <typeparam name="TUser">Generic User Entity</typeparam>
         /// <typeparam name="TQuestion">Generic Question Entity</typeparam>
         /// <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>
@@ -47,8 +50,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
         /// <param name="services">IServiceCollection instance</param>
         /// <returns>Clear IServiceCollection</returns>
-        public static IServiceCollection AddDevQuizRepositories<TUser,
+        public static IServiceCollection AddDevQuizRepositories<TDbContext, TUser,
             TQuestion, TAnswer, TCategory, TTag, TUserKey>(this IServiceCollection services)
+            where TDbContext : DbContext
             where TUser : UserBase<TUserKey>
             where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
             where TAnswer : AnswerBase
@@ -56,14 +60,15 @@ namespace Microsoft.Extensions.DependencyInjection
             where TTag : TagBase<TQuestion>
             where TUserKey : IEquatable<TUserKey>
         {
+            services.TryAddScoped<IUnitOfWork, UnitOfWork<TDbContext>>();
             services.TryAddScoped<IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>, 
-                DevQuizUnitOfWork<DevQuizDbContext, TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>>();
+                DevQuizUnitOfWork<TDbContext, TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>>();
 
-            services.TryAddScoped<IGenericRepository<TUser>, GenericRepository<DevQuizDbContext, TUser>>();
-            services.TryAddScoped<IGenericRepository<TQuestion>, GenericRepository<DevQuizDbContext, TQuestion>>();
-            services.TryAddScoped<IGenericRepository<TAnswer>, GenericRepository<DevQuizDbContext, TAnswer>>();
-            services.TryAddScoped<IGenericRepository<TCategory>, GenericRepository<DevQuizDbContext, TCategory>>();
-            services.TryAddScoped<IGenericRepository<TTag>, GenericRepository<DevQuizDbContext, TTag>>();
+            services.TryAddScoped<IGenericRepository<TUser>, GenericRepository<TDbContext, TUser>>();
+            services.TryAddScoped<IGenericRepository<TQuestion>, GenericRepository<TDbContext, TQuestion>>();
+            services.TryAddScoped<IGenericRepository<TAnswer>, GenericRepository<TDbContext, TAnswer>>();
+            services.TryAddScoped<IGenericRepository<TCategory>, GenericRepository<TDbContext, TCategory>>();
+            services.TryAddScoped<IGenericRepository<TTag>, GenericRepository<TDbContext, TTag>>();
 
             return services;
         }
