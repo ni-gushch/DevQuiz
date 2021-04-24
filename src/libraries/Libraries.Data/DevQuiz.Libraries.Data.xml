@@ -84,26 +84,6 @@
             <param name="options">Db context options</param>
             <returns>Db context instance</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions">
-            <summary>
-            Extensions for IServiceCollection instance
-            </summary>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions.AddDevQuizDbContexts(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            Register DbContexts for DevQuiz
-            </summary>
-            <param name="services">IServiceCollection instance</param>
-            <param name="configuration">IConfiguration instance</param>
-            <returns>IServiceCollection</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Extensions.ServiceCollectionExtensions.AddDevQuizRepositories``6(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Register Repositories for DevQuiz
-            </summary>
-            <param name="services">IServiceCollection instance</param>
-            <returns>IServiceCollection</returns>
-        </member>
         <member name="T:DevQuiz.Libraries.Data.Models.Answer">
             <summary>
             Answer model
@@ -146,29 +126,11 @@
             <param name="genericDbContext">Generic db context</param>
             <param name="logger">Logger instance</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.GetAll(System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}})">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.GetAll(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.GetAll(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}})">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})"/>
-        </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.GetAll(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Func{System.Linq.IQueryable{`1},System.Linq.IOrderedQueryable{`1}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})"/>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.List(System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}})">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.List(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.List(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}})">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})"/>
-        </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.List(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Func{System.Linq.IQueryable{`1},System.Linq.IOrderedQueryable{`1}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.ListAsync(System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.ListAsync(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.ListAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepository`2.ListAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Func{System.Linq.IQueryable{`1},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`1,System.Object}},System.Func{System.Linq.IQueryable{`1},System.Linq.IOrderedQueryable{`1}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)"/>
@@ -198,20 +160,11 @@
             <param name="genericDbContext">Generic db context</param>
             <param name="logger">Logger instance</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.GetAll">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAll"/>
-        </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.GetAll(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})"/>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.List">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List"/>
-        </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.List(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})"/>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.ListAsync(System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Threading.CancellationToken)"/>
         </member>
         <member name="M:DevQuiz.Libraries.Data.Repositories.GenericRepositoryBase`2.ListAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)"/>
@@ -250,47 +203,25 @@
         <member name="T:DevQuiz.Libraries.Data.UnitOfWork`1">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.IUnitOfWork" />
         </member>
-        <member name="P:DevQuiz.Libraries.Data.UnitOfWork`1.UserRepository">
+        <member name="P:DevQuiz.Libraries.Data.UnitOfWork`1.Repositories">
             <summary>
-            User repository
+            Set of registered repositories
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.UnitOfWork`1.QuestionRepository">
-            <summary>
-            Question repository
-            </summary>
-        </member>
-        <member name="P:DevQuiz.Libraries.Data.UnitOfWork`1.CategoryRepository">
-            <summary>
-            Category repository
-            </summary>
-        </member>
-        <member name="P:DevQuiz.Libraries.Data.UnitOfWork`1.TagRepository">
-            <summary>
-            Tag repository
-            </summary>
-        </member>
-        <member name="P:DevQuiz.Libraries.Data.UnitOfWork`1.AnswerRepository">
-            <summary>
-            Answer repository
-            </summary>
-        </member>
-        <member name="M:DevQuiz.Libraries.Data.UnitOfWork`1.#ctor(`0,DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Data.Models.User},DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Data.Models.Question},DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Data.Models.Category},DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Data.Models.Tag},DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Data.Models.Answer})">
+        <member name="M:DevQuiz.Libraries.Data.UnitOfWork`1.#ctor(`0)">
             <summary>
             Constructor
             </summary>
             <param name="dbContext">TDbContext instance</param>
-            <param name="userRepository">User repository instance</param>
-            <param name="questionRepository">Question repository instance</param>
-            <param name="categoryRepository">Category repository instance</param>
-            <param name="tagRepository">Tag repository instance</param>
-            <param name="answerRepository">Answer repository instance</param>
         </member>
         <member name="M:DevQuiz.Libraries.Data.UnitOfWork`1.Commit">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.IUnitOfWork.Commit" />
         </member>
         <member name="M:DevQuiz.Libraries.Data.UnitOfWork`1.CommitAsync(System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.IUnitOfWork.CommitAsync(System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.UnitOfWork`1.ClearChangeTracker">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.IUnitOfWork.ClearChangeTracker" />
         </member>
         <member name="M:DevQuiz.Libraries.Data.UnitOfWork`1.GetBaseRepository``1">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.IUnitOfWork.GetBaseRepository``1"/>
@@ -302,6 +233,71 @@
             <summary>
             Dispose unit of work instance
             </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6"/>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.UserRepository">
+            <summary>
+            User repository
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.QuestionRepository">
+            <summary>
+            Question repository
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.CategoryRepository">
+            <summary>
+            Category repository
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.TagRepository">
+            <summary>
+            Tag repository
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.AnswerRepository">
+            <summary>
+            Answer repository
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.#ctor(`0,DevQuiz.Libraries.Core.Repositories.IGenericRepository{`1},DevQuiz.Libraries.Core.Repositories.IGenericRepository{`2},DevQuiz.Libraries.Core.Repositories.IGenericRepository{`3},DevQuiz.Libraries.Core.Repositories.IGenericRepository{`4},DevQuiz.Libraries.Core.Repositories.IGenericRepository{`5})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="genericDbContext">Current db context</param>
+            <param name="userRepository">User repository instance</param>
+            <param name="questionRepository">Question repository instance</param>
+            <param name="answerRepository">Answer repository instance</param>
+            <param name="categoryRepository">Category repository instance</param>
+            <param name="tagRepository">Tag repository instance</param>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+            Extensions for IServiceCollection instance
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizDbContexts(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Register DbContexts for DevQuiz
+            </summary>
+            <param name="services">IServiceCollection instance</param>
+            <param name="configuration">IConfiguration instance</param>
+            <returns>IServiceCollection</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizRepositories``6(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register Repositories for DevQuiz
+            </summary>
+            <typeparam name="TUser">Generic User Entity</typeparam>
+            <typeparam name="TQuestion">Generic Question Entity</typeparam>
+            <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>
+            <typeparam name="TCategory">Generic Question Category Entity</typeparam>
+            <typeparam name="TTag">Generic Question Tag Entity</typeparam>
+            <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
+            <param name="services">IServiceCollection instance</param>
+            <returns>Clear IServiceCollection</returns>
         </member>
     </members>
 </doc>

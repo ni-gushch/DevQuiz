@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DevQuiz.Libraries.Core.Services
@@ -23,31 +24,36 @@ namespace DevQuiz.Libraries.Core.Services
         /// <summary>
         /// Get all entries
         /// </summary>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>All entries result</returns>
-        Task<TAllEntriesResult> GetAll();
+        Task<TAllEntriesResult> GetAllAsync(CancellationToken cancellationToken = default);
         /// <summary>
         /// Get one entry
         /// </summary>
         /// <param name="idDto">Parameter with unique identifier</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>One entry result</returns>
-        Task<TOneEntryResult> GetById(TKey idDto);
+        Task<TOneEntryResult> GetByIdAsync(TKey idDto, CancellationToken cancellationToken = default);
         /// <summary>
         /// Create new entry
         /// </summary>
         /// <param name="entryToAdd">Model with information about new entry</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>New entry information</returns>
-        Task<TCreateEntryResult> Create(TEntryDto entryToAdd);
+        Task<TCreateEntryResult> CreateAsync(TEntryDto entryToAdd, CancellationToken cancellationToken = default);
         /// <summary>
         /// Update entry
         /// </summary>
         /// <param name="entryToUpdate">Model with information to update</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Update entry information</returns>
-        Task<TUpdateEntryResult> Update(TEntryDto entryToUpdate);
+        Task<TUpdateEntryResult> UpdateAsync(TEntryDto entryToUpdate, CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete entry
         /// </summary>
         /// <param name="idDto">Parameter with unique identifier</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Method execution status</returns>
-        Task<TDeleteEntryResult> Delete(TKey idDto);
+        Task<TDeleteEntryResult> DeleteAsync(TKey idDto, CancellationToken cancellationToken = default);
     }
 }

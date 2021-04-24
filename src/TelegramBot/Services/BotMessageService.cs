@@ -7,7 +7,6 @@ using Telegram.Bot.Types.Enums;
 using DevQuiz.Libraries.Core.Services;
 using DevQuiz.Libraries.Services.Dto;
 using System;
-using System.Collections.Generic;
 
 namespace DevQuiz.TelegramBot.Services
 {
@@ -15,7 +14,7 @@ namespace DevQuiz.TelegramBot.Services
     public class BotMessageService : IBotMessageService
     {
         private readonly IBotService _botService;
-        private readonly IUserService<UserDto, UserDto, List<UserDto>, Guid, bool, bool, Guid> _userService;
+        private readonly IUserService<UserDto, Guid> _userService;
         private readonly ILogger<BotMessageService> _logger;
 
         /// <summary>
@@ -25,7 +24,7 @@ namespace DevQuiz.TelegramBot.Services
         /// <param name="userService">Instance of user service</param>
         /// <param name="logger">Logger</param>
         public BotMessageService(IBotService botService,
-            IUserService<UserDto, UserDto, List<UserDto>, Guid, bool, bool, Guid> userService,
+            IUserService<UserDto, Guid> userService,
             ILogger<BotMessageService> logger = null)
         {
             _botService = botService;

@@ -40,61 +40,40 @@ namespace DevQuiz.Libraries.Data.Repositories
         }
 
         #region GetAll
-
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.GetAll()"/>
-        public virtual IQueryable<TEntity> GetAll()
-        {
-            return GetAll(predicate: null);
-        }
+        
         /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.GetAll(Expression{Func{TEntity, bool}})"/>
-        public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
-        {
-            var query = GetQueryableWithFilter(predicate);
-            return query;
-        }
+        public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null) => 
+            GetQueryableWithFilter(predicate);
 
         #endregion
 
         #region List
 
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.List()"/>
-        public virtual List<TEntity> List()
-        {
-            return List(predicate: null);
-        }
         /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.List(Expression{Func{TEntity, bool}})"/>
-        public virtual List<TEntity> List(Expression<Func<TEntity, bool>> predicate)
-        {
-            var query = GetQueryableWithFilter(predicate);
-            return query.ToList();
-        }
-
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.ListAsync(CancellationToken)"/>
-        public virtual Task<List<TEntity>> ListAsync(CancellationToken cancellationToken = default)
-        {
-            return ListAsync(predicate: null, cancellationToken: cancellationToken);
-        }
+        public virtual List<TEntity> List(Expression<Func<TEntity, bool>> predicate = null) => 
+            GetQueryableWithFilter(predicate)
+                .ToList();
+        
+        
         /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, CancellationToken)"/>
-        public virtual Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
-        {
-            var query = GetQueryableWithFilter(predicate);
-            return query.ToListAsync(cancellationToken);
-        }
-
+        public virtual Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate = null, 
+            CancellationToken cancellationToken = default) => 
+            GetQueryableWithFilter(predicate)
+                .ToListAsync(cancellationToken);
+        
         #endregion
 
         #region Count
 
         /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Count()"/>
-        public int Count()
-        {
-            return DbSet.Count();
-        }
+        public int Count() => 
+            DbSet
+                .Count();
+
         /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Count(Expression{Func{TEntity, bool}})"/>
-        public int Count(Expression<Func<TEntity, bool>> predicate)
-        {
-            return DbSet.Count(predicate);
-        }
+        public int Count(Expression<Func<TEntity, bool>> predicate) => 
+            DbSet
+                .Count(predicate);
 
         #endregion
 
@@ -143,12 +122,9 @@ namespace DevQuiz.Libraries.Data.Repositories
         #region GetOne
 
         /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.GetOne(Expression{Func{TEntity, bool}})"/>
-        public virtual TEntity GetOne(Expression<Func<TEntity, bool>> predicate = null)
-        {
-            var baseQuery = GetQueryableWithFilter(predicate: predicate);
-
-            return baseQuery.FirstOrDefault();
-        }
+        public virtual TEntity GetOne(Expression<Func<TEntity, bool>> predicate = null) => 
+            GetQueryableWithFilter(predicate)
+                .FirstOrDefault();
 
         #endregion
 

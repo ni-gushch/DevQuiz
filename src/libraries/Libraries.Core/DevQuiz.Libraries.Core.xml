@@ -44,6 +44,12 @@
             <param name="cancellationToken">Token for cancel operation</param>
             <returns>Operation status</returns>
         </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.ClearChangeTracker">
+            <summary>
+            Clear db context tracker
+            <remarks>Need if you don't want Dispose DbContext but want change tracked elements</remarks>
+            </summary>
+        </member>
         <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.GetBaseRepository``1">
             <summary>
             Get base repository instance
@@ -59,6 +65,60 @@
             <typeparam name="TEntity">Type of TEntity</typeparam>
             <returns>Concrete repository instance</returns>
         </member>
+        <member name="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6">
+            <summary>
+            DevQuiz UnitOfWork
+            </summary>
+            <typeparam name="TUser">Generic User Entity</typeparam>
+            <typeparam name="TQuestion">Generic Question Entity</typeparam>
+            <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>
+            <typeparam name="TCategory">Generic Question Category Entity</typeparam>
+            <typeparam name="TTag">Generic Question Tag Entity</typeparam>
+            <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.UserRepository">
+            <summary>
+            User repository
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.QuestionRepository">
+            <summary>
+            Question repository
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.CategoryRepository">
+            <summary>
+            Category repository
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.TagRepository">
+            <summary>
+            Tag repository
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.AnswerRepository">
+            <summary>
+            Answer repository
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Mappers.QuestionMapperProfile`8">
+            <summary>
+            Profile class for mapper user models
+            </summary>
+            <typeparam name="TQuestion"></typeparam>
+            <typeparam name="TAnswer"></typeparam>
+            <typeparam name="TCategory"></typeparam>
+            <typeparam name="TTag"></typeparam>
+            <typeparam name="TQuestionDto">Generic Question dto</typeparam>
+            <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
+            <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
+            <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Mappers.QuestionMapperProfile`8.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Mappers.UserMapperProfile`3">
             <summary>
             Profile class for mapper user models
@@ -69,14 +129,105 @@
             Constructor
             </summary>
         </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.AnswerDtoBase">
+            <summary>
+            Base answer model
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.AnswerDtoBase.Text">
+            <summary>
+            Get or set answer text
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.AnswerDtoBase.QuestionId">
+            <summary>
+            Get or set unique identifier of question
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.CategoryDtoBase`1">
+            <summary>
+            Base model of question category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.CategoryDtoBase`1.Name">
+            <summary>
+            Get or set category name
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.CategoryDtoBase`1.Questions">
+            <summary>
+            Linked questions
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.DtoBase`1">
+            <summary>
+            Base dto model
+            </summary>
+            <typeparam name="TKey">Type of entry unique identifier </typeparam>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.DtoBase`1.Id">
+            <summary>
+            Get or set unique identifier of entry
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3">
+            <summary>
+            Base question model
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.Text">
+            <summary>
+            Get or set question text
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.RightAnswerId">
+            <summary>
+            Get or set unique identifier right answer
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.RightAnswerExplanation">
+            <summary>
+            Get or set right answer explanation
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.CategoryId">
+            <summary>
+            Get or set unique identifier of category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.Answers">
+            <summary>
+            Get or set list of answers
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.Category">
+            <summary>
+            Category object
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.Tags">
+            <summary>
+            Get or set tags list
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.TagDtoBase`1">
+            <summary>
+            Base model of question tag
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.TagDtoBase`1.Name">
+            <summary>
+            Get or set tag name
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.TagDtoBase`1.Questions">
+            <summary>
+            Get or set questions list
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Dto.UserDtoBase`1">
             <summary>
             User dto model
-            </summary>
-        </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDtoBase`1.Id">
-            <summary>
-            Get or set unique identifier of user
             </summary>
         </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDtoBase`1.UserName">
@@ -272,21 +423,6 @@
             </summary>
             <typeparam name="TEntity">Type of entity</typeparam>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.GetAll(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
-            <summary>
-            Get all entities and included tables
-            </summary>
-            <param name="include">Tables to include</param>
-            <returns>IQueryable collection of entities</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
-            <summary>
-            Get all entities with filter and included tables
-            </summary>
-            <param name="predicate">Filter for entities</param>
-            <param name="include">Tables to include</param>
-            <returns>IQueryable collection of entities</returns>
-        </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Get all entities with filter order and paging and included tables
@@ -298,21 +434,6 @@
             <param name="take">Number of take entities</param>
             <returns>IQueryable collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.List(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
-            <summary>
-            Get all entities and included tables
-            </summary>
-            <param name="include">Tables to include</param>
-            <returns>List of entities</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
-            <summary>
-            Get all entities with filter and included tables
-            </summary>
-            <param name="predicate">Filter for entities</param>
-            <param name="include">Tables to include</param>
-            <returns>List of entities</returns>
-        </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Get all entities with filter order and paging and included tables
@@ -322,23 +443,6 @@
             <param name="orderBy">Order by function</param>
             <param name="skip">Number of skip entities</param>
             <param name="take">Number of take entities</param>
-            <returns>List of entities</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.ListAsync(System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
-            <summary>
-            Get all entities and included tables
-            </summary>
-            <param name="include">Tables to include</param>
-            <param name="cancellationToken">Cancellation token</param>
-            <returns>List of entities</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
-            <summary>
-            Get all entities with filter and included tables
-            </summary>
-            <param name="predicate">Filter for entities</param>
-            <param name="include">Tables to include</param>
-            <param name="cancellationToken">Cancellation token</param>
             <returns>List of entities</returns>
         </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
@@ -376,12 +480,6 @@
             </summary>
             <typeparam name="TEntity">Type of entity</typeparam>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAll">
-            <summary>
-            Get all entities
-            </summary>
-            <returns>IQueryable collection of entities</returns>
-        </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             Get all entities with filter
@@ -389,24 +487,11 @@
             <param name="predicate">Filter for entities</param>
             <returns>IQueryable collection of entities</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List">
-            <summary>
-            Get list entities by passed expression
-            </summary>
-            <returns>List collection of entities</returns>
-        </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             Get list entities by passed expression
             </summary>
             <param name="predicate">Filter for entities</param>
-            <returns>List collection of entities</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Threading.CancellationToken)">
-            <summary>
-            Get list entities by passed expression
-            </summary>
-            <param name="cancellationToken">Cancellation token</param>
             <returns>List collection of entities</returns>
         </member>
         <member name="M:DevQuiz.Libraries.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)">
@@ -480,57 +565,67 @@
             <typeparam name="TUpdateEntryResult">Result after update entry</typeparam>
             <typeparam name="TDeleteEntryResult">Result after delete entry</typeparam>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetAll">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetAllAsync(System.Threading.CancellationToken)">
             <summary>
             Get all entries
             </summary>
+            <param name="cancellationToken">Cancellation Token</param>
             <returns>All entries result</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetById(`6)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetByIdAsync(`6,System.Threading.CancellationToken)">
             <summary>
             Get one entry
             </summary>
             <param name="idDto">Parameter with unique identifier</param>
+            <param name="cancellationToken">Cancellation Token</param>
             <returns>One entry result</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Create(`0)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.CreateAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Create new entry
             </summary>
             <param name="entryToAdd">Model with information about new entry</param>
+            <param name="cancellationToken">Cancellation Token</param>
             <returns>New entry information</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Update(`0)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Update entry
             </summary>
             <param name="entryToUpdate">Model with information to update</param>
+            <param name="cancellationToken">Cancellation Token</param>
             <returns>Update entry information</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Delete(`6)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)">
             <summary>
             Delete entry
             </summary>
             <param name="idDto">Parameter with unique identifier</param>
+            <param name="cancellationToken">Cancellation Token</param>
             <returns>Method execution status</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Services.IUserService`7">
+        <member name="T:DevQuiz.Libraries.Core.Services.IQuestionService`4">
+            <summary>
+            Service for manage Question entries
+            </summary>
+            <typeparam name="TQuestionDto">Generic Question dto</typeparam>
+            <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
+            <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
+            <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Services.IUserService`2">
             <summary>
             Service for manage users
             </summary>
             <typeparam name="TUserDto">User dto for add or update</typeparam>
             <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
-            <typeparam name="TOneUserResult">Get one user result</typeparam>
-            <typeparam name="TAllUsersResult">Get all users result</typeparam>
-            <typeparam name="TCreateUserResult">Result after create user</typeparam>
-            <typeparam name="TUpdateUserResult">Result after update user</typeparam>
-            <typeparam name="TDeleteUserResult">Result after delete user</typeparam>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IUserService`7.GetByChatIdAsync(System.Int32)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IUserService`2.GetByChatIdAsync(System.Int32,System.Threading.CancellationToken)">
             <summary>
             Get user information by chat id
             </summary>
             <param name="telegramChatId">User chat id with current bot</param>
+            <param name="cancellationToken">Cancellation Token</param>
             <returns>Information about user</returns>
         </member>
     </members>

@@ -4,14 +4,14 @@ using DevQuiz.Libraries.Core;
 using DevQuiz.Libraries.Core.Configurations;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
+using DevQuiz.Libraries.Data;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace DevQuiz.Libraries.Data.Extensions
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Extensions for IServiceCollection instance
@@ -32,8 +32,6 @@ namespace DevQuiz.Libraries.Data.Extensions
             services.AddDbContext<DevQuizDbContext>(opt =>
                 opt.UseNpgsql(dbConfiguration.ConnectionString, options =>
                     options.MigrationsAssembly(migrationAssembly)));
-            
-            services.TryAddScoped<IUnitOfWork , UnitOfWork<DevQuizDbContext>>(); 
 
             return services;
         }
@@ -41,17 +39,26 @@ namespace DevQuiz.Libraries.Data.Extensions
         /// <summary>
         /// Register Repositories for DevQuiz
         /// </summary>
+        /// <typeparam name="TUser">Generic User Entity</typeparam>
+        /// <typeparam name="TQuestion">Generic Question Entity</typeparam>
+        /// <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>
+        /// <typeparam name="TCategory">Generic Question Category Entity</typeparam>
+        /// <typeparam name="TTag">Generic Question Tag Entity</typeparam>
+        /// <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
         /// <param name="services">IServiceCollection instance</param>
-        /// <returns>IServiceCollection</returns>
+        /// <returns>Clear IServiceCollection</returns>
         public static IServiceCollection AddDevQuizRepositories<TUser,
-            TQuestion, TAnswer, TCategory, TTag, TKey>(this IServiceCollection services)
-            where TUser : UserBase<TKey>
+            TQuestion, TAnswer, TCategory, TTag, TUserKey>(this IServiceCollection services)
+            where TUser : UserBase<TUserKey>
             where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
             where TAnswer : AnswerBase
             where TCategory : CategoryBase<TQuestion>
             where TTag : TagBase<TQuestion>
-            where TKey : IEquatable<TKey>
+            where TUserKey : IEquatable<TUserKey>
         {
+            services.TryAddScoped<IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>, 
+                DevQuizUnitOfWork<DevQuizDbContext, TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>>();
+
             services.TryAddScoped<IGenericRepository<TUser>, GenericRepository<DevQuizDbContext, TUser>>();
             services.TryAddScoped<IGenericRepository<TQuestion>, GenericRepository<DevQuizDbContext, TQuestion>>();
             services.TryAddScoped<IGenericRepository<TAnswer>, GenericRepository<DevQuizDbContext, TAnswer>>();

@@ -4,6 +4,26 @@
         <name>DevQuiz.Libraries.Services</name>
     </assembly>
     <members>
+        <member name="T:DevQuiz.Libraries.Services.Dto.AnswerDto">
+            <summary>
+            Question Answer Dto model
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Dto.CategoryDto">
+            <summary>
+            Question Category Dto model
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Dto.QuestionDto">
+            <summary>
+            Question Dto model
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Dto.TagDto">
+            <summary>
+            Question Tag Dto models
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Services.Dto.UserDto">
             <summary>
             Dto model for user
@@ -14,20 +34,46 @@
             Unique identifier of user in Telegram
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Services.Extensions.ServiceCollectionExtensions">
+        <member name="T:DevQuiz.Libraries.Services.QuestionService`10">
             <summary>
-            Extensions methods for IServiceCollection instance
+            Service for manage Question entries
             </summary>
+            <typeparam name="TUser"></typeparam>
+            <typeparam name="TQuestion"></typeparam>
+            <typeparam name="TAnswer"></typeparam>
+            <typeparam name="TCategory"></typeparam>
+            <typeparam name="TTag"></typeparam>
+            <typeparam name="TUserKey"></typeparam>
+            <typeparam name="TQuestionDto">Generic Question dto</typeparam>
+            <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
+            <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
+            <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
         </member>
-        <member name="M:DevQuiz.Libraries.Services.Extensions.ServiceCollectionExtensions.AddDevQuizServices``3(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.#ctor(DevQuiz.Libraries.Core.IDevQuizUnitOfWork{`0,`1,`2,`3,`4,`5},AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.QuestionService{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9}})">
             <summary>
-            Add services for working with DevQuiz db
+            Constructor
             </summary>
-            <param name="services">IServiceCollection instance</param>
-            <returns>IServiceCollection</returns>
+            <param name="unitOfWork">Unit of work instance</param>
+            <param name="mapper">Mapper instance</param>
+            <param name="logger">Logger instance</param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetAllAsync(System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.GetByIdAsync(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetByIdAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.CreateAsync(`6,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.CreateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.UpdateAsync(`6,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.DeleteAsync(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
         </member>
         <member name="T:DevQuiz.Libraries.Services.UserService`3">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`7" />
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`2" />
         </member>
         <member name="M:DevQuiz.Libraries.Services.UserService`3.#ctor(DevQuiz.Libraries.Core.IUnitOfWork,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.UserService{`0,`1,`2}})">
             <summary>
@@ -37,23 +83,46 @@
             <param name="mapper">Mapper instance</param>
             <param name="logger">Logger instance</param>
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`3.Create(`1)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Create(`0)" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetAllAsync(System.Threading.CancellationToken)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`3.Delete(`2)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Delete(`6)" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.GetByIdAsync(`2,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetByIdAsync(`6,System.Threading.CancellationToken)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`3.GetAll">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetAll" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.CreateAsync(`1,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.CreateAsync(`0,System.Threading.CancellationToken)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`3.GetById(`2)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetById(`6)" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.DeleteAsync(`2,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`3.GetByChatIdAsync(System.Int32)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IUserService`7.GetByChatIdAsync(System.Int32)" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.UpdateAsync(`1,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`3.Update(`1)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.Update(`0)" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`3.GetByChatIdAsync(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IUserService`2.GetByChatIdAsync(System.Int32,System.Threading.CancellationToken)" />
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+            Extensions methods for IServiceCollection instance
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizServices``11(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add services for working with DevQuiz db
+            </summary>
+            <typeparam name="TUser">Generic User Entity</typeparam>
+            <typeparam name="TQuestion">Generic Question Entity</typeparam>
+            <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>
+            <typeparam name="TCategory">Generic Question Category Entity</typeparam>
+            <typeparam name="TTag">Generic Question Tag Entity</typeparam>
+            <typeparam name="TUserDto">Generic User Dto</typeparam>
+            <typeparam name="TQuestionDto">Generic Question Dto</typeparam>
+            <typeparam name="TAnswerDto">Generic Question Answer Dto</typeparam>
+            <typeparam name="TCategoryDto">Generic Question Category Dto</typeparam>
+            <typeparam name="TTagDto">Generic Question Tag Dto</typeparam>
+            <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
+            <param name="services">IServiceCollection instance</param>
+            <returns>IServiceCollection</returns>
         </member>
     </members>
 </doc>

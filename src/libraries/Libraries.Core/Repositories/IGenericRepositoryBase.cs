@@ -15,48 +15,32 @@ namespace DevQuiz.Libraries.Core.Repositories
         where TEntity : class
     {
         #region GetAll
-
-        /// <summary>
-        /// Get all entities
-        /// </summary>
-        /// <returns>IQueryable collection of entities</returns>
-        IQueryable<TEntity> GetAll();
+        
         /// <summary>
         /// Get all entities with filter
         /// </summary>
         /// <param name="predicate">Filter for entities</param>
         /// <returns>IQueryable collection of entities</returns>
-        IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null);
 
         #endregion
 
         #region List
-
-        /// <summary>
-        /// Get list entities by passed expression
-        /// </summary>
-        /// <returns>List collection of entities</returns>
-        List<TEntity> List();
+        
         /// <summary>
         /// Get list entities by passed expression
         /// </summary>
         /// <param name="predicate">Filter for entities</param>
         /// <returns>List collection of entities</returns>
-        List<TEntity> List(Expression<Func<TEntity, bool>> predicate);
-
-        /// <summary>
-        /// Get list entities by passed expression
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>List collection of entities</returns>
-        Task<List<TEntity>> ListAsync(CancellationToken cancellationToken = default);
+        List<TEntity> List(Expression<Func<TEntity, bool>> predicate = null);
+        
         /// <summary>
         /// Get list entities by passed expression
         /// </summary>
         /// <param name="predicate">Filter for entities</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List collection of entities</returns>
-        Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
+        Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate = null, CancellationToken cancellationToken = default);
 
         #endregion
 
