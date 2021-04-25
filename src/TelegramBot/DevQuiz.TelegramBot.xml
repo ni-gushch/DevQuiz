@@ -110,7 +110,7 @@
         <member name="T:DevQuiz.TelegramBot.Services.BotMessageService">
             <inheritdoc cref="T:DevQuiz.TelegramBot.Interfaces.IBotMessageService" />
         </member>
-        <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.#ctor(DevQuiz.TelegramBot.Interfaces.IBotService,DevQuiz.Libraries.Core.Services.IUserService{DevQuiz.Libraries.Services.Dto.UserDto,System.Guid},Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Services.BotMessageService})">
+        <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.#ctor(MediatR.IMediator,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Services.BotMessageService})">
             <summary>
             Constructor
             </summary>

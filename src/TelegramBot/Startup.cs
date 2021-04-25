@@ -6,6 +6,7 @@ using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Extensions;
 using DevQuiz.TelegramBot.Interfaces;
 using DevQuiz.TelegramBot.Services;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -58,8 +59,12 @@ namespace DevQuiz.TelegramBot
                 config.AddProfile<QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>>();
             });
 
-            services.AddSingleton<IBotService, BotService>();
-            services.AddScoped<IBotMessageService, BotMessageService>();
+            services.AddMediatR(typeof(Startup));
+
+            services.AddSingleton<IBotService, BotService>()
+                .AddScoped<IBotMessageService, BotMessageService>();
+
+
 
             services.AddControllers()
                 .AddNewtonsoftJson();
