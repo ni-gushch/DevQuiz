@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using DevQuiz.Libraries.Core.Mappers;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
@@ -61,11 +62,11 @@ namespace DevQuiz.TelegramBot
                 config.AddProfile<QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>>();
             });
 
-            services.AddMediatR(typeof(Startup));
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddSingleton<IBotService, BotService>()
                 .AddScoped<IBotMessageService, BotMessageService>()
-                .AddScoped<IRequestHandler<StartCommand>, StartCommandHandler<UserDto, Guid>>();
+                .AddScoped<IRequestHandler<StartCommand, Unit>, StartCommandHandler<UserDto, Guid>>();
 
 
             services.AddControllers()
