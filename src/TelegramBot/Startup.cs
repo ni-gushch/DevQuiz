@@ -5,6 +5,8 @@ using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Extensions;
 using DevQuiz.TelegramBot.Interfaces;
+using DevQuiz.TelegramBot.MediatR.Commands;
+using DevQuiz.TelegramBot.MediatR.Handlers;
 using DevQuiz.TelegramBot.Services;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -62,8 +64,8 @@ namespace DevQuiz.TelegramBot
             services.AddMediatR(typeof(Startup));
 
             services.AddSingleton<IBotService, BotService>()
-                .AddScoped<IBotMessageService, BotMessageService>();
-
+                .AddScoped<IBotMessageService, BotMessageService>()
+                .AddScoped<IRequestHandler<StartCommand>, StartCommandHandler<UserDto, Guid>>();
 
 
             services.AddControllers()
