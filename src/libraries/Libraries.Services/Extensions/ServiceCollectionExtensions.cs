@@ -44,7 +44,7 @@ namespace Microsoft.Extensions.DependencyInjection
             where TUserKey : IEquatable<TUserKey>
         {
             services.TryAddScoped<IUserService<TUserDto, TUserKey>, 
-                UserService<TUser, TUserDto, TUserKey>>();
+                UserService<TUser, TUserDto, TUserKey, TQuestion, TAnswer, TCategory, TTag>>();
             services.TryAddScoped<IQuestionService<TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>, 
                 QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey, TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>>();
 
