@@ -1,4 +1,5 @@
 using AutoMapper;
+using DevQuiz.Libraries.Core.Models.Dto;
 using DevQuiz.Libraries.Services.Dto;
 using Telegram.Bot.Types;
 
@@ -19,6 +20,12 @@ namespace DevQuiz.TelegramBot.Mappers
             /*-----------------*/
             CreateMap<User, UserDto>(MemberList.Destination)
                 .ForMember(dest => dest.TelegramId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));
+
+            CreateMap<Chat, UserDto>(MemberList.Destination)
+                .ForMember(dest => dest.TelegramChatId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));
