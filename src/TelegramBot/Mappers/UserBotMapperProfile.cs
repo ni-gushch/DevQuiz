@@ -21,19 +21,14 @@ namespace DevQuiz.TelegramBot.Mappers
             /*-----------------*/
             /* TG model to Dto */
             /*-----------------*/
-            /*CreateMap<User, UserDto>(MemberList.Destination)
-                .ForMember(dest => dest.TelegramId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username))
-                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
-                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));*/
 
             CreateMap<Chat, TUserDto>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.TelegramChatId, opt => opt.MapFrom(src => (int)src.Id))
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
-                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));
-
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
+                .ForAllOtherMembers(opt => opt.Ignore());
 
             /*-----------------*/
             /* Dto to TG models */

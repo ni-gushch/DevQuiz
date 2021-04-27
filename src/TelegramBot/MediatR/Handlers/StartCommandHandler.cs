@@ -30,6 +30,7 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
             var message = request.Message;
             var chat = message.Chat;
             var chatInDb =  await _userService.GetByChatIdAsync((int)chat.Id, cancellationToken);
+
             var userForCreate = _mapper.Map<TUserDto>(chat);
             //TUserDto userForCreate = new UserDto()
             //{
