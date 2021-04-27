@@ -79,12 +79,12 @@
             Instance of telegram bot client
             </summary>
         </member>
-        <member name="T:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile">
+        <member name="T:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile`2">
             <summary>
             Mapper profile for convert Telegram User information to Dto
             </summary>
         </member>
-        <member name="M:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile.#ctor">
+        <member name="M:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile`2.#ctor">
             <summary>
             Constructor
             </summary>

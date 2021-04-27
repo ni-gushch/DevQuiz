@@ -38,7 +38,7 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
             //    FirstName = chat.FirstName,
             //    LastName = chat.LastName
             //};
-            //await _userService.CreateAsync(userForCreate, cancellationToken);
+            await _userService.CreateAsync(userForCreate, cancellationToken);
             return Unit.Value;
         }
     }

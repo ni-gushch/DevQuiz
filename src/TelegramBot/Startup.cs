@@ -6,6 +6,7 @@ using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Extensions;
 using DevQuiz.TelegramBot.Interfaces;
+using DevQuiz.TelegramBot.Mappers;
 using DevQuiz.TelegramBot.MediatR.Commands;
 using DevQuiz.TelegramBot.MediatR.Handlers;
 using DevQuiz.TelegramBot.Services;
@@ -60,6 +61,7 @@ namespace DevQuiz.TelegramBot
             {
                 config.AddProfile<UserMapperProfile<User, UserDto, Guid>>();
                 config.AddProfile<QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>>();
+                config.AddProfile<UserBotMapperProfile<UserDto, Guid>>();
             });
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
