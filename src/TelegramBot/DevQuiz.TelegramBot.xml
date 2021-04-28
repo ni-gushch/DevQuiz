@@ -86,8 +86,59 @@
         </member>
         <member name="M:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile`2.#ctor">
             <summary>
-            Constructor
+                Constructor
             </summary>
+        </member>
+        <member name="T:DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand">
+            <summary>
+                Base bot command
+            </summary>
+        </member>
+        <member name="P:DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand.Message">
+            <summary>
+                Message
+            </summary>
+        </member>
+        <member name="P:DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand.Chat">
+            <summary>
+                Chat
+            </summary>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand.#ctor(Telegram.Bot.Types.Message)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="message"> Message </param>
+        </member>
+        <member name="T:DevQuiz.TelegramBot.MediatR.Commands.StartCommand">
+            <summary>
+                Command when "/start" received
+            </summary>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.MediatR.Commands.StartCommand.#ctor(Telegram.Bot.Types.Message)">
+            <inheritdoc />
+        </member>
+        <member name="T:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2">
+            <summary>
+                Command "/start" handler
+            </summary>
+            <typeparam name="TUserDto"> User dto for add or update </typeparam>
+            <typeparam name="TKey"> Parameter with unique identifier of entry </typeparam>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2.#ctor(DevQuiz.Libraries.Core.Services.IUserService{`0,`1},AutoMapper.IMapper,DevQuiz.TelegramBot.Interfaces.IBotService)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="userService"> Service for manage users </param>
+            <param name="mapper"> Mapper instance </param>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2.Handle(DevQuiz.TelegramBot.MediatR.Commands.StartCommand,System.Threading.CancellationToken)">
+            <summary>
+                Handle command
+            </summary>
+            <param name="request"> Command </param>
+            <param name="cancellationToken"> Cancellation token </param>
+            <returns></returns>
         </member>
         <member name="T:DevQuiz.TelegramBot.Program">
             <summary>

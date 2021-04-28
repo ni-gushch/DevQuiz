@@ -103,6 +103,7 @@ namespace DevQuiz.Libraries.Services
             _logger.LogDebug("Start updating user");
             var userEntity = _mapper.Map<TUser>(entryToUpdate);
             userEntity.UpdatedDate = DateTime.UtcNow;
+            _unitOfWork.ClearChangeTracker();
             _userRepository.Update(userEntity);
             var commitStatus = await _unitOfWork.CommitAsync(cancellationToken)
                 .ConfigureAwait(false);

@@ -14,7 +14,7 @@ namespace DevQuiz.TelegramBot.Mappers
         where TKey : IEquatable<TKey>
     {
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public UserBotMapperProfile()
         {

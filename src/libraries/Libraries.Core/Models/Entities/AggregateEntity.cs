@@ -14,6 +14,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
 
         /// <inheritdoc cref="IAuditEntity.CreatedBy" />
         public string CreatedBy { get; set; }
+
         /// <inheritdoc cref="IAuditEntity.UpdatedDate" />
         public DateTime? UpdatedDate { get; set; } = DateTime.UtcNow;
     }
