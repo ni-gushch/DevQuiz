@@ -101,6 +101,18 @@
             Answer repository
             </summary>
         </member>
+        <member name="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`2">
+            <summary>
+            DevQuiz UnitOfWork
+            </summary>
+            <typeparam name="TUser">Generic User Entity</typeparam>
+            <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`2.UserRepository">
+            <summary>
+            User repository
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Mappers.QuestionMapperProfile`8">
             <summary>
             Profile class for mapper user models

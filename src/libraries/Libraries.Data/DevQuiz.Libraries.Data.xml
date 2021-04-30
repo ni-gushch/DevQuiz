@@ -273,6 +273,21 @@
             <param name="categoryRepository">Category repository instance</param>
             <param name="tagRepository">Tag repository instance</param>
         </member>
+        <member name="T:DevQuiz.Libraries.Data.DevQuizUnitOfWork`3">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6"/>
+        </member>
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`3.UserRepository">
+            <summary>
+            User repository
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.DevQuizUnitOfWork`3.#ctor(`0,DevQuiz.Libraries.Core.Repositories.IGenericRepository{`1})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="genericDbContext">Current db context</param>
+            <param name="userRepository">User repository instance</param>        
+        </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
             <summary>
             Extensions for IServiceCollection instance

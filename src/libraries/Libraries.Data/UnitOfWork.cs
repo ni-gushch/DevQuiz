@@ -19,6 +19,7 @@ namespace DevQuiz.Libraries.Data
         /// Set of registered repositories
         /// </summary>
         protected Dictionary<string, object> Repositories { get; } = new();
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -27,21 +28,25 @@ namespace DevQuiz.Libraries.Data
         {
             _dbContext = dbContext;
         }
+
         /// <inheritdoc cref="IUnitOfWork.Commit" />
         public int Commit()
         {
             return _dbContext.SaveChanges();
         }
+
         /// <inheritdoc cref="IUnitOfWork.CommitAsync" />
         public Task<int> CommitAsync(CancellationToken cancellationToken = default)
         {
             return _dbContext.SaveChangesAsync(cancellationToken);
         }
+
         /// <inheritdoc cref="IUnitOfWork.ClearChangeTracker" />
         public void ClearChangeTracker()
         {
             _dbContext.ChangeTracker.Clear();
         }
+
         /// <inheritdoc cref="IUnitOfWork.GetBaseRepository{TEntity}"/>
         public IGenericRepositoryBase<TEntity> GetBaseRepository<TEntity>() where TEntity : class
         {
@@ -50,6 +55,7 @@ namespace DevQuiz.Libraries.Data
                 return returnRepo;
             throw new ArgumentNullException($"Repository for type {typeof(TEntity)} is not registered");
         }
+
         /// <inheritdoc cref="IUnitOfWork.GetRepository{TRepository, TEntity}"/>
         public TRepository GetRepository<TRepository, TEntity>() where TRepository : IGenericRepositoryBase<TEntity> where TEntity : class
         {
@@ -66,6 +72,22 @@ namespace DevQuiz.Libraries.Data
         {
             _dbContext.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        ///     Add repository to repository dictionary
+        /// </summary>
+        /// <typeparam name="T"> Base repository </typeparam>
+        /// <typeparam name="TEntity"> Entity </typeparam>
+        /// <param name="source"> Repository instance </param>
+        /// <returns> Registered repository instance </returns>
+        protected T RegisterRepository<T, TEntity>(T source)
+            where T : IGenericRepositoryBase<TEntity>
+            where TEntity : class
+        {
+            if (source == null) return default;
+            Repositories.TryAdd(typeof(TEntity).Name, source);
+            return source;
         }
     }
 
@@ -121,15 +143,29 @@ namespace DevQuiz.Libraries.Data
             CategoryRepository = RegisterRepository<IGenericRepository<TCategory>, TCategory>(categoryRepository);
             TagRepository = RegisterRepository<IGenericRepository<TTag>, TTag>(tagRepository);
             AnswerRepository = RegisterRepository<IGenericRepository<TAnswer>, TAnswer>(answerRepository);
-        }
+        }        
+    }
 
-        private T RegisterRepository<T, TEntity>(T source)
-            where T : IGenericRepositoryBase<TEntity>
-            where TEntity : class
+    /// <inheritdoc cref="IDevQuizUnitOfWork{TUser,TQuestion,TAnswer,TCategory,TTag,TUserKey}"/>
+    public class DevQuizUnitOfWork<TDbContext, TUser, TUserKey> : UnitOfWork<TDbContext>, IDevQuizUnitOfWork<TUser, TUserKey>
+        where TDbContext : DbContext
+        where TUser : UserBase<TUserKey>       
+        where TUserKey : IEquatable<TUserKey>
+    {
+        /// <summary>
+        /// User repository
+        /// </summary>
+        public IGenericRepository<TUser> UserRepository { get; }
+       
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="genericDbContext">Current db context</param>
+        /// <param name="userRepository">User repository instance</param>        
+        public DevQuizUnitOfWork(TDbContext genericDbContext,
+            IGenericRepository<TUser> userRepository = null) : base(genericDbContext)
         {
-            if (source == null) return default;
-            Repositories.TryAdd(typeof(TEntity).Name, source);
-            return source;
-        }
+            UserRepository = RegisterRepository<IGenericRepository<TUser>, TUser>(userRepository);
+        }        
     }
 }

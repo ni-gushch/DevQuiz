@@ -82,4 +82,19 @@ namespace DevQuiz.Libraries.Core
         /// </summary>
         IGenericRepository<TAnswer> AnswerRepository { get; }
     }
+
+    /// <summary>
+    /// DevQuiz UnitOfWork
+    /// </summary>
+    /// <typeparam name="TUser">Generic User Entity</typeparam>
+    /// <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
+    public interface IDevQuizUnitOfWork<TUser, TUserKey> : IUnitOfWork
+        where TUser : UserBase<TUserKey>       
+        where TUserKey : IEquatable<TUserKey>
+    {
+        /// <summary>
+        /// User repository
+        /// </summary>
+        IGenericRepository<TUser> UserRepository { get; }        
+    }
 }
