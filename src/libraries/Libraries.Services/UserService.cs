@@ -70,7 +70,6 @@ namespace DevQuiz.Libraries.Services
         {
             _logger.LogDebug("Start creating new user");
             var addUserEntity = _mapper.Map<TUser>(entryToAdd);
-            addUserEntity.CreatedDate = DateTime.UtcNow;
             await _userRepository.CreateAsync(addUserEntity, cancellationToken)
                 .ConfigureAwait(false);
             _logger.LogDebug("Create new user save changes");
@@ -104,6 +103,7 @@ namespace DevQuiz.Libraries.Services
             _logger.LogDebug("Start updating user");
             var userEntity = _mapper.Map<TUser>(entryToUpdate);
             userEntity.UpdatedDate = DateTime.UtcNow;
+            _unitOfWork.ClearChangeTracker();
             _userRepository.Update(userEntity);
             var commitStatus = await _unitOfWork.CommitAsync(cancellationToken)
                 .ConfigureAwait(false);

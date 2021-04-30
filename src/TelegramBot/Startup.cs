@@ -1,11 +1,16 @@
 using System;
+using System.Reflection;
 using DevQuiz.Libraries.Core.Mappers;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Extensions;
 using DevQuiz.TelegramBot.Interfaces;
+using DevQuiz.TelegramBot.Mappers;
+using DevQuiz.TelegramBot.MediatR.Commands;
+using DevQuiz.TelegramBot.MediatR.Handlers;
 using DevQuiz.TelegramBot.Services;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -56,10 +61,15 @@ namespace DevQuiz.TelegramBot
             {
                 config.AddProfile<UserMapperProfile<User, UserDto, Guid>>();
                 config.AddProfile<QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>>();
+                config.AddProfile<UserBotMapperProfile<UserDto, Guid>>();
             });
 
-            services.AddSingleton<IBotService, BotService>();
-            services.AddScoped<IBotMessageService, BotMessageService>();
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddSingleton<IBotService, BotService>()
+                .AddScoped<IBotMessageService, BotMessageService>()
+                .AddScoped<IRequestHandler<StartCommand, Unit>, StartCommandHandler<UserDto, Guid>>();
+
 
             services.AddControllers()
                 .AddNewtonsoftJson();
