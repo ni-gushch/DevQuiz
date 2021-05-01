@@ -34,6 +34,35 @@
             Start command
             </summary>
         </member>
+        <member name="T:DevQuiz.TelegramBot.Constants.TypedHttpClients">
+            <summary>
+            Names of typed https clients
+            </summary>
+        </member>
+        <member name="F:DevQuiz.TelegramBot.Constants.TypedHttpClients.TelegramApi">
+            <summary>
+            Telegram api http client name
+            </summary>
+        </member>
+        <member name="T:DevQuiz.TelegramBot.Controllers.BotConfigurationController">
+            <summary>
+            Controller for manage Bot Configuration
+            </summary>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.Controllers.BotConfigurationController.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Options.IOptions{DevQuiz.TelegramBot.Configurations.BotConfiguration},Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Controllers.BotConfigurationController})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="httpClientFactory">Factory for creating http clients</param>
+            <param name="botOptions">Bot options</param>
+            <param name="logger">ILogger instance</param>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.Controllers.BotConfigurationController.SetWebHook(DevQuiz.TelegramBot.Models.InputModels.SetWebHookInputModel)">
+            <summary>
+            Set web hook for current bot
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:DevQuiz.TelegramBot.Controllers.UpdateController">
             <summary>
             Update controller
@@ -139,6 +168,36 @@
             <param name="request"> Command </param>
             <param name="cancellationToken"> Cancellation token </param>
             <returns></returns>
+        </member>
+        <member name="T:DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult">
+            <summary>
+            Set web hook api result model
+            </summary>
+        </member>
+        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult.Ok">
+            <summary>
+            Set web hook status
+            </summary>
+        </member>
+        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult.Error_code">
+            <summary>
+            Error code
+            </summary>
+        </member>
+        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult.Description">
+            <summary>
+            Description message
+            </summary>
+        </member>
+        <member name="T:DevQuiz.TelegramBot.Models.InputModels.SetWebHookInputModel">
+            <summary>
+            Input model for set web hook action
+            </summary>
+        </member>
+        <member name="P:DevQuiz.TelegramBot.Models.InputModels.SetWebHookInputModel.WebHookUri">
+            <summary>
+            Which address will be set as webhook
+            </summary>
         </member>
         <member name="T:DevQuiz.TelegramBot.Program">
             <summary>

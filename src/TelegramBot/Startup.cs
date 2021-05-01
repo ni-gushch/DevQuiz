@@ -1,9 +1,11 @@
 using System;
+using System.IO;
 using System.Reflection;
 using DevQuiz.Libraries.Core.Mappers;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Services.Dto;
+using DevQuiz.TelegramBot.Constants;
 using DevQuiz.TelegramBot.Extensions;
 using DevQuiz.TelegramBot.Interfaces;
 using DevQuiz.TelegramBot.Mappers;
@@ -27,7 +29,7 @@ namespace DevQuiz.TelegramBot
         /// <summary>
         /// Configuration of web application
         /// </summary>
-        public IConfiguration Configuration{ get; }
+        public IConfiguration Configuration { get; }
         /// <summary>
         /// Application web host environment
         /// </summary>
@@ -56,7 +58,7 @@ namespace DevQuiz.TelegramBot
             services.AddDevQuizRepositories<DevQuizDbContext, User, Question, Answer, Category, Tag, Guid>();
             services.AddDevQuizServices<User, UserDto, Guid,
                 Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>();
-            
+
             services.AddAutoMapper(config =>
             {
                 config.AddProfile<UserMapperProfile<User, UserDto, Guid>>();
@@ -64,12 +66,27 @@ namespace DevQuiz.TelegramBot
                 config.AddProfile<UserBotMapperProfile<UserDto, Guid>>();
             });
 
+            services.AddHttpClient();
+            services.AddHttpClient(TypedHttpClients.TelegramApi, it =>
+            {
+                it.BaseAddress = new Uri("https://api.telegram.org");
+            });
+
+            services.AddSwaggerGen(options =>
+            {
+
+            }).ConfigureSwaggerGen(options =>
+            {
+                options.CustomSchemaIds(x => x.FullName);
+                options.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(), "DevQuiz.TelegramBot.xml"));
+            });
+            services.AddSwaggerGenNewtonsoftSupport();
+
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddSingleton<IBotService, BotService>()
                 .AddScoped<IBotMessageService, BotMessageService>()
                 .AddScoped<IRequestHandler<StartCommand, Unit>, StartCommandHandler<UserDto, Guid>>();
-
 
             services.AddControllers()
                 .AddNewtonsoftJson();
@@ -86,6 +103,13 @@ namespace DevQuiz.TelegramBot
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(cfg =>
+            {
+                cfg.SwaggerEndpoint("/swagger/v1/swagger.json", "DevQuiz telegram bot api");
+                cfg.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
             app.UseCors();
