@@ -90,8 +90,8 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
                     context.SaveChanges();
                     context.ChangeTracker.Clear();
 
-                    var tempRand = new Random().Next(QuestionAnswers.Count);
-                    tempQuestion.RightAnswerId = newAnswers.Select(it => it.Id).ToArray()[tempRand];
+                    var randomIndex = new Random().Next(QuestionAnswers.Count);
+                    tempQuestion.RightAnswerId = newAnswers.Select(it => it.Id).ElementAt(randomIndex);
                     tempQuestion.RightAnswerExplanation = Path.GetRandomFileName();
                     context.Questions.Update(tempQuestion);
                     context.SaveChanges();
@@ -100,8 +100,8 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
 
                 if (includeCategories)
                 {
-                    var tempRand = new Random().Next(QuestionCategoryNames.Count);
-                    tempQuestion.CategoryId = newCategoriesList.Select(it => it.Id).ToArray()[tempRand];
+                    var randomIndex = new Random().Next(QuestionCategoryNames.Count);
+                    tempQuestion.CategoryId = newCategoriesList.Select(it => it.Id).ElementAt(randomIndex);
                     context.Questions.Update(tempQuestion);
                     context.SaveChanges();
                     context.ChangeTracker.Clear();
