@@ -234,6 +234,15 @@
             Dispose unit of work instance
             </summary>
         </member>
+        <member name="M:DevQuiz.Libraries.Data.UnitOfWork`1.RegisterRepository``2(``0)">
+            <summary>
+                Add repository to repository dictionary
+            </summary>
+            <typeparam name="T"> Base repository </typeparam>
+            <typeparam name="TEntity"> Entity </typeparam>
+            <param name="source"> Repository instance </param>
+            <returns> Registered repository instance </returns>
+        </member>
         <member name="T:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6"/>
         </member>

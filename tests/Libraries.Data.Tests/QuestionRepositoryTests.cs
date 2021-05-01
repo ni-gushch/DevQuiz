@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DevQuiz.Libraries.Core;
 using DevQuiz.Libraries.Core.Repositories;
@@ -42,7 +43,8 @@ namespace DevQuiz.Libraries.Data.Tests
 
             var newQuestion = new Question()
             {
-                Text = "NewQuestionText"
+                Text = "NewQuestionText",
+                CategoryId = (int)(_dbContext.Categories.FirstOrDefault()?.Id)
             };
 
             //Act

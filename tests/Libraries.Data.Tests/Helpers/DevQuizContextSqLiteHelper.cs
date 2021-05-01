@@ -76,6 +76,7 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
                 {
                     Text = $"Question number {i} Text",
                     CreatedDate = DateTime.Now,
+                    CategoryId = i
                 };
                 context.Questions.Add(tempQuestion);
                 context.SaveChanges();
@@ -89,7 +90,7 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
                     context.SaveChanges();
                     context.ChangeTracker.Clear();
 
-                    var tempRand = new Random().Next(5);
+                    var tempRand = new Random().Next(QuestionAnswers.Count);
                     tempQuestion.RightAnswerId = newAnswers.Select(it => it.Id).ToArray()[tempRand];
                     tempQuestion.RightAnswerExplanation = Path.GetRandomFileName();
                     context.Questions.Update(tempQuestion);
@@ -104,15 +105,7 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
                     context.Questions.Update(tempQuestion);
                     context.SaveChanges();
                     context.ChangeTracker.Clear();
-                }
-                if (includeCategories)
-                {
-                    var tempRand = new Random().Next(QuestionTagNames.Count);
-                    tempQuestion.Tags = newTagsList;
-                    context.Questions.Update(tempQuestion);
-                    context.SaveChanges();
-                    context.ChangeTracker.Clear();
-                }
+                }               
             }
 
             return context;
