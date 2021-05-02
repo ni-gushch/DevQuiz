@@ -76,6 +76,7 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
                 {
                     Text = $"Question number {i} Text",
                     CreatedDate = DateTime.Now,
+                    CategoryId = i
                 };
                 context.Questions.Add(tempQuestion);
                 context.SaveChanges();
@@ -89,8 +90,8 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
                     context.SaveChanges();
                     context.ChangeTracker.Clear();
 
-                    var tempRand = new Random().Next(5);
-                    tempQuestion.RightAnswerId = newAnswers.Select(it => it.Id).ToArray()[tempRand];
+                    var randomIndex = new Random().Next(QuestionAnswers.Count);
+                    tempQuestion.RightAnswerId = newAnswers.Select(it => it.Id).ElementAt(randomIndex);
                     tempQuestion.RightAnswerExplanation = Path.GetRandomFileName();
                     context.Questions.Update(tempQuestion);
                     context.SaveChanges();
@@ -99,20 +100,12 @@ namespace DevQuiz.Libraries.Data.Tests.Helpers
 
                 if (includeCategories)
                 {
-                    var tempRand = new Random().Next(QuestionCategoryNames.Count);
-                    tempQuestion.CategoryId = newCategoriesList.Select(it => it.Id).ToArray()[tempRand];
+                    var randomIndex = new Random().Next(QuestionCategoryNames.Count);
+                    tempQuestion.CategoryId = newCategoriesList.Select(it => it.Id).ElementAt(randomIndex);
                     context.Questions.Update(tempQuestion);
                     context.SaveChanges();
                     context.ChangeTracker.Clear();
-                }
-                if (includeCategories)
-                {
-                    var tempRand = new Random().Next(QuestionTagNames.Count);
-                    tempQuestion.Tags = newTagsList;
-                    context.Questions.Update(tempQuestion);
-                    context.SaveChanges();
-                    context.ChangeTracker.Clear();
-                }
+                }               
             }
 
             return context;
