@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using DevQuiz.Libraries.Core.Models.Dto;
 
 namespace DevQuiz.Libraries.Core.Services
@@ -16,5 +18,64 @@ namespace DevQuiz.Libraries.Core.Services
         where TCategoryDto : CategoryDtoBase<TQuestionDto>
         where TTagDto : TagDtoBase<TQuestionDto>
     {
+        #region Categories
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<List<TCategoryDto>> GetAllCategoriesAsync();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<TCategoryDto> GetCategoryByIdAsync();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<TCategoryDto> GetCategoryByNameAsync();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<int> CreateCategoryAsync();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> DeleteCategoryAsync();
+
+        #endregion
+
+        #region Tags
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<List<TTagDto>> GetAllTagsAsync();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<TTagDto> GetTagByIdAsync();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<TTagDto> GetTagByNameAsync();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<int> CreateTagAsync();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> DeleteTagAsync();
+
+        #endregion
     }
 }

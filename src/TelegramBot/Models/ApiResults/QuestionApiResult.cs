@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using DevQuiz.Libraries.Core.Models;
-using DevQuiz.TelegramBot.Models.InputModels;
 
 namespace DevQuiz.TelegramBot.Models.ApiResults
 {
