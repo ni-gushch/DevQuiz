@@ -64,12 +64,13 @@ namespace DevQuiz.TelegramBot
                 config.AddProfile<UserMapperProfile<User, UserDto, Guid>>();
                 config.AddProfile<QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>>();
                 config.AddProfile<UserBotMapperProfile<UserDto, Guid>>();
+                config.AddProfile<QuestionsAdminApiMapperProfile>();
             });
 
             services.AddHttpClient();
-            services.AddHttpClient(TypedHttpClients.TelegramApi, it =>
+            services.AddHttpClient(TypedHttpClients.TelegramApi.ClientName, it =>
             {
-                it.BaseAddress = new Uri("https://api.telegram.org");
+                it.BaseAddress = new Uri(TypedHttpClients.TelegramApi.Address);
             });
 
             services.AddSwaggerGen(options =>

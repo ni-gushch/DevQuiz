@@ -1,9 +1,9 @@
 using System;
 
-namespace DevQuiz.Libraries.Core.Models.Entities
+namespace DevQuiz.Libraries.Core.Models
 {
     /// <summary>
-    /// Generic interface for entities whitch has a unique key
+    /// Generic interface for entries which has a unique key
     /// </summary>
     /// <typeparam name="TKey">Unique key type</typeparam>
     public interface IHasKey<TKey>

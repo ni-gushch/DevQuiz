@@ -338,17 +338,6 @@
             Update Date
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Entities.IHasKey`1">
-            <summary>
-            Generic interface for entities whitch has a unique key
-            </summary>
-            <typeparam name="TKey">Unique key type</typeparam>
-        </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.IHasKey`1.Id">
-            <summary>
-            Unique key
-            </summary>
-        </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3">
             <summary>
             Base question model
@@ -427,6 +416,17 @@
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.UserBase`1.TelegramChatId">
             <summary>
             Unique identifier of telegram chat for current user
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.IHasKey`1">
+            <summary>
+            Generic interface for entries which has a unique key
+            </summary>
+            <typeparam name="TKey">Unique key type</typeparam>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.IHasKey`1.Id">
+            <summary>
+            Unique key
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1">

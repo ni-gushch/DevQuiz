@@ -26,7 +26,7 @@ namespace DevQuiz.Libraries.Services
     /// <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
     /// <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
     /// <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
-    public class QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey, 
+    public class QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey,
         TQuestionDto, TAnswerDto, TCategoryDto, TTagDto> : IQuestionService<TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>
         where TUser : UserBase<TUserKey>
         where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
@@ -63,9 +63,16 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetAllAsync" />
-        public Task<IList<TQuestionDto>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IList<TQuestionDto>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var questions = _unitOfWork.QuestionRepository
+                .ListAsync(include: include => include.Include(it => it.Category)
+                        .Include(it => it.Tags)
+                        .Include(it => it.Answers),
+                    cancellationToken: cancellationToken)
+                .ConfigureAwait(false);
+
+            return _mapper.Map<List<TQuestionDto>>(await questions);
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetByIdAsync" />
@@ -80,9 +87,14 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.CreateAsync" />
-        public Task<int> CreateAsync(TQuestionDto entryToAdd, CancellationToken cancellationToken = default)
+        public async Task<int> CreateAsync(TQuestionDto entryToAdd, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var questionEntity = _mapper.Map<TQuestion>(entryToAdd);
+            await _unitOfWork.QuestionRepository.CreateAsync(questionEntity, cancellationToken);
+            var commitStatus = await _unitOfWork.CommitAsync(cancellationToken);
+            if (commitStatus == 0)
+                throw new Exception("Error while creating new Question");
+            return questionEntity.Id;
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.UpdateAsync" />
@@ -100,20 +112,78 @@ namespace DevQuiz.Libraries.Services
         public async Task<List<TQuestionDto>> GetByCategoryIdAsync(int categoryId,
             CancellationToken cancellationToken = default)
         {
-            var questions = await _unitOfWork.QuestionRepository
-                .ListAsync(predicate: it => it.CategoryId.Equals(categoryId), 
+            var questions = _unitOfWork.QuestionRepository
+                .ListAsync(predicate: it => it.CategoryId.Equals(categoryId),
                     include: quest => quest.Include(it => it.Answers),
                     cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
-            return _mapper.Map<List<TQuestionDto>>(questions);
+            return _mapper.Map<List<TQuestionDto>>(await questions);
         }
 
         public async Task<List<TCategoryDto>> GetCategoriesAsync(CancellationToken cancellationToken = default)
         {
-            var categories = await _unitOfWork.CategoryRepository
+            var categories = _unitOfWork.CategoryRepository
                 .ListAsync(cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
-            return _mapper.Map<List<TCategoryDto>>(categories);
+            return _mapper.Map<List<TCategoryDto>>(await categories);
         }
+
+        #region Categories
+
+        public async Task<List<TTagDto>> GetAllCategoriesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<TTagDto> GetCategoryByIdAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<TTagDto> GetCategoryByNameAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> CreateCategoryAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> DeleteCategoryAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region Tags
+
+        public async Task<List<TTagDto>> GetAllTagsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<TTagDto> GetTagByIdAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<TTagDto> GetTagByNameAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> CreateTagAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> DeleteTagAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
