@@ -222,11 +222,10 @@
         </member>
         <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.#ctor(MediatR.IMediator,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Services.BotMessageService})">
             <summary>
-            Constructor
+                Constructor
             </summary>
-            <param name="botService">Instance of bot service</param>
-            <param name="userService">Instance of user service</param>
-            <param name="logger">Logger</param>
+            <param name="mediator"> Mediator</param>
+            <param name="logger"> Logge r</param>
         </member>
         <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)">
             <inheritdoc cref="M:DevQuiz.TelegramBot.Interfaces.IBotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)" />
