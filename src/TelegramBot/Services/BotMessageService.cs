@@ -7,6 +7,7 @@ using Telegram.Bot.Types.Enums;
 using System.Linq;
 using MediatR;
 using DevQuiz.TelegramBot.MediatR.Commands;
+using DevQuiz.TelegramBot.Constants;
 
 namespace DevQuiz.TelegramBot.Services
 {
@@ -51,10 +52,11 @@ namespace DevQuiz.TelegramBot.Services
             {
                 switch (message.Text)
                 {
-                    case Constants.BotCommands.Start:
+                    case BotCommands.Start:
                         await _mediator.Send(new StartCommand(message));
                         break;
                     default:
+                        _logger.LogInformation("Unknown bot command \"{0}\"", message.Text);
                         break;
                 }
                     
