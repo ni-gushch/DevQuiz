@@ -9,8 +9,6 @@ namespace DevQuiz.TelegramBot.Services
     /// <inheritdoc cref="IBotService" />
     public class BotService : IBotService
     {
-        private readonly string _botConfiguration;
-
         /// <inheritdoc cref="IBotService.Client" />
         public TelegramBotClient Client { get; }
 

@@ -56,10 +56,10 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
 
             await CheckUserAsync(userInDb); 
 
-            var answer = $"Hy, {userInDb.FirstName} {userInDb.LastName}!";
+            //var answer = $"Hy, {userInDb.FirstName} {userInDb.LastName}!";
 
             // Совсем необязательно здороваться на команду \start.
-            await _botService.Client.SendTextMessageAsync(request.Chat.Id, answer, cancellationToken: cancellationToken);
+            //await _botService.Client.SendTextMessageAsync(request.Chat.Id, answer, cancellationToken: cancellationToken);
 
             return Unit.Value;
         }
