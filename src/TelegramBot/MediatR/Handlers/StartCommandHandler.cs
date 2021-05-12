@@ -34,7 +34,7 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
         /// <param name="mapper"> Mapper instance </param>
         public StartCommandHandler(IUserService<TUserDto, TKey> userService,
             IMapper mapper,
-            IBotService botService)
+            IBotService botService = null)
         {
             _userService = userService;
             _mapper = mapper;
@@ -54,36 +54,36 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
 
             var userInDb =  await _userService.GetByChatIdAsync((int)_chat.Id, cancellationToken);
 
-            await CheckUserAsync(userInDb); 
+            userInDb = await CheckUserAsync(userInDb); 
 
-            var answer = $"Hy, {userInDb.FirstName} {userInDb.LastName}!";
+            var answer = $"Hy, {userInDb?.FirstName} {userInDb?.LastName}!";
 
             // Совсем необязательно здороваться на команду \start.
-            await _botService.Client.SendTextMessageAsync(request.Chat.Id, answer, cancellationToken: cancellationToken);
+            if (_botService != null)
+                await _botService.Client.SendTextMessageAsync(request.Chat.Id, answer, cancellationToken: cancellationToken);
 
             return Unit.Value;
         }
 
-        private async Task CheckUserAsync(TUserDto userDto)
+        private async Task<TUserDto> CheckUserAsync(TUserDto userDto)
         {
             if (userDto is null)
             {
                 var userForCreate = _mapper.Map<TUserDto>(_chat);
                 var userId = await _userService.CreateAsync(userForCreate, _cancellationToken);
-                userDto = await _userService.GetByIdAsync(userId, _cancellationToken);
+                return await _userService.GetByIdAsync(userId, _cancellationToken);
             }
-            else
-            {
-                var isSameNames = userDto.FirstName == _chat.FirstName
-                    && userDto.LastName == _chat.LastName;
+            
+            var isSameNames = userDto.FirstName == _chat.FirstName
+                && userDto.LastName == _chat.LastName;
 
-                if (!isSameNames)
-                {
-                    userDto.FirstName = _chat.FirstName;
-                    userDto.LastName = _chat.LastName;
-                    await _userService.UpdateAsync(userDto, _cancellationToken);
-                }
-            }
+            if (isSameNames) 
+                return userDto;
+            
+            userDto.FirstName = _chat.FirstName;
+            userDto.LastName = _chat.LastName;
+            await _userService.UpdateAsync(userDto, _cancellationToken);
+            return userDto;
         }
     }
 }

@@ -16,8 +16,8 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace DevQuiz.Libraries.Services
 {
     /// <inheritdoc cref="IUserService{TUserDto, TKey}" />
-    public class UserService<TUser, TUserDto, TUserKey, 
-        TQuestion, TAnswer, TCategory, TTag> : IUserService<TUserDto, TUserKey>
+    public class UserService<TUser, TUserDto, TUserKey, TQuestion, TAnswer, TCategory, TTag> 
+        : IUserService<TUserDto, TUserKey>
         where TUserDto : UserDtoBase<TUserKey>
         where TUser : UserBase<TUserKey>
         where TUserKey : IEquatable<TUserKey>
