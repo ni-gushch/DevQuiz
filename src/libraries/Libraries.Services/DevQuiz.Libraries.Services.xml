@@ -98,8 +98,8 @@
         <member name="M:DevQuiz.Libraries.Services.UserService`7.UpdateAsync(`1,System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)" />
         </member>
-        <member name="M:DevQuiz.Libraries.Services.UserService`7.GetByChatIdAsync(System.Int32,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IUserService`2.GetByChatIdAsync(System.Int32,System.Threading.CancellationToken)" />
+        <member name="M:DevQuiz.Libraries.Services.UserService`7.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
+            <inheritdoc cref="!:IUserService&lt;TUserDto, TKey&gt;.GetByChatIdAsync(int, CancellationToken)" />
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
             <summary>

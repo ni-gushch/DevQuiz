@@ -24,7 +24,7 @@ namespace DevQuiz.Libraries.Services
 
         public IList<TUserDto> UserDtos { get; set; } = new List<TUserDto>();
         
-        public async Task<IList<TUserDto>> GetAllAsync(CancellationToken cancellationToken = default)
+        public Task<IList<TUserDto>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
@@ -44,17 +44,17 @@ namespace DevQuiz.Libraries.Services
             return Task.FromResult(id);
         }
 
-        public virtual async Task<bool> UpdateAsync(TUserDto entryToUpdate, CancellationToken cancellationToken = default)
+        public virtual Task<bool> UpdateAsync(TUserDto entryToUpdate, CancellationToken cancellationToken = default)
         {
-            return true;
+            return Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteAsync(TUserKey idDto, CancellationToken cancellationToken = default)
+        public Task<bool> DeleteAsync(TUserKey idDto, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TUserDto> GetByChatIdAsync(int telegramChatId, CancellationToken cancellationToken = default)
+        public Task<TUserDto> GetByChatIdAsync(long telegramChatId, CancellationToken cancellationToken = default)
         {
             var userDto = UserDtos.FirstOrDefault(ud => ud.TelegramChatId == telegramChatId);
             return Task.FromResult(userDto);

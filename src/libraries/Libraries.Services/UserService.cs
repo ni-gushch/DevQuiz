@@ -113,7 +113,7 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IUserService{TUserDto, TKey}.GetByChatIdAsync(int, CancellationToken)" />
-        public async Task<TUserDto> GetByChatIdAsync(int telegramChatId, CancellationToken cancellationToken = default)
+        public async Task<TUserDto> GetByChatIdAsync(long telegramChatId, CancellationToken cancellationToken = default)
         {
             var userEntity = await _userRepository.GetOneAsync(it => it.TelegramChatId.Equals(telegramChatId),
                 cancellationToken: cancellationToken)
