@@ -34,6 +34,32 @@
             Unique identifier of user in Telegram
             </summary>
         </member>
+        <member name="T:DevQuiz.Libraries.Services.FakeUserService`7">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`2"/>
+        </member>
+        <member name="P:DevQuiz.Libraries.Services.FakeUserService`7.UserDtos">
+            <summary>
+                List of DTO of user.
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.FakeUserService`7.GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetAllAsync(System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.FakeUserService`7.GetByIdAsync(`2,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetByIdAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.FakeUserService`7.CreateAsync(`1,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.CreateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.FakeUserService`7.UpdateAsync(`1,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.FakeUserService`7.DeleteAsync(`2,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.FakeUserService`7.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
+            <inheritdoc cref="!:IUserService&lt;TUserDto, TKey&gt;.GetByChatIdAsync(int, CancellationToken)" />
+        </member>
         <member name="T:DevQuiz.Libraries.Services.QuestionService`10">
             <summary>
             Service for manage Question entries
