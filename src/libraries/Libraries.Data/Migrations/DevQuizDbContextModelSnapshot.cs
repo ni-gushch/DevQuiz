@@ -148,8 +148,8 @@ namespace DevQuiz.Libraries.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("last_name");
 
-                    b.Property<int>("TelegramChatId")
-                        .HasColumnType("integer")
+                    b.Property<long>("TelegramChatId")
+                        .HasColumnType("bigint")
                         .HasColumnName("telegram_chat_id");
 
                     b.Property<int>("TelegramId")

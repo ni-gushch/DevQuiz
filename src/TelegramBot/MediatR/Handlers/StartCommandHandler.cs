@@ -52,7 +52,7 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
             _chat = request.Chat;
             _cancellationToken = cancellationToken;
 
-            var userInDb =  await _userService.GetByChatIdAsync((int)_chat.Id, cancellationToken);
+            var userInDb =  await _userService.GetByChatIdAsync(_chat.Id, cancellationToken);
 
             userInDb = await CheckUserAsync(userInDb); 
 

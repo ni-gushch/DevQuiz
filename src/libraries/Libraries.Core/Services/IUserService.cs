@@ -22,6 +22,6 @@ namespace DevQuiz.Libraries.Core.Services
         /// <param name="telegramChatId">User chat id with current bot</param>
         /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Information about user</returns>
-        Task<TUserDto> GetByChatIdAsync(int telegramChatId, CancellationToken cancellationToken = default);
+        Task<TUserDto> GetByChatIdAsync(long telegramChatId, CancellationToken cancellationToken = default);
     }
 }

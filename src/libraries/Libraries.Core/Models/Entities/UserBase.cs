@@ -23,6 +23,6 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// <summary>
         /// Unique identifier of telegram chat for current user
         /// </summary>
-        public int TelegramChatId { get; set; }
+        public long TelegramChatId { get; set; }
     }
 }
