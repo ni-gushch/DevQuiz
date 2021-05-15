@@ -30,21 +30,12 @@ namespace DevQuiz.TelegramBot
         /// Configuration of web application
         /// </summary>
         public IConfiguration Configuration { get; }
-        /// <summary>
-        /// Application web host environment
-        /// </summary>
-        public IWebHostEnvironment WebHostEnvironment { get; }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="configuration">IConfiguration instance</param>
-        /// <param name="webHostEnvironment">WebHostEnvironment instance</param>
-        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
-        {
-            Configuration = configuration;
-            WebHostEnvironment = webHostEnvironment;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         /// <summary>
         /// Method for configure web app services

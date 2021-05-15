@@ -154,12 +154,13 @@
             <typeparam name="TUserDto"> User dto for add or update </typeparam>
             <typeparam name="TKey"> Parameter with unique identifier of entry </typeparam>
         </member>
-        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2.#ctor(DevQuiz.Libraries.Core.Services.IUserService{`0,`1},AutoMapper.IMapper,DevQuiz.TelegramBot.Interfaces.IBotService)">
+        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2.#ctor(DevQuiz.Libraries.Core.Services.IUserService{`0,`1},AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger,DevQuiz.TelegramBot.Interfaces.IBotService)">
             <summary>
                 Constructor
             </summary>
             <param name="userService"> Service for manage users </param>
             <param name="mapper"> Mapper instance </param>
+            <param name="botService"> Bot service </param>
         </member>
         <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2.Handle(DevQuiz.TelegramBot.MediatR.Commands.StartCommand,System.Threading.CancellationToken)">
             <summary>
@@ -252,17 +253,11 @@
             Configuration of web application
             </summary>
         </member>
-        <member name="P:DevQuiz.TelegramBot.Startup.WebHostEnvironment">
-            <summary>
-            Application web host environment
-            </summary>
-        </member>
-        <member name="M:DevQuiz.TelegramBot.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:DevQuiz.TelegramBot.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Constructor
             </summary>
             <param name="configuration">IConfiguration instance</param>
-            <param name="webHostEnvironment">WebHostEnvironment instance</param>
         </member>
         <member name="M:DevQuiz.TelegramBot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>

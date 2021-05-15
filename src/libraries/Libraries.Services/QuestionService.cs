@@ -58,7 +58,6 @@ namespace DevQuiz.Libraries.Services
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-
             _logger = NullLogger<QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey, TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>>.Instance;
         }
 
@@ -97,6 +96,7 @@ namespace DevQuiz.Libraries.Services
             throw new NotImplementedException();
         }
 
+        
         public async Task<List<TQuestionDto>> GetByCategoryIdAsync(int categoryId,
             CancellationToken cancellationToken = default)
         {

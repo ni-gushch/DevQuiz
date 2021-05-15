@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -106,14 +105,14 @@ namespace DevQuiz.Libraries.Services
             _unitOfWork.ClearChangeTracker();
             _userRepository.Update(userEntity);
             var commitStatus = await _unitOfWork.CommitAsync(cancellationToken)
-                .ConfigureAwait(false);
+                .ConfigureAwait(    false);
             if (commitStatus.Equals(0))
                 throw new DbUpdateException($"Some error occurred white updating user with id {entryToUpdate.Id}");
             return commitStatus > 0;
         }
 
-        /// <inheritdoc cref="IUserService{TUserDto, TKey}.GetByChatIdAsync(int, CancellationToken)" />
-        public async Task<TUserDto> GetByChatIdAsync(int telegramChatId, CancellationToken cancellationToken = default)
+        /// <inheritdoc cref="IUserService{TUserDto, TKey}.GetByChatIdAsync(long, CancellationToken)" />
+        public async Task<TUserDto> GetByChatIdAsync(long telegramChatId, CancellationToken cancellationToken = default)
         {
             var userEntity = await _userRepository.GetOneAsync(it => it.TelegramChatId.Equals(telegramChatId),
                 cancellationToken: cancellationToken)

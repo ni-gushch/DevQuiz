@@ -7,6 +7,7 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Telegram.Bot.Types;
 
 namespace DevQuiz.TelegramBot.MediatR.Handlers
@@ -16,13 +17,12 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
     /// </summary>
     /// <typeparam name="TUserDto"> User dto for add or update </typeparam>
     /// <typeparam name="TKey"> Parameter with unique identifier of entry </typeparam>
-    public class StartCommandHandler<TUserDto, TKey> : IRequestHandler<StartCommand>
+    public class StartCommandHandler<TUserDto, TKey> : BaseBotCommandHandler, IRequestHandler<StartCommand>
         where TUserDto : UserDtoBase<TKey>
         where TKey : IEquatable<TKey>
     {
         private readonly IUserService<TUserDto, TKey> _userService;
         private readonly IMapper _mapper;
-        private readonly IBotService _botService;
 
         private CancellationToken _cancellationToken;
         private Chat _chat;
@@ -32,14 +32,13 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
         /// </summary>
         /// <param name="userService"> Service for manage users </param>
         /// <param name="mapper"> Mapper instance </param>
+        /// <param name="botService"> Bot service </param>
         public StartCommandHandler(IUserService<TUserDto, TKey> userService,
             IMapper mapper,
-            IBotService botService = null)
-        {
-            _userService = userService;
-            _mapper = mapper;
-            _botService = botService;
-        }
+            ILogger logger,
+            IBotService botService = null) 
+            : base(logger, botService) => 
+            (_userService, _mapper) = (userService, mapper);
 
         /// <summary>
         ///     Handle command
@@ -48,8 +47,18 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
         /// <param name="cancellationToken"> Cancellation token </param>
         /// <returns></returns>
         public async Task<Unit> Handle(StartCommand request, CancellationToken cancellationToken)
-        {            
+        {
+            if (request is null)
+                throw new ArgumentNullException(nameof(request));
+            
             _chat = request.Chat;
+            if (_chat is null)
+            {
+                _logger.LogWarning("The chat is null. The handle is impossible.");
+                return Unit.Value;
+            }
+         
+            _logger.LogInformation($"{nameof(StartCommand)}Handle begins for chatId={_chat.Id}.");
             _cancellationToken = cancellationToken;
 
             var userInDb =  await _userService.GetByChatIdAsync((int)_chat.Id, cancellationToken);
@@ -58,7 +67,6 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
 
             var answer = $"Hy, {userInDb?.FirstName} {userInDb?.LastName}!";
 
-            // Совсем необязательно здороваться на команду \start.
             if (_botService != null)
                 await _botService.Client.SendTextMessageAsync(request.Chat.Id, answer, cancellationToken: cancellationToken);
 
@@ -68,7 +76,7 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
         private async Task<TUserDto> CheckUserAsync(TUserDto userDto)
         {
             if (userDto is null)
-            {
+            { 
                 var userForCreate = _mapper.Map<TUserDto>(_chat);
                 var userId = await _userService.CreateAsync(userForCreate, _cancellationToken);
                 return await _userService.GetByIdAsync(userId, _cancellationToken);
@@ -84,6 +92,11 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
             userDto.LastName = _chat.LastName;
             await _userService.UpdateAsync(userDto, _cancellationToken);
             return userDto;
+        }
+
+        private async Task SendCategories()
+        {
+            return; 
         }
     }
 }
