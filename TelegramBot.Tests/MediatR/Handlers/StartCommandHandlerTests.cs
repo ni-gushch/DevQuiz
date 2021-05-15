@@ -80,7 +80,7 @@ namespace TelegramBot.Tests.MediatR.Handlers
         {
             var mockService = Substitute
                 .For<FakeUserService<User, UserDto, Guid, Question, Answer, Category, Tag>>();
-            mockService.UserDtos = new List<UserDto>()
+            mockService.UserDtoes = new List<UserDto>()
             {
                 new ()
                 {
@@ -114,7 +114,7 @@ namespace TelegramBot.Tests.MediatR.Handlers
         {
             var mockService = Substitute
                 .For<FakeUserService<User, UserDto, Guid, Question, Answer, Category, Tag>>();
-            mockService.UserDtos = new List<UserDto>()
+            mockService.UserDtoes = new List<UserDto>()
             {
                 new ()
                 {
