@@ -105,7 +105,7 @@ namespace DevQuiz.Libraries.Services
             _unitOfWork.ClearChangeTracker();
             _userRepository.Update(userEntity);
             var commitStatus = await _unitOfWork.CommitAsync(cancellationToken)
-                .ConfigureAwait(    false);
+                .ConfigureAwait(false);
             if (commitStatus.Equals(0))
                 throw new DbUpdateException($"Some error occurred white updating user with id {entryToUpdate.Id}");
             return commitStatus > 0;

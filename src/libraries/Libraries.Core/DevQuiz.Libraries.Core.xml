@@ -632,7 +632,7 @@
             <typeparam name="TUserDto">User dto for add or update</typeparam>
             <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IUserService`2.GetByChatIdAsync(System.Int32,System.Threading.CancellationToken)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IUserService`2.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
             <summary>
             Get user information by chat id
             </summary>
