@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DevQuiz.Libraries.Core.Models.Dto;
 
 namespace DevQuiz.Libraries.Core.Services
@@ -13,9 +12,9 @@ namespace DevQuiz.Libraries.Core.Services
     /// <typeparam name="TTagDto"> Generic Question Tag dto </typeparam>
     public interface ICategoryService<TCategoryDto, TQuestionDto, TAnswerDto, TTagDto>
         : IBaseService<TCategoryDto, TCategoryDto, IList<TCategoryDto>, int, bool, bool, int>
-        where TCategoryDto : CategoryDtoBase<TQuestionDto>
         where TQuestionDto : QuestionDtoBase<TAnswerDto, TCategoryDto, TTagDto>
         where TAnswerDto : AnswerDtoBase
+        where TCategoryDto : CategoryDtoBase<TQuestionDto>
         where TTagDto : TagDtoBase<TQuestionDto>
     {
     }
