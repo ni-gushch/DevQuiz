@@ -4,6 +4,29 @@
         <name>DevQuiz.Libraries.Services</name>
     </assembly>
     <members>
+        <member name="M:DevQuiz.Libraries.Services.CategoryService`10.#ctor(DevQuiz.Libraries.Core.IDevQuizUnitOfWork{`0,`1,`2,`3,`4,`5},AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.CategoryService{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9}})">
+            <summary>
+                Constructor
+            </summary>
+            <param name="unitOfWork"> Instance of UnitOfWork </param>
+            <param name="mapper"> Mapper instance </param>
+            <param name="logger"> Logger instance </param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.CategoryService`10.GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetAllAsync(System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.CategoryService`10.GetByIdAsync(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.GetByIdAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.CategoryService`10.CreateAsync(`8,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.CreateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.CategoryService`10.UpdateAsync(`8,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.CategoryService`10.DeleteAsync(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
+        </member>
         <member name="T:DevQuiz.Libraries.Services.Dto.AnswerDto">
             <summary>
             Question Answer Dto model
@@ -37,7 +60,7 @@
         <member name="T:DevQuiz.Libraries.Services.FakeUserService`7">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`2"/>
         </member>
-        <member name="P:DevQuiz.Libraries.Services.FakeUserService`7.UserDtos">
+        <member name="P:DevQuiz.Libraries.Services.FakeUserService`7.UserDtoes">
             <summary>
                 List of DTO of user.
             </summary>
@@ -58,7 +81,7 @@
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
         </member>
         <member name="M:DevQuiz.Libraries.Services.FakeUserService`7.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
-            <inheritdoc cref="!:IUserService&lt;TUserDto, TKey&gt;.GetByChatIdAsync(int, CancellationToken)" />
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IUserService`2.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)" />
         </member>
         <member name="T:DevQuiz.Libraries.Services.QuestionService`10">
             <summary>
@@ -125,7 +148,7 @@
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)" />
         </member>
         <member name="M:DevQuiz.Libraries.Services.UserService`7.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
-            <inheritdoc cref="!:IUserService&lt;TUserDto, TKey&gt;.GetByChatIdAsync(int, CancellationToken)" />
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IUserService`2.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)" />
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
             <summary>

@@ -147,6 +147,28 @@
         <member name="M:DevQuiz.TelegramBot.MediatR.Commands.StartCommand.#ctor(Telegram.Bot.Types.Message)">
             <inheritdoc />
         </member>
+        <member name="T:DevQuiz.TelegramBot.MediatR.Handlers.BaseBotCommandHandler">
+            <summary>
+                Base handler of commands for telegram bot
+            </summary>
+        </member>
+        <member name="F:DevQuiz.TelegramBot.MediatR.Handlers.BaseBotCommandHandler._logger">
+            <summary>
+                Logger
+            </summary>
+        </member>
+        <member name="F:DevQuiz.TelegramBot.MediatR.Handlers.BaseBotCommandHandler._botService">
+            <summary>
+                Bot service
+            </summary>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.BaseBotCommandHandler.#ctor(Microsoft.Extensions.Logging.ILogger,DevQuiz.TelegramBot.Interfaces.IBotService)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="logger"> Logger </param>
+            <param name="botService"> Bot service </param>
+        </member>
         <member name="T:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2">
             <summary>
                 Command "/start" handler

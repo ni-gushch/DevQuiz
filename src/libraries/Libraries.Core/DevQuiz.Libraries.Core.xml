@@ -616,6 +616,15 @@
             <param name="cancellationToken">Cancellation Token</param>
             <returns>Method execution status</returns>
         </member>
+        <member name="T:DevQuiz.Libraries.Core.Services.ICategoryService`4">
+            <summary>
+                Service for manage Question entries
+            </summary>
+            <typeparam name="TQuestionDto"> Generic Question dto </typeparam>
+            <typeparam name="TAnswerDto"> Generic Question Answer dto </typeparam>
+            <typeparam name="TCategoryDto"> Generic Question Answer dto </typeparam>
+            <typeparam name="TTagDto"> Generic Question Tag dto </typeparam>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Services.IQuestionService`4">
             <summary>
             Service for manage Question entries
