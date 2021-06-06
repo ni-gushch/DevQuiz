@@ -1,5 +1,4 @@
 ﻿using DevQuiz.Libraries.Core.Extensions;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace DevQuiz.Libraries.Core.Tests.Extensions

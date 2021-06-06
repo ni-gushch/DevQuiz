@@ -44,7 +44,7 @@ namespace DevQuiz.Libraries.Data.Tests
             var newQuestion = new Question()
             {
                 Text = "NewQuestionText",
-                CategoryId = (int)(_dbContext.Categories.FirstOrDefault()?.Id)
+                CategoryId = (int)_dbContext.Categories.FirstOrDefault()?.Id
             };
 
             //Act

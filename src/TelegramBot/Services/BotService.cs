@@ -9,8 +9,6 @@ namespace DevQuiz.TelegramBot.Services
     /// <inheritdoc cref="IBotService" />
     public class BotService : IBotService
     {
-        private readonly string _botConfiguration;
-
         /// <inheritdoc cref="IBotService.Client" />
         public TelegramBotClient Client { get; }
 
@@ -20,12 +18,12 @@ namespace DevQuiz.TelegramBot.Services
         /// <param name="botConfiguration">IOptions instance of botConfiguration</param>
         public BotService(IOptions<BotConfiguration> botConfiguration)
         {
-            var _botConfiguration = botConfiguration.Value;
+            var configurationValue = botConfiguration.Value;
 
-            Client = string.IsNullOrWhiteSpace(_botConfiguration.Socks5Host)
-                ? new TelegramBotClient(_botConfiguration.AccessToken)
-                : new TelegramBotClient(_botConfiguration.AccessToken, 
-                    new HttpToSocks5Proxy(_botConfiguration.Socks5Host, _botConfiguration.Socks5Port));
+            Client = string.IsNullOrWhiteSpace(configurationValue.Socks5Host)
+                ? new TelegramBotClient(configurationValue.AccessToken)
+                : new TelegramBotClient(configurationValue.AccessToken, 
+                    new HttpToSocks5Proxy(configurationValue.Socks5Host, configurationValue.Socks5Port));
         }
     }
 }
