@@ -119,7 +119,7 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpGet("/Categories/GetAll")]
         public async Task<ActionResult<List<CategoriesApiResult>>> GetAllCategories([FromQuery] bool includeQuestions)
         {
-            var categories = _questionService.GetAllAsync();
+            var categories = _questionService.GetAllCategoriesAsync(includeQuestions);
             var result = _mapper.Map<List<CategoriesApiResult>>(await categories);
 
             return result;
@@ -134,7 +134,7 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpGet("/Categories/GetById/{id:int}")]
         public async Task<ActionResult<QuestionApiResult>> GetCategoryById([FromRoute] int id, [FromQuery] bool includeQuestions)
         {
-            var question = _questionService.GetByIdAsync(id);
+            var question = _questionService.GetCategoryByIdAsync(id, includeQuestions);
             var result = _mapper.Map<QuestionApiResult>(await question);
 
             return result;
@@ -148,8 +148,8 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpPost("/Categories/Create")]
         public async Task<ActionResult<IdApiResult<int>>> CreateCategory([FromBody] CreateQuestionInputModel value)
         {
-            var entryDto = _mapper.Map<QuestionDto>(value);
-            var newQuestionId = _questionService.CreateAsync(entryDto);
+            var entryDto = _mapper.Map<CategoryDto>(value);
+            var newQuestionId = _questionService.CreateCategoryAsync(entryDto);
 
             return new IdApiResult<int>(await newQuestionId);
         }
@@ -162,8 +162,8 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpPut("/Categories/Update")]
         public async Task<ActionResult<ActionStatusApiResult>> UpdateCategory([FromBody] UpdateQuestionInputModel value)
         {
-            var entryDto = _mapper.Map<QuestionDto>(value);
-            var status = _questionService.UpdateAsync(entryDto);
+            var entryDto = _mapper.Map<CategoryDto>(value);
+            var status = _questionService.UpdateCategoryAsync(entryDto);
 
             return new ActionStatusApiResult(await status);
         }
@@ -176,7 +176,7 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpDelete("/Categories/Delete/{id:int}")]
         public async Task<ActionResult<ActionStatusApiResult>> DeleteCategory([FromRoute] int id)
         {
-            var status = _questionService.DeleteAsync(id);
+            var status = _questionService.DeleteCategoryAsync(id);
 
             return new ActionStatusApiResult(await status);
         }
@@ -193,7 +193,7 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpGet("/Tags/GetAll")]
         public async Task<ActionResult<List<QuestionApiResult>>> GetAllTags([FromQuery] bool includeQuestions)
         {
-            var questions = _questionService.GetAllAsync();
+            var questions = _questionService.GetAllTagsAsync(includeQuestions);
             var result = _mapper.Map<List<QuestionApiResult>>(await questions);
 
             return result;
@@ -208,7 +208,7 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpGet("/Tags/GetById/{id:int}")]
         public async Task<ActionResult<QuestionApiResult>> GetTagById([FromRoute] int id, [FromQuery] bool includeQuestions)
         {
-            var question = _questionService.GetByIdAsync(id);
+            var question = _questionService.GetTagByIdAsync(id, includeQuestions);
             var result = _mapper.Map<QuestionApiResult>(await question);
 
             return result;
@@ -222,8 +222,8 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpPost("/Tags/Create")]
         public async Task<ActionResult<IdApiResult<int>>> CreateTag([FromBody] CreateQuestionInputModel value)
         {
-            var entryDto = _mapper.Map<QuestionDto>(value);
-            var newQuestionId = _questionService.CreateAsync(entryDto);
+            var entryDto = _mapper.Map<TagDto>(value);
+            var newQuestionId = _questionService.CreateTagAsync(entryDto);
 
             return new IdApiResult<int>(await newQuestionId);
         }
@@ -236,8 +236,8 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpPut("/Tags/Update")]
         public async Task<ActionResult<ActionStatusApiResult>> UpdateTag([FromBody] UpdateQuestionInputModel value)
         {
-            var entryDto = _mapper.Map<QuestionDto>(value);
-            var status = _questionService.UpdateAsync(entryDto);
+            var entryDto = _mapper.Map<TagDto>(value);
+            var status = _questionService.UpdateTagAsync(entryDto);
 
             return new ActionStatusApiResult(await status);
         }
@@ -250,7 +250,7 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpDelete("/Tags/Delete/{id:int}")]
         public async Task<ActionResult<ActionStatusApiResult>> DeleteTag([FromRoute] int id)
         {
-            var status = _questionService.DeleteAsync(id);
+            var status = _questionService.DeleteTagAsync(id);
 
             return new ActionStatusApiResult(await status);
         }

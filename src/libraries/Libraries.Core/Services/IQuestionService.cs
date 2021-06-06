@@ -21,60 +21,86 @@ namespace DevQuiz.Libraries.Core.Services
         #region Categories
 
         /// <summary>
-        /// 
+        /// Get all categories
         /// </summary>
-        /// <returns></returns>
-        Task<List<TCategoryDto>> GetAllCategoriesAsync();
+        /// <param name="includeQuestions">Flag to include questions</param>
+        /// <returns>Categories information collection</returns>
+        Task<List<TCategoryDto>> GetAllCategoriesAsync(bool includeQuestions);
         /// <summary>
-        /// 
+        /// Get question category by id
         /// </summary>
-        /// <returns></returns>
-        Task<TCategoryDto> GetCategoryByIdAsync();
+        /// <param name="categoryId">Category unique identifier</param>
+        /// <param name="includeQuestions">Flag to include questions</param>
+        /// <returns>Question category information</returns>
+        Task<TCategoryDto> GetCategoryByIdAsync(int categoryId, bool includeQuestions);
         /// <summary>
-        /// 
+        /// Get category by name
         /// </summary>
-        /// <returns></returns>
-        Task<TCategoryDto> GetCategoryByNameAsync();
+        /// <param name="categoryName">Category name</param>
+        /// <param name="includeQuestions">Flag to include questions</param>
+        /// <returns>Information about category</returns>
+        Task<TCategoryDto> GetCategoryByNameAsync(string categoryName, bool includeQuestions);
         /// <summary>
-        /// 
+        /// Create new category entry
         /// </summary>
-        /// <returns></returns>
-        Task<int> CreateCategoryAsync();
+        /// <param name="categoryToCreate">Category new entry</param>
+        /// <returns>Unique identifier of new category</returns>
+        Task<int> CreateCategoryAsync(TCategoryDto categoryToCreate);
         /// <summary>
-        /// 
+        /// Update category information
         /// </summary>
-        /// <returns></returns>
-        Task<bool> DeleteCategoryAsync();
+        /// <param name="categoryToUpdate">Category to update</param>
+        /// <returns>Method execution status</returns>
+        Task<bool> UpdateCategoryAsync(TCategoryDto categoryToUpdate);
+        /// <summary>
+        /// Delete category from store
+        /// </summary>
+        /// <param name="categoryId">Category unique identifier</param>
+        /// <returns>Method execution status</returns>
+        Task<bool> DeleteCategoryAsync(int categoryId);
 
         #endregion
 
         #region Tags
-        
+
         /// <summary>
-        /// 
+        /// Get all tags
         /// </summary>
-        /// <returns></returns>
-        Task<List<TTagDto>> GetAllTagsAsync();
+        /// <param name="includeQuestions">Flag to include questions</param>
+        /// <returns>Tag information collection</returns>
+        Task<List<TTagDto>> GetAllTagsAsync(bool includeQuestions);
         /// <summary>
-        /// 
+        /// Get tag by id
         /// </summary>
-        /// <returns></returns>
-        Task<TTagDto> GetTagByIdAsync();
+        /// <param name="tagId">Unique identifier of tag</param>
+        /// <param name="includeQuestions">Flag to include questions</param>
+        /// <returns>Information about tag</returns>
+        Task<TTagDto> GetTagByIdAsync(int tagId, bool includeQuestions);
         /// <summary>
-        /// 
+        /// Get tag by name
         /// </summary>
-        /// <returns></returns>
-        Task<TTagDto> GetTagByNameAsync();
+        /// <param name="tagName">Name of tag</param>
+        /// <param name="includeQuestions">Flag to include questions</param>
+        /// <returns>Information about tag</returns>
+        Task<TTagDto> GetTagByNameAsync(string tagName, bool includeQuestions);
         /// <summary>
-        /// 
+        /// Create new tag entry
         /// </summary>
-        /// <returns></returns>
-        Task<int> CreateTagAsync();
+        /// <param name="tagToCreate">Tag new entry</param>
+        /// <returns>Unique identifier of new tag</returns>
+        Task<int> CreateTagAsync(TTagDto tagToCreate);
         /// <summary>
-        /// 
+        /// Update tag information
         /// </summary>
-        /// <returns></returns>
-        Task<bool> DeleteTagAsync();
+        /// <param name="tagToUpdate">Tag to update</param>
+        /// <returns>Method execution status</returns>
+        Task<bool> UpdateTagAsync(TTagDto tagToUpdate);
+        /// <summary>
+        /// Delete tag from store
+        /// </summary>
+        /// <param name="tagId">Unique identifier of tag</param>
+        /// <returns>Method execution status</returns>
+        Task<bool> DeleteTagAsync(int tagId);
 
         #endregion
     }

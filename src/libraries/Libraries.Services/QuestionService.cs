@@ -85,6 +85,8 @@ namespace DevQuiz.Libraries.Services
                         .Include(it => it.Tags),
                     cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
+            if (questionEntity == null)
+                throw new Exception($"{typeof(TQuestion).Name} with id {questionId} not found in store");
             return _mapper.Map<TQuestionDto>(questionEntity);
         }
 
@@ -137,31 +139,37 @@ namespace DevQuiz.Libraries.Services
         #region Categories
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetAllCategoriesAsync"/>
-        public async Task<List<TCategoryDto>> GetAllCategoriesAsync()
+        public async Task<List<TCategoryDto>> GetAllCategoriesAsync(bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetCategoryByIdAsync"/>
-        public async Task<TCategoryDto> GetCategoryByIdAsync()
+        public async Task<TCategoryDto> GetCategoryByIdAsync(int categoryId, bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetCategoryByNameAsync"/>
-        public async Task<TCategoryDto> GetCategoryByNameAsync()
+        public async Task<TCategoryDto> GetCategoryByNameAsync(string categoryName, bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.CreateCategoryAsync"/>
-        public async Task<int> CreateCategoryAsync()
+        public async Task<int> CreateCategoryAsync(TCategoryDto categoryToAdd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.UpdateCategoryAsync"/>
+        public async Task<bool> UpdateCategoryAsync(TCategoryDto categoryToUpdate)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.DeleteCategoryAsync"/>
-        public async Task<bool> DeleteCategoryAsync()
+        public async Task<bool> DeleteCategoryAsync(int categoryId)
         {
             throw new NotImplementedException();
         }
@@ -171,31 +179,37 @@ namespace DevQuiz.Libraries.Services
         #region Tags
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetAllTagsAsync"/>
-        public async Task<List<TTagDto>> GetAllTagsAsync()
+        public async Task<List<TTagDto>> GetAllTagsAsync(bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetTagByIdAsync"/>
-        public async Task<TTagDto> GetTagByIdAsync()
+        public async Task<TTagDto> GetTagByIdAsync(int tagId, bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetTagByNameAsync"/>
-        public async Task<TTagDto> GetTagByNameAsync()
+        public async Task<TTagDto> GetTagByNameAsync(string tagName, bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.CreateTagAsync"/>
-        public async Task<int> CreateTagAsync()
+        public async Task<int> CreateTagAsync(TTagDto tagToAdd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.UpdateCategoryAsync"/>
+        public async Task<bool> UpdateTagAsync(TTagDto tagToUpdate)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.DeleteTagAsync"/>
-        public async Task<bool> DeleteTagAsync()
+        public async Task<bool> DeleteTagAsync(int tagId)
         {
             throw new NotImplementedException();
         }
