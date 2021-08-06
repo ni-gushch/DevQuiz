@@ -1,18 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace DevQuiz.TelegramBot.Constants
+﻿namespace DevQuiz.TelegramBot.Constants
 {
     /// <summary>
     /// Names of typed https clients
     /// </summary>
-    public static class TypedHttpClients
+    internal static class TypedHttpClients
     {
         /// <summary>
         /// Telegram api http client name
         /// </summary>
-        public const string TelegramApi = "TelegramApi";
+        public static TypedHttpClientInformation TelegramApi = new ("TelegramApi", "https://api.telegram.org");
     }
+
+    /// <summary>
+    /// Record that represent a typed http client
+    /// </summary>
+    internal record TypedHttpClientInformation(string ClientName, string Address)
+    {
+        /// <summary>
+        /// Get string from client
+        /// </summary>
+        /// <returns>Http client name</returns>
+        public override string ToString()
+        {
+            return ClientName;
+        }
+    };
 }

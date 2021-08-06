@@ -98,6 +98,42 @@
         <member name="M:DevQuiz.Libraries.Services.QuestionService`10.DeleteAsync(System.Int32,System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
         </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.GetAllCategoriesAsync(System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetAllCategoriesAsync(System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.GetCategoryByIdAsync(System.Int32,System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetCategoryByIdAsync(System.Int32,System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.GetCategoryByNameAsync(System.String,System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetCategoryByNameAsync(System.String,System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.CreateCategoryAsync(`8)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.CreateCategoryAsync(`2)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.UpdateCategoryAsync(`8)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.UpdateCategoryAsync(`2)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.DeleteCategoryAsync(System.Int32)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.DeleteCategoryAsync(System.Int32)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.GetAllTagsAsync(System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetAllTagsAsync(System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.GetTagByIdAsync(System.Int32,System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetTagByIdAsync(System.Int32,System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.GetTagByNameAsync(System.String,System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetTagByNameAsync(System.String,System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.CreateTagAsync(`9)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.CreateTagAsync(`3)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.UpdateTagAsync(`9)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.UpdateCategoryAsync(`2)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.QuestionService`10.DeleteTagAsync(System.Int32)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.DeleteTagAsync(System.Int32)"/>
+        </member>
         <member name="T:DevQuiz.Libraries.Services.UserService`7">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`2" />
         </member>

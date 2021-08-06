@@ -26,7 +26,7 @@ namespace DevQuiz.Libraries.Services
     /// <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
     /// <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
     /// <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
-    public class QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey, 
+    public class QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey,
         TQuestionDto, TAnswerDto, TCategoryDto, TTagDto> : IQuestionService<TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>
         where TUser : UserBase<TUserKey>
         where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
@@ -63,9 +63,16 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetAllAsync" />
-        public Task<IList<TQuestionDto>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IList<TQuestionDto>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var questions = _unitOfWork.QuestionRepository
+                .ListAsync(include: include => include.Include(it => it.Answers)
+                        .Include(it => it.Category)
+                        .Include(it => it.Tags),
+                    cancellationToken: cancellationToken)
+                .ConfigureAwait(false);
+
+            return _mapper.Map<List<TQuestionDto>>(await questions);
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetByIdAsync" />
@@ -73,47 +80,140 @@ namespace DevQuiz.Libraries.Services
         {
             var questionEntity = await _unitOfWork.QuestionRepository
                 .GetOneAsync(predicate: it => it.Id.Equals(questionId),
-                    include: quest => quest.Include(it => it.Answers),
+                    include: quest => quest.Include(it => it.Answers)
+                        .Include(it => it.Category)
+                        .Include(it => it.Tags),
                     cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
+            if (questionEntity == null)
+                throw new Exception($"{typeof(TQuestion).Name} with id {questionId} not found in store");
             return _mapper.Map<TQuestionDto>(questionEntity);
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.CreateAsync" />
-        public Task<int> CreateAsync(TQuestionDto entryToAdd, CancellationToken cancellationToken = default)
+        public async Task<int> CreateAsync(TQuestionDto entryToAdd, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var questionEntity = _mapper.Map<TQuestion>(entryToAdd);
+            await _unitOfWork.QuestionRepository.CreateAsync(questionEntity, cancellationToken);
+            var commitStatus = await _unitOfWork.CommitAsync(cancellationToken);
+            if (commitStatus == 0)
+                throw new Exception("Error while creating new Question");
+            return questionEntity.Id;
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.UpdateAsync" />
-        public Task<bool> UpdateAsync(TQuestionDto entryToUpdate, CancellationToken cancellationToken = default)
+        public async Task<bool> UpdateAsync(TQuestionDto entryToUpdate, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var entityToUpdate = _mapper.Map<TQuestion>(entryToUpdate);
+            var entityInDb = await _unitOfWork.QuestionRepository.GetOneAsync(it => it.Id.Equals(entityToUpdate.Id),
+                    include: inc => inc.Include(it => it.Answers)
+                        .Include(it => it.Category)
+                        .Include(it => it.Tags),
+                    cancellationToken: cancellationToken)
+                .ConfigureAwait(false);
+            if (entityInDb == null)
+                throw new Exception($"{typeof(TQuestion).Name} with id {entityToUpdate.Id} not found in store");
+            _mapper.Map(entryToUpdate, entityInDb);
+            _unitOfWork.QuestionRepository.Update(entityInDb);
+            var commitStatus = await _unitOfWork.CommitAsync(cancellationToken);
+            return commitStatus > 0;
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.DeleteAsync" />
-        public Task<bool> DeleteAsync(int idDto, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteAsync(int idDto, CancellationToken cancellationToken = default)
+        {
+            var entityInDb = await _unitOfWork.QuestionRepository.GetOneAsync(it => it.Id.Equals(idDto),
+                    include: inc => inc.Include(it => it.Answers)
+                        .Include(it => it.Category)
+                        .Include(it => it.Tags),
+                    cancellationToken: cancellationToken)
+                .ConfigureAwait(false);
+            if (entityInDb == null)
+                throw new Exception($"{typeof(TQuestion).Name} with id {idDto} not found in store");
+            
+            _unitOfWork.QuestionRepository.Delete(entityInDb);
+            var commitStatus = await _unitOfWork.CommitAsync(cancellationToken);
+            return commitStatus > 0;
+        }
+
+        #region Categories
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetAllCategoriesAsync"/>
+        public async Task<List<TCategoryDto>> GetAllCategoriesAsync(bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<List<TQuestionDto>> GetByCategoryIdAsync(int categoryId,
-            CancellationToken cancellationToken = default)
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetCategoryByIdAsync"/>
+        public async Task<TCategoryDto> GetCategoryByIdAsync(int categoryId, bool includeQuestions)
         {
-            var questions = await _unitOfWork.QuestionRepository
-                .ListAsync(predicate: it => it.CategoryId.Equals(categoryId), 
-                    include: quest => quest.Include(it => it.Answers),
-                    cancellationToken: cancellationToken)
-                .ConfigureAwait(false);
-            return _mapper.Map<List<TQuestionDto>>(questions);
+            throw new NotImplementedException();
         }
 
-        public async Task<List<TCategoryDto>> GetCategoriesAsync(CancellationToken cancellationToken = default)
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetCategoryByNameAsync"/>
+        public async Task<TCategoryDto> GetCategoryByNameAsync(string categoryName, bool includeQuestions)
         {
-            var categories = await _unitOfWork.CategoryRepository
-                .ListAsync(cancellationToken: cancellationToken)
-                .ConfigureAwait(false);
-            return _mapper.Map<List<TCategoryDto>>(categories);
+            throw new NotImplementedException();
         }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.CreateCategoryAsync"/>
+        public async Task<int> CreateCategoryAsync(TCategoryDto categoryToAdd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.UpdateCategoryAsync"/>
+        public async Task<bool> UpdateCategoryAsync(TCategoryDto categoryToUpdate)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.DeleteCategoryAsync"/>
+        public async Task<bool> DeleteCategoryAsync(int categoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region Tags
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetAllTagsAsync"/>
+        public async Task<List<TTagDto>> GetAllTagsAsync(bool includeQuestions)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetTagByIdAsync"/>
+        public async Task<TTagDto> GetTagByIdAsync(int tagId, bool includeQuestions)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetTagByNameAsync"/>
+        public async Task<TTagDto> GetTagByNameAsync(string tagName, bool includeQuestions)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.CreateTagAsync"/>
+        public async Task<int> CreateTagAsync(TTagDto tagToAdd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.UpdateCategoryAsync"/>
+        public async Task<bool> UpdateTagAsync(TTagDto tagToUpdate)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.DeleteTagAsync"/>
+        public async Task<bool> DeleteTagAsync(int tagId)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

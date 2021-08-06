@@ -338,17 +338,6 @@
             Update Date
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Entities.IHasKey`1">
-            <summary>
-            Generic interface for entities whitch has a unique key
-            </summary>
-            <typeparam name="TKey">Unique key type</typeparam>
-        </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.IHasKey`1.Id">
-            <summary>
-            Unique key
-            </summary>
-        </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3">
             <summary>
             Base question model
@@ -427,6 +416,17 @@
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.UserBase`1.TelegramChatId">
             <summary>
             Unique identifier of telegram chat for current user
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.IHasKey`1">
+            <summary>
+            Generic interface for entries which has a unique key
+            </summary>
+            <typeparam name="TKey">Unique key type</typeparam>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.IHasKey`1.Id">
+            <summary>
+            Unique key
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Repositories.IGenericRepository`1">
@@ -624,6 +624,94 @@
             <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
             <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
             <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetAllCategoriesAsync(System.Boolean)">
+            <summary>
+            Get all categories
+            </summary>
+            <param name="includeQuestions">Flag to include questions</param>
+            <returns>Categories information collection</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetCategoryByIdAsync(System.Int32,System.Boolean)">
+            <summary>
+            Get question category by id
+            </summary>
+            <param name="categoryId">Category unique identifier</param>
+            <param name="includeQuestions">Flag to include questions</param>
+            <returns>Question category information</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetCategoryByNameAsync(System.String,System.Boolean)">
+            <summary>
+            Get category by name
+            </summary>
+            <param name="categoryName">Category name</param>
+            <param name="includeQuestions">Flag to include questions</param>
+            <returns>Information about category</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.CreateCategoryAsync(`2)">
+            <summary>
+            Create new category entry
+            </summary>
+            <param name="categoryToCreate">Category new entry</param>
+            <returns>Unique identifier of new category</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.UpdateCategoryAsync(`2)">
+            <summary>
+            Update category information
+            </summary>
+            <param name="categoryToUpdate">Category to update</param>
+            <returns>Method execution status</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.DeleteCategoryAsync(System.Int32)">
+            <summary>
+            Delete category from store
+            </summary>
+            <param name="categoryId">Category unique identifier</param>
+            <returns>Method execution status</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetAllTagsAsync(System.Boolean)">
+            <summary>
+            Get all tags
+            </summary>
+            <param name="includeQuestions">Flag to include questions</param>
+            <returns>Tag information collection</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetTagByIdAsync(System.Int32,System.Boolean)">
+            <summary>
+            Get tag by id
+            </summary>
+            <param name="tagId">Unique identifier of tag</param>
+            <param name="includeQuestions">Flag to include questions</param>
+            <returns>Information about tag</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetTagByNameAsync(System.String,System.Boolean)">
+            <summary>
+            Get tag by name
+            </summary>
+            <param name="tagName">Name of tag</param>
+            <param name="includeQuestions">Flag to include questions</param>
+            <returns>Information about tag</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.CreateTagAsync(`3)">
+            <summary>
+            Create new tag entry
+            </summary>
+            <param name="tagToCreate">Tag new entry</param>
+            <returns>Unique identifier of new tag</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.UpdateTagAsync(`3)">
+            <summary>
+            Update tag information
+            </summary>
+            <param name="tagToUpdate">Tag to update</param>
+            <returns>Method execution status</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.DeleteTagAsync(System.Int32)">
+            <summary>
+            Delete tag from store
+            </summary>
+            <param name="tagId">Unique identifier of tag</param>
+            <returns>Method execution status</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Services.IUserService`2">
             <summary>

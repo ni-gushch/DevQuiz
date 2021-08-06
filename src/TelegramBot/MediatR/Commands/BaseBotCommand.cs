@@ -22,6 +22,6 @@ namespace DevQuiz.TelegramBot.MediatR.Commands
         ///     Constructor
         /// </summary>
         /// <param name="message"> Message </param>
-        public BaseBotCommand(Message message) => Message = message;
+        protected BaseBotCommand(Message message) => Message = message;
     }
 }

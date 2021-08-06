@@ -1,12 +1,6 @@
-using System;
-using System.Data;
-using System.Threading;
-using System.Threading.Tasks;
 using DevQuiz.Libraries.Core.Extensions;
-using DevQuiz.Libraries.Core.Repositories;
 using DevQuiz.Libraries.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DevQuiz.Libraries.Data.DbContexts
 {

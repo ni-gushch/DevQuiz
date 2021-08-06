@@ -53,7 +53,7 @@ namespace DevQuiz.TelegramBot.Controllers
         public async Task<ActionResult<SetWebHookApiResult>> SetWebHook([FromBody] SetWebHookInputModel value)
         {
             _logger.LogDebug($"Creating typed HttpClient for type {TypedHttpClients.TelegramApi}");
-            var client = _httpClientFactory.CreateClient(TypedHttpClients.TelegramApi);
+            var client = _httpClientFactory.CreateClient(TypedHttpClients.TelegramApi.ToString());
             var requestContent = new FormUrlEncodedContent(new []
             {
                 new KeyValuePair<string, string>("url", value.WebHookUri) 

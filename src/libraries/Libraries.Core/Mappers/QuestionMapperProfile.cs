@@ -34,10 +34,14 @@ namespace DevQuiz.Libraries.Core.Mappers
             /*---------------*/
             /* Entity to Dto */
             /*---------------*/
-            CreateMap<TQuestion, TQuestionDto>(MemberList.Destination);
-            CreateMap<TAnswer, TAnswerDto>(MemberList.Destination);
-            CreateMap<TCategory, TCategoryDto>(MemberList.Destination);
-            CreateMap<TTag, TTagDto>(MemberList.Destination);
+            CreateMap<TQuestion, TQuestionDto>(MemberList.Destination)
+                .ReverseMap();
+            CreateMap<TAnswer, TAnswerDto>(MemberList.Destination)
+                .ReverseMap();
+            CreateMap<TCategory, TCategoryDto>(MemberList.Destination)
+                .ReverseMap();
+            CreateMap<TTag, TTagDto>(MemberList.Destination)
+                .ReverseMap();
 
             /*---------------*/
             /* Dto to Entity */

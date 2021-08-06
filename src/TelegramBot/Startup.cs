@@ -62,20 +62,19 @@ namespace DevQuiz.TelegramBot
             services.AddAutoMapper(config =>
             {
                 config.AddProfile<UserMapperProfile<User, UserDto, Guid>>();
-                config.AddProfile<QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>>();
+                config
+                    .AddProfile<
+                        QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto,
+                            TagDto>>();
                 config.AddProfile<UserBotMapperProfile<UserDto, Guid>>();
+                config.AddProfile<QuestionsAdminApiMapperProfile>();
             });
 
             services.AddHttpClient();
-            services.AddHttpClient(TypedHttpClients.TelegramApi, it =>
-            {
-                it.BaseAddress = new Uri("https://api.telegram.org");
-            });
+            services.AddHttpClient(TypedHttpClients.TelegramApi.ClientName,
+                it => { it.BaseAddress = new Uri(TypedHttpClients.TelegramApi.Address); });
 
-            services.AddSwaggerGen(options =>
-            {
-
-            }).ConfigureSwaggerGen(options =>
+            services.AddSwaggerGen(options => { }).ConfigureSwaggerGen(options =>
             {
                 options.CustomSchemaIds(x => x.FullName);
                 options.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(), "DevQuiz.TelegramBot.xml"));
@@ -84,7 +83,7 @@ namespace DevQuiz.TelegramBot
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            services.AddSingleton<IBotService, BotService>()
+        services.AddSingleton<IBotService, BotService>()
                 .AddScoped<IBotMessageService, BotMessageService>()
                 .AddScoped<IRequestHandler<StartCommand, Unit>, StartCommandHandler<UserDto, Guid>>();
 
