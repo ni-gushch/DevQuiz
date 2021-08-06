@@ -9,6 +9,7 @@ using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Models.ApiResults;
 using DevQuiz.TelegramBot.Models.InputModels;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -23,6 +24,7 @@ namespace DevQuiz.TelegramBot.Controllers
     public class AdminController : Controller
     {
         private readonly IQuestionService<QuestionDto, AnswerDto, CategoryDto, TagDto> _questionService;
+        private readonly IMediator _mediator;
         private readonly IMapper _mapper;
         private readonly ILogger<AdminController> _logger;
 
@@ -30,12 +32,15 @@ namespace DevQuiz.TelegramBot.Controllers
         /// Constructor
         /// </summary>
         /// <param name="questionService">Question service instance</param>
+        /// <param name="mediator"><see cref="IMediator"/> instance</param>
         /// <param name="mapper">Mapper instance</param>
         /// <param name="logger">Logger instance</param>
         public AdminController(IQuestionService<QuestionDto, AnswerDto, CategoryDto, TagDto> questionService,
+            IMediator mediator,
             IMapper mapper,
             ILogger<AdminController> logger = null)
         {
+            _mediator = mediator;
             _questionService = questionService;
             _mapper = mapper;
             _logger = logger ?? NullLogger<AdminController>.Instance;

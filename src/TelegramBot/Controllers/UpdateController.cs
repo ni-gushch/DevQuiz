@@ -19,11 +19,11 @@ namespace DevQuiz.TelegramBot.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="botMeggaseService">Service for manage bot messages</param>
+        /// <param name="botMessageService">Service for manage bot messages</param>
         /// <param name="logger">Logger instance</param>
-        public UpdateController(IBotMessageService botMeggaseService, ILogger<UpdateController> logger = null)
+        public UpdateController(IBotMessageService botMessageService, ILogger<UpdateController> logger = null)
         {
-            _botMessageService = botMeggaseService;
+            _botMessageService = botMessageService;
             _logger = logger ?? NullLogger<UpdateController>.Instance;
         }
 
