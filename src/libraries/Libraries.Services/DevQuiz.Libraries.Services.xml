@@ -4,6 +4,99 @@
         <name>DevQuiz.Libraries.Services</name>
     </assembly>
     <members>
+        <member name="T:DevQuiz.Libraries.Services.BaseHandler`2">
+            <summary>
+            Base abstract handler
+            </summary>
+            <typeparam name="TRequest">Type of handler request</typeparam>
+            <typeparam name="TResponse">Type of handler response</typeparam>
+        </member>
+        <member name="P:DevQuiz.Libraries.Services.BaseHandler`2.Logger">
+            <summary>
+            Logger
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Services.BaseHandler`2.Mapper">
+            <summary>
+            Mapper object
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.BaseHandler`2.#ctor(AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Base constructor
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.BaseHandler`2.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Method for handle command/query
+            </summary>
+            <param name="request">Request instance</param>
+            <param name="cancellationToken">Instance of type <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Response of executed handler</returns>
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.BaseHandler`1">
+            <summary>
+            Base abstract handler
+            </summary>
+            <typeparam name="TRequest">Type of handler request</typeparam>
+        </member>
+        <member name="P:DevQuiz.Libraries.Services.BaseHandler`1.Logger">
+            <summary>
+            Logger
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Services.BaseHandler`1.Mapper">
+            <summary>
+            Mapper object
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.BaseHandler`1.#ctor(AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Base constructor
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.BaseHandler`1.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Method for handle command/query
+            </summary>
+            <param name="request">Request instance</param>
+            <param name="cancellationToken">Instance of type <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Response of executed handler</returns>
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Commands.CreateQuestion.CreateQuestionCommandResponse">
+            <summary>
+            Create question command response
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Services.Commands.CreateQuestion.CreateQuestionCommandResponse.Id">
+            <summary>
+            Identifier of new Question
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Commands.DeleteQuestionCommand">
+            <summary>
+            Command for delete question action
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Services.Commands.DeleteQuestionCommand.Id">
+            <summary>
+            Identifier of deleted question
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Commands.UpdateQuestionCommand">
+            <summary>
+            Command for update question action 
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Services.Commands.UpdateQuestionCommand.Id">
+            <summary>
+            Identifier of question for update
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Services.Dto.AnswerDto">
             <summary>
             Question Answer Dto model
@@ -37,7 +130,7 @@
         <member name="T:DevQuiz.Libraries.Services.FakeUserService`7">
             <inheritdoc cref="T:DevQuiz.Libraries.Core.Services.IUserService`2"/>
         </member>
-        <member name="P:DevQuiz.Libraries.Services.FakeUserService`7.UserDtos">
+        <member name="P:DevQuiz.Libraries.Services.FakeUserService`7.UserDtoes">
             <summary>
                 List of DTO of user.
             </summary>
@@ -58,7 +151,60 @@
             <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
         </member>
         <member name="M:DevQuiz.Libraries.Services.FakeUserService`7.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
-            <inheritdoc cref="!:IUserService&lt;TUserDto, TKey&gt;.GetByChatIdAsync(int, CancellationToken)" />
+            <inheritdoc cref="M:DevQuiz.Libraries.Core.Services.IUserService`2.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)" />
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Handlers.Admin.CreateQuestionCommandHandler`6">
+            <summary>
+            Handler for action on create question
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.CreateQuestionCommandHandler`6.#ctor(AutoMapper.IMapper,DevQuiz.Libraries.Core.IDevQuizUnitOfWork{`0,`1,`2,`3,`4,`5},Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.Handlers.Admin.CreateQuestionCommandHandler{`0,`1,`2,`3,`4,`5}})">
+            <summary>
+            Constructor with parameters
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="unitOfWork">Instance of <see cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.CreateQuestionCommandHandler`6.Handle(DevQuiz.Libraries.Services.Commands.CreateQuestion.CreateQuestionCommand,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Services.Handlers.Admin.CreateQuestionCommandHandler`6.Handle(DevQuiz.Libraries.Services.Commands.CreateQuestion.CreateQuestionCommand,System.Threading.CancellationToken)"/> 
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Handlers.Admin.DeleteQuestionCommandHandler`6">
+            <summary>
+            Handler for delete question action
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.DeleteQuestionCommandHandler`6.#ctor(AutoMapper.IMapper,DevQuiz.Libraries.Core.IDevQuizUnitOfWork{`0,`1,`2,`3,`4,`5},Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.Handlers.Admin.CreateQuestionCommandHandler{`0,`1,`2,`3,`4,`5}})">
+            <summary>
+            Constructor with params
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="unitOfWork">Instance of <see cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`2"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.DeleteQuestionCommandHandler`6.Handle(DevQuiz.Libraries.Services.Commands.DeleteQuestionCommand,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Services.Handlers.Admin.DeleteQuestionCommandHandler`6.Handle(DevQuiz.Libraries.Services.Commands.DeleteQuestionCommand,System.Threading.CancellationToken)"/> 
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Handlers.Admin.UpdateQuestionCommandHandler`6">
+            <summary>
+            Handler for update question action
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.UpdateQuestionCommandHandler`6.#ctor(AutoMapper.IMapper,DevQuiz.Libraries.Core.IDevQuizUnitOfWork{`0,`1,`2,`3,`4,`5},Microsoft.Extensions.Logging.ILogger{DevQuiz.Libraries.Services.Handlers.Admin.UpdateQuestionCommandHandler{`0,`1,`2,`3,`4,`5}})">
+            <summary>
+            Constructor with params
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="unitOfWork">Instance of <see cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`2"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.UpdateQuestionCommandHandler`6.Handle(DevQuiz.Libraries.Services.Commands.UpdateQuestionCommand,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Services.Handlers.Admin.UpdateQuestionCommandHandler`6.Handle(DevQuiz.Libraries.Services.Commands.UpdateQuestionCommand,System.Threading.CancellationToken)"/> 
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.MapperProfiles.DevQuizBusinessLogicMapperProfile`4">
+            <summary>
+            Mapper profile for business logic layer
+            </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Services.QuestionService`10">
             <summary>

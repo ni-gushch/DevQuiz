@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Models.Dto;
 using DevQuiz.Libraries.Core.Services;
 using DevQuiz.Libraries.Services;
+using DevQuiz.Libraries.Services.Handlers.Admin;
+using DevQuiz.Libraries.Services.MapperProfiles;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -48,6 +52,38 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddScoped<IQuestionService<TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>, 
                 QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey, TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>>();
 
+            return services;
+        }
+
+        public static IServiceCollection AddDevQuizMediatrServices(this IServiceCollection services,
+            IEnumerable<Assembly> additionalMediatrAssemblies = null)
+        {
+            var assembliesForMediatr = new List<Assembly>()
+            {
+                typeof(CreateQuestionCommandHandler<,,,,,>).Assembly
+            };
+            if(additionalMediatrAssemblies != null)
+                assembliesForMediatr.AddRange(additionalMediatrAssemblies);
+
+            services.AddMediatR(assembliesForMediatr, opt =>
+            {
+                
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddDevQuizMapperServices<TQuestion, TAnswer, TCategory, TTag>(this IServiceCollection services)
+            where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
+            where TAnswer : AnswerBase
+            where TCategory : CategoryBase<TQuestion>
+            where TTag : TagBase<TQuestion>
+        {
+            services.AddAutoMapper(opt =>
+            {
+                opt.AddMaps(typeof(DevQuizBusinessLogicMapperProfile<TQuestion, TAnswer, TCategory, TTag>).Assembly);
+            });
+            
             return services;
         }
     }

@@ -65,11 +65,12 @@
             Controller for manage Questions Tags and Categories of DevQuiz
             </summary>
         </member>
-        <member name="M:DevQuiz.TelegramBot.Controllers.AdminController.#ctor(DevQuiz.Libraries.Core.Services.IQuestionService{DevQuiz.Libraries.Services.Dto.QuestionDto,DevQuiz.Libraries.Services.Dto.AnswerDto,DevQuiz.Libraries.Services.Dto.CategoryDto,DevQuiz.Libraries.Services.Dto.TagDto},AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Controllers.AdminController})">
+        <member name="M:DevQuiz.TelegramBot.Controllers.AdminController.#ctor(DevQuiz.Libraries.Core.Services.IQuestionService{DevQuiz.Libraries.Services.Dto.QuestionDto,DevQuiz.Libraries.Services.Dto.AnswerDto,DevQuiz.Libraries.Services.Dto.CategoryDto,DevQuiz.Libraries.Services.Dto.TagDto},MediatR.IMediator,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Controllers.AdminController})">
             <summary>
             Constructor
             </summary>
             <param name="questionService">Question service instance</param>
+            <param name="mediator"><see cref="T:MediatR.IMediator"/> instance</param>
             <param name="mapper">Mapper instance</param>
             <param name="logger">Logger instance</param>
         </member>
@@ -207,7 +208,7 @@
             <summary>
             Constructor
             </summary>
-            <param name="botMeggaseService">Service for manage bot messages</param>
+            <param name="botMessageService">Service for manage bot messages</param>
             <param name="logger">Logger instance</param>
         </member>
         <member name="M:DevQuiz.TelegramBot.Controllers.UpdateController.Post(Telegram.Bot.Types.Update)">

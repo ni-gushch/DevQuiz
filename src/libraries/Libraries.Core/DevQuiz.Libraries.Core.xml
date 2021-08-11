@@ -26,45 +26,6 @@
             <param name="input"> Format string. </param>
             <returns> Formatted string. </returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.IUnitOfWork">
-            <summary>
-            Unit of work interface
-            </summary>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.Commit">
-            <summary>
-            Save all changes
-            </summary>
-            <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.CommitAsync(System.Threading.CancellationToken)">
-            <summary>
-            Save all changes
-            </summary>
-            <param name="cancellationToken">Token for cancel operation</param>
-            <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.ClearChangeTracker">
-            <summary>
-            Clear db context tracker
-            <remarks>Need if you don't want Dispose DbContext but want change tracked elements</remarks>
-            </summary>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.GetBaseRepository``1">
-            <summary>
-            Get base repository instance
-            </summary>
-            <typeparam name="TEntity">Type of TEntity</typeparam>
-            <returns>Base repository instance</returns>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.GetRepository``2">
-            <summary>
-            Get instance of concrete repository
-            </summary>
-            <typeparam name="TRepository">Type of repository</typeparam>
-            <typeparam name="TEntity">Type of TEntity</typeparam>
-            <returns>Concrete repository instance</returns>
-        </member>
         <member name="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6">
             <summary>
             DevQuiz UnitOfWork
@@ -112,6 +73,45 @@
             <summary>
             User repository
             </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.IUnitOfWork">
+            <summary>
+            Unit of work interface
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.Commit">
+            <summary>
+            Save all changes
+            </summary>
+            <returns>Operation status</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.CommitAsync(System.Threading.CancellationToken)">
+            <summary>
+            Save all changes
+            </summary>
+            <param name="cancellationToken">Token for cancel operation</param>
+            <returns>Operation status</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.ClearChangeTracker">
+            <summary>
+            Clear db context tracker
+            <remarks>Need if you don't want Dispose DbContext but want change tracked elements</remarks>
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.GetBaseRepository``1">
+            <summary>
+            Get base repository instance
+            </summary>
+            <typeparam name="TEntity">Type of TEntity</typeparam>
+            <returns>Base repository instance</returns>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.IUnitOfWork.GetRepository``2">
+            <summary>
+            Get instance of concrete repository
+            </summary>
+            <typeparam name="TRepository">Type of repository</typeparam>
+            <typeparam name="TEntity">Type of TEntity</typeparam>
+            <returns>Concrete repository instance</returns>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Mappers.QuestionMapperProfile`8">
             <summary>

@@ -15,4 +15,8 @@
     <ProjectReference Include="../Libraries.Core/Libraries.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Queries\GetQuestionById" />
+  </ItemGroup>
+
 </Project>

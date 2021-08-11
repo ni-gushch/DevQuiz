@@ -30,6 +30,7 @@ namespace DevQuiz.TelegramBot
         /// Configuration of web application
         /// </summary>
         public IConfiguration Configuration { get; }
+
         /// <summary>
         /// Application web host environment
         /// </summary>
@@ -62,10 +63,8 @@ namespace DevQuiz.TelegramBot
             services.AddAutoMapper(config =>
             {
                 config.AddProfile<UserMapperProfile<User, UserDto, Guid>>();
-                config
-                    .AddProfile<
-                        QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto,
-                            TagDto>>();
+                config.AddProfile<QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto,
+                    CategoryDto, TagDto>>();
                 config.AddProfile<UserBotMapperProfile<UserDto, Guid>>();
                 config.AddProfile<QuestionsAdminApiMapperProfile>();
             });
@@ -81,9 +80,9 @@ namespace DevQuiz.TelegramBot
             });
             services.AddSwaggerGenNewtonsoftSupport();
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddDevQuizMediatrServices(new[] {Assembly.GetExecutingAssembly()});
 
-        services.AddSingleton<IBotService, BotService>()
+            services.AddSingleton<IBotService, BotService>()
                 .AddScoped<IBotMessageService, BotMessageService>()
                 .AddScoped<IRequestHandler<StartCommand, Unit>, StartCommandHandler<UserDto, Guid>>();
 
@@ -113,10 +112,7 @@ namespace DevQuiz.TelegramBot
             app.UseRouting();
             app.UseCors();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

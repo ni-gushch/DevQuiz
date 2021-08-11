@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using DevQuiz.Libraries.Core;
 using DevQuiz.Libraries.Core.Services;
-using DevQuiz.Libraries.Data.Models;
+using DevQuiz.Libraries.Services.Commands.CreateQuestion;
 using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Models.ApiResults;
 using DevQuiz.TelegramBot.Models.InputModels;
@@ -81,10 +78,11 @@ namespace DevQuiz.TelegramBot.Controllers
         [HttpPost("/Questions/Create")]
         public async Task<ActionResult<IdApiResult<int>>> CreateQuestion([FromBody] CreateQuestionInputModel value)
         {
-            var entryDto = _mapper.Map<QuestionDto>(value);
-            var newQuestionId = _questionService.CreateAsync(entryDto);
-
-            return new IdApiResult<int>(await newQuestionId);
+            var createCommand = _mapper.Map<CreateQuestionCommand>(value);
+            
+            var result = await _mediator.Send(createCommand);
+            
+            return new IdApiResult<int>(result.Id);
         }
 
         /// <summary>
