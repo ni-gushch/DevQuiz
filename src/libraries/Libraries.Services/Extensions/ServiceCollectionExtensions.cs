@@ -73,6 +73,15 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
+        /// <summary>
+        /// Register AutoMapping services for DevQuiz 
+        /// </summary>
+        /// <param name="services">Instance of <see cref="IServiceCollection"/></param>
+        /// <typeparam name="TQuestion">Concrete type of Question</typeparam>
+        /// <typeparam name="TAnswer">Concrete type of Answer</typeparam>
+        /// <typeparam name="TCategory">Concrete type of Category</typeparam>
+        /// <typeparam name="TTag">Concrete type of Tag</typeparam>
+        /// <returns>Original instance of <see cref="IServiceCollection"/></returns>
         public static IServiceCollection AddDevQuizMapperServices<TQuestion, TAnswer, TCategory, TTag>(this IServiceCollection services)
             where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
             where TAnswer : AnswerBase

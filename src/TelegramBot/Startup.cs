@@ -1,18 +1,10 @@
 using System;
-using System.IO;
 using System.Reflection;
-using DevQuiz.Libraries.Core.Mappers;
 using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Constants;
 using DevQuiz.TelegramBot.Extensions;
-using DevQuiz.TelegramBot.Interfaces;
-using DevQuiz.TelegramBot.Mappers;
-using DevQuiz.TelegramBot.MediatR.Commands;
-using DevQuiz.TelegramBot.MediatR.Handlers;
-using DevQuiz.TelegramBot.Services;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,12 +21,12 @@ namespace DevQuiz.TelegramBot
         /// <summary>
         /// Configuration of web application
         /// </summary>
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         /// <summary>
         /// Application web host environment
         /// </summary>
-        public IWebHostEnvironment WebHostEnvironment { get; }
+        private IWebHostEnvironment WebHostEnvironment { get; }
 
         /// <summary>
         /// Constructor
@@ -60,31 +52,18 @@ namespace DevQuiz.TelegramBot
             services.AddDevQuizServices<User, UserDto, Guid,
                 Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>();
 
-            services.AddAutoMapper(config =>
-            {
-                config.AddProfile<UserMapperProfile<User, UserDto, Guid>>();
-                config.AddProfile<QuestionMapperProfile<Question, Answer, Category, Tag, QuestionDto, AnswerDto,
-                    CategoryDto, TagDto>>();
-                config.AddProfile<UserBotMapperProfile<UserDto, Guid>>();
-                config.AddProfile<QuestionsAdminApiMapperProfile>();
-            });
+            services.AddCustomAutoMapper<User, UserDto, Guid, Question, Answer, Category, Tag,
+                QuestionDto, AnswerDto, CategoryDto, TagDto>();
 
             services.AddHttpClient();
             services.AddHttpClient(TypedHttpClients.TelegramApi.ClientName,
                 it => { it.BaseAddress = new Uri(TypedHttpClients.TelegramApi.Address); });
 
-            services.AddSwaggerGen(options => { }).ConfigureSwaggerGen(options =>
-            {
-                options.CustomSchemaIds(x => x.FullName);
-                options.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(), "DevQuiz.TelegramBot.xml"));
-            });
-            services.AddSwaggerGenNewtonsoftSupport();
+            services.AddCustomSwagger();
+
+            services.AddTelegramBotServices();
 
             services.AddDevQuizMediatrServices(new[] {Assembly.GetExecutingAssembly()});
-
-            services.AddSingleton<IBotService, BotService>()
-                .AddScoped<IBotMessageService, BotMessageService>()
-                .AddScoped<IRequestHandler<StartCommand, Unit>, StartCommandHandler<UserDto, Guid>>();
 
             services.AddControllers()
                 .AddNewtonsoftJson();
