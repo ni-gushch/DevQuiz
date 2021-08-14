@@ -8,8 +8,7 @@ namespace DevQuiz.Libraries.Core.Mappers
     /// <summary>
     /// Profile class for mapper user models
     /// </summary>
-    public class UserMapperProfile<TUser, TUserDto, TUserKey> : Profile
-        where TUser : UserBase<TUserKey>
+    public class UserMapperProfile<TUserDto, TUserKey> : Profile
         where TUserDto : UserDtoBase<TUserKey>
         where TUserKey : IEquatable<TUserKey>
     {
@@ -21,7 +20,7 @@ namespace DevQuiz.Libraries.Core.Mappers
             /*---------------*/
             /* Entity to Dto */
             /*---------------*/
-            CreateMap<TUser, TUserDto>(MemberList.Destination)
+            CreateMap<User, TUserDto>(MemberList.Destination)
                 .ReverseMap();
 
             /*---------------*/

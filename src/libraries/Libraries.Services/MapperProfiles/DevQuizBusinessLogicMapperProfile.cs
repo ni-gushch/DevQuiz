@@ -10,11 +10,14 @@ namespace DevQuiz.Libraries.Services.MapperProfiles
     /// Mapper profile for business logic layer
     /// </summary>
     public class DevQuizBusinessLogicMapperProfile<TQuestion, TAnswer, TCategory, TTag> : Profile
-        where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-        where TAnswer : AnswerBase
-        where TCategory : CategoryBase<TQuestion>
-        where TTag : TagBase<TQuestion>
+        where TQuestion : Question
+        where TAnswer : Answer
+        where TCategory : Category
+        where TTag : Tag
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public DevQuizBusinessLogicMapperProfile()
         {
             CreateCommandsToEntitiesMaps();

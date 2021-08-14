@@ -42,29 +42,24 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Register Repositories for DevQuiz
         /// </summary>
         /// <typeparam name="TDbContext">Target db context</typeparam>
-        /// <typeparam name="TUser">Generic User Entity</typeparam>
         /// <typeparam name="TQuestion">Generic Question Entity</typeparam>
         /// <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>
         /// <typeparam name="TCategory">Generic Question Category Entity</typeparam>
         /// <typeparam name="TTag">Generic Question Tag Entity</typeparam>
-        /// <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
         /// <param name="services">IServiceCollection instance</param>
         /// <returns>Clear IServiceCollection</returns>
-        public static IServiceCollection AddDevQuizRepositories<TDbContext, TUser,
-            TQuestion, TAnswer, TCategory, TTag, TUserKey>(this IServiceCollection services)
+        public static IServiceCollection AddDevQuizRepositories<TDbContext,
+            TQuestion, TAnswer, TCategory, TTag>(this IServiceCollection services)
             where TDbContext : DbContext
-            where TUser : UserBase<TUserKey>
-            where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-            where TAnswer : AnswerBase
-            where TCategory : CategoryBase<TQuestion>
-            where TTag : TagBase<TQuestion>
-            where TUserKey : IEquatable<TUserKey>
+            where TQuestion : Question
+            where TAnswer : Answer
+            where TCategory : Category
+            where TTag : Tag
         {
             services.TryAddScoped<IUnitOfWork, UnitOfWork<TDbContext>>();
-            services.TryAddScoped<IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>, 
-                DevQuizUnitOfWork<TDbContext, TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>>();
+            services.TryAddScoped<IDevQuizUnitOfWork, DevQuizUnitOfWork<TDbContext>>();
 
-            services.TryAddScoped<IGenericRepository<TUser>, GenericRepository<TDbContext, TUser>>();
+            services.TryAddScoped<IGenericRepository<User>, GenericRepository<TDbContext, User>>();
             services.TryAddScoped<IGenericRepository<TQuestion>, GenericRepository<TDbContext, TQuestion>>();
             services.TryAddScoped<IGenericRepository<TAnswer>, GenericRepository<TDbContext, TAnswer>>();
             services.TryAddScoped<IGenericRepository<TCategory>, GenericRepository<TDbContext, TCategory>>();

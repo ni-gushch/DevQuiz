@@ -1,5 +1,6 @@
+using System;
 using DevQuiz.Libraries.Core.Extensions;
-using DevQuiz.Libraries.Data.Models;
+using DevQuiz.Libraries.Core.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevQuiz.Libraries.Data.DbContexts

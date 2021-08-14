@@ -17,10 +17,10 @@ namespace DevQuiz.Libraries.Core.Mappers
     /// <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
     public class QuestionMapperProfile<TQuestion, TAnswer, TCategory, TTag,
         TQuestionDto, TAnswerDto, TCategoryDto, TTagDto> : Profile
-        where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-        where TAnswer : AnswerBase
-        where TCategory : CategoryBase<TQuestion>
-        where TTag : TagBase<TQuestion>
+        where TQuestion : Question
+        where TAnswer : Answer
+        where TCategory : Category
+        where TTag : Tag
         where TQuestionDto : QuestionDtoBase<TAnswerDto, TCategoryDto, TTagDto>
         where TAnswerDto : AnswerDtoBase
         where TCategoryDto : CategoryDtoBase<TQuestionDto>

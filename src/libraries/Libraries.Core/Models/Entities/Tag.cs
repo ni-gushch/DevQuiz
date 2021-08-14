@@ -5,8 +5,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
     /// <summary>
     /// Base model of question tag
     /// </summary>
-    public class TagBase<TQuestion> : EntityBase<int>
-        where TQuestion : class
+    public class Tag : EntityBase<int>
     {
         /// <summary>
         /// Get or set tag name
@@ -15,6 +14,6 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// <summary>
         /// Get or set questions list
         /// </summary>
-        public List<TQuestion> Questions { get; set; } = new List<TQuestion>();
+        public List<Question> Questions { get; set; } = new List<Question>();
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Data.Tests.Helpers;
 using DevQuiz.Libraries.Services;
 using DevQuiz.Libraries.Services.Dto;
@@ -11,9 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using DevQuiz.Libraries.Core.Models.Entities;
 using Telegram.Bot.Types;
 using Xunit;
-using User = DevQuiz.Libraries.Data.Models.User;
 
 namespace TelegramBot.Tests.MediatR.Handlers
 {

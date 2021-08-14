@@ -1,11 +1,10 @@
 using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using DevQuiz.Libraries.Core;
+using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
 using DevQuiz.Libraries.Data.DbContexts;
-using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Data.Repositories;
 using DevQuiz.Libraries.Data.Tests.Helpers;
 using Microsoft.EntityFrameworkCore;

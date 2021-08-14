@@ -35,12 +35,12 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddDevQuizServices<TUser, TUserDto, TUserKey,
             TQuestion, TAnswer, TCategory, TTag, TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>(this IServiceCollection services)
-            where TUser : UserBase<TUserKey>
+            where TUser : User<TUserKey>
             where TUserDto : UserDtoBase<TUserKey>
-            where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-            where TAnswer : AnswerBase
-            where TCategory : CategoryBase<TQuestion>
-            where TTag : TagBase<TQuestion>
+            where TQuestion : Question
+            where TAnswer : Answer
+            where TCategory : Category
+            where TTag : Tag
             where TQuestionDto : QuestionDtoBase<TAnswerDto, TCategoryDto, TTagDto>
             where TAnswerDto : AnswerDtoBase
             where TCategoryDto : CategoryDtoBase<TQuestionDto>
@@ -55,16 +55,34 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        public static IServiceCollection AddDevQuizMediatrServices(this IServiceCollection services,
+        /// <summary>
+        /// Register Handlers for commands that contains in Business logic layer
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="additionalMediatrAssemblies"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddDevQuizMediatrServices<TUser, 
+            TQuestion, TAnswer, TCategory, TTag, 
+            TUserKey>(this IServiceCollection services,
             IEnumerable<Assembly> additionalMediatrAssemblies = null)
+            where TUser : User<TUserKey>
+            where TQuestion : Question
+            where TAnswer : Answer
+            where TCategory : Category
+            where TTag : Tag
+            where TUserKey : IEquatable<TUserKey>
         {
             var assembliesForMediatr = new List<Assembly>()
-            {
-                typeof(CreateQuestionCommandHandler<,,,,,>).Assembly
-            };
+            { };
             if(additionalMediatrAssemblies != null)
                 assembliesForMediatr.AddRange(additionalMediatrAssemblies);
 
+            services.AddMediatR(new []
+            {
+                typeof(CreateQuestionCommandHandler<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>),
+                typeof(DeleteQuestionCommandHandler<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>),
+                typeof(UpdateQuestionCommandHandler<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>),
+            });
             services.AddMediatR(assembliesForMediatr, opt =>
             {
                 
@@ -83,14 +101,14 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <typeparam name="TTag">Concrete type of Tag</typeparam>
         /// <returns>Original instance of <see cref="IServiceCollection"/></returns>
         public static IServiceCollection AddDevQuizMapperServices<TQuestion, TAnswer, TCategory, TTag>(this IServiceCollection services)
-            where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-            where TAnswer : AnswerBase
-            where TCategory : CategoryBase<TQuestion>
-            where TTag : TagBase<TQuestion>
+            where TQuestion : Question
+            where TAnswer : Answer
+            where TCategory : Category
+            where TTag : Tag
         {
             services.AddAutoMapper(opt =>
             {
-                opt.AddMaps(typeof(DevQuizBusinessLogicMapperProfile<TQuestion, TAnswer, TCategory, TTag>).Assembly);
+                opt.AddProfile<DevQuizBusinessLogicMapperProfile<TQuestion, TAnswer, TCategory, TTag>>();
             });
             
             return services;

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Data.DbContexts;
-using DevQuiz.Libraries.Data.Models;
+
 
 namespace DevQuiz.Libraries.Data.Tests.Helpers
 {

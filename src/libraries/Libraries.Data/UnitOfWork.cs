@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using DevQuiz.Libraries.Core;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
-using DevQuiz.Libraries.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevQuiz.Libraries.Data
@@ -92,35 +91,29 @@ namespace DevQuiz.Libraries.Data
     }
 
     /// <inheritdoc cref="IDevQuizUnitOfWork{TUser,TQuestion,TAnswer,TCategory,TTag,TUserKey}"/>
-    public class DevQuizUnitOfWork<TDbContext, TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> : UnitOfWork<TDbContext>, IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>
+    public class DevQuizUnitOfWork<TDbContext> : UnitOfWork<TDbContext>, IDevQuizUnitOfWork
         where TDbContext : DbContext
-        where TUser : UserBase<TUserKey>
-        where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-        where TAnswer : AnswerBase
-        where TCategory : CategoryBase<TQuestion>
-        where TTag : TagBase<TQuestion>
-        where TUserKey : IEquatable<TUserKey>
     {
         /// <summary>
         /// User repository
         /// </summary>
-        public IGenericRepository<TUser> UserRepository { get; }
+        public IGenericRepository<User> UserRepository { get; }
         /// <summary>
         /// Question repository
         /// </summary>
-        public IGenericRepository<TQuestion> QuestionRepository { get; }
+        public IGenericRepository<Question> QuestionRepository { get; }
         /// <summary>
         /// Category repository
         /// </summary>
-        public IGenericRepository<TCategory> CategoryRepository { get; }
+        public IGenericRepository<Category> CategoryRepository { get; }
         /// <summary>
         /// Tag repository
         /// </summary>
-        public IGenericRepository<TTag> TagRepository { get; }
+        public IGenericRepository<Tag> TagRepository { get; }
         /// <summary>
         /// Answer repository
         /// </summary>
-        public IGenericRepository<TAnswer> AnswerRepository { get; }
+        public IGenericRepository<Answer> AnswerRepository { get; }
 
         /// <summary>
         /// Constructor
@@ -132,40 +125,38 @@ namespace DevQuiz.Libraries.Data
         /// <param name="categoryRepository">Category repository instance</param>
         /// <param name="tagRepository">Tag repository instance</param>
         public DevQuizUnitOfWork(TDbContext genericDbContext,
-            IGenericRepository<TUser> userRepository = null,
-            IGenericRepository<TQuestion> questionRepository = null,
-            IGenericRepository<TAnswer> answerRepository = null,
-            IGenericRepository<TCategory> categoryRepository = null,
-            IGenericRepository<TTag> tagRepository = null) : base(genericDbContext)
+            IGenericRepository<User> userRepository = null,
+            IGenericRepository<Question> questionRepository = null,
+            IGenericRepository<Answer> answerRepository = null,
+            IGenericRepository<Category> categoryRepository = null,
+            IGenericRepository<Tag> tagRepository = null) : base(genericDbContext)
         {
-            UserRepository = RegisterRepository<IGenericRepository<TUser>, TUser>(userRepository);
-            QuestionRepository = RegisterRepository<IGenericRepository<TQuestion>, TQuestion>(questionRepository);
-            CategoryRepository = RegisterRepository<IGenericRepository<TCategory>, TCategory>(categoryRepository);
-            TagRepository = RegisterRepository<IGenericRepository<TTag>, TTag>(tagRepository);
-            AnswerRepository = RegisterRepository<IGenericRepository<TAnswer>, TAnswer>(answerRepository);
+            UserRepository = RegisterRepository<IGenericRepository<User>, User>(userRepository);
+            QuestionRepository = RegisterRepository<IGenericRepository<Question>, Question>(questionRepository);
+            CategoryRepository = RegisterRepository<IGenericRepository<Category>, Category>(categoryRepository);
+            TagRepository = RegisterRepository<IGenericRepository<Tag>, Tag>(tagRepository);
+            AnswerRepository = RegisterRepository<IGenericRepository<Answer>, Answer>(answerRepository);
         }        
     }
 
     /// <inheritdoc cref="IDevQuizUnitOfWork{TUser,TQuestion,TAnswer,TCategory,TTag,TUserKey}"/>
-    public class DevQuizUnitOfWork<TDbContext, TUser, TUserKey> : UnitOfWork<TDbContext>, IDevQuizUnitOfWork<TUser, TUserKey>
+    public class DevQuizUserUnitOfWork<TDbContext> : UnitOfWork<TDbContext>, IDevQuizUserUnitOfWork
         where TDbContext : DbContext
-        where TUser : UserBase<TUserKey>       
-        where TUserKey : IEquatable<TUserKey>
     {
         /// <summary>
         /// User repository
         /// </summary>
-        public IGenericRepository<TUser> UserRepository { get; }
+        public IGenericRepository<User> UserRepository { get; }
        
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="genericDbContext">Current db context</param>
         /// <param name="userRepository">User repository instance</param>        
-        public DevQuizUnitOfWork(TDbContext genericDbContext,
-            IGenericRepository<TUser> userRepository = null) : base(genericDbContext)
+        public DevQuizUserUnitOfWork(TDbContext genericDbContext,
+            IGenericRepository<User> userRepository = null) : base(genericDbContext)
         {
-            UserRepository = RegisterRepository<IGenericRepository<TUser>, TUser>(userRepository);
+            UserRepository = RegisterRepository<IGenericRepository<User>, User>(userRepository);
         }        
     }
 }

@@ -56,13 +56,13 @@ namespace DevQuiz.TelegramBot.Extensions
             TQuestion, TAnswer, TCategory, TTag,
             TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>(
             this IServiceCollection services)
-            where TUser : UserBase<TKey>
+            where TUser : User<TKey>
             where TUserDto : UserDtoBase<TKey>
             where TKey : IEquatable<TKey>
-            where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-            where TAnswer : AnswerBase
-            where TCategory : CategoryBase<TQuestion>
-            where TTag : TagBase<TQuestion>
+            where TQuestion : Question
+            where TAnswer : Answer
+            where TCategory : Category
+            where TTag : Tag
             where TQuestionDto : QuestionDtoBase<TAnswerDto, TCategoryDto, TTagDto>
             where TAnswerDto : AnswerDtoBase
             where TCategoryDto : CategoryDtoBase<TQuestionDto>

@@ -15,11 +15,11 @@ namespace DevQuiz.Libraries.Services.Handlers.Admin
     /// </summary>
     public class UpdateQuestionCommandHandler<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> :
         BaseHandler<UpdateQuestionCommand>
-        where TUser : UserBase<TUserKey>
-        where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-        where TAnswer : AnswerBase
-        where TCategory : CategoryBase<TQuestion>
-        where TTag : TagBase<TQuestion>
+        where TUser : User<TUserKey>
+        where TQuestion : Question
+        where TAnswer : Answer
+        where TCategory : Category
+        where TTag : Tag
         where TUserKey : IEquatable<TUserKey>
     {
         private readonly IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> _unitOfWork;

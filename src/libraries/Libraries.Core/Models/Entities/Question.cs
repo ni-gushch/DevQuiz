@@ -5,10 +5,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
     /// <summary>
     /// Base question model
     /// </summary>
-    public class QuestionBase<TAnswer, TCategory, TTag> : AggregateEntity<int>
-        where TAnswer : class
-        where TCategory : class
-        where TTag : class
+    public class Question : AggregateEntity<int>
     {
         /// <summary>
         /// Get or set question text
@@ -29,14 +26,14 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// <summary>
         /// Get or set list of answers
         /// </summary>
-        public List<TAnswer> Answers { get; set; }
+        public List<Answer> Answers { get; set; }
         /// <summary>
         /// Category object
         /// </summary>
-        public TCategory Category { get; set; }
+        public Category Category { get; set; }
         /// <summary>
         /// Get or set tags list
         /// </summary>
-        public List<TTag> Tags { get; set; } = new List<TTag>();
+        public List<Tag> Tags { get; set; } = new List<Tag>();
     }
 }

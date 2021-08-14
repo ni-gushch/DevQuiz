@@ -5,8 +5,7 @@ namespace DevQuiz.Libraries.Core.Models.Entities
     /// <summary>
     /// Base model of question category
     /// </summary>
-    public class CategoryBase<TQuestion> : EntityBase<int>
-        where TQuestion : class
+    public class Category : EntityBase<int>
     {
         /// <summary>
         /// Get or set category name
@@ -15,6 +14,6 @@ namespace DevQuiz.Libraries.Core.Models.Entities
         /// <summary>
         /// Linked questions
         /// </summary>
-        public List<TQuestion> Questions { get; set; } = new List<TQuestion>();
+        public List<Question> Questions { get; set; } = new List<Question>();
     }
 }

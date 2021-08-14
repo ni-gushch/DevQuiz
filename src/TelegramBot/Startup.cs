@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
+using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Data.DbContexts;
-using DevQuiz.Libraries.Data.Models;
 using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Constants;
 using DevQuiz.TelegramBot.Extensions;
@@ -63,7 +63,7 @@ namespace DevQuiz.TelegramBot
 
             services.AddTelegramBotServices();
 
-            services.AddDevQuizMediatrServices(new[] {Assembly.GetExecutingAssembly()});
+            services.AddDevQuizMediatrServices<User, Question, Answer, Category, Tag, Guid>(new[] {Assembly.GetExecutingAssembly()});
 
             services.AddControllers()
                 .AddNewtonsoftJson();

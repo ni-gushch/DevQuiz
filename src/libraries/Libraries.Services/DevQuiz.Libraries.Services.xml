@@ -206,6 +206,11 @@
             Mapper profile for business logic layer
             </summary>
         </member>
+        <member name="M:DevQuiz.Libraries.Services.MapperProfiles.DevQuizBusinessLogicMapperProfile`4.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Services.QuestionService`10">
             <summary>
             Service for manage Question entries
@@ -331,6 +336,25 @@
             <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
             <param name="services">IServiceCollection instance</param>
             <returns>IServiceCollection</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizMediatrServices``6(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            Register Handlers for commands that contains in Business logic layer
+            </summary>
+            <param name="services"></param>
+            <param name="additionalMediatrAssemblies"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizMapperServices``4(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register AutoMapping services for DevQuiz 
+            </summary>
+            <param name="services">Instance of <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/></param>
+            <typeparam name="TQuestion">Concrete type of Question</typeparam>
+            <typeparam name="TAnswer">Concrete type of Answer</typeparam>
+            <typeparam name="TCategory">Concrete type of Category</typeparam>
+            <typeparam name="TTag">Concrete type of Tag</typeparam>
+            <returns>Original instance of <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/></returns>
         </member>
     </members>
 </doc>

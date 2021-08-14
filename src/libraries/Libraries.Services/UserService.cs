@@ -19,12 +19,12 @@ namespace DevQuiz.Libraries.Services
     public class UserService<TUser, TUserDto, TUserKey, TQuestion, TAnswer, TCategory, TTag> 
         : IUserService<TUserDto, TUserKey>
         where TUserDto : UserDtoBase<TUserKey>
-        where TUser : UserBase<TUserKey>
+        where TUser : User<TUserKey>
         where TUserKey : IEquatable<TUserKey>
-        where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-        where TAnswer : AnswerBase
-        where TCategory : CategoryBase<TQuestion>
-        where TTag : TagBase<TQuestion>
+        where TQuestion : Question
+        where TAnswer : Answer
+        where TCategory : Category
+        where TTag : Tag
     {
         private readonly IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> _unitOfWork;
         private readonly IGenericRepository<TUser> _userRepository;

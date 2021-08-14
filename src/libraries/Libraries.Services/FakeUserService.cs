@@ -13,12 +13,12 @@ namespace DevQuiz.Libraries.Services
     public class FakeUserService<TUser, TUserDto, TUserKey, TQuestion, TAnswer, TCategory, TTag> 
         : IUserService<TUserDto, TUserKey>
         where TUserDto : UserDtoBase<TUserKey>
-        where TUser : UserBase<TUserKey>
+        where TUser : User<TUserKey>
         where TUserKey : IEquatable<TUserKey>
-        where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-        where TAnswer : AnswerBase
-        where TCategory : CategoryBase<TQuestion>
-        where TTag : TagBase<TQuestion>
+        where TQuestion : Question
+        where TAnswer : Answer
+        where TCategory : Category
+        where TTag : Tag
     {
         /// <summary>
         ///     List of DTO of user.

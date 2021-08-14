@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DevQuiz.Libraries.Services.Commands.CreateQuestion;
 using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Models;
 using DevQuiz.TelegramBot.Models.ApiResults;
@@ -18,6 +19,8 @@ namespace DevQuiz.TelegramBot.Mappers
         {
             CreateMap<CreateQuestionInputModel, QuestionDto>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category));
+            CreateMap<CreateQuestionInputModel, CreateQuestionCommand>(MemberList.Destination);
+            
             CreateMap<CreateCategoryInputModel, CategoryDto>();
             CreateMap<CreateTagInputModel, TagDto>();
 

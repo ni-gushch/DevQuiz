@@ -28,11 +28,11 @@ namespace DevQuiz.Libraries.Services
     /// <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
     public class QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey,
         TQuestionDto, TAnswerDto, TCategoryDto, TTagDto> : IQuestionService<TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>
-        where TUser : UserBase<TUserKey>
-        where TQuestion : QuestionBase<TAnswer, TCategory, TTag>
-        where TAnswer : AnswerBase
-        where TCategory : CategoryBase<TQuestion>
-        where TTag : TagBase<TQuestion>
+        where TUser : User<TUserKey>
+        where TQuestion : Question
+        where TAnswer : Answer
+        where TCategory : Category
+        where TTag : Tag
         where TUserKey : IEquatable<TUserKey>
         where TQuestionDto : QuestionDtoBase<TAnswerDto, TCategoryDto, TTagDto>
         where TAnswerDto : AnswerDtoBase
