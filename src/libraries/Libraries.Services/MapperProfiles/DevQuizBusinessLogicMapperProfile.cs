@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using DevQuiz.Libraries.Core.Models;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Services.Commands;
 using DevQuiz.Libraries.Services.Commands.CreateQuestion;
@@ -16,6 +17,8 @@ namespace DevQuiz.Libraries.Services.MapperProfiles
         /// </summary>
         public DevQuizBusinessLogicMapperProfile()
         {
+            CreateMap<Category, CategoryModel>(MemberList.Destination);
+            
             CreateCommandsToEntitiesMaps();
             CreateEntitiesToCommandResponsesMaps();
         }

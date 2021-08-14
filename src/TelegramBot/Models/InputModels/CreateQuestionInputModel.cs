@@ -14,16 +14,12 @@ namespace DevQuiz.TelegramBot.Models.InputModels
         [Required]
         public string Text { get; set; }
         /// <summary>
-        /// Set category
+        /// Get or set right answer explanation
         /// </summary>
-        public ValueModel<int> Category { get; set; }
+        public string RightAnswerExplanation { get; set; }
         /// <summary>
-        /// Get or set list of answers
+        /// Identifier of selected category
         /// </summary>
-        public List<ValueModel<int>> Answers { get; set; }
-        /// <summary>
-        /// Get or set tags list
-        /// </summary>
-        public List<ValueModel<int>> Tags { get; set; }
+        public int CategoryId { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DevQuiz.Libraries.Core.Models.Dto;
 using DevQuiz.Libraries.Services.Commands.CreateQuestion;
+using DevQuiz.Libraries.Services.Queries;
 using DevQuiz.TelegramBot.Models;
 using DevQuiz.TelegramBot.Models.ApiResults;
 using DevQuiz.TelegramBot.Models.InputModels;
@@ -17,10 +18,10 @@ namespace DevQuiz.TelegramBot.Mappers
         /// </summary>
         public QuestionsAdminApiMapperProfile()
         {
-            CreateMap<CreateQuestionInputModel, QuestionDto>()
-                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category));
+            CreateMap<CreateQuestionInputModel, QuestionDto>();
+
             CreateMap<CreateQuestionInputModel, CreateQuestionCommand>(MemberList.Destination);
-            
+
             CreateMap<CreateCategoryInputModel, CategoryDto>();
             CreateMap<CreateTagInputModel, TagDto>();
 
@@ -54,7 +55,11 @@ namespace DevQuiz.TelegramBot.Mappers
             CreateMap<ValueModel, AnswerDto>()
                 .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Value))
                 .ReverseMap();
+        }
 
+        private void ResponsesToApiResultMaps()
+        {
+            CreateMap<GetAllCategoriesQueryResponse, CategoriesApiResult>(MemberList.Destination);
         }
     }
 }
