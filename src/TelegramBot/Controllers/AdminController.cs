@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using DevQuiz.Libraries.Core.Models.Dto;
 using DevQuiz.Libraries.Core.Services;
 using DevQuiz.Libraries.Services.Commands.CreateQuestion;
-using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Models.ApiResults;
 using DevQuiz.TelegramBot.Models.InputModels;
 using MediatR;
@@ -20,7 +20,7 @@ namespace DevQuiz.TelegramBot.Controllers
     [Route("/api/[controller]")]
     public class AdminController : Controller
     {
-        private readonly IQuestionService<QuestionDto, AnswerDto, CategoryDto, TagDto> _questionService;
+        private readonly IQuestionService _questionService;
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
         private readonly ILogger<AdminController> _logger;
@@ -32,7 +32,7 @@ namespace DevQuiz.TelegramBot.Controllers
         /// <param name="mediator"><see cref="IMediator"/> instance</param>
         /// <param name="mapper">Mapper instance</param>
         /// <param name="logger">Logger instance</param>
-        public AdminController(IQuestionService<QuestionDto, AnswerDto, CategoryDto, TagDto> questionService,
+        public AdminController(IQuestionService questionService,
             IMediator mediator,
             IMapper mapper,
             ILogger<AdminController> logger = null)

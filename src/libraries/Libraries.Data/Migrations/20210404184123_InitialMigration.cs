@@ -4,8 +4,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DevQuiz.Libraries.Data.Migrations
 {
+    /// <summary>
+    /// InitialMigration
+    /// </summary>
     public partial class InitialMigration : Migration
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -134,6 +141,10 @@ namespace DevQuiz.Libraries.Data.Migrations
                 column: "category_id");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

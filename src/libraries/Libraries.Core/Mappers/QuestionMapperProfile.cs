@@ -7,24 +7,7 @@ namespace DevQuiz.Libraries.Core.Mappers
     /// <summary>
     /// Profile class for mapper user models
     /// </summary>
-    /// <typeparam name="TQuestion"></typeparam>
-    /// <typeparam name="TAnswer"></typeparam>
-    /// <typeparam name="TCategory"></typeparam>
-    /// <typeparam name="TTag"></typeparam>
-    /// <typeparam name="TQuestionDto">Generic Question dto</typeparam>
-    /// <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
-    /// <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
-    /// <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
-    public class QuestionMapperProfile<TQuestion, TAnswer, TCategory, TTag,
-        TQuestionDto, TAnswerDto, TCategoryDto, TTagDto> : Profile
-        where TQuestion : Question
-        where TAnswer : Answer
-        where TCategory : Category
-        where TTag : Tag
-        where TQuestionDto : QuestionDtoBase<TAnswerDto, TCategoryDto, TTagDto>
-        where TAnswerDto : AnswerDtoBase
-        where TCategoryDto : CategoryDtoBase<TQuestionDto>
-        where TTagDto : TagDtoBase<TQuestionDto>
+    public class QuestionMapperProfile : Profile
     {
         /// <summary>
         /// Constructor
@@ -34,13 +17,13 @@ namespace DevQuiz.Libraries.Core.Mappers
             /*---------------*/
             /* Entity to Dto */
             /*---------------*/
-            CreateMap<TQuestion, TQuestionDto>(MemberList.Destination)
+            CreateMap<Question, QuestionDto>(MemberList.Destination)
                 .ReverseMap();
-            CreateMap<TAnswer, TAnswerDto>(MemberList.Destination)
+            CreateMap<Answer, AnswerDto>(MemberList.Destination)
                 .ReverseMap();
-            CreateMap<TCategory, TCategoryDto>(MemberList.Destination)
+            CreateMap<Category, CategoryDto>(MemberList.Destination)
                 .ReverseMap();
-            CreateMap<TTag, TTagDto>(MemberList.Destination)
+            CreateMap<Tag, TagDto>(MemberList.Destination)
                 .ReverseMap();
 
             /*---------------*/

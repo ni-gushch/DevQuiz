@@ -84,35 +84,83 @@
             <param name="options">Db context options</param>
             <returns>Db context instance</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.Models.Answer">
+        <member name="T:DevQuiz.Libraries.Data.Migrations.InitialMigration">
             <summary>
-            Answer model
+            InitialMigration
+            </summary>
+            <summary>
+            
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.Models.Category">
+        <member name="M:DevQuiz.Libraries.Data.Migrations.InitialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <summary>
-            Model of question category
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Migrations.InitialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Migrations.AddTelegramChatIdForUser">
+            <summary>
+            
+            </summary>
+            <summary>
+            
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.Models.Question">
+        <member name="M:DevQuiz.Libraries.Data.Migrations.AddTelegramChatIdForUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <summary>
-            Question model
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Migrations.AddTelegramChatIdForUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Data.Migrations.AddTelegramChatIdForUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:DevQuiz.Libraries.Data.Migrations.LongTelegramChatId">
+            <summary>
+            
+            </summary>
+            <summary>
+            
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.Models.Tag">
+        <member name="M:DevQuiz.Libraries.Data.Migrations.LongTelegramChatId.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <summary>
-            Model of question tag
+            
             </summary>
+            <param name="migrationBuilder"></param>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.Models.User">
+        <member name="M:DevQuiz.Libraries.Data.Migrations.LongTelegramChatId.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <summary>
-            User db model
+            
             </summary>
+            <param name="migrationBuilder"></param>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.Models.User.TelegramId">
+        <member name="M:DevQuiz.Libraries.Data.Migrations.LongTelegramChatId.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
-            Unique identifier of user in Telegram
+            
             </summary>
+            <param name="modelBuilder"></param>
         </member>
         <member name="T:DevQuiz.Libraries.Data.Repositories.GenericRepository`2">
             <summary>
@@ -243,35 +291,35 @@
             <param name="source"> Repository instance </param>
             <returns> Registered repository instance </returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6"/>
+        <member name="T:DevQuiz.Libraries.Data.DevQuizUnitOfWork`1">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork"/>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.UserRepository">
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`1.UserRepository">
             <summary>
             User repository
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.QuestionRepository">
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`1.QuestionRepository">
             <summary>
             Question repository
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.CategoryRepository">
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`1.CategoryRepository">
             <summary>
             Category repository
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.TagRepository">
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`1.TagRepository">
             <summary>
             Tag repository
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.AnswerRepository">
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`1.AnswerRepository">
             <summary>
             Answer repository
             </summary>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.DevQuizUnitOfWork`7.#ctor(`0,DevQuiz.Libraries.Core.Repositories.IGenericRepository{`1},DevQuiz.Libraries.Core.Repositories.IGenericRepository{`2},DevQuiz.Libraries.Core.Repositories.IGenericRepository{`3},DevQuiz.Libraries.Core.Repositories.IGenericRepository{`4},DevQuiz.Libraries.Core.Repositories.IGenericRepository{`5})">
+        <member name="M:DevQuiz.Libraries.Data.DevQuizUnitOfWork`1.#ctor(`0,DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Core.Models.Entities.User},DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Core.Models.Entities.Question},DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Core.Models.Entities.Answer},DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Core.Models.Entities.Category},DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Core.Models.Entities.Tag})">
             <summary>
             Constructor
             </summary>
@@ -282,15 +330,15 @@
             <param name="categoryRepository">Category repository instance</param>
             <param name="tagRepository">Tag repository instance</param>
         </member>
-        <member name="T:DevQuiz.Libraries.Data.DevQuizUnitOfWork`3">
-            <inheritdoc cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6"/>
+        <member name="T:DevQuiz.Libraries.Data.DevQuizUserUnitOfWork`1">
+            <inheritdoc cref="T:DevQuiz.Libraries.Core.IDevQuizUserUnitOfWork"/>
         </member>
-        <member name="P:DevQuiz.Libraries.Data.DevQuizUnitOfWork`3.UserRepository">
+        <member name="P:DevQuiz.Libraries.Data.DevQuizUserUnitOfWork`1.UserRepository">
             <summary>
             User repository
             </summary>
         </member>
-        <member name="M:DevQuiz.Libraries.Data.DevQuizUnitOfWork`3.#ctor(`0,DevQuiz.Libraries.Core.Repositories.IGenericRepository{`1})">
+        <member name="M:DevQuiz.Libraries.Data.DevQuizUserUnitOfWork`1.#ctor(`0,DevQuiz.Libraries.Core.Repositories.IGenericRepository{DevQuiz.Libraries.Core.Models.Entities.User})">
             <summary>
             Constructor
             </summary>
@@ -311,17 +359,11 @@
             <param name="configuration">IConfiguration instance</param>
             <returns>IServiceCollection</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizRepositories``7(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizRepositories``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register Repositories for DevQuiz
             </summary>
             <typeparam name="TDbContext">Target db context</typeparam>
-            <typeparam name="TUser">Generic User Entity</typeparam>
-            <typeparam name="TQuestion">Generic Question Entity</typeparam>
-            <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>
-            <typeparam name="TCategory">Generic Question Category Entity</typeparam>
-            <typeparam name="TTag">Generic Question Tag Entity</typeparam>
-            <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
             <param name="services">IServiceCollection instance</param>
             <returns>Clear IServiceCollection</returns>
         </member>

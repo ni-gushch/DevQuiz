@@ -9,10 +9,17 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DevQuiz.Libraries.Data.Migrations
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [DbContext(typeof(DevQuizDbContext))]
     [Migration("20210404184123_InitialMigration")]
     partial class InitialMigration
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

@@ -5,8 +5,7 @@ namespace DevQuiz.Libraries.Core.Models.Dto
     /// <summary>
     /// User dto model
     /// </summary>
-    public class UserDtoBase<TKey> : DtoBase<TKey>
-        where TKey : IEquatable<TKey>
+    public class UserDto : DtoBase<Guid>
     {
         /// <summary>
         /// Get or set user name (login)
@@ -24,5 +23,9 @@ namespace DevQuiz.Libraries.Core.Models.Dto
         /// Unique identifier of telegram chat for current user
         /// </summary>
         public int TelegramChatId { get; set; }
+        /// <summary>
+        /// Unique identifier of user in Telegram
+        /// </summary>
+        public int TelegramId { get; set; }
     }
 }

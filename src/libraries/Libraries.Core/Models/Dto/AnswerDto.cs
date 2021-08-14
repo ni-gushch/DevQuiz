@@ -3,7 +3,7 @@ namespace DevQuiz.Libraries.Core.Models.Dto
     /// <summary>
     /// Base answer model
     /// </summary>
-    public class AnswerDtoBase : DtoBase<int>
+    public class AnswerDto : DtoBase<int>
     {
         /// <summary>
         /// Get or set answer text

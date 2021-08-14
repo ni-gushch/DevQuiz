@@ -13,26 +13,20 @@ namespace DevQuiz.Libraries.Services.Handlers.Admin
     /// <summary>
     /// Handler for update question action
     /// </summary>
-    public class UpdateQuestionCommandHandler<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> :
+    public class UpdateQuestionCommandHandler :
         BaseHandler<UpdateQuestionCommand>
-        where TUser : User<TUserKey>
-        where TQuestion : Question
-        where TAnswer : Answer
-        where TCategory : Category
-        where TTag : Tag
-        where TUserKey : IEquatable<TUserKey>
     {
-        private readonly IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> _unitOfWork;
+        private readonly IDevQuizUnitOfWork _unitOfWork;
         
         /// <summary>
         /// Constructor with params
         /// </summary>
         /// <param name="mapper">Instance of type <see cref="IMapper"/></param>
-        /// <param name="unitOfWork">Instance of <see cref="IDevQuizUnitOfWork{TUser,TUserKey}"/></param>
+        /// <param name="unitOfWork">Instance of <see cref="IDevQuizUnitOfWork"/></param>
         /// <param name="logger">Instance of <see cref="ILogger{TCategoryName}"/></param>
         public UpdateQuestionCommandHandler(IMapper mapper,
-            IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> unitOfWork,
-            ILogger<UpdateQuestionCommandHandler<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>> logger) : base(mapper, logger)
+            IDevQuizUnitOfWork unitOfWork,
+            ILogger<UpdateQuestionCommandHandler> logger) : base(mapper, logger)
         {
             _unitOfWork = unitOfWork;
         }

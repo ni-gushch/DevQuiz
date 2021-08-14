@@ -65,7 +65,7 @@
             Controller for manage Questions Tags and Categories of DevQuiz
             </summary>
         </member>
-        <member name="M:DevQuiz.TelegramBot.Controllers.AdminController.#ctor(DevQuiz.Libraries.Core.Services.IQuestionService{DevQuiz.Libraries.Services.Dto.QuestionDto,DevQuiz.Libraries.Services.Dto.AnswerDto,DevQuiz.Libraries.Services.Dto.CategoryDto,DevQuiz.Libraries.Services.Dto.TagDto},MediatR.IMediator,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Controllers.AdminController})">
+        <member name="M:DevQuiz.TelegramBot.Controllers.AdminController.#ctor(DevQuiz.Libraries.Core.Services.IQuestionService,MediatR.IMediator,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Controllers.AdminController})">
             <summary>
             Constructor
             </summary>
@@ -254,12 +254,12 @@
             Constructor
             </summary>
         </member>
-        <member name="T:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile`2">
+        <member name="T:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile">
             <summary>
             Mapper profile for convert Telegram User information to Dto
             </summary>
         </member>
-        <member name="M:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile`2.#ctor">
+        <member name="M:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile.#ctor">
             <summary>
                 Constructor
             </summary>
@@ -293,21 +293,19 @@
         <member name="M:DevQuiz.TelegramBot.MediatR.Commands.StartCommand.#ctor(Telegram.Bot.Types.Message)">
             <inheritdoc />
         </member>
-        <member name="T:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2">
+        <member name="T:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler">
             <summary>
                 Command "/start" handler
             </summary>
-            <typeparam name="TUserDto"> User dto for add or update </typeparam>
-            <typeparam name="TKey"> Parameter with unique identifier of entry </typeparam>
         </member>
-        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2.#ctor(DevQuiz.Libraries.Core.Services.IUserService{`0,`1},AutoMapper.IMapper,DevQuiz.TelegramBot.Interfaces.IBotService)">
+        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler.#ctor(DevQuiz.Libraries.Core.Services.IUserService,AutoMapper.IMapper,DevQuiz.TelegramBot.Interfaces.IBotService)">
             <summary>
                 Constructor
             </summary>
             <param name="userService"> Service for manage users </param>
             <param name="mapper"> Mapper instance </param>
         </member>
-        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler`2.Handle(DevQuiz.TelegramBot.MediatR.Commands.StartCommand,System.Threading.CancellationToken)">
+        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler.Handle(DevQuiz.TelegramBot.MediatR.Commands.StartCommand,System.Threading.CancellationToken)">
             <summary>
                 Handle command
             </summary>

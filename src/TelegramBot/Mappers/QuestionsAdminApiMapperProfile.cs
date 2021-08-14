@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using DevQuiz.Libraries.Core.Models.Dto;
 using DevQuiz.Libraries.Services.Commands.CreateQuestion;
-using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Models;
 using DevQuiz.TelegramBot.Models.ApiResults;
 using DevQuiz.TelegramBot.Models.InputModels;

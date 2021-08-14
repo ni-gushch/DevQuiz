@@ -5,10 +5,7 @@ namespace DevQuiz.Libraries.Core.Models.Dto
     /// <summary>
     /// Base question model
     /// </summary>
-    public class QuestionDtoBase<TAnswerDto, TCategoryDto, TTagDto> : DtoBase<int>
-        where TAnswerDto : class
-        where TCategoryDto : class
-        where TTagDto : class
+    public class QuestionDto: DtoBase<int>
     {
         /// <summary>
         /// Get or set question text
@@ -29,14 +26,14 @@ namespace DevQuiz.Libraries.Core.Models.Dto
         /// <summary>
         /// Get or set list of answers
         /// </summary>
-        public List<TAnswerDto> Answers { get; set; }
+        public List<AnswerDto> Answers { get; set; }
         /// <summary>
         /// Category object
         /// </summary>
-        public TCategoryDto Category { get; set; }
+        public CategoryDto Category { get; set; }
         /// <summary>
         /// Get or set tags list
         /// </summary>
-        public List<TTagDto> Tags { get; set; } = new List<TTagDto>();
+        public List<TagDto> Tags { get; set; } = new List<TagDto>();
     }
 }

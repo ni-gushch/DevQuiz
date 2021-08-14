@@ -12,7 +12,7 @@ namespace DevQuiz.Libraries.Data.Tests
     public class TagRepositoryTests : DevQuizContextSeedDataHelper
     {
         private readonly DevQuizDbContext _dbContext;
-        private readonly IDevQuizUnitOfWork<User, Question, Answer, Category, Tag, Guid> _unitOfWork;
+        private readonly IDevQuizUnitOfWork _unitOfWork;
 
         public TagRepositoryTests()
         {
@@ -22,12 +22,12 @@ namespace DevQuiz.Libraries.Data.Tests
                 .AddScoped<IGenericRepository<Answer>, GenericRepository<DevQuizDbContext, Answer>>()
                 .AddScoped<IGenericRepository<Category>, GenericRepository<DevQuizDbContext, Category>>()
                 .AddScoped<IGenericRepository<Tag>, GenericRepository<DevQuizDbContext, Tag>>()
-                .AddScoped<IDevQuizUnitOfWork<User, Question, Answer, Category, Tag, Guid>, DevQuizUnitOfWork<DevQuizDbContext, User, Question, Answer, Category, Tag, Guid>>();
+                .AddScoped<IDevQuizUnitOfWork, DevQuizUnitOfWork<DevQuizDbContext>>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             _dbContext = serviceProvider.GetRequiredService<DevQuizDbContext>();
-            _unitOfWork = serviceProvider.GetRequiredService<IDevQuizUnitOfWork<User, Question, Answer, Category, Tag, Guid>>();
+            _unitOfWork = serviceProvider.GetRequiredService<IDevQuizUnitOfWork>();
         }
     }
 }

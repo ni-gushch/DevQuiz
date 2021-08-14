@@ -1,17 +1,13 @@
 using AutoMapper;
-using DevQuiz.Libraries.Core.Models.Dto;
-using DevQuiz.Libraries.Services.Dto;
-using System;
 using Telegram.Bot.Types;
+using UserDto = DevQuiz.Libraries.Core.Models.Dto.UserDto;
 
 namespace DevQuiz.TelegramBot.Mappers
 {
     /// <summary>
     /// Mapper profile for convert Telegram User information to Dto
     /// </summary>
-    public class UserBotMapperProfile<TUserDto, TKey> : Profile
-        where TUserDto : UserDtoBase<TKey>
-        where TKey : IEquatable<TKey>
+    public class UserBotMapperProfile : Profile
     {
         /// <summary>
         ///     Constructor
@@ -22,7 +18,7 @@ namespace DevQuiz.TelegramBot.Mappers
             /* TG model to Dto */
             /*-----------------*/
 
-            CreateMap<Chat, TUserDto>()
+            CreateMap<Chat, UserDto>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.TelegramChatId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username))

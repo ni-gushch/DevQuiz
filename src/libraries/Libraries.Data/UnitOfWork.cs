@@ -90,7 +90,7 @@ namespace DevQuiz.Libraries.Data
         }
     }
 
-    /// <inheritdoc cref="IDevQuizUnitOfWork{TUser,TQuestion,TAnswer,TCategory,TTag,TUserKey}"/>
+    /// <inheritdoc cref="IDevQuizUnitOfWork"/>
     public class DevQuizUnitOfWork<TDbContext> : UnitOfWork<TDbContext>, IDevQuizUnitOfWork
         where TDbContext : DbContext
     {
@@ -139,7 +139,7 @@ namespace DevQuiz.Libraries.Data
         }        
     }
 
-    /// <inheritdoc cref="IDevQuizUnitOfWork{TUser,TQuestion,TAnswer,TCategory,TTag,TUserKey}"/>
+    /// <inheritdoc cref="IDevQuizUserUnitOfWork"/>
     public class DevQuizUserUnitOfWork<TDbContext> : UnitOfWork<TDbContext>, IDevQuizUserUnitOfWork
         where TDbContext : DbContext
     {

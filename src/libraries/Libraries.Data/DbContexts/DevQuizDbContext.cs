@@ -1,4 +1,3 @@
-using System;
 using DevQuiz.Libraries.Core.Extensions;
 using DevQuiz.Libraries.Core.Models.Entities;
 using Microsoft.EntityFrameworkCore;

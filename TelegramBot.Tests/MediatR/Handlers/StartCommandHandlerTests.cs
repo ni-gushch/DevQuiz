@@ -1,16 +1,14 @@
 ﻿using AutoMapper;
 using DevQuiz.Libraries.Data.Tests.Helpers;
 using DevQuiz.Libraries.Services;
-using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Mappers;
 using DevQuiz.TelegramBot.MediatR.Commands;
 using DevQuiz.TelegramBot.MediatR.Handlers;
 using NSubstitute;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using DevQuiz.Libraries.Core.Models.Entities;
+using DevQuiz.Libraries.Core.Models.Dto;
 using Telegram.Bot.Types;
 using Xunit;
 
@@ -21,13 +19,12 @@ namespace TelegramBot.Tests.MediatR.Handlers
         [Fact]
         public async Task Handle_NewUser_CallCreateUser()
         {
-            var mockService = Substitute
-                .For<FakeUserService<User, UserDto, Guid, Question, Answer, Category, Tag>>();
+            var mockService = Substitute.For<FakeUserService>();
 
             var mapperConfiguration = new MapperConfiguration(
-                config => config.AddProfile<UserBotMapperProfile<UserDto, Guid>>());            
+                config => config.AddProfile<UserBotMapperProfile>());            
             var mapper = new Mapper(mapperConfiguration);
-            var handler = new StartCommandHandler<UserDto, Guid>(mockService, mapper, null);
+            var handler = new StartCommandHandler(mockService, mapper, null);
             var message = new Message()
             {
                 Chat = new ()
@@ -50,12 +47,12 @@ namespace TelegramBot.Tests.MediatR.Handlers
         public async Task Handle_NewUser_NotCallUpdateUser()
         {
             var mockService = Substitute
-                .For<FakeUserService<User, UserDto, Guid, Question, Answer, Category, Tag>>();
+                .For<FakeUserService>();
 
             var mapperConfiguration = new MapperConfiguration(
-                config => config.AddProfile<UserBotMapperProfile<UserDto, Guid>>());            
+                config => config.AddProfile<UserBotMapperProfile>());            
             var mapper = new Mapper(mapperConfiguration);
-            var handler = new StartCommandHandler<UserDto, Guid>(mockService, mapper, null);
+            var handler = new StartCommandHandler(mockService, mapper, null);
             var message = new Message()
             {
                 Chat = new ()
@@ -78,7 +75,7 @@ namespace TelegramBot.Tests.MediatR.Handlers
         public async Task Handle_NewUserName_CallUpdateUser()
         {
             var mockService = Substitute
-                .For<FakeUserService<User, UserDto, Guid, Question, Answer, Category, Tag>>();
+                .For<FakeUserService>();
             mockService.UserDtoes = new List<UserDto>()
             {
                 new ()
@@ -88,9 +85,9 @@ namespace TelegramBot.Tests.MediatR.Handlers
                 }
             };
             var mapperConfiguration = new MapperConfiguration(
-                config => config.AddProfile<UserBotMapperProfile<UserDto, Guid>>());            
+                config => config.AddProfile<UserBotMapperProfile>());            
             var mapper = new Mapper(mapperConfiguration);
-            var handler = new StartCommandHandler<UserDto, Guid>(mockService, mapper, null);
+            var handler = new StartCommandHandler(mockService, mapper, null);
             var message = new Message()
             {
                 Chat = new ()
@@ -112,7 +109,7 @@ namespace TelegramBot.Tests.MediatR.Handlers
         public async Task Handle_ExistingUser_NotCreateOrUpdateUser()
         {
             var mockService = Substitute
-                .For<FakeUserService<User, UserDto, Guid, Question, Answer, Category, Tag>>();
+                .For<FakeUserService>();
             mockService.UserDtoes = new List<UserDto>()
             {
                 new ()
@@ -122,9 +119,9 @@ namespace TelegramBot.Tests.MediatR.Handlers
                 }
             };
             var mapperConfiguration = new MapperConfiguration(
-                config => config.AddProfile<UserBotMapperProfile<UserDto, Guid>>());            
+                config => config.AddProfile<UserBotMapperProfile>());            
             var mapper = new Mapper(mapperConfiguration);
-            var handler = new StartCommandHandler<UserDto, Guid>(mockService, mapper, null);
+            var handler = new StartCommandHandler(mockService, mapper, null);
             var message = new Message()
             {
                 Chat = new ()

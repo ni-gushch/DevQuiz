@@ -13,26 +13,20 @@ namespace DevQuiz.Libraries.Services.Handlers.Admin
     /// <summary>
     /// Handler for delete question action
     /// </summary>
-    public class DeleteQuestionCommandHandler<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> :
+    public class DeleteQuestionCommandHandler :
         BaseHandler<DeleteQuestionCommand>
-        where TUser : User<TUserKey>
-        where TQuestion : Question
-        where TAnswer : Answer
-        where TCategory : Category
-        where TTag : Tag
-        where TUserKey : IEquatable<TUserKey>
     {
-        private readonly IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> _unitOfWork;
+        private readonly IDevQuizUnitOfWork _unitOfWork;
         
         /// <summary>
         /// Constructor with params
         /// </summary>
         /// <param name="mapper">Instance of type <see cref="IMapper"/></param>
-        /// <param name="unitOfWork">Instance of <see cref="IDevQuizUnitOfWork{TUser,TUserKey}"/></param>
+        /// <param name="unitOfWork">Instance of <see cref="IDevQuizUnitOfWork"/></param>
         /// <param name="logger">Instance of <see cref="ILogger{TCategoryName}"/></param>
         public DeleteQuestionCommandHandler(IMapper mapper,
-            IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> unitOfWork,
-            ILogger<CreateQuestionCommandHandler<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey>> logger) : base(
+            IDevQuizUnitOfWork unitOfWork,
+            ILogger<CreateQuestionCommandHandler> logger) : base(
             mapper, logger)
         {
             _unitOfWork = unitOfWork;
@@ -44,7 +38,7 @@ namespace DevQuiz.Libraries.Services.Handlers.Admin
             var entityInDb = await _unitOfWork.QuestionRepository.GetOneAsync(it => it.Id.Equals(request.Id),
                 cancellationToken: cancellationToken);
             if (entityInDb == null)
-                throw new Exception($"Entity of type {typeof(TQuestion)} with id {request.Id} not found in store");
+                throw new Exception($"Entity of type {typeof(Question)} with id {request.Id} not found in store");
             _unitOfWork.QuestionRepository.Delete(entityInDb);
             await _unitOfWork.CommitAsync(cancellationToken);
             

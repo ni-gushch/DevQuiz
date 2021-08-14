@@ -9,11 +9,7 @@ namespace DevQuiz.Libraries.Services.MapperProfiles
     /// <summary>
     /// Mapper profile for business logic layer
     /// </summary>
-    public class DevQuizBusinessLogicMapperProfile<TQuestion, TAnswer, TCategory, TTag> : Profile
-        where TQuestion : Question
-        where TAnswer : Answer
-        where TCategory : Category
-        where TTag : Tag
+    public class DevQuizBusinessLogicMapperProfile : Profile
     {
         /// <summary>
         /// 
@@ -26,11 +22,11 @@ namespace DevQuiz.Libraries.Services.MapperProfiles
 
         private void CreateCommandsToEntitiesMaps()
         {
-            CreateMap<CreateQuestionCommand, TQuestion>(MemberList.Destination)
+            CreateMap<CreateQuestionCommand, Question>(MemberList.Destination)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom((src, dest) => default(int)))
                 ;
             
-            CreateMap<UpdateQuestionCommand, TQuestion>(MemberList.Destination)
+            CreateMap<UpdateQuestionCommand, Question>(MemberList.Destination)
                 ;
         }
 

@@ -2,8 +2,15 @@
 
 namespace DevQuiz.Libraries.Data.Migrations
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class LongTelegramChatId : Migration
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<long>(
@@ -15,6 +22,10 @@ namespace DevQuiz.Libraries.Data.Migrations
                 oldType: "integer");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<int>(

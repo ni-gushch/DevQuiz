@@ -9,12 +9,7 @@ namespace DevQuiz.Libraries.Core.Services
     /// <summary>
     /// Service for manage users
     /// </summary>
-    /// <typeparam name="TUserDto">User dto for add or update</typeparam>
-    /// <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
-    public interface IUserService<TUserDto, TKey> 
-        : IBaseService<TUserDto, TUserDto, IList<TUserDto>, TKey, bool, bool, TKey>
-        where TUserDto : UserDtoBase<TKey>
-        where TKey : IEquatable<TKey>
+    public interface IUserService : IBaseService<UserDto, UserDto, IList<UserDto>, Guid, bool, bool, Guid>
     {
         /// <summary>
         /// Get user information by chat id
@@ -22,6 +17,6 @@ namespace DevQuiz.Libraries.Core.Services
         /// <param name="telegramChatId">User chat id with current bot</param>
         /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Information about user</returns>
-        Task<TUserDto> GetByChatIdAsync(long telegramChatId, CancellationToken cancellationToken = default);
+        Task<UserDto> GetByChatIdAsync(long telegramChatId, CancellationToken cancellationToken = default);
     }
 }

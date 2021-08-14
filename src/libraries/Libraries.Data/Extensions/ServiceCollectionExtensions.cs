@@ -1,11 +1,10 @@
-using System;
 using System.Reflection;
 using DevQuiz.Libraries.Core;
 using DevQuiz.Libraries.Core.Configurations;
 using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Core.Repositories;
 using DevQuiz.Libraries.Data;
-using DevQuiz.Libraries.Data.DbContexts;
+using DevQuiz.Libraries.Data.Migrations;
 using DevQuiz.Libraries.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddDevQuizDbContexts<TDbContext>(this IServiceCollection services, IConfiguration configuration)
             where TDbContext : DbContext
         {
-            var migrationAssembly = typeof(ServiceCollectionExtensions).GetTypeInfo().Assembly.GetName().Name;
+            var migrationAssembly = typeof(InitialMigration).GetTypeInfo().Assembly.GetName().Name;
             var dbConfiguration = configuration.GetSection(nameof(DbConfiguration)).Get<DbConfiguration>();
 
             services.AddDbContext<TDbContext>(opt =>
@@ -42,28 +41,19 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Register Repositories for DevQuiz
         /// </summary>
         /// <typeparam name="TDbContext">Target db context</typeparam>
-        /// <typeparam name="TQuestion">Generic Question Entity</typeparam>
-        /// <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>
-        /// <typeparam name="TCategory">Generic Question Category Entity</typeparam>
-        /// <typeparam name="TTag">Generic Question Tag Entity</typeparam>
         /// <param name="services">IServiceCollection instance</param>
         /// <returns>Clear IServiceCollection</returns>
-        public static IServiceCollection AddDevQuizRepositories<TDbContext,
-            TQuestion, TAnswer, TCategory, TTag>(this IServiceCollection services)
+        public static IServiceCollection AddDevQuizRepositories<TDbContext>(this IServiceCollection services)
             where TDbContext : DbContext
-            where TQuestion : Question
-            where TAnswer : Answer
-            where TCategory : Category
-            where TTag : Tag
         {
             services.TryAddScoped<IUnitOfWork, UnitOfWork<TDbContext>>();
             services.TryAddScoped<IDevQuizUnitOfWork, DevQuizUnitOfWork<TDbContext>>();
 
             services.TryAddScoped<IGenericRepository<User>, GenericRepository<TDbContext, User>>();
-            services.TryAddScoped<IGenericRepository<TQuestion>, GenericRepository<TDbContext, TQuestion>>();
-            services.TryAddScoped<IGenericRepository<TAnswer>, GenericRepository<TDbContext, TAnswer>>();
-            services.TryAddScoped<IGenericRepository<TCategory>, GenericRepository<TDbContext, TCategory>>();
-            services.TryAddScoped<IGenericRepository<TTag>, GenericRepository<TDbContext, TTag>>();
+            services.TryAddScoped<IGenericRepository<Question>, GenericRepository<TDbContext, Question>>();
+            services.TryAddScoped<IGenericRepository<Answer>, GenericRepository<TDbContext, Answer>>();
+            services.TryAddScoped<IGenericRepository<Category>, GenericRepository<TDbContext, Category>>();
+            services.TryAddScoped<IGenericRepository<Tag>, GenericRepository<TDbContext, Tag>>();
 
             return services;
         }

@@ -1,8 +1,6 @@
 using System;
 using System.Reflection;
-using DevQuiz.Libraries.Core.Models.Entities;
 using DevQuiz.Libraries.Data.DbContexts;
-using DevQuiz.Libraries.Services.Dto;
 using DevQuiz.TelegramBot.Constants;
 using DevQuiz.TelegramBot.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -48,12 +46,9 @@ namespace DevQuiz.TelegramBot
             services.AddCustomOptions(Configuration);
 
             services.AddDevQuizDbContexts<DevQuizDbContext>(Configuration);
-            services.AddDevQuizRepositories<DevQuizDbContext, User, Question, Answer, Category, Tag, Guid>();
-            services.AddDevQuizServices<User, UserDto, Guid,
-                Question, Answer, Category, Tag, QuestionDto, AnswerDto, CategoryDto, TagDto>();
-
-            services.AddCustomAutoMapper<User, UserDto, Guid, Question, Answer, Category, Tag,
-                QuestionDto, AnswerDto, CategoryDto, TagDto>();
+            services.AddDevQuizRepositories<DevQuizDbContext>();
+            services.AddDevQuizServices();
+            services.AddCustomAutoMapper();
 
             services.AddHttpClient();
             services.AddHttpClient(TypedHttpClients.TelegramApi.ClientName,
@@ -63,7 +58,7 @@ namespace DevQuiz.TelegramBot
 
             services.AddTelegramBotServices();
 
-            services.AddDevQuizMediatrServices<User, Question, Answer, Category, Tag, Guid>(new[] {Assembly.GetExecutingAssembly()});
+            services.AddDevQuizMediatrServices(new[] {Assembly.GetExecutingAssembly()});
 
             services.AddControllers()
                 .AddNewtonsoftJson();

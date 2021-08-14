@@ -16,34 +16,11 @@ namespace DevQuiz.Libraries.Services
     /// <summary>
     /// Service for manage Question entries
     /// </summary>
-    /// <typeparam name="TUser"></typeparam>
-    /// <typeparam name="TQuestion"></typeparam>
-    /// <typeparam name="TAnswer"></typeparam>
-    /// <typeparam name="TCategory"></typeparam>
-    /// <typeparam name="TTag"></typeparam>
-    /// <typeparam name="TUserKey"></typeparam>
-    /// <typeparam name="TQuestionDto">Generic Question dto</typeparam>
-    /// <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
-    /// <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
-    /// <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
-    public class QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey,
-        TQuestionDto, TAnswerDto, TCategoryDto, TTagDto> : IQuestionService<TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>
-        where TUser : User<TUserKey>
-        where TQuestion : Question
-        where TAnswer : Answer
-        where TCategory : Category
-        where TTag : Tag
-        where TUserKey : IEquatable<TUserKey>
-        where TQuestionDto : QuestionDtoBase<TAnswerDto, TCategoryDto, TTagDto>
-        where TAnswerDto : AnswerDtoBase
-        where TCategoryDto : CategoryDtoBase<TQuestionDto>
-        where TTagDto : TagDtoBase<TQuestionDto>
+    public class QuestionService : IQuestionService
     {
-        private readonly IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> _unitOfWork;
+        private readonly IDevQuizUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-
-        private readonly ILogger<QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey,
-            TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>> _logger;
+        private readonly ILogger<QuestionService> _logger;
 
         /// <summary>
         /// Constructor
@@ -51,19 +28,18 @@ namespace DevQuiz.Libraries.Services
         /// <param name="unitOfWork">Unit of work instance</param>
         /// <param name="mapper">Mapper instance</param>
         /// <param name="logger">Logger instance</param>
-        public QuestionService(IDevQuizUnitOfWork<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey> unitOfWork,
+        public QuestionService(IDevQuizUnitOfWork unitOfWork,
             IMapper mapper,
-            ILogger<QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey,
-                TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>> logger = null)
+            ILogger<QuestionService> logger = null)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
 
-            _logger = NullLogger<QuestionService<TUser, TQuestion, TAnswer, TCategory, TTag, TUserKey, TQuestionDto, TAnswerDto, TCategoryDto, TTagDto>>.Instance;
+            _logger = NullLogger<QuestionService>.Instance;
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetAllAsync" />
-        public async Task<IList<TQuestionDto>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IList<QuestionDto>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             var questions = _unitOfWork.QuestionRepository
                 .ListAsync(include: include => include.Include(it => it.Answers)
@@ -72,11 +48,11 @@ namespace DevQuiz.Libraries.Services
                     cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
 
-            return _mapper.Map<List<TQuestionDto>>(await questions);
+            return _mapper.Map<List<QuestionDto>>(await questions);
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetByIdAsync" />
-        public async Task<TQuestionDto> GetByIdAsync(int questionId, CancellationToken cancellationToken = default)
+        public async Task<QuestionDto> GetByIdAsync(int questionId, CancellationToken cancellationToken = default)
         {
             var questionEntity = await _unitOfWork.QuestionRepository
                 .GetOneAsync(predicate: it => it.Id.Equals(questionId),
@@ -86,14 +62,14 @@ namespace DevQuiz.Libraries.Services
                     cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
             if (questionEntity == null)
-                throw new Exception($"{typeof(TQuestion).Name} with id {questionId} not found in store");
-            return _mapper.Map<TQuestionDto>(questionEntity);
+                throw new Exception($"{nameof(Question)} with id {questionId} not found in store");
+            return _mapper.Map<QuestionDto>(questionEntity);
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.CreateAsync" />
-        public async Task<int> CreateAsync(TQuestionDto entryToAdd, CancellationToken cancellationToken = default)
+        public async Task<int> CreateAsync(QuestionDto entryToAdd, CancellationToken cancellationToken = default)
         {
-            var questionEntity = _mapper.Map<TQuestion>(entryToAdd);
+            var questionEntity = _mapper.Map<Question>(entryToAdd);
             await _unitOfWork.QuestionRepository.CreateAsync(questionEntity, cancellationToken);
             var commitStatus = await _unitOfWork.CommitAsync(cancellationToken);
             if (commitStatus == 0)
@@ -102,9 +78,9 @@ namespace DevQuiz.Libraries.Services
         }
 
         /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.UpdateAsync" />
-        public async Task<bool> UpdateAsync(TQuestionDto entryToUpdate, CancellationToken cancellationToken = default)
+        public async Task<bool> UpdateAsync(QuestionDto entryToUpdate, CancellationToken cancellationToken = default)
         {
-            var entityToUpdate = _mapper.Map<TQuestion>(entryToUpdate);
+            var entityToUpdate = _mapper.Map<Question>(entryToUpdate);
             var entityInDb = await _unitOfWork.QuestionRepository.GetOneAsync(it => it.Id.Equals(entityToUpdate.Id),
                     include: inc => inc.Include(it => it.Answers)
                         .Include(it => it.Category)
@@ -112,7 +88,7 @@ namespace DevQuiz.Libraries.Services
                     cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
             if (entityInDb == null)
-                throw new Exception($"{typeof(TQuestion).Name} with id {entityToUpdate.Id} not found in store");
+                throw new Exception($"{nameof(Question)} with id {entityToUpdate.Id} not found in store");
             _mapper.Map(entryToUpdate, entityInDb);
             _unitOfWork.QuestionRepository.Update(entityInDb);
             var commitStatus = await _unitOfWork.CommitAsync(cancellationToken);
@@ -129,7 +105,7 @@ namespace DevQuiz.Libraries.Services
                     cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
             if (entityInDb == null)
-                throw new Exception($"{typeof(TQuestion).Name} with id {idDto} not found in store");
+                throw new Exception($"{nameof(Question)} with id {idDto} not found in store");
             
             _unitOfWork.QuestionRepository.Delete(entityInDb);
             var commitStatus = await _unitOfWork.CommitAsync(cancellationToken);
@@ -138,37 +114,37 @@ namespace DevQuiz.Libraries.Services
 
         #region Categories
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetAllCategoriesAsync"/>
-        public async Task<List<TCategoryDto>> GetAllCategoriesAsync(bool includeQuestions)
+        /// <inheritdoc cref="IQuestionService.GetAllCategoriesAsync"/>
+        public async Task<List<CategoryDto>> GetAllCategoriesAsync(bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetCategoryByIdAsync"/>
-        public async Task<TCategoryDto> GetCategoryByIdAsync(int categoryId, bool includeQuestions)
+        /// <inheritdoc cref="IQuestionService.GetCategoryByIdAsync"/>
+        public async Task<CategoryDto> GetCategoryByIdAsync(int categoryId, bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetCategoryByNameAsync"/>
-        public async Task<TCategoryDto> GetCategoryByNameAsync(string categoryName, bool includeQuestions)
+        /// <inheritdoc cref="IQuestionService.GetCategoryByNameAsync"/>
+        public async Task<CategoryDto> GetCategoryByNameAsync(string categoryName, bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.CreateCategoryAsync"/>
-        public async Task<int> CreateCategoryAsync(TCategoryDto categoryToAdd)
+        /// <inheritdoc cref="IQuestionService.CreateCategoryAsync"/>
+        public async Task<int> CreateCategoryAsync(CategoryDto categoryToAdd)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.UpdateCategoryAsync"/>
-        public async Task<bool> UpdateCategoryAsync(TCategoryDto categoryToUpdate)
+        /// <inheritdoc cref="IQuestionService.UpdateCategoryAsync"/>
+        public async Task<bool> UpdateCategoryAsync(CategoryDto categoryToUpdate)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.DeleteCategoryAsync"/>
+        /// <inheritdoc cref="IQuestionService.DeleteCategoryAsync"/>
         public async Task<bool> DeleteCategoryAsync(int categoryId)
         {
             throw new NotImplementedException();
@@ -178,37 +154,37 @@ namespace DevQuiz.Libraries.Services
 
         #region Tags
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetAllTagsAsync"/>
-        public async Task<List<TTagDto>> GetAllTagsAsync(bool includeQuestions)
+        /// <inheritdoc cref="IQuestionService.GetAllTagsAsync"/>
+        public async Task<List<TagDto>> GetAllTagsAsync(bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetTagByIdAsync"/>
-        public async Task<TTagDto> GetTagByIdAsync(int tagId, bool includeQuestions)
+        /// <inheritdoc cref="IQuestionService.GetTagByIdAsync"/>
+        public async Task<TagDto> GetTagByIdAsync(int tagId, bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.GetTagByNameAsync"/>
-        public async Task<TTagDto> GetTagByNameAsync(string tagName, bool includeQuestions)
+        /// <inheritdoc cref="IQuestionService.GetTagByNameAsync"/>
+        public async Task<TagDto> GetTagByNameAsync(string tagName, bool includeQuestions)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.CreateTagAsync"/>
-        public async Task<int> CreateTagAsync(TTagDto tagToAdd)
+        /// <inheritdoc cref="IQuestionService.CreateTagAsync"/>
+        public async Task<int> CreateTagAsync(TagDto tagToAdd)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.UpdateCategoryAsync"/>
-        public async Task<bool> UpdateTagAsync(TTagDto tagToUpdate)
+        /// <inheritdoc cref="IQuestionService.UpdateCategoryAsync"/>
+        public async Task<bool> UpdateTagAsync(TagDto tagToUpdate)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="IQuestionService{TQuestionDto,TAnswerDto,TCategoryDto,TTagDto}.DeleteTagAsync"/>
+        /// <inheritdoc cref="IQuestionService.DeleteTagAsync"/>
         public async Task<bool> DeleteTagAsync(int tagId)
         {
             throw new NotImplementedException();

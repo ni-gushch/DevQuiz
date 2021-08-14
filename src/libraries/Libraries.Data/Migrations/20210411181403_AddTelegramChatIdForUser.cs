@@ -3,8 +3,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DevQuiz.Libraries.Data.Migrations
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class AddTelegramChatIdForUser : Migration
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
@@ -69,6 +76,10 @@ namespace DevQuiz.Libraries.Data.Migrations
                 column: "telegram_chat_id");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(

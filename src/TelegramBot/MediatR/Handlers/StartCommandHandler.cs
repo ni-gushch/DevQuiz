@@ -14,13 +14,9 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
     /// <summary>
     ///     Command "/start" handler
     /// </summary>
-    /// <typeparam name="TUserDto"> User dto for add or update </typeparam>
-    /// <typeparam name="TKey"> Parameter with unique identifier of entry </typeparam>
-    public class StartCommandHandler<TUserDto, TKey> : IRequestHandler<StartCommand>
-        where TUserDto : UserDtoBase<TKey>
-        where TKey : IEquatable<TKey>
+    public class StartCommandHandler : IRequestHandler<StartCommand>
     {
-        private readonly IUserService<TUserDto, TKey> _userService;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
         private readonly IBotService _botService;
 
@@ -32,7 +28,7 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
         /// </summary>
         /// <param name="userService"> Service for manage users </param>
         /// <param name="mapper"> Mapper instance </param>
-        public StartCommandHandler(IUserService<TUserDto, TKey> userService,
+        public StartCommandHandler(IUserService userService,
             IMapper mapper,
             IBotService botService = null)
         {
@@ -65,11 +61,11 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
             return Unit.Value;
         }
 
-        private async Task<TUserDto> CheckUserAsync(TUserDto userDto)
+        private async Task<UserDto> CheckUserAsync(UserDto userDto)
         {
             if (userDto is null)
             {
-                var userForCreate = _mapper.Map<TUserDto>(_chat);
+                var userForCreate = _mapper.Map<UserDto>(_chat);
                 var userId = await _userService.CreateAsync(userForCreate, _cancellationToken);
                 return await _userService.GetByIdAsync(userId, _cancellationToken);
             }

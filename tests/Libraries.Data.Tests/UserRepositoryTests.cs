@@ -22,7 +22,7 @@ namespace DevQuiz.Libraries.Data.Tests
         {
             var serviceCollection = new ServiceCollection()
                 .AddScoped(opt => new DevQuizDbContext(ContextOptions))
-                .AddScoped<IUnitOfWork, DevQuizUnitOfWork<DevQuizDbContext, User, Guid>>()
+                .AddScoped<IUnitOfWork, DevQuizUserUnitOfWork<DevQuizDbContext>>()
                 .AddScoped<IGenericRepository<User>, GenericRepository<DevQuizDbContext, User>>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();

@@ -3,7 +3,7 @@ using System;
 namespace DevQuiz.Libraries.Core.Models.Entities
 {
     /// <summary>
-    /// Interface for models whitch need audit information
+    /// Interface for models which need audit information
     /// </summary>
     public interface IAuditEntity
     {

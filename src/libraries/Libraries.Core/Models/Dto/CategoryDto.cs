@@ -5,8 +5,7 @@ namespace DevQuiz.Libraries.Core.Models.Dto
     /// <summary>
     /// Base model of question category
     /// </summary>
-    public class CategoryDtoBase<TQuestion> : DtoBase<int>
-        where TQuestion : class
+    public class CategoryDto : DtoBase<int>
     {
         /// <summary>
         /// Get or set category name
@@ -15,6 +14,6 @@ namespace DevQuiz.Libraries.Core.Models.Dto
         /// <summary>
         /// Linked questions
         /// </summary>
-        public List<TQuestion> Questions { get; set; } = new List<TQuestion>();
+        public List<QuestionDto> Questions { get; set; } = new List<QuestionDto>();
     }
 }

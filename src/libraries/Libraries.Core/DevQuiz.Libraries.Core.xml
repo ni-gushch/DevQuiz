@@ -26,50 +26,42 @@
             <param name="input"> Format string. </param>
             <returns> Formatted string. </returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6">
+        <member name="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork">
             <summary>
             DevQuiz UnitOfWork
             </summary>
-            <typeparam name="TUser">Generic User Entity</typeparam>
-            <typeparam name="TQuestion">Generic Question Entity</typeparam>
-            <typeparam name="TAnswer">Generic Question Answer Entity</typeparam>
-            <typeparam name="TCategory">Generic Question Category Entity</typeparam>
-            <typeparam name="TTag">Generic Question Tag Entity</typeparam>
-            <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.UserRepository">
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork.UserRepository">
             <summary>
             User repository
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.QuestionRepository">
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork.QuestionRepository">
             <summary>
             Question repository
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.CategoryRepository">
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork.CategoryRepository">
             <summary>
             Category repository
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.TagRepository">
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork.TagRepository">
             <summary>
             Tag repository
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`6.AnswerRepository">
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork.AnswerRepository">
             <summary>
             Answer repository
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`2">
+        <member name="T:DevQuiz.Libraries.Core.IDevQuizUserUnitOfWork">
             <summary>
             DevQuiz UnitOfWork
             </summary>
-            <typeparam name="TUser">Generic User Entity</typeparam>
-            <typeparam name="TUserKey">Generic Key for User Entity</typeparam>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.IDevQuizUnitOfWork`2.UserRepository">
+        <member name="P:DevQuiz.Libraries.Core.IDevQuizUserUnitOfWork.UserRepository">
             <summary>
             User repository
             </summary>
@@ -113,60 +105,52 @@
             <typeparam name="TEntity">Type of TEntity</typeparam>
             <returns>Concrete repository instance</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Mappers.QuestionMapperProfile`8">
-            <summary>
-            Profile class for mapper user models
-            </summary>
-            <typeparam name="TQuestion"></typeparam>
-            <typeparam name="TAnswer"></typeparam>
-            <typeparam name="TCategory"></typeparam>
-            <typeparam name="TTag"></typeparam>
-            <typeparam name="TQuestionDto">Generic Question dto</typeparam>
-            <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
-            <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
-            <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
-        </member>
-        <member name="M:DevQuiz.Libraries.Core.Mappers.QuestionMapperProfile`8.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="T:DevQuiz.Libraries.Core.Mappers.UserMapperProfile`3">
+        <member name="T:DevQuiz.Libraries.Core.Mappers.QuestionMapperProfile">
             <summary>
             Profile class for mapper user models
             </summary>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Mappers.UserMapperProfile`3.#ctor">
+        <member name="M:DevQuiz.Libraries.Core.Mappers.QuestionMapperProfile.#ctor">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Dto.AnswerDtoBase">
+        <member name="T:DevQuiz.Libraries.Core.Mappers.UserMapperProfile">
+            <summary>
+            Profile class for mapper user models
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Core.Mappers.UserMapperProfile.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.AnswerDto">
             <summary>
             Base answer model
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.AnswerDtoBase.Text">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.AnswerDto.Text">
             <summary>
             Get or set answer text
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.AnswerDtoBase.QuestionId">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.AnswerDto.QuestionId">
             <summary>
             Get or set unique identifier of question
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Dto.CategoryDtoBase`1">
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.CategoryDto">
             <summary>
             Base model of question category
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.CategoryDtoBase`1.Name">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.CategoryDto.Name">
             <summary>
             Get or set category name
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.CategoryDtoBase`1.Questions">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.CategoryDto.Questions">
             <summary>
             Linked questions
             </summary>
@@ -182,84 +166,89 @@
             Get or set unique identifier of entry
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3">
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.QuestionDto">
             <summary>
             Base question model
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.Text">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDto.Text">
             <summary>
             Get or set question text
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.RightAnswerId">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDto.RightAnswerId">
             <summary>
             Get or set unique identifier right answer
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.RightAnswerExplanation">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDto.RightAnswerExplanation">
             <summary>
             Get or set right answer explanation
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.CategoryId">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDto.CategoryId">
             <summary>
             Get or set unique identifier of category
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.Answers">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDto.Answers">
             <summary>
             Get or set list of answers
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.Category">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDto.Category">
             <summary>
             Category object
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDtoBase`3.Tags">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.QuestionDto.Tags">
             <summary>
             Get or set tags list
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Dto.TagDtoBase`1">
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.TagDto">
             <summary>
             Base model of question tag
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.TagDtoBase`1.Name">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.TagDto.Name">
             <summary>
             Get or set tag name
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.TagDtoBase`1.Questions">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.TagDto.Questions">
             <summary>
             Get or set questions list
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Dto.UserDtoBase`1">
+        <member name="T:DevQuiz.Libraries.Core.Models.Dto.UserDto">
             <summary>
             User dto model
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDtoBase`1.UserName">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto.UserName">
             <summary>
             Get or set user name (login)
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDtoBase`1.FirstName">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto.FirstName">
             <summary>
             Get or set user first name
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDtoBase`1.LastName">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto.LastName">
             <summary>
             Get or set user last name
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDtoBase`1.TelegramChatId">
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto.TelegramChatId">
             <summary>
             Unique identifier of telegram chat for current user
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Dto.UserDto.TelegramId">
+            <summary>
+            Unique identifier of user in Telegram
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1">
@@ -277,32 +266,32 @@
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.AggregateEntity`1.UpdatedDate">
             <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity.UpdatedDate" />
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Entities.AnswerBase">
+        <member name="T:DevQuiz.Libraries.Core.Models.Entities.Answer">
             <summary>
             Base answer model
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.AnswerBase.Text">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Answer.Text">
             <summary>
             Get or set answer text
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.AnswerBase.QuestionId">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Answer.QuestionId">
             <summary>
             Get or set unique identifier of question
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Entities.CategoryBase`1">
+        <member name="T:DevQuiz.Libraries.Core.Models.Entities.Category">
             <summary>
             Base model of question category
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.CategoryBase`1.Name">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Category.Name">
             <summary>
             Get or set category name
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.CategoryBase`1.Questions">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Category.Questions">
             <summary>
             Linked questions
             </summary>
@@ -320,7 +309,7 @@
         </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity">
             <summary>
-            Interface for models whitch need audit information
+            Interface for models which need audit information
             </summary>
         </member>
         <member name="P:DevQuiz.Libraries.Core.Models.Entities.IAuditEntity.CreatedDate">
@@ -338,84 +327,89 @@
             Update Date
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3">
+        <member name="T:DevQuiz.Libraries.Core.Models.Entities.Question">
             <summary>
             Base question model
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Text">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Question.Text">
             <summary>
             Get or set question text
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.RightAnswerId">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Question.RightAnswerId">
             <summary>
             Get or set unique identifier right answer
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.RightAnswerExplanation">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Question.RightAnswerExplanation">
             <summary>
             Get or set right answer explanation
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.CategoryId">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Question.CategoryId">
             <summary>
             Get or set unique identifier of category
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Answers">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Question.Answers">
             <summary>
             Get or set list of answers
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Category">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Question.Category">
             <summary>
             Category object
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.QuestionBase`3.Tags">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Question.Tags">
             <summary>
             Get or set tags list
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Entities.TagBase`1">
+        <member name="T:DevQuiz.Libraries.Core.Models.Entities.Tag">
             <summary>
             Base model of question tag
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.TagBase`1.Name">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Tag.Name">
             <summary>
             Get or set tag name
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.TagBase`1.Questions">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.Tag.Questions">
             <summary>
             Get or set questions list
             </summary>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Models.Entities.UserBase`1">
+        <member name="T:DevQuiz.Libraries.Core.Models.Entities.User">
             <summary>
             Base UserModel
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.UserBase`1.UserName">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.User.UserName">
             <summary>
             Get or set user name (login)
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.UserBase`1.FirstName">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.User.FirstName">
             <summary>
             Get or set user first name
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.UserBase`1.LastName">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.User.LastName">
             <summary>
             Get or set user last name
             </summary>
         </member>
-        <member name="P:DevQuiz.Libraries.Core.Models.Entities.UserBase`1.TelegramChatId">
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.User.TelegramChatId">
             <summary>
             Unique identifier of telegram chat for current user
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.Entities.User.TelegramId">
+            <summary>
+            Unique identifier of user in Telegram
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Core.Models.IHasKey`1">
@@ -616,23 +610,19 @@
             <param name="cancellationToken">Cancellation Token</param>
             <returns>Method execution status</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Services.IQuestionService`4">
+        <member name="T:DevQuiz.Libraries.Core.Services.IQuestionService">
             <summary>
             Service for manage Question entries
             </summary>
-            <typeparam name="TQuestionDto">Generic Question dto</typeparam>
-            <typeparam name="TAnswerDto">Generic Question Answer dto</typeparam>
-            <typeparam name="TCategoryDto">Generic Question Answer dto</typeparam>
-            <typeparam name="TTagDto">Generic Question Tag dto</typeparam>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetAllCategoriesAsync(System.Boolean)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.GetAllCategoriesAsync(System.Boolean)">
             <summary>
             Get all categories
             </summary>
             <param name="includeQuestions">Flag to include questions</param>
             <returns>Categories information collection</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetCategoryByIdAsync(System.Int32,System.Boolean)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.GetCategoryByIdAsync(System.Int32,System.Boolean)">
             <summary>
             Get question category by id
             </summary>
@@ -640,7 +630,7 @@
             <param name="includeQuestions">Flag to include questions</param>
             <returns>Question category information</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetCategoryByNameAsync(System.String,System.Boolean)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.GetCategoryByNameAsync(System.String,System.Boolean)">
             <summary>
             Get category by name
             </summary>
@@ -648,35 +638,35 @@
             <param name="includeQuestions">Flag to include questions</param>
             <returns>Information about category</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.CreateCategoryAsync(`2)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.CreateCategoryAsync(DevQuiz.Libraries.Core.Models.Dto.CategoryDto)">
             <summary>
             Create new category entry
             </summary>
             <param name="categoryToCreate">Category new entry</param>
             <returns>Unique identifier of new category</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.UpdateCategoryAsync(`2)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.UpdateCategoryAsync(DevQuiz.Libraries.Core.Models.Dto.CategoryDto)">
             <summary>
             Update category information
             </summary>
             <param name="categoryToUpdate">Category to update</param>
             <returns>Method execution status</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.DeleteCategoryAsync(System.Int32)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.DeleteCategoryAsync(System.Int32)">
             <summary>
             Delete category from store
             </summary>
             <param name="categoryId">Category unique identifier</param>
             <returns>Method execution status</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetAllTagsAsync(System.Boolean)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.GetAllTagsAsync(System.Boolean)">
             <summary>
             Get all tags
             </summary>
             <param name="includeQuestions">Flag to include questions</param>
             <returns>Tag information collection</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetTagByIdAsync(System.Int32,System.Boolean)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.GetTagByIdAsync(System.Int32,System.Boolean)">
             <summary>
             Get tag by id
             </summary>
@@ -684,7 +674,7 @@
             <param name="includeQuestions">Flag to include questions</param>
             <returns>Information about tag</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.GetTagByNameAsync(System.String,System.Boolean)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.GetTagByNameAsync(System.String,System.Boolean)">
             <summary>
             Get tag by name
             </summary>
@@ -692,35 +682,33 @@
             <param name="includeQuestions">Flag to include questions</param>
             <returns>Information about tag</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.CreateTagAsync(`3)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.CreateTagAsync(DevQuiz.Libraries.Core.Models.Dto.TagDto)">
             <summary>
             Create new tag entry
             </summary>
             <param name="tagToCreate">Tag new entry</param>
             <returns>Unique identifier of new tag</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.UpdateTagAsync(`3)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.UpdateTagAsync(DevQuiz.Libraries.Core.Models.Dto.TagDto)">
             <summary>
             Update tag information
             </summary>
             <param name="tagToUpdate">Tag to update</param>
             <returns>Method execution status</returns>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService`4.DeleteTagAsync(System.Int32)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IQuestionService.DeleteTagAsync(System.Int32)">
             <summary>
             Delete tag from store
             </summary>
             <param name="tagId">Unique identifier of tag</param>
             <returns>Method execution status</returns>
         </member>
-        <member name="T:DevQuiz.Libraries.Core.Services.IUserService`2">
+        <member name="T:DevQuiz.Libraries.Core.Services.IUserService">
             <summary>
             Service for manage users
             </summary>
-            <typeparam name="TUserDto">User dto for add or update</typeparam>
-            <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
         </member>
-        <member name="M:DevQuiz.Libraries.Core.Services.IUserService`2.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
+        <member name="M:DevQuiz.Libraries.Core.Services.IUserService.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
             <summary>
             Get user information by chat id
             </summary>
