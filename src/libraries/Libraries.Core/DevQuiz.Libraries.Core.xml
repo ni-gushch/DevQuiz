@@ -125,6 +125,16 @@
             Constructor
             </summary>
         </member>
+        <member name="T:DevQuiz.Libraries.Core.Models.CategoryModel">
+            <summary>
+            Model with base category info
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Core.Models.CategoryModel.Name">
+            <summary>
+            CAtegory name
+            </summary>
+        </member>
         <member name="T:DevQuiz.Libraries.Core.Models.Dto.AnswerDto">
             <summary>
             Base answer model

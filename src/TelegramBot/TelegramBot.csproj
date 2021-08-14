@@ -8,6 +8,7 @@
     <DocumentationFile>$(MSBuildProjectDirectory)\DevQuiz.TelegramBot.xml</DocumentationFile>
     <Configurations>Debug;Release</Configurations>
     <UserSecretsId>fc324886-be07-484c-a811-cd58f91fa001</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
 
  <ItemGroup>

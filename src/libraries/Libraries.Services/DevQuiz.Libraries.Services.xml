@@ -155,6 +155,25 @@
         <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.DeleteQuestionCommandHandler.Handle(DevQuiz.Libraries.Services.Commands.DeleteQuestionCommand,System.Threading.CancellationToken)">
             <inheritdoc cref="M:DevQuiz.Libraries.Services.Handlers.Admin.DeleteQuestionCommandHandler.Handle(DevQuiz.Libraries.Services.Commands.DeleteQuestionCommand,System.Threading.CancellationToken)"/> 
         </member>
+        <member name="T:DevQuiz.Libraries.Services.Handlers.Admin.GetAllCategoriesHandler">
+            <summary>
+            Handler for get all available categories
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.GetAllCategoriesHandler.#ctor(AutoMapper.IMapper,DevQuiz.Libraries.Core.IDevQuizUnitOfWork,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Constructor with params
+            </summary>
+            <param name="mapper">Instance of <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="devQuizUnitOfWork">Instance of <see cref="T:DevQuiz.Libraries.Core.IDevQuizUnitOfWork"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.GetAllCategoriesHandler.Handle(DevQuiz.Libraries.Services.Queries.GetAllCategoriesQuery,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Services.Handlers.Admin.GetAllCategoriesHandler.Handle(DevQuiz.Libraries.Services.Queries.GetAllCategoriesQuery,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:DevQuiz.Libraries.Services.Handlers.Admin.GetQuestionById.GetQuestionByIdQueryHandler.Handle(DevQuiz.Libraries.Services.Queries.GetQuestionById.GetQuestionByIdQuery,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Libraries.Services.Handlers.Admin.GetQuestionById.GetQuestionByIdQueryHandler.Handle(DevQuiz.Libraries.Services.Queries.GetQuestionById.GetQuestionByIdQuery,System.Threading.CancellationToken)"/> 
+        </member>
         <member name="T:DevQuiz.Libraries.Services.Handlers.Admin.UpdateQuestionCommandHandler">
             <summary>
             Handler for update question action
@@ -179,6 +198,21 @@
         <member name="M:DevQuiz.Libraries.Services.MapperProfiles.DevQuizBusinessLogicMapperProfile.#ctor">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Queries.GetAllCategoriesQueryResponse">
+            <summary>
+            Response from get all categories info
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Libraries.Services.Queries.GetQuestionById.GetQuestionByIdQuery">
+            <summary>
+            Query to get information about question by id
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Libraries.Services.Queries.GetQuestionById.GetQuestionByIdQuery.Id">
+            <summary>
+            Identifier of searched question
             </summary>
         </member>
         <member name="T:DevQuiz.Libraries.Services.QuestionService">

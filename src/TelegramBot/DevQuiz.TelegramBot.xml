@@ -180,6 +180,42 @@
             <param name="id">Unique identifier of tag</param>
             <returns>Operation status</returns>
         </member>
+        <member name="T:DevQuiz.TelegramBot.Controllers.Admin.QuestionController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.Controllers.Admin.QuestionController.#ctor(MediatR.IMediator,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Controllers.Admin.QuestionController})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="mediator">Instance of <see cref="T:MediatR.IMediator"/></param>
+            <param name="mapper">Instance of <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.Controllers.Admin.QuestionController.GetAll(System.Threading.CancellationToken)">
+            <summary>
+            Get information about all available questions
+            </summary>
+            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Collection of available questions</returns>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.Controllers.Admin.QuestionController.GetById(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get information about question by passed id
+            </summary>
+            <param name="id">Identifier of searched question</param>
+            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Concrete question information</returns>
+        </member>
+        <member name="M:DevQuiz.TelegramBot.Controllers.Admin.QuestionController.CreateQuestion(DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel,System.Threading.CancellationToken)">
+            <summary>
+            Create new Question
+            </summary>
+            <param name="value">Create question model</param>
+            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Identifier of new question</returns>
+        </member>
         <member name="T:DevQuiz.TelegramBot.Controllers.BotConfigurationController">
             <summary>
             Controller for manage Bot Configuration
@@ -336,20 +372,12 @@
         </member>
         <member name="T:DevQuiz.TelegramBot.Models.ApiResults.CategoriesApiResult">
             <summary>
-            ApiResult for represent question category information
+            ApiResult for represent categories collection
             </summary>
         </member>
-        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.CategoriesApiResult.Id">
-            <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.IHasKey`1.Id"/>
-        </member>
-        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.CategoriesApiResult.Name">
+        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.CategoriesApiResult.Categories">
             <summary>
-            Category name
-            </summary>
-        </member>
-        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.CategoriesApiResult.Questions">
-            <summary>
-            Questions in category
+            Available categories collection
             </summary>
         </member>
         <member name="T:DevQuiz.TelegramBot.Models.ApiResults.IdApiResult`1">
@@ -444,19 +472,14 @@
             Set question text
             </summary>
         </member>
-        <member name="P:DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel.Category">
+        <member name="P:DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel.RightAnswerExplanation">
             <summary>
-            Set category
+            Get or set right answer explanation
             </summary>
         </member>
-        <member name="P:DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel.Answers">
+        <member name="P:DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel.CategoryId">
             <summary>
-            Get or set list of answers
-            </summary>
-        </member>
-        <member name="P:DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel.Tags">
-            <summary>
-            Get or set tags list
+            Identifier of selected category
             </summary>
         </member>
         <member name="T:DevQuiz.TelegramBot.Models.InputModels.CreateTagInputModel">
