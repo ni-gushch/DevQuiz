@@ -1,0 +1,26 @@
+﻿version: "3.8"
+
+services:
+  devquiz-telegram-bot:
+    image: '${DOCKER_REGISTRY-}devquiz-telegram-bot'
+    build: 
+      context: .
+      dockerfile: ./src/TelegramBot/Dockerfile
+    ports:
+      - "8443:80"
+    depends_on:
+      - devquiz-postgres-db
+    volumes:
+      - ./src:/src
+      - ./src/libraries:/src/libraries
+  devquiz-postgres-db:
+    image: "postgres"
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db-devquiz
+    volumes:
+      - ./devquiz-postgres-db/dbdata:/var/lib/postgresql/data"
+    command: "-c log_statement=all" 

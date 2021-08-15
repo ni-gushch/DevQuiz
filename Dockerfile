@@ -10,15 +10,9 @@ COPY ["./src/libraries/Libraries.Data/Libraries.Data.csproj", "./libraries/Libra
 COPY ["./src/libraries/Libraries.Services/Libraries.Services.csproj", "./libraries/Libraries.Services/"]
 COPY ["./src/TelegramBot/TelegramBot.csproj", "./TelegramBot/"]
 RUN dotnet restore "./TelegramBot/TelegramBot.csproj"
-COPY "./src/TelegramBot/." "./TelegramBot/"
-COPY "./src/libraries/Libraries.Core/." "./libraries/Libraries.Core/"
-COPY "./src/libraries/Libraries.Data/." "./libraries/Libraries.Data/"
-COPY "./src/libraries/Libraries.Services/." "./libraries/Libraries.Services/"
-RUN ls -la "./TelegramBot"
-RUN ls -la "./libraries/Libraries.Core"
-RUN ls -la "./libraries/Libraries.Data"
-RUN ls -la "./libraries/Libraries.Services"
+COPY . .
 WORKDIR "/src/TelegramBot/."
+EXEC "ls /src/TelegramBot/"
 RUN dotnet build "TelegramBot.csproj" -c Release -o /app/build
 
 FROM build AS publish
