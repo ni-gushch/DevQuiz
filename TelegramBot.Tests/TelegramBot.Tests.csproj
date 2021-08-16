@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\TelegramBot\TelegramBot.csproj" />
+    <ProjectReference Include="..\src\DevQuiz.TelegramBot\DevQuiz.TelegramBot.csproj" />
     <ProjectReference Include="..\tests\Libraries.Data.Tests\Libraries.Data.Tests.csproj" />
   </ItemGroup>
 

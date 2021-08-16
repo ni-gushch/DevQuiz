@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevQuiz.Admin.Hosting</name>
+    </assembly>
+    <members>
+        <member name="T:DevQuiz.Admin.Hosting.Controllers.CategoryController">
+            <summary>
+            Controller for manage question categories
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Controllers.CategoryController.#ctor(MediatR.IMediator,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Hosting.Controllers.CategoryController})">
+            <summary>
+            Constructor with parameters
+            </summary>
+            <param name="mediator">Instance of <see cref="T:MediatR.IMediator"/></param>
+            <param name="mapper">Instance of <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Controllers.CategoryController.GetAll(System.Threading.CancellationToken)">
+            <summary>
+            Get all categories from store
+            </summary>
+            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>All available categories</returns>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Controllers.QuestionController">
+            <summary>
+            Controller for manage Qustions
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Controllers.QuestionController.#ctor(MediatR.IMediator,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Hosting.Controllers.QuestionController})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="mediator">Instance of <see cref="T:MediatR.IMediator"/></param>
+            <param name="mapper">Instance of <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Controllers.QuestionController.GetAll(System.Threading.CancellationToken)">
+            <summary>
+            Get information about all available questions
+            </summary>
+            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Collection of available questions</returns>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Controllers.QuestionController.GetById(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get information about question by passed id
+            </summary>
+            <param name="id">Identifier of searched question</param>
+            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Concrete question information</returns>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Controllers.QuestionController.CreateQuestion(DevQuiz.Admin.Hosting.Models.InputModels.CreateQuestionInputModel,System.Threading.CancellationToken)">
+            <summary>
+            Create new Question
+            </summary>
+            <param name="value">Create question model</param>
+            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Identifier of new question</returns>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.ApiResults.ActionStatusApiResult">
+            <summary>
+            Api result with action complete status
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Models.ApiResults.ActionStatusApiResult.#ctor">
+            <summary>
+            Constructor without parameters
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Models.ApiResults.ActionStatusApiResult.#ctor(System.Boolean)">
+            <summary>
+            Constructor with parameter
+            </summary>
+            <param name="status">Action status</param>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ApiResults.ActionStatusApiResult.ActionStatus">
+            <summary>
+            Complete status
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.ApiResults.CategoriesApiResult">
+            <summary>
+            ApiResult for represent categories collection
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ApiResults.CategoriesApiResult.Categories">
+            <summary>
+            Available categories collection
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.ApiResults.IdApiResult`1">
+            <summary>
+            Api Result with id of new entry
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Models.ApiResults.IdApiResult`1.#ctor">
+            <summary>
+            Constructor without parameters
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Models.ApiResults.IdApiResult`1.#ctor(`0)">
+            <summary>
+            Constructor with parameter
+            </summary>
+            <param name="id">Unique identifier</param>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ApiResults.IdApiResult`1.Id">
+            <inheritdoc cref="P:DevQuiz.Admin.Core.Models.IHasKey`1.Id"/>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.ApiResults.QuestionApiResult">
+            <summary>
+            ApiResult for represent question information
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ApiResults.QuestionApiResult.Id">
+            <inheritdoc cref="P:DevQuiz.Admin.Core.Models.IHasKey`1.Id"/>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ApiResults.QuestionApiResult.Text">
+            <summary>
+            Get question text
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ApiResults.QuestionApiResult.RightAnswer">
+            <summary>
+            Get category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ApiResults.QuestionApiResult.Category">
+            <summary>
+            Get category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ApiResults.QuestionApiResult.Answers">
+            <summary>
+            Get list of answers
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ApiResults.QuestionApiResult.Tags">
+            <summary>
+            Get tags list
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.InputModels.CreateCategoryInputModel">
+            <summary>
+            Input model for creating new question category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.InputModels.CreateCategoryInputModel.Name">
+            <summary>
+            Category name
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.InputModels.CreateQuestionInputModel">
+            <summary>
+            Input model for creating new question
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.InputModels.CreateQuestionInputModel.Text">
+            <summary>
+            Set question text
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.InputModels.CreateQuestionInputModel.RightAnswerExplanation">
+            <summary>
+            Get or set right answer explanation
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.InputModels.CreateQuestionInputModel.CategoryId">
+            <summary>
+            Identifier of selected category
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.InputModels.CreateTagInputModel">
+            <summary>
+            Input model for creating new question tag
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.InputModels.CreateTagInputModel.Name">
+            <summary>
+            Tag name
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.InputModels.UpdateCategoryInputModel">
+            <summary>
+            Input model for updating question category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.InputModels.UpdateCategoryInputModel.Id">
+            <inheritdoc cref="P:DevQuiz.Admin.Core.Models.IHasKey`1.Id"/>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.InputModels.UpdateQuestionInputModel">
+            <summary>
+            Input model for update question
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.InputModels.UpdateQuestionInputModel.Id">
+            <inheritdoc cref="P:DevQuiz.Admin.Core.Models.IHasKey`1.Id"/>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.InputModels.UpdateTagInputModel">
+            <summary>
+            Input model for update question tag
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.InputModels.UpdateTagInputModel.Id">
+            <inheritdoc cref="P:DevQuiz.Admin.Core.Models.IHasKey`1.Id"/>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.ValueModel">
+            <summary>
+            Model with value
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ValueModel.Value">
+            <summary>
+            Value of entry
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Models.ValueModel`1">
+            <summary>
+            Model with value and unique identifier
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:DevQuiz.Admin.Hosting.Models.ValueModel`1.Id">
+            <summary>
+            Unique identifier of entry
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Program">
+            <summary>
+            Entrypoint of project
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Program.Main(System.String[])">
+            <summary>
+            Entry method
+            </summary>
+            <param name="args">Args for project</param>
+            <returns></returns>
+        </member>
+        <member name="T:DevQuiz.Admin.Hosting.Startup">
+            <summary>
+            Startup class
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="configuration">Instance of <see cref="T:Microsoft.Extensions.Configuration.IConfiguration"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Method for configure services of application
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Method for configure middlewares pipeline of application
+            </summary>
+            <param name="app">Instance of <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/></param>
+            <param name="env">Instance of <see cref="T:Microsoft.AspNetCore.Hosting.IWebHostEnvironment"/></param>
+        </member>
+    </members>
+</doc>

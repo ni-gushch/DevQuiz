@@ -1,0 +1,399 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevQuiz.Admin.Services</name>
+    </assembly>
+    <members>
+        <member name="T:DevQuiz.Admin.Services.BaseHandler`2">
+            <summary>
+            Base abstract handler
+            </summary>
+            <typeparam name="TRequest">Type of handler request</typeparam>
+            <typeparam name="TResponse">Type of handler response</typeparam>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.BaseHandler`2.Logger">
+            <summary>
+            Logger
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.BaseHandler`2.Mapper">
+            <summary>
+            Mapper object
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.BaseHandler`2.#ctor(AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Base constructor
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.BaseHandler`2.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Method for handle command/query
+            </summary>
+            <param name="request">Request instance</param>
+            <param name="cancellationToken">Instance of type <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Response of executed handler</returns>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.BaseHandler`1">
+            <summary>
+            Base abstract handler
+            </summary>
+            <typeparam name="TRequest">Type of handler request</typeparam>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.BaseHandler`1.Logger">
+            <summary>
+            Logger
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.BaseHandler`1.Mapper">
+            <summary>
+            Mapper object
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.BaseHandler`1.#ctor(AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Base constructor
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.BaseHandler`1.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Method for handle command/query
+            </summary>
+            <param name="request">Request instance</param>
+            <param name="cancellationToken">Instance of type <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>Response of executed handler</returns>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Commands.CreateQuestionCommand">
+            <summary>
+            Command for create new question in store
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Commands.CreateQuestionCommandResponse">
+            <summary>
+            Create question command response
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.Commands.CreateQuestionCommandResponse.Id">
+            <summary>
+            Identifier of new Question
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Commands.DeleteQuestionCommand">
+            <summary>
+            Command for delete question action
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.Commands.DeleteQuestionCommand.Id">
+            <summary>
+            Identifier of deleted question
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Commands.UpdateQuestionCommand">
+            <summary>
+            Command for update question action 
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.Commands.UpdateQuestionCommand.Id">
+            <summary>
+            Identifier of question for update
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.FakeUserService">
+            <inheritdoc cref="T:DevQuiz.Admin.Core.Services.IUserService"/>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.FakeUserService.UserDtoes">
+            <summary>
+                List of DTO of user.
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.FakeUserService.GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.GetAllAsync(System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.FakeUserService.GetByIdAsync(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.GetByIdAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.FakeUserService.CreateAsync(DevQuiz.Admin.Core.Models.Dto.UserDto,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.CreateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.FakeUserService.UpdateAsync(DevQuiz.Admin.Core.Models.Dto.UserDto,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.FakeUserService.DeleteAsync(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.FakeUserService.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IUserService.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)" />
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Handlers.Admin.CreateQuestionCommandHandler">
+            <summary>
+            Handler for action on create question
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.CreateQuestionCommandHandler.#ctor(AutoMapper.IMapper,DevQuiz.Admin.Core.IDevQuizUnitOfWork,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Services.Handlers.Admin.CreateQuestionCommandHandler})">
+            <summary>
+            Constructor with parameters
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="unitOfWork">Instance of <see cref="T:DevQuiz.Admin.Core.IDevQuizUnitOfWork"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.CreateQuestionCommandHandler.Handle(DevQuiz.Admin.Services.Commands.CreateQuestionCommand,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Services.Handlers.Admin.CreateQuestionCommandHandler.Handle(DevQuiz.Admin.Services.Commands.CreateQuestionCommand,System.Threading.CancellationToken)"/> 
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Handlers.Admin.DeleteQuestionCommandHandler">
+            <summary>
+            Handler for delete question action
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.DeleteQuestionCommandHandler.#ctor(AutoMapper.IMapper,DevQuiz.Admin.Core.IDevQuizUnitOfWork,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Services.Handlers.Admin.CreateQuestionCommandHandler})">
+            <summary>
+            Constructor with params
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="unitOfWork">Instance of <see cref="T:DevQuiz.Admin.Core.IDevQuizUnitOfWork"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.DeleteQuestionCommandHandler.Handle(DevQuiz.Admin.Services.Commands.DeleteQuestionCommand,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Services.Handlers.Admin.DeleteQuestionCommandHandler.Handle(DevQuiz.Admin.Services.Commands.DeleteQuestionCommand,System.Threading.CancellationToken)"/> 
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Handlers.Admin.GetAllCategoriesHandler">
+            <summary>
+            Handler for get all available categories
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.GetAllCategoriesHandler.#ctor(AutoMapper.IMapper,DevQuiz.Admin.Core.IDevQuizUnitOfWork,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Services.Handlers.Admin.GetAllCategoriesHandler})">
+            <summary>
+            Constructor with params
+            </summary>
+            <param name="mapper">Instance of <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="devQuizUnitOfWork">Instance of <see cref="T:DevQuiz.Admin.Core.IDevQuizUnitOfWork"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.GetAllCategoriesHandler.Handle(DevQuiz.Admin.Services.Queries.GetAllCategoriesQuery,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Services.Handlers.Admin.GetAllCategoriesHandler.Handle(DevQuiz.Admin.Services.Queries.GetAllCategoriesQuery,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Handlers.Admin.GetQuestionByIdQueryHandler">
+            <summary>
+            Handler for get question by id action
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.GetQuestionByIdQueryHandler.#ctor(AutoMapper.IMapper,DevQuiz.Admin.Core.IDevQuizUnitOfWork,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Services.Handlers.Admin.GetQuestionByIdQueryHandler})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="mapper">Instance of <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="devQuizUnitOfWork">Instance of <see cref="T:DevQuiz.Admin.Core.IDevQuizUnitOfWork"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.GetQuestionByIdQueryHandler.Handle(DevQuiz.Admin.Services.Queries.GetQuestionByIdQuery,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Services.Handlers.Admin.GetQuestionByIdQueryHandler.Handle(DevQuiz.Admin.Services.Queries.GetQuestionByIdQuery,System.Threading.CancellationToken)"/> 
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Handlers.Admin.UpdateQuestionCommandHandler">
+            <summary>
+            Handler for update question action
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.UpdateQuestionCommandHandler.#ctor(AutoMapper.IMapper,DevQuiz.Admin.Core.IDevQuizUnitOfWork,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Services.Handlers.Admin.UpdateQuestionCommandHandler})">
+            <summary>
+            Constructor with params
+            </summary>
+            <param name="mapper">Instance of type <see cref="T:AutoMapper.IMapper"/></param>
+            <param name="unitOfWork">Instance of <see cref="T:DevQuiz.Admin.Core.IDevQuizUnitOfWork"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.Handlers.Admin.UpdateQuestionCommandHandler.Handle(DevQuiz.Admin.Services.Commands.UpdateQuestionCommand,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Services.Handlers.Admin.UpdateQuestionCommandHandler.Handle(DevQuiz.Admin.Services.Commands.UpdateQuestionCommand,System.Threading.CancellationToken)"/> 
+        </member>
+        <member name="T:DevQuiz.Admin.Services.IBaseCommand`1">
+            <summary>
+            Base interface for command with response
+            </summary>
+            <typeparam name="TCommandResponse">Type of response from command</typeparam>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.IBaseCommand">
+            <summary>
+            Base interface for command without response
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.IBaseQuery`1">
+            <summary>
+            Base interface for query with response
+            </summary>
+            <typeparam name="TQueryResponse">Type of query response</typeparam>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.MapperProfiles.DevQuizBusinessLogicMapperProfile">
+            <summary>
+            Mapper profile for business logic layer
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.MapperProfiles.DevQuizBusinessLogicMapperProfile.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Queries.GetAllCategoriesQuery">
+            <summary>
+            Query for get all questions from store
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Queries.GetAllCategoriesQueryResponse">
+            <summary>
+            Response from get all categories info
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.Queries.GetAllCategoriesQueryResponse.Categories">
+            <summary>
+            Categories collection
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Queries.GetAllQuestionsQuery">
+            <summary>
+            Query for get all questions
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Queries.GetAllQuestionsQueryResponse">
+            <summary>
+            Response from action on get all questions 
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Queries.GetQuestionByIdQuery">
+            <summary>
+            Query to get information about question by id
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Services.Queries.GetQuestionByIdQuery.Id">
+            <summary>
+            Identifier of searched question
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.Queries.GetQuestionByIdQueryResponse">
+            <summary>
+            Response from action on get question information by his id
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.QuestionService">
+            <summary>
+            Service for manage Question entries
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.#ctor(DevQuiz.Admin.Core.IDevQuizUnitOfWork,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Services.QuestionService})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="unitOfWork">Unit of work instance</param>
+            <param name="mapper">Mapper instance</param>
+            <param name="logger">Logger instance</param>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.GetAllAsync(System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.GetByIdAsync(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.GetByIdAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.CreateAsync(DevQuiz.Admin.Core.Models.Dto.QuestionDto,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.CreateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.UpdateAsync(DevQuiz.Admin.Core.Models.Dto.QuestionDto,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.DeleteAsync(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.GetAllCategoriesAsync(System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.GetAllCategoriesAsync(System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.GetCategoryByIdAsync(System.Int32,System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.GetCategoryByIdAsync(System.Int32,System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.GetCategoryByNameAsync(System.String,System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.GetCategoryByNameAsync(System.String,System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.CreateCategoryAsync(DevQuiz.Admin.Core.Models.Dto.CategoryDto)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.CreateCategoryAsync(DevQuiz.Admin.Core.Models.Dto.CategoryDto)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.UpdateCategoryAsync(DevQuiz.Admin.Core.Models.Dto.CategoryDto)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.UpdateCategoryAsync(DevQuiz.Admin.Core.Models.Dto.CategoryDto)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.DeleteCategoryAsync(System.Int32)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.DeleteCategoryAsync(System.Int32)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.GetAllTagsAsync(System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.GetAllTagsAsync(System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.GetTagByIdAsync(System.Int32,System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.GetTagByIdAsync(System.Int32,System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.GetTagByNameAsync(System.String,System.Boolean)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.GetTagByNameAsync(System.String,System.Boolean)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.CreateTagAsync(DevQuiz.Admin.Core.Models.Dto.TagDto)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.CreateTagAsync(DevQuiz.Admin.Core.Models.Dto.TagDto)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.UpdateTagAsync(DevQuiz.Admin.Core.Models.Dto.TagDto)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.UpdateCategoryAsync(DevQuiz.Admin.Core.Models.Dto.CategoryDto)"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.QuestionService.DeleteTagAsync(System.Int32)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IQuestionService.DeleteTagAsync(System.Int32)"/>
+        </member>
+        <member name="T:DevQuiz.Admin.Services.UserService">
+            <inheritdoc cref="T:DevQuiz.Admin.Core.Services.IUserService" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.UserService.#ctor(DevQuiz.Admin.Core.IDevQuizUnitOfWork,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Services.UserService})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="unitOfWork">Instance of UnitOfWork</param>
+            <param name="mapper">Mapper instance</param>
+            <param name="logger">Logger instance</param>
+        </member>
+        <member name="M:DevQuiz.Admin.Services.UserService.GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.GetAllAsync(System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.UserService.GetByIdAsync(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.GetByIdAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.UserService.CreateAsync(DevQuiz.Admin.Core.Models.Dto.UserDto,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.CreateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.UserService.DeleteAsync(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.UserService.UpdateAsync(DevQuiz.Admin.Core.Models.Dto.UserDto,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:DevQuiz.Admin.Services.UserService.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Core.Services.IUserService.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)" />
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+            Extensions methods for IServiceCollection instance
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add services for working with DevQuiz db
+            </summary>
+            <param name="services">IServiceCollection instance</param>
+            <returns>IServiceCollection</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizMediatrServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            Register Handlers for commands that contains in Business logic layer
+            </summary>
+            <param name="services"></param>
+            <param name="additionalMediatrAssemblies"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizMapperServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register AutoMapping services for DevQuiz 
+            </summary>
+            <param name="services">Instance of <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/></param>
+            <returns>Original instance of <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/></returns>
+        </member>
+    </members>
+</doc>
