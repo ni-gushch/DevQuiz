@@ -20,7 +20,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: db-devquiz
+      POSTGRES_DB: devquiz-db
     volumes:
       - ./devquiz-postgres-db/dbdata:/var/lib/postgresql/data"
     command: "-c log_statement=all" 

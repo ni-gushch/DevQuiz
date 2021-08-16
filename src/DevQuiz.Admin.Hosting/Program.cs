@@ -36,6 +36,9 @@ namespace DevQuiz.Admin.Hosting
 
 #if(DEBUG)
             var connectionString = configuration.GetSection(nameof(DataBaseConfiguration)).Get<DataBaseConfiguration>();
+            if (connectionString is null)
+                throw new NullReferenceException(
+                    $"{nameof(connectionString)} configuration is not set in user secrets");
             Environment.SetEnvironmentVariable($"{nameof(DataBaseConfiguration)}:{nameof(DataBaseConfiguration.ConnectionString)}", connectionString.ConnectionString);
 #endif
 

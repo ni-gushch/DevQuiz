@@ -61,12 +61,18 @@ namespace DevQuiz.Admin.Hosting
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            
+            app.UseSwagger();
+            app.UseSwaggerUI(cfg =>
+            {
+                cfg.SwaggerEndpoint("/swagger/v1/swagger.json", "DevQuiz Admin API");
+                cfg.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
-
+            app.UseCors();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
