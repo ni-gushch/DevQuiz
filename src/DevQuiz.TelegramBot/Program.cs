@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using DevQuiz.Libraries.Core.Configurations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -33,11 +32,6 @@ namespace DevQuiz.TelegramBot
         {
             var netCoreEnvironmentVariable = Environment.GetEnvironmentVariable(AspNetCoreEnvironmentName) ?? Environments.Production;
             var configuration = BuildConfigurations(args, netCoreEnvironmentVariable);
-
-#if(DEBUG)
-            var connectionString = configuration.GetSection(nameof(DbConfiguration)).Get<DbConfiguration>();
-            Environment.SetEnvironmentVariable($"{nameof(DbConfiguration)}:{nameof(DbConfiguration.ConnectionString)}", connectionString.ConnectionString);
-#endif
 
             return Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostContext, builder) => 

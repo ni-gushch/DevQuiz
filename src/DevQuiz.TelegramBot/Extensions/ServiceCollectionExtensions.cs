@@ -1,7 +1,4 @@
-using System;
 using System.IO;
-using DevQuiz.Libraries.Core.Configurations;
-using DevQuiz.Libraries.Core.Mappers;
 using DevQuiz.TelegramBot.Configurations;
 using DevQuiz.TelegramBot.Interfaces;
 using DevQuiz.TelegramBot.Mappers;
@@ -11,7 +8,6 @@ using DevQuiz.TelegramBot.Services;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using UserDto = DevQuiz.Libraries.Core.Models.Dto.UserDto;
 
 namespace DevQuiz.TelegramBot.Extensions
 {
@@ -23,7 +19,6 @@ namespace DevQuiz.TelegramBot.Extensions
         internal static IServiceCollection AddCustomOptions(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.Configure<DbConfiguration>(configuration.GetSection(nameof(DbConfiguration)));
             services.Configure<BotConfiguration>(configuration.GetSection(nameof(BotConfiguration)));
 
             return services;
@@ -54,13 +49,8 @@ namespace DevQuiz.TelegramBot.Extensions
         {
             services.AddAutoMapper(config =>
             {
-                config.AddProfile<UserMapperProfile>();
-                config.AddProfile<QuestionMapperProfile>();
                 config.AddProfile<UserBotMapperProfile>();
-                config.AddProfile<QuestionsAdminApiMapperProfile>();
             });
-            
-            services.AddDevQuizMapperServices();
 
             return services;
         }

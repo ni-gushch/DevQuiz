@@ -1,14 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>DevQuiz.Libraries.Data.Tests</AssemblyName>
-    <RootNamespace>DevQuiz.Libraries.Data.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-   <ProjectReference Include="../../src/libraries/Libraries.Data/Libraries.Data.csproj" />
+   <ProjectReference Include="../../src/DevQuiz.Admin.DataAccess/DevQuiz.Admin.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>

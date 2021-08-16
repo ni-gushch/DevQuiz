@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using DevQuiz.Libraries.Core.Models.Dto;
-using DevQuiz.Libraries.Core.Services;
 using DevQuiz.TelegramBot.Interfaces;
 using DevQuiz.TelegramBot.MediatR.Commands;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
@@ -16,7 +13,7 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
     /// </summary>
     public class StartCommandHandler : IRequestHandler<StartCommand>
     {
-        private readonly IUserService _userService;
+        //private readonly IUserService _userService;
         private readonly IMapper _mapper;
         private readonly IBotService _botService;
 
@@ -28,11 +25,11 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
         /// </summary>
         /// <param name="userService"> Service for manage users </param>
         /// <param name="mapper"> Mapper instance </param>
-        public StartCommandHandler(IUserService userService,
+        public StartCommandHandler(/*IUserService userService,*/
             IMapper mapper,
             IBotService botService = null)
         {
-            _userService = userService;
+            /*_userService = userService;*/
             _mapper = mapper;
             _botService = botService;
         }
@@ -48,20 +45,20 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
             _chat = request.Chat;
             _cancellationToken = cancellationToken;
 
-            var userInDb =  await _userService.GetByChatIdAsync(_chat.Id, cancellationToken);
+            /*var userInDb =  await _userService.GetByChatIdAsync(_chat.Id, cancellationToken);
 
-            userInDb = await CheckUserAsync(userInDb); 
+            userInDb = await CheckUserAsync(userInDb); */
 
-            var answer = $"Hy, {userInDb?.FirstName} {userInDb?.LastName}!";
+            //var answer = $"Hy, {userInDb?.FirstName} {userInDb?.LastName}!";
 
             // Совсем необязательно здороваться на команду \start.
-            if (_botService != null)
-                await _botService.Client.SendTextMessageAsync(request.Chat.Id, answer, cancellationToken: cancellationToken);
+            // if (_botService != null)
+            //     await _botService.Client.SendTextMessageAsync(request.Chat.Id, answer, cancellationToken: cancellationToken);
 
             return Unit.Value;
         }
 
-        private async Task<UserDto> CheckUserAsync(UserDto userDto)
+        /*private async Task<UserDto> CheckUserAsync(UserDto userDto)
         {
             if (userDto is null)
             {
@@ -80,6 +77,6 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
             userDto.LastName = _chat.LastName;
             await _userService.UpdateAsync(userDto, _cancellationToken);
             return userDto;
-        }
+        }*/
     }
 }

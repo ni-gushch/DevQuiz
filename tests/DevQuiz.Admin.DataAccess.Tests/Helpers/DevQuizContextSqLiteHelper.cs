@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using DevQuiz.Libraries.Core.Models.Entities;
-using DevQuiz.Libraries.Data.DbContexts;
+using DevQuiz.Admin.Core.Models.Entities;
+using DevQuiz.Admin.DataAccess.DbContexts;
 
-
-namespace DevQuiz.Libraries.Data.Tests.Helpers
+namespace DevQuiz.Admin.DataAccess.Tests.Helpers
 {
     public static class DevQuizContextSqLiteHelper
     {

@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevQuiz.TelegramBot", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B3F315F0-6856-4957-BEF4-0F64AAE39B5E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libraries.Data.Tests", "tests\Libraries.Data.Tests\Libraries.Data.Tests.csproj", "{35F4EC14-2FAB-43E2-A1CB-18F444829969}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevQuiz.Admin.DataAccess.Tests", "tests\DevQuiz.Admin.DataAccess.Tests\DevQuiz.Admin.DataAccess.Tests.csproj", "{35F4EC14-2FAB-43E2-A1CB-18F444829969}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libraries.Core.Tests", "tests\Libraries.Core.Tests\Libraries.Core.Tests.csproj", "{ED6D5B78-8E1B-4A06-BF2D-78EBCC76F9A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevQuiz.Admin.Core.Tests", "tests\DevQuiz.Admin.Core.Tests\DevQuiz.Admin.Core.Tests.csproj", "{ED6D5B78-8E1B-4A06-BF2D-78EBCC76F9A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramBot.Tests", "TelegramBot.Tests\TelegramBot.Tests.csproj", "{195C6112-7A34-4541-A827-BE7FB400CAE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramBot.Tests", "tests\TelegramBot.Tests\TelegramBot.Tests.csproj", "{195C6112-7A34-4541-A827-BE7FB400CAE3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{C92B72D7-6DF9-4447-A3FC-82B631F1BD7B}"
 ProjectSection(SolutionItems) = preProject

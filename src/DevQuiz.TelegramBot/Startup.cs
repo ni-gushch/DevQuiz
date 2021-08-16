@@ -1,6 +1,4 @@
 using System;
-using System.Reflection;
-using DevQuiz.Libraries.Data.DbContexts;
 using DevQuiz.TelegramBot.Constants;
 using DevQuiz.TelegramBot.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -44,10 +42,6 @@ namespace DevQuiz.TelegramBot
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCustomOptions(Configuration);
-
-            services.AddDevQuizDbContexts<DevQuizDbContext>(Configuration);
-            services.AddDevQuizRepositories<DevQuizDbContext>();
-            services.AddDevQuizServices();
             services.AddCustomAutoMapper();
 
             services.AddHttpClient();
@@ -57,8 +51,6 @@ namespace DevQuiz.TelegramBot
             services.AddCustomSwagger();
 
             services.AddTelegramBotServices();
-
-            services.AddDevQuizMediatrServices(new[] {Assembly.GetExecutingAssembly()});
 
             services.AddControllers()
                 .AddNewtonsoftJson();

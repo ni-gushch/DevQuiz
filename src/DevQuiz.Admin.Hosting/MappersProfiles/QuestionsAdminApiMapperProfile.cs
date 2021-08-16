@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using DevQuiz.Libraries.Core.Models.Dto;
-using DevQuiz.Libraries.Services.Commands.CreateQuestion;
-using DevQuiz.Libraries.Services.Queries;
-using DevQuiz.TelegramBot.Models;
-using DevQuiz.TelegramBot.Models.ApiResults;
-using DevQuiz.TelegramBot.Models.InputModels;
+using DevQuiz.Admin.Core.Models.Dto;
+using DevQuiz.Admin.Hosting.Models;
+using DevQuiz.Admin.Hosting.Models.ApiResults;
+using DevQuiz.Admin.Hosting.Models.InputModels;
+using DevQuiz.Admin.Services.Commands;
+using DevQuiz.Admin.Services.Queries;
 
-namespace DevQuiz.TelegramBot.Mappers
+namespace DevQuiz.Admin.Hosting.MappersProfiles
 {
     /// <summary>
     /// Mapper profile for Question Category and Tags input models

@@ -1,7 +1,7 @@
-﻿using DevQuiz.Libraries.Core.Extensions;
+﻿using DevQuiz.Admin.Core.Extensions;
 using Xunit;
 
-namespace DevQuiz.Libraries.Core.Tests.Extensions
+namespace DevQuiz.Admin.Core.Tests.Extensions
 {
     public class StringExtensionsTests
     {

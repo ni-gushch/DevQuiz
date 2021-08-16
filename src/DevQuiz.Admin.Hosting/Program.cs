@@ -1,5 +1,8 @@
+using System;
 using System.Threading.Tasks;
+using DevQuiz.Admin.Core.Configurations;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 namespace DevQuiz.Admin.Hosting
@@ -9,6 +12,8 @@ namespace DevQuiz.Admin.Hosting
     /// </summary>
     public class Program
     {
+        private static string AspNetCoreEnvironmentName => "ASPNETCORE_ENVIRONMENT";
+        
         /// <summary>
         /// Entry method
         /// </summary>
@@ -19,8 +24,44 @@ namespace DevQuiz.Admin.Hosting
                 .Build()
                 .RunAsync();
         
-        private static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+        /// <summary>
+        /// Creating web app host
+        /// </summary>
+        /// <param name="args">Application arguments</param>
+        /// <returns>Web app host object</returns>
+        public static IHostBuilder CreateHostBuilder(string[] args) 
+        {
+            var netCoreEnvironmentVariable = Environment.GetEnvironmentVariable(AspNetCoreEnvironmentName) ?? Environments.Production;
+            var configuration = BuildConfigurations(args, netCoreEnvironmentVariable);
+
+#if(DEBUG)
+            var connectionString = configuration.GetSection(nameof(DataBaseConfiguration)).Get<DataBaseConfiguration>();
+            Environment.SetEnvironmentVariable($"{nameof(DataBaseConfiguration)}:{nameof(DataBaseConfiguration.ConnectionString)}", connectionString.ConnectionString);
+#endif
+
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostContext, builder) => 
+                {
+                    builder.AddConfiguration(configuration);
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+        }
+        
+        private static IConfiguration BuildConfigurations(string[] args, string aspNetCoreEnvironment)
+        {
+            var configurationBuilder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional:false, reloadOnChange:true)
+                .AddJsonFile($"appsettings.{aspNetCoreEnvironment}.json", optional:true, reloadOnChange:true)
+                .AddEnvironmentVariables();
+
+            if(aspNetCoreEnvironment.Equals(Environments.Development))
+                configurationBuilder.AddUserSecrets<Startup>();
+
+            configurationBuilder.AddCommandLine(args);
+            return configurationBuilder.Build();
+        }
     }
 }

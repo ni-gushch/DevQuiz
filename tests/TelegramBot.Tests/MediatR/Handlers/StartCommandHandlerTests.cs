@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using DevQuiz.Libraries.Data.Tests.Helpers;
-using DevQuiz.Libraries.Services;
 using DevQuiz.TelegramBot.Mappers;
 using DevQuiz.TelegramBot.MediatR.Commands;
 using DevQuiz.TelegramBot.MediatR.Handlers;
@@ -8,7 +6,9 @@ using NSubstitute;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using DevQuiz.Libraries.Core.Models.Dto;
+using DevQuiz.Admin.Core.Models.Dto;
+using DevQuiz.Admin.DataAccess.Tests.Helpers;
+using DevQuiz.Admin.Services;
 using Telegram.Bot.Types;
 using Xunit;
 
@@ -24,7 +24,7 @@ namespace TelegramBot.Tests.MediatR.Handlers
             var mapperConfiguration = new MapperConfiguration(
                 config => config.AddProfile<UserBotMapperProfile>());            
             var mapper = new Mapper(mapperConfiguration);
-            var handler = new StartCommandHandler(mockService, mapper, null);
+            var handler = new StartCommandHandler(/*mockService,*/ mapper, null);
             var message = new Message()
             {
                 Chat = new ()
@@ -52,7 +52,7 @@ namespace TelegramBot.Tests.MediatR.Handlers
             var mapperConfiguration = new MapperConfiguration(
                 config => config.AddProfile<UserBotMapperProfile>());            
             var mapper = new Mapper(mapperConfiguration);
-            var handler = new StartCommandHandler(mockService, mapper, null);
+            var handler = new StartCommandHandler(/*mockService,*/ mapper, null);
             var message = new Message()
             {
                 Chat = new ()
@@ -87,7 +87,7 @@ namespace TelegramBot.Tests.MediatR.Handlers
             var mapperConfiguration = new MapperConfiguration(
                 config => config.AddProfile<UserBotMapperProfile>());            
             var mapper = new Mapper(mapperConfiguration);
-            var handler = new StartCommandHandler(mockService, mapper, null);
+            var handler = new StartCommandHandler(/*mockService,*/ mapper, null);
             var message = new Message()
             {
                 Chat = new ()
@@ -121,7 +121,7 @@ namespace TelegramBot.Tests.MediatR.Handlers
             var mapperConfiguration = new MapperConfiguration(
                 config => config.AddProfile<UserBotMapperProfile>());            
             var mapper = new Mapper(mapperConfiguration);
-            var handler = new StartCommandHandler(mockService, mapper, null);
+            var handler = new StartCommandHandler(/*mockService,*/ mapper, null);
             var message = new Message()
             {
                 Chat = new ()

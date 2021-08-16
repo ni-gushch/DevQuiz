@@ -1,227 +1,71 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>DevQuiz.DevQuiz.TelegramBot</name>
+        <name>DevQuiz.TelegramBot</name>
     </assembly>
     <members>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Configurations.BotConfiguration">
+        <member name="T:DevQuiz.TelegramBot.Configurations.BotConfiguration">
             <summary>
             Configurations for bot
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Configurations.BotConfiguration.AccessToken">
+        <member name="P:DevQuiz.TelegramBot.Configurations.BotConfiguration.AccessToken">
             <summary>
             Access token for connecting to a telegram bot
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Configurations.BotConfiguration.Socks5Host">
+        <member name="P:DevQuiz.TelegramBot.Configurations.BotConfiguration.Socks5Host">
             <summary>
             Socks 5 host address
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Configurations.BotConfiguration.Socks5Port">
+        <member name="P:DevQuiz.TelegramBot.Configurations.BotConfiguration.Socks5Port">
             <summary>
             Socks 5 port
             </summary>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Constants.BotCommands">
+        <member name="T:DevQuiz.TelegramBot.Constants.BotCommands">
             <summary>
             List of bot commands
             </summary>
         </member>
-        <member name="F:DevQuiz.DevQuiz.TelegramBot.Constants.BotCommands.Start">
+        <member name="F:DevQuiz.TelegramBot.Constants.BotCommands.Start">
             <summary>
             Start command
             </summary>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Constants.TypedHttpClients">
+        <member name="T:DevQuiz.TelegramBot.Constants.TypedHttpClients">
             <summary>
             Names of typed https clients
             </summary>
         </member>
-        <member name="F:DevQuiz.DevQuiz.TelegramBot.Constants.TypedHttpClients.TelegramApi">
+        <member name="F:DevQuiz.TelegramBot.Constants.TypedHttpClients.TelegramApi">
             <summary>
             Telegram api http client name
             </summary>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Constants.TypedHttpClientInformation">
+        <member name="T:DevQuiz.TelegramBot.Constants.TypedHttpClientInformation">
             <summary>
             Record that represent a typed http client
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Constants.TypedHttpClientInformation.#ctor(System.String,System.String)">
+        <member name="M:DevQuiz.TelegramBot.Constants.TypedHttpClientInformation.#ctor(System.String,System.String)">
             <summary>
             Record that represent a typed http client
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Constants.TypedHttpClientInformation.ToString">
+        <member name="M:DevQuiz.TelegramBot.Constants.TypedHttpClientInformation.ToString">
             <summary>
             Get string from client
             </summary>
             <returns>Http client name</returns>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController">
-            <summary>
-            Controller for manage Questions Tags and Categories of DevQuiz
-            </summary>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.#ctor(DevQuiz.Libraries.Core.Services.IQuestionService,MediatR.IMediator,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController})">
-            <summary>
-            Constructor
-            </summary>
-            <param name="questionService">Question service instance</param>
-            <param name="mediator"><see cref="T:MediatR.IMediator"/> instance</param>
-            <param name="mapper">Mapper instance</param>
-            <param name="logger">Logger instance</param>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.GetAllQuestions">
-            <summary>
-            Method for getting all questions
-            </summary>
-            <returns>All questions collection</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.GetQuestionById(System.Int32)">
-            <summary>
-            Get question information by his id
-            </summary>
-            <param name="id">Unique identifier of question</param>
-            <returns>Information about question</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.CreateQuestion(DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel)">
-            <summary>
-            Method for create new question
-            </summary>
-            <param name="value">New question model</param>
-            <returns>Unique identifier of new question</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.UpdateQuestion(DevQuiz.DevQuiz.TelegramBot.Models.InputModels.UpdateQuestionInputModel)">
-            <summary>
-            Method for update question information
-            </summary>
-            <param name="value">Question to update</param>
-            <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.DeleteQuestion(System.Int32)">
-            <summary>
-            Method for delete question
-            </summary>
-            <param name="id">Unique identifier of question</param>
-            <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.GetAllCategories(System.Boolean)">
-            <summary>
-            Method for getting all question categories
-            </summary>
-            <param name="includeQuestions">Flag for include questions in answer</param>
-            <returns>All questions collection</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.GetCategoryById(System.Int32,System.Boolean)">
-            <summary>
-            Get category information by his id
-            </summary>
-            <param name="id">Unique identifier of question</param>
-            <param name="includeQuestions">Flag for include questions in answer</param>
-            <returns>Information about question category</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.CreateCategory(DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel)">
-            <summary>
-            Method for create new category
-            </summary>
-            <param name="value">New category model</param>
-            <returns>Unique identifier of new category</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.UpdateCategory(DevQuiz.DevQuiz.TelegramBot.Models.InputModels.UpdateQuestionInputModel)">
-            <summary>
-            Method for update question category information
-            </summary>
-            <param name="value">Category to update</param>
-            <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.DeleteCategory(System.Int32)">
-            <summary>
-            Method for delete category
-            </summary>
-            <param name="id">Unique identifier of question</param>
-            <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.GetAllTags(System.Boolean)">
-            <summary>
-            Method for getting all questions tags
-            </summary>
-            <param name="includeQuestions">Flag for include questions in answer</param>
-            <returns>All tags collection</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.GetTagById(System.Int32,System.Boolean)">
-            <summary>
-            Get tag information by his id
-            </summary>
-            <param name="id">Unique identifier of tag</param>
-            <param name="includeQuestions">Flag for include questions in answer</param>
-            <returns>Information about tag</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.CreateTag(DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel)">
-            <summary>
-            Method for create new tag
-            </summary>
-            <param name="value">New tag model</param>
-            <returns>Unique identifier of new tag</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.UpdateTag(DevQuiz.DevQuiz.TelegramBot.Models.InputModels.UpdateQuestionInputModel)">
-            <summary>
-            Method for update tag information
-            </summary>
-            <param name="value">Tag to update</param>
-            <returns>Operation status</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.AdminController.DeleteTag(System.Int32)">
-            <summary>
-            Method for delete tag
-            </summary>
-            <param name="id">Unique identifier of tag</param>
-            <returns>Operation status</returns>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Controllers.Admin.QuestionController">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.Admin.QuestionController.#ctor(MediatR.IMediator,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{DevQuiz.DevQuiz.TelegramBot.Controllers.Admin.QuestionController})">
-            <summary>
-            Constructor
-            </summary>
-            <param name="mediator">Instance of <see cref="T:MediatR.IMediator"/></param>
-            <param name="mapper">Instance of <see cref="T:AutoMapper.IMapper"/></param>
-            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/></param>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.Admin.QuestionController.GetAll(System.Threading.CancellationToken)">
-            <summary>
-            Get information about all available questions
-            </summary>
-            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
-            <returns>Collection of available questions</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.Admin.QuestionController.GetById(System.Int32,System.Threading.CancellationToken)">
-            <summary>
-            Get information about question by passed id
-            </summary>
-            <param name="id">Identifier of searched question</param>
-            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
-            <returns>Concrete question information</returns>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.Admin.QuestionController.CreateQuestion(DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel,System.Threading.CancellationToken)">
-            <summary>
-            Create new Question
-            </summary>
-            <param name="value">Create question model</param>
-            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
-            <returns>Identifier of new question</returns>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Controllers.BotConfigurationController">
+        <member name="T:DevQuiz.TelegramBot.Controllers.BotConfigurationController">
             <summary>
             Controller for manage Bot Configuration
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.BotConfigurationController.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Options.IOptions{DevQuiz.DevQuiz.TelegramBot.Configurations.BotConfiguration},Microsoft.Extensions.Logging.ILogger{DevQuiz.DevQuiz.TelegramBot.Controllers.BotConfigurationController})">
+        <member name="M:DevQuiz.TelegramBot.Controllers.BotConfigurationController.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Options.IOptions{DevQuiz.TelegramBot.Configurations.BotConfiguration},Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Controllers.BotConfigurationController})">
             <summary>
             Constructor
             </summary>
@@ -229,119 +73,109 @@
             <param name="botOptions">Bot options</param>
             <param name="logger">ILogger instance</param>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.BotConfigurationController.SetWebHook(DevQuiz.DevQuiz.TelegramBot.Models.InputModels.SetWebHookInputModel)">
+        <member name="M:DevQuiz.TelegramBot.Controllers.BotConfigurationController.SetWebHook(DevQuiz.TelegramBot.Models.InputModels.SetWebHookInputModel)">
             <summary>
             Set web hook for current bot
             </summary>
             <returns></returns>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Controllers.UpdateController">
+        <member name="T:DevQuiz.TelegramBot.Controllers.UpdateController">
             <summary>
             Update controller
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.UpdateController.#ctor(DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotMessageService,Microsoft.Extensions.Logging.ILogger{DevQuiz.DevQuiz.TelegramBot.Controllers.UpdateController})">
+        <member name="M:DevQuiz.TelegramBot.Controllers.UpdateController.#ctor(DevQuiz.TelegramBot.Interfaces.IBotMessageService,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Controllers.UpdateController})">
             <summary>
             Constructor
             </summary>
             <param name="botMessageService">Service for manage bot messages</param>
             <param name="logger">Logger instance</param>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Controllers.UpdateController.Post(Telegram.Bot.Types.Update)">
+        <member name="M:DevQuiz.TelegramBot.Controllers.UpdateController.Post(Telegram.Bot.Types.Update)">
             <summary>
             Post method for receive messages from Bot (Using webhook)
             </summary>
             <param name="update">New Update from bot</param>
             <returns>Ok Action or error</returns>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Extensions.ServiceCollectionExtensions">
+        <member name="T:DevQuiz.TelegramBot.Extensions.ServiceCollectionExtensions">
             <summary>
             Extensions for IServiceCollection instance
             </summary>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotMessageService">
+        <member name="T:DevQuiz.TelegramBot.Interfaces.IBotMessageService">
             <summary>
             Service for processing messages received from the bot
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)">
+        <member name="M:DevQuiz.TelegramBot.Interfaces.IBotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)">
             <summary>
             Processing a message
             </summary>
             <param name="updateMessage">New message</param>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotService">
+        <member name="T:DevQuiz.TelegramBot.Interfaces.IBotService">
             <summary>
             Service for managing telegram bot client
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotService.Client">
+        <member name="P:DevQuiz.TelegramBot.Interfaces.IBotService.Client">
             <summary>
             Instance of telegram bot client
             </summary>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Mappers.QuestionsAdminApiMapperProfile">
-            <summary>
-            Mapper profile for Question Category and Tags input models
-            </summary>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Mappers.QuestionsAdminApiMapperProfile.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Mappers.UserBotMapperProfile">
+        <member name="T:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile">
             <summary>
             Mapper profile for convert Telegram User information to Dto
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Mappers.UserBotMapperProfile.#ctor">
+        <member name="M:DevQuiz.TelegramBot.Mappers.UserBotMapperProfile.#ctor">
             <summary>
                 Constructor
             </summary>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand">
+        <member name="T:DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand">
             <summary>
                 Base bot command
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand.Message">
+        <member name="P:DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand.Message">
             <summary>
                 Message
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand.Chat">
+        <member name="P:DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand.Chat">
             <summary>
                 Chat
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand.#ctor(Telegram.Bot.Types.Message)">
+        <member name="M:DevQuiz.TelegramBot.MediatR.Commands.BaseBotCommand.#ctor(Telegram.Bot.Types.Message)">
             <summary>
                 Constructor
             </summary>
             <param name="message"> Message </param>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.MediatR.Commands.StartCommand">
+        <member name="T:DevQuiz.TelegramBot.MediatR.Commands.StartCommand">
             <summary>
                 Command when "/start" received
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.MediatR.Commands.StartCommand.#ctor(Telegram.Bot.Types.Message)">
+        <member name="M:DevQuiz.TelegramBot.MediatR.Commands.StartCommand.#ctor(Telegram.Bot.Types.Message)">
             <inheritdoc />
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler">
+        <member name="T:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler">
             <summary>
                 Command "/start" handler
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler.#ctor(DevQuiz.Libraries.Core.Services.IUserService,AutoMapper.IMapper,DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotService)">
+        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler.#ctor(AutoMapper.IMapper,DevQuiz.TelegramBot.Interfaces.IBotService)">
             <summary>
                 Constructor
             </summary>
             <param name="userService"> Service for manage users </param>
             <param name="mapper"> Mapper instance </param>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler.Handle(DevQuiz.DevQuiz.TelegramBot.MediatR.Commands.StartCommand,System.Threading.CancellationToken)">
+        <member name="M:DevQuiz.TelegramBot.MediatR.Handlers.StartCommandHandler.Handle(DevQuiz.TelegramBot.MediatR.Commands.StartCommand,System.Threading.CancellationToken)">
             <summary>
                 Handle command
             </summary>
@@ -349,276 +183,108 @@
             <param name="cancellationToken"> Cancellation token </param>
             <returns></returns>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.ActionStatusApiResult">
-            <summary>
-            Api result with action complete status
-            </summary>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.ActionStatusApiResult.#ctor">
-            <summary>
-            Constructor without parameters
-            </summary>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.ActionStatusApiResult.#ctor(System.Boolean)">
-            <summary>
-            Constructor with parameter
-            </summary>
-            <param name="status">Action status</param>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.ActionStatusApiResult.ActionStatus">
-            <summary>
-            Complete status
-            </summary>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.CategoriesApiResult">
-            <summary>
-            ApiResult for represent categories collection
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.CategoriesApiResult.Categories">
-            <summary>
-            Available categories collection
-            </summary>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.IdApiResult`1">
-            <summary>
-            Api Result with id of new entry
-            </summary>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.IdApiResult`1.#ctor">
-            <summary>
-            Constructor without parameters
-            </summary>
-        </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.IdApiResult`1.#ctor(`0)">
-            <summary>
-            Constructor with parameter
-            </summary>
-            <param name="id">Unique identifier</param>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.IdApiResult`1.Id">
-            <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.IHasKey`1.Id"/>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.QuestionApiResult">
-            <summary>
-            ApiResult for represent question information
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.QuestionApiResult.Id">
-            <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.IHasKey`1.Id"/>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.QuestionApiResult.Text">
-            <summary>
-            Get question text
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.QuestionApiResult.RightAnswer">
-            <summary>
-            Get category
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.QuestionApiResult.Category">
-            <summary>
-            Get category
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.QuestionApiResult.Answers">
-            <summary>
-            Get list of answers
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.QuestionApiResult.Tags">
-            <summary>
-            Get tags list
-            </summary>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult">
+        <member name="T:DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult">
             <summary>
             Set web hook api result model
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult.Ok">
+        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult.Ok">
             <summary>
             Set web hook status
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult.Error_code">
+        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult.Error_code">
             <summary>
             Error code
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult.Description">
+        <member name="P:DevQuiz.TelegramBot.Models.ApiResults.SetWebHookApiResult.Description">
             <summary>
             Description message
             </summary>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateCategoryInputModel">
-            <summary>
-            Input model for creating new question category
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateCategoryInputModel.Name">
-            <summary>
-            Category name
-            </summary>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel">
-            <summary>
-            Input model for creating new question
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel.Text">
-            <summary>
-            Set question text
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel.RightAnswerExplanation">
-            <summary>
-            Get or set right answer explanation
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateQuestionInputModel.CategoryId">
-            <summary>
-            Identifier of selected category
-            </summary>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateTagInputModel">
-            <summary>
-            Input model for creating new question tag
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.CreateTagInputModel.Name">
-            <summary>
-            Tag name
-            </summary>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.SetWebHookInputModel">
+        <member name="T:DevQuiz.TelegramBot.Models.InputModels.SetWebHookInputModel">
             <summary>
             Input model for set web hook action
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.SetWebHookInputModel.WebHookUri">
+        <member name="P:DevQuiz.TelegramBot.Models.InputModels.SetWebHookInputModel.WebHookUri">
             <summary>
             Which address will be set as webhook
             </summary>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.UpdateCategoryInputModel">
-            <summary>
-            Input model for updating question category
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.UpdateCategoryInputModel.Id">
-            <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.IHasKey`1.Id"/>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.UpdateQuestionInputModel">
-            <summary>
-            Input model for update question
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.UpdateQuestionInputModel.Id">
-            <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.IHasKey`1.Id"/>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.UpdateTagInputModel">
-            <summary>
-            Input model for update question tag
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.InputModels.UpdateTagInputModel.Id">
-            <inheritdoc cref="P:DevQuiz.Libraries.Core.Models.IHasKey`1.Id"/>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.ValueModel">
-            <summary>
-            Model with value
-            </summary>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ValueModel.Value">
-            <summary>
-            Value of entry
-            </summary>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Models.ValueModel`1">
-            <summary>
-            Model with value and unique identifier
-            </summary>
-            <typeparam name="TKey"></typeparam>
-        </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Models.ValueModel`1.Id">
-            <summary>
-            Unique identifier of entry
-            </summary>
-        </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Program">
+        <member name="T:DevQuiz.TelegramBot.Program">
             <summary>
             App entry point
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Program.Main(System.String[])">
+        <member name="M:DevQuiz.TelegramBot.Program.Main(System.String[])">
             <summary>
             Main class
             </summary>
             <param name="args">Application arguments</param>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Program.CreateHostBuilder(System.String[])">
+        <member name="M:DevQuiz.TelegramBot.Program.CreateHostBuilder(System.String[])">
             <summary>
             Creating web app host
             </summary>
             <param name="args">Application arguments</param>
             <returns>Web app host object</returns>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Services.BotMessageService">
-            <inheritdoc cref="T:DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotMessageService" />
+        <member name="T:DevQuiz.TelegramBot.Services.BotMessageService">
+            <inheritdoc cref="T:DevQuiz.TelegramBot.Interfaces.IBotMessageService" />
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Services.BotMessageService.#ctor(MediatR.IMediator,Microsoft.Extensions.Logging.ILogger{DevQuiz.DevQuiz.TelegramBot.Services.BotMessageService})">
+        <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.#ctor(MediatR.IMediator,Microsoft.Extensions.Logging.ILogger{DevQuiz.TelegramBot.Services.BotMessageService})">
             <summary>
                 Constructor
             </summary>
             <param name="mediator"> Mediator</param>
             <param name="logger"> Logge r</param>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Services.BotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)">
-            <inheritdoc cref="M:DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)" />
+        <member name="M:DevQuiz.TelegramBot.Services.BotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)">
+            <inheritdoc cref="M:DevQuiz.TelegramBot.Interfaces.IBotMessageService.ProcessUpdateAsync(Telegram.Bot.Types.Update)" />
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Services.BotService">
-            <inheritdoc cref="T:DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotService" />
+        <member name="T:DevQuiz.TelegramBot.Services.BotService">
+            <inheritdoc cref="T:DevQuiz.TelegramBot.Interfaces.IBotService" />
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Services.BotService.Client">
-            <inheritdoc cref="P:DevQuiz.DevQuiz.TelegramBot.Interfaces.IBotService.Client" />
+        <member name="P:DevQuiz.TelegramBot.Services.BotService.Client">
+            <inheritdoc cref="P:DevQuiz.TelegramBot.Interfaces.IBotService.Client" />
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Services.BotService.#ctor(Microsoft.Extensions.Options.IOptions{DevQuiz.DevQuiz.TelegramBot.Configurations.BotConfiguration})">
+        <member name="M:DevQuiz.TelegramBot.Services.BotService.#ctor(Microsoft.Extensions.Options.IOptions{DevQuiz.TelegramBot.Configurations.BotConfiguration})">
             <summary>
             Constructor
             </summary>
             <param name="botConfiguration">IOptions instance of botConfiguration</param>
         </member>
-        <member name="T:DevQuiz.DevQuiz.TelegramBot.Startup">
+        <member name="T:DevQuiz.TelegramBot.Startup">
             <summary>
             Startup class
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Startup.Configuration">
+        <member name="P:DevQuiz.TelegramBot.Startup.Configuration">
             <summary>
             Configuration of web application
             </summary>
         </member>
-        <member name="P:DevQuiz.DevQuiz.TelegramBot.Startup.WebHostEnvironment">
+        <member name="P:DevQuiz.TelegramBot.Startup.WebHostEnvironment">
             <summary>
             Application web host environment
             </summary>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:DevQuiz.TelegramBot.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
             Constructor
             </summary>
             <param name="configuration">IConfiguration instance</param>
             <param name="webHostEnvironment">WebHostEnvironment instance</param>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:DevQuiz.TelegramBot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Method for configure web app services
             </summary>
             <param name="services">Web app services collection</param>
         </member>
-        <member name="M:DevQuiz.DevQuiz.TelegramBot.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:DevQuiz.TelegramBot.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
              This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             </summary>

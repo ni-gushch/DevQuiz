@@ -1,20 +1,19 @@
-﻿using System;
-using DevQuiz.Libraries.Core;
-using DevQuiz.Libraries.Core.Models.Entities;
-using DevQuiz.Libraries.Core.Repositories;
-using DevQuiz.Libraries.Data.DbContexts;
-using DevQuiz.Libraries.Data.Repositories;
-using DevQuiz.Libraries.Data.Tests.Helpers;
+﻿using DevQuiz.Admin.Core;
+using DevQuiz.Admin.Core.Models.Entities;
+using DevQuiz.Admin.Core.Repositories;
+using DevQuiz.Admin.DataAccess.DbContexts;
+using DevQuiz.Admin.DataAccess.Repositories;
+using DevQuiz.Admin.DataAccess.Tests.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DevQuiz.Libraries.Data.Tests
+namespace DevQuiz.Admin.DataAccess.Tests
 {
-    public class TagRepositoryTests : DevQuizContextSeedDataHelper
+    public class CategoryRepositoryTests : DevQuizContextSeedDataHelper
     {
         private readonly DevQuizDbContext _dbContext;
         private readonly IDevQuizUnitOfWork _unitOfWork;
 
-        public TagRepositoryTests()
+        public CategoryRepositoryTests()
         {
             var serviceCollection = new ServiceCollection()
                 .AddScoped(_ => new DevQuizDbContext(this.ContextOptions))

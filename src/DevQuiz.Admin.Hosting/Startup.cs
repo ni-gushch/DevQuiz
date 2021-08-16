@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using DevQuiz.Admin.DataAccess.DbContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,6 +30,17 @@ namespace DevQuiz.Admin.Hosting
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCustomOptions(Configuration)
+                .AddCustomServices()
+                .AddCustomSwagger()
+                .AddCustomAutoMapper();
+            
+            services.AddDevQuizMediatrServices(new[] {Assembly.GetExecutingAssembly()});
+            
+            services.AddDevQuizDbContexts<DevQuizDbContext>(Configuration);
+            services.AddDevQuizRepositories<DevQuizDbContext>();
+            services.AddDevQuizServices();
+            
             services.AddControllers();
         }
         

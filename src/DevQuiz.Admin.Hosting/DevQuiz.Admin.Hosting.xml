@@ -60,6 +60,16 @@
             <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken"/></param>
             <returns>Identifier of new question</returns>
         </member>
+        <member name="T:DevQuiz.Admin.Hosting.MappersProfiles.QuestionsAdminApiMapperProfile">
+            <summary>
+            Mapper profile for Question Category and Tags input models
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Hosting.MappersProfiles.QuestionsAdminApiMapperProfile.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="T:DevQuiz.Admin.Hosting.Models.ApiResults.ActionStatusApiResult">
             <summary>
             Api result with action complete status
@@ -240,6 +250,13 @@
             <param name="args">Args for project</param>
             <returns></returns>
         </member>
+        <member name="M:DevQuiz.Admin.Hosting.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Creating web app host
+            </summary>
+            <param name="args">Application arguments</param>
+            <returns>Web app host object</returns>
+        </member>
         <member name="T:DevQuiz.Admin.Hosting.Startup">
             <summary>
             Startup class
@@ -263,6 +280,11 @@
             </summary>
             <param name="app">Instance of <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/></param>
             <param name="env">Instance of <see cref="T:Microsoft.AspNetCore.Hosting.IWebHostEnvironment"/></param>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+            Class with extensions for register additional services
+            </summary>
         </member>
     </members>
 </doc>

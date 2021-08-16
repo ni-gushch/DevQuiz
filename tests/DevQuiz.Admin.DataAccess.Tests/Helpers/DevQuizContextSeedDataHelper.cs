@@ -1,11 +1,11 @@
 using System;
 using System.Data.Common;
-using DevQuiz.Libraries.Data.DbContexts;
+using DevQuiz.Admin.DataAccess.DbContexts;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace DevQuiz.Libraries.Data.Tests.Helpers
+namespace DevQuiz.Admin.DataAccess.Tests.Helpers
 {
     public class DevQuizContextSeedDataHelper : IDisposable
     {
