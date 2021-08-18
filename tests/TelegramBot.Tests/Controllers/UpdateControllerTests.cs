@@ -1,16 +1,16 @@
-﻿using DevQuiz.TelegramBot.Controllers;
+﻿using System.Threading.Tasks;
+using DevQuiz.TelegramBot.Controllers;
 using DevQuiz.TelegramBot.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
-using System.Threading.Tasks;
 using Telegram.Bot.Types;
 using Xunit;
 
 namespace TelegramBot.Tests.Controllers
 {
     public class UpdateControllerTests
-    {        
-        [Fact]        
+    {
+        [Fact]
         public async Task Post_NewUpdate_CalledProcessUpdateAsync()
         {
             var mockBotMessageService = Substitute.For<IBotMessageService>();

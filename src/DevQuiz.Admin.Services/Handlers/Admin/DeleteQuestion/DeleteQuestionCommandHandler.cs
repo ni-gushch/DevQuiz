@@ -11,18 +11,18 @@ using Microsoft.Extensions.Logging;
 namespace DevQuiz.Admin.Services.Handlers.Admin
 {
     /// <summary>
-    /// Handler for delete question action
+    ///     Handler for delete question action
     /// </summary>
     public class DeleteQuestionCommandHandler : BaseHandler<DeleteQuestionCommand>
     {
         private readonly IDevQuizUnitOfWork _unitOfWork;
-        
+
         /// <summary>
-        /// Constructor with params
+        ///     Constructor with params
         /// </summary>
-        /// <param name="mapper">Instance of type <see cref="IMapper"/></param>
-        /// <param name="unitOfWork">Instance of <see cref="IDevQuizUnitOfWork"/></param>
-        /// <param name="logger">Instance of <see cref="ILogger"/></param>
+        /// <param name="mapper">Instance of type <see cref="IMapper" /></param>
+        /// <param name="unitOfWork">Instance of <see cref="IDevQuizUnitOfWork" /></param>
+        /// <param name="logger">Instance of <see cref="ILogger" /></param>
         public DeleteQuestionCommandHandler(IMapper mapper,
             IDevQuizUnitOfWork unitOfWork,
             ILogger<CreateQuestionCommandHandler> logger) : base(
@@ -31,7 +31,7 @@ namespace DevQuiz.Admin.Services.Handlers.Admin
             _unitOfWork = unitOfWork;
         }
 
-        /// <inheritdoc cref="Handle"/> 
+        /// <inheritdoc cref="Handle" />
         public override async Task<Unit> Handle(DeleteQuestionCommand request, CancellationToken cancellationToken)
         {
             var entityInDb = await _unitOfWork.QuestionRepository.GetOneAsync(it => it.Id.Equals(request.Id),
@@ -40,7 +40,7 @@ namespace DevQuiz.Admin.Services.Handlers.Admin
                 throw new Exception($"Entity of type {typeof(Question)} with id {request.Id} not found in store");
             _unitOfWork.QuestionRepository.Delete(entityInDb);
             await _unitOfWork.CommitAsync(cancellationToken);
-            
+
             return Unit.Value;
         }
     }

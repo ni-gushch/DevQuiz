@@ -8,7 +8,7 @@ using Telegram.Bot.Types;
 namespace DevQuiz.TelegramBot.Controllers
 {
     /// <summary>
-    /// Update controller
+    ///     Update controller
     /// </summary>
     [Route("api/[controller]")]
     public class UpdateController : Controller
@@ -17,7 +17,7 @@ namespace DevQuiz.TelegramBot.Controllers
         private readonly ILogger<UpdateController> _logger;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="botMessageService">Service for manage bot messages</param>
         /// <param name="logger">Logger instance</param>
@@ -28,12 +28,12 @@ namespace DevQuiz.TelegramBot.Controllers
         }
 
         /// <summary>
-        /// Post method for receive messages from Bot (Using webhook)
+        ///     Post method for receive messages from Bot (Using webhook)
         /// </summary>
         /// <param name="update">New Update from bot</param>
         /// <returns>Ok Action or error</returns>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Update update)
+        public async Task<IActionResult> Post([FromBody] Update update)
         {
             await _botMessageService.ProcessUpdateAsync(update);
             return Ok();

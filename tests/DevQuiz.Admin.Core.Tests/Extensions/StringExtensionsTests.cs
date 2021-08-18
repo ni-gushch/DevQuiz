@@ -18,7 +18,7 @@ namespace DevQuiz.Admin.Core.Tests.Extensions
         [Fact]
         public void ToSnakeCase_EmptyString_ReturnEmptyString()
         {
-            string inputString = string.Empty;
+            var inputString = string.Empty;
 
             var outputString = inputString.ToSnakeCase();
 

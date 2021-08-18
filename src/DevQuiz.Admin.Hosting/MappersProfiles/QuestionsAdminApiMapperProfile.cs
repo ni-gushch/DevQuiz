@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using DevQuiz.Admin.Client.Models;
+using DevQuiz.Admin.Client.Models.ApiResults;
+using DevQuiz.Admin.Client.UI.Models.InputModels;
 using DevQuiz.Admin.Core.Models.Dto;
-using DevQuiz.Admin.Hosting.Models;
 using DevQuiz.Admin.Hosting.Models.ApiResults;
 using DevQuiz.Admin.Hosting.Models.InputModels;
 using DevQuiz.Admin.Services.Commands;
@@ -9,12 +11,12 @@ using DevQuiz.Admin.Services.Queries;
 namespace DevQuiz.Admin.Hosting.MappersProfiles
 {
     /// <summary>
-    /// Mapper profile for Question Category and Tags input models
+    ///     Mapper profile for Question Category and Tags input models
     /// </summary>
     public class QuestionsAdminApiMapperProfile : Profile
     {
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public QuestionsAdminApiMapperProfile()
         {
@@ -26,7 +28,7 @@ namespace DevQuiz.Admin.Hosting.MappersProfiles
             CreateMap<CreateTagInputModel, TagDto>();
 
             CreateMap<QuestionDto, QuestionApiResult>()
-                .ForMember(dest => dest.RightAnswer, opt => opt.MapFrom(src => new ValueModel<int>()
+                .ForMember(dest => dest.RightAnswer, opt => opt.MapFrom(src => new ValueModel<int>
                 {
                     Id = src.RightAnswerId,
                     Value = src.RightAnswerExplanation

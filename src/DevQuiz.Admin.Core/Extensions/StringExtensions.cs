@@ -3,12 +3,12 @@ using System.Text.RegularExpressions;
 namespace DevQuiz.Admin.Core.Extensions
 {
     /// <summary>
-    /// Extensions for string objects
+    ///     Extensions for string objects
     /// </summary>
     public static class StringExtensions
     {
         /// <summary>
-        /// Extension method for transforming string in CamelCase to SnakeCase format.
+        ///     Extension method for transforming string in CamelCase to SnakeCase format.
         /// </summary>
         /// <param name="input"> Format string. </param>
         /// <returns> Formatted string. </returns>

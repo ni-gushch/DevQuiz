@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DevQuiz.Admin.Client.UI\DevQuiz.Admin.Client.UI.csproj" />
     <ProjectReference Include="..\DevQuiz.Admin.DataAccess\DevQuiz.Admin.DataAccess.csproj" />
     <ProjectReference Include="..\DevQuiz.Admin.Services\DevQuiz.Admin.Services.csproj" />
   </ItemGroup>

@@ -5,12 +5,12 @@ using DevQuiz.Admin.Core.Models.Entities;
 namespace DevQuiz.Admin.Core.Mappers
 {
     /// <summary>
-    /// Profile class for mapper user models
+    ///     Profile class for mapper user models
     /// </summary>
     public class UserMapperProfile : Profile
     {
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public UserMapperProfile()
         {

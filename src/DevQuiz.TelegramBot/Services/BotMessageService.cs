@@ -1,21 +1,21 @@
-using Microsoft.Extensions.Logging;
-using DevQuiz.TelegramBot.Interfaces;
-using Microsoft.Extensions.Logging.Abstractions;
+using System.Linq;
 using System.Threading.Tasks;
+using DevQuiz.TelegramBot.Constants;
+using DevQuiz.TelegramBot.Interfaces;
+using DevQuiz.TelegramBot.MediatR.Commands;
+using MediatR;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using System.Linq;
-using MediatR;
-using DevQuiz.TelegramBot.MediatR.Commands;
-using DevQuiz.TelegramBot.Constants;
 
 namespace DevQuiz.TelegramBot.Services
 {
     /// <inheritdoc cref="IBotMessageService" />
     public class BotMessageService : IBotMessageService
     {
-        private readonly IMediator _mediator;
         private readonly ILogger<BotMessageService> _logger;
+        private readonly IMediator _mediator;
 
         /// <summary>
         ///     Constructor
@@ -46,10 +46,9 @@ namespace DevQuiz.TelegramBot.Services
             var firstEntityType = message
                 .Entities
                 .FirstOrDefault()?
-                .Type;            
+                .Type;
 
             if (firstEntityType == MessageEntityType.BotCommand)
-            {
                 switch (message.Text)
                 {
                     case BotCommands.Start:
@@ -59,8 +58,6 @@ namespace DevQuiz.TelegramBot.Services
                         _logger.LogInformation("Unknown bot command \"{0}\"", message.Text);
                         break;
                 }
-                    
-            }
-        }       
+        }
     }
 }

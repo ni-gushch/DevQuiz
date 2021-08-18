@@ -17,13 +17,13 @@ namespace DevQuiz.Admin.Services
     /// <inheritdoc cref="IUserService" />
     public class UserService : IUserService
     {
+        private readonly ILogger<UserService> _logger;
+        private readonly IMapper _mapper;
         private readonly IDevQuizUnitOfWork _unitOfWork;
         private readonly IGenericRepository<User> _userRepository;
-        private readonly IMapper _mapper;
-        private readonly ILogger<UserService> _logger;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="unitOfWork">Instance of UnitOfWork</param>
         /// <param name="mapper">Mapper instance</param>
@@ -38,7 +38,8 @@ namespace DevQuiz.Admin.Services
             _logger = logger ?? NullLogger<UserService>.Instance;
         }
 
-        /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetAllAsync" />
+        /// <inheritdoc
+        ///     cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetAllAsync" />
         public async Task<IList<UserDto>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             var allUsers = await _userRepository.ListAsync(cancellationToken: cancellationToken)
@@ -47,7 +48,8 @@ namespace DevQuiz.Admin.Services
             return result;
         }
 
-        /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetByIdAsync" />
+        /// <inheritdoc
+        ///     cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.GetByIdAsync" />
         public async Task<UserDto> GetByIdAsync(Guid idDto, CancellationToken cancellationToken = default)
         {
             var userEntity = await _userRepository.GetOneAsync(it => it.Id.Equals(idDto),
@@ -56,7 +58,8 @@ namespace DevQuiz.Admin.Services
             return _mapper.Map<UserDto>(userEntity);
         }
 
-        /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.CreateAsync" />
+        /// <inheritdoc
+        ///     cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.CreateAsync" />
         public async Task<Guid> CreateAsync(UserDto entryToAdd, CancellationToken cancellationToken = default)
         {
             _logger.LogDebug("Start creating new user");
@@ -72,11 +75,13 @@ namespace DevQuiz.Admin.Services
             return addUserEntity.Id;
         }
 
-        /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.DeleteAsync" />
+        /// <inheritdoc
+        ///     cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.DeleteAsync" />
         public async Task<bool> DeleteAsync(Guid idDto, CancellationToken cancellationToken = default)
         {
             _logger.LogDebug($"Start deleting user with id {idDto}");
-            var userToDelete = await _userRepository.GetOneAsync(it => it.Id.Equals(idDto), cancellationToken: cancellationToken)
+            var userToDelete = await _userRepository
+                .GetOneAsync(it => it.Id.Equals(idDto), cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
             _userRepository.Delete(userToDelete);
             _logger.LogDebug("Delete user save changes");
@@ -88,7 +93,8 @@ namespace DevQuiz.Admin.Services
             return commitStatus > 0;
         }
 
-        /// <inheritdoc cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.UpdateAsync" />
+        /// <inheritdoc
+        ///     cref="IBaseService{TEntryDto,TOneEntryResult,TAllEntriesResult,TCreateEntryResult,TUpdateEntryResult,TDeleteEntryResult,TKey}.UpdateAsync" />
         public async Task<bool> UpdateAsync(UserDto entryToUpdate, CancellationToken cancellationToken = default)
         {
             _logger.LogDebug("Start updating user");
@@ -107,7 +113,7 @@ namespace DevQuiz.Admin.Services
         public async Task<UserDto> GetByChatIdAsync(long telegramChatId, CancellationToken cancellationToken = default)
         {
             var userEntity = await _userRepository.GetOneAsync(it => it.TelegramChatId.Equals(telegramChatId),
-                cancellationToken: cancellationToken)
+                    cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
             return _mapper.Map<UserDto>(userEntity);
         }

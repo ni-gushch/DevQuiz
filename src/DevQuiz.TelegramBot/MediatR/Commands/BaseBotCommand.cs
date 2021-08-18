@@ -9,6 +9,15 @@ namespace DevQuiz.TelegramBot.MediatR.Commands
     public abstract record BaseBotCommand : IRequest
     {
         /// <summary>
+        ///     Constructor
+        /// </summary>
+        /// <param name="message"> Message </param>
+        protected BaseBotCommand(Message message)
+        {
+            Message = message;
+        }
+
+        /// <summary>
         ///     Message
         /// </summary>
         public Message Message { get; init; }
@@ -17,11 +26,5 @@ namespace DevQuiz.TelegramBot.MediatR.Commands
         ///     Chat
         /// </summary>
         public Chat Chat => Message.Chat;
-
-        /// <summary>
-        ///     Constructor
-        /// </summary>
-        /// <param name="message"> Message </param>
-        protected BaseBotCommand(Message message) => Message = message;
     }
 }

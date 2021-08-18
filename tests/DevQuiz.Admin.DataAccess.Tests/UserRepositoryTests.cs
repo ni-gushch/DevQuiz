@@ -15,8 +15,8 @@ namespace DevQuiz.Admin.DataAccess.Tests
 {
     public class UserRepositoryTests : DevQuizContextSeedDataHelper
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly DevQuizDbContext _dbContext;
+        private readonly IUnitOfWork _unitOfWork;
 
         public UserRepositoryTests()
         {
@@ -26,7 +26,7 @@ namespace DevQuiz.Admin.DataAccess.Tests
                 .AddScoped<IGenericRepository<User>, GenericRepository<DevQuizDbContext, User>>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
-            
+
             _unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
             _dbContext = serviceProvider.GetRequiredService<DevQuizDbContext>();
         }

@@ -13,5 +13,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\DevQuiz.Shared.Models\DevQuiz.Shared.Models.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -10,9 +10,9 @@ namespace DevQuiz.Admin.DataAccess.Tests.Helpers
 {
     public static class DevQuizContextSqLiteHelper
     {
-        private static List<string> QuestionCategoryNames => new() { ".Net", "Java", "C++", "Python" };
-        private static List<string> QuestionTagNames => new() { "Tag1", "Tag2", "Tag3", "Tag4" };
-        private static List<string> QuestionAnswers => new() { "Ans1", "Ans2", "Ans3", "Ans4" };
+        private static List<string> QuestionCategoryNames => new() {".Net", "Java", "C++", "Python"};
+        private static List<string> QuestionTagNames => new() {"Tag1", "Tag2", "Tag3", "Tag4"};
+        private static List<string> QuestionAnswers => new() {"Ans1", "Ans2", "Ans3", "Ans4"};
 
         public static DevQuizDbContext EnsureDb(this DevQuizDbContext context)
         {
@@ -54,7 +54,7 @@ namespace DevQuiz.Admin.DataAccess.Tests.Helpers
 
             if (includeCategories)
             {
-                newCategoriesList = QuestionCategoryNames.Select(cat => new Category() { Name = cat })
+                newCategoriesList = QuestionCategoryNames.Select(cat => new Category {Name = cat})
                     .ToList();
                 newCategoriesList.ForEach(it => context.Categories.Add(it));
                 context.SaveChanges();
@@ -63,7 +63,7 @@ namespace DevQuiz.Admin.DataAccess.Tests.Helpers
 
             if (includeTags)
             {
-                newTagsList = QuestionTagNames.Select(cat => new Tag() { Name = cat })
+                newTagsList = QuestionTagNames.Select(cat => new Tag {Name = cat})
                     .ToList();
                 newTagsList.ForEach(it => context.Tags.Add(it));
                 context.SaveChanges();
@@ -72,7 +72,7 @@ namespace DevQuiz.Admin.DataAccess.Tests.Helpers
 
             for (var i = 1; i <= countQuestion; i++)
             {
-                var tempQuestion = new Question()
+                var tempQuestion = new Question
                 {
                     Text = $"Question number {i} Text",
                     CreatedDate = DateTime.Now,
@@ -85,7 +85,8 @@ namespace DevQuiz.Admin.DataAccess.Tests.Helpers
                 var newAnswers = new List<Answer>();
                 if (includeAnswers)
                 {
-                    newAnswers = QuestionAnswers.Select(it => new Answer() {QuestionId = tempQuestion.Id, Text = it}).ToList();
+                    newAnswers = QuestionAnswers.Select(it => new Answer {QuestionId = tempQuestion.Id, Text = it})
+                        .ToList();
                     newAnswers.ForEach(it => context.Answers.Add(it));
                     context.SaveChanges();
                     context.ChangeTracker.Clear();
@@ -105,7 +106,7 @@ namespace DevQuiz.Admin.DataAccess.Tests.Helpers
                     context.Questions.Update(tempQuestion);
                     context.SaveChanges();
                     context.ChangeTracker.Clear();
-                }               
+                }
             }
 
             return context;

@@ -3,21 +3,23 @@ using System;
 namespace DevQuiz.Admin.Core.Models.Entities
 {
     /// <summary>
-    /// Interface for models which need audit information
+    ///     Interface for models which need audit information
     /// </summary>
     public interface IAuditEntity
     {
         /// <summary>
-        /// Created Date
+        ///     Created Date
         /// </summary>
-        DateTime CreatedDate { get; set; }   
+        DateTime CreatedDate { get; set; }
+
         /// <summary>
-        /// Who create entity
+        ///     Who create entity
         /// </summary>
-        string CreatedBy { get; set; }   
+        string CreatedBy { get; set; }
+
         /// <summary>
-        /// Update Date
+        ///     Update Date
         /// </summary>
-        DateTime? UpdatedDate { get; set; }  
+        DateTime? UpdatedDate { get; set; }
     }
 }

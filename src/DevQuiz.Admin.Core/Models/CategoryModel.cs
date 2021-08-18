@@ -3,12 +3,12 @@
 namespace DevQuiz.Admin.Core.Models
 {
     /// <summary>
-    /// Model with base category info
+    ///     Model with base category info
     /// </summary>
     public class CategoryModel : DtoBase<int>
     {
         /// <summary>
-        /// CAtegory name
+        ///     CAtegory name
         /// </summary>
         public string Name { get; set; }
     }

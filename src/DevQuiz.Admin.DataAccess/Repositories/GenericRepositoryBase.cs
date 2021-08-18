@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace DevQuiz.Admin.DataAccess.Repositories
 {
     /// <summary>
-    /// Generic base repository implementation
+    ///     Generic base repository implementation
     /// </summary>
     /// <typeparam name="TDbContext">TDBContext instance</typeparam>
     /// <typeparam name="TEntity">Entity instance</typeparam>
@@ -23,77 +23,35 @@ namespace DevQuiz.Admin.DataAccess.Repositories
         private readonly ILogger<GenericRepository<TDbContext, TEntity>> _logger;
 
         /// <summary>
-        /// DbSet for current type of TEntity
-        /// </summary>
-        protected DbSet<TEntity> DbSet { get; }
-
-        /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="genericDbContext">Generic db context</param>
         /// <param name="logger">Logger instance</param>
-        public GenericRepositoryBase(TDbContext genericDbContext, ILogger<GenericRepository<TDbContext, TEntity>> logger = null)
+        public GenericRepositoryBase(TDbContext genericDbContext,
+            ILogger<GenericRepository<TDbContext, TEntity>> logger = null)
         {
             DbSet = genericDbContext.Set<TEntity>();
             _logger = logger ?? NullLogger<GenericRepository<TDbContext, TEntity>>.Instance;
         }
 
+        /// <summary>
+        ///     DbSet for current type of TEntity
+        /// </summary>
+        protected DbSet<TEntity> DbSet { get; }
+
         #region GetAll
-        
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.GetAll(Expression{Func{TEntity, bool}})"/>
-        public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null) => 
-            GetQueryableWithFilter(predicate);
 
-        #endregion
-
-        #region List
-
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.List(Expression{Func{TEntity, bool}})"/>
-        public virtual List<TEntity> List(Expression<Func<TEntity, bool>> predicate = null) => 
-            GetQueryableWithFilter(predicate)
-                .ToList();
-        
-        
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, CancellationToken)"/>
-        public virtual Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate = null, 
-            CancellationToken cancellationToken = default) => 
-            GetQueryableWithFilter(predicate)
-                .ToListAsync(cancellationToken);
-        
-        #endregion
-
-        #region Count
-
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Count()"/>
-        public int Count() => 
-            DbSet
-                .Count();
-
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Count(Expression{Func{TEntity, bool}})"/>
-        public int Count(Expression<Func<TEntity, bool>> predicate) => 
-            DbSet
-                .Count(predicate);
-
-        #endregion
-
-        #region Create
-
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Create(TEntity)"/>
-        public virtual void Create(TEntity entityToAdd)
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.GetAll(Expression{Func{TEntity, bool}})" />
+        public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null)
         {
-            DbSet.Add(entityToAdd);
-        }
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.CreateAsync(TEntity, CancellationToken)"/>
-        public virtual async Task CreateAsync(TEntity entityToAdd, CancellationToken cancellationToken = default)
-        {
-            await DbSet.AddAsync(entityToAdd, cancellationToken);
+            return GetQueryableWithFilter(predicate);
         }
 
         #endregion
 
         #region Update
 
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Update(TEntity)"/>
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Update(TEntity)" />
         public virtual void Update(TEntity entityToUpdate)
         {
             DbSet.Update(entityToUpdate);
@@ -101,36 +59,21 @@ namespace DevQuiz.Admin.DataAccess.Repositories
 
         #endregion
 
-        #region Delete
-
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Delete(TEntity)"/>
-        public virtual void Delete(TEntity entityToDelete)
-        {
-            DbSet.Remove(entityToDelete);
-        }
-
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Delete(Expression{Func{TEntity, bool}})"/>
-        public virtual void Delete(Expression<Func<TEntity, bool>> predicate)
-        {
-            var entityToDelete = GetOne(predicate: predicate);
-            DbSet.Remove(entityToDelete);
-        }
-
-        #endregion
-
         #region GetOne
 
-        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.GetOne(Expression{Func{TEntity, bool}})"/>
-        public virtual TEntity GetOne(Expression<Func<TEntity, bool>> predicate = null) => 
-            GetQueryableWithFilter(predicate)
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.GetOne(Expression{Func{TEntity, bool}})" />
+        public virtual TEntity GetOne(Expression<Func<TEntity, bool>> predicate = null)
+        {
+            return GetQueryableWithFilter(predicate)
                 .FirstOrDefault();
+        }
 
         #endregion
 
         #region Protected
 
         /// <summary>
-        /// Get query from passed params
+        ///     Get query from passed params
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
@@ -142,6 +85,77 @@ namespace DevQuiz.Admin.DataAccess.Repositories
                 query = query.Where(predicate);
 
             return query;
+        }
+
+        #endregion
+
+        #region List
+
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.List(Expression{Func{TEntity, bool}})" />
+        public virtual List<TEntity> List(Expression<Func<TEntity, bool>> predicate = null)
+        {
+            return GetQueryableWithFilter(predicate)
+                .ToList();
+        }
+
+
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.ListAsync(Expression{Func{TEntity, bool}}, CancellationToken)" />
+        public virtual Task<List<TEntity>> ListAsync(Expression<Func<TEntity, bool>> predicate = null,
+            CancellationToken cancellationToken = default)
+        {
+            return GetQueryableWithFilter(predicate)
+                .ToListAsync(cancellationToken);
+        }
+
+        #endregion
+
+        #region Count
+
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Count()" />
+        public int Count()
+        {
+            return DbSet
+                .Count();
+        }
+
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Count(Expression{Func{TEntity, bool}})" />
+        public int Count(Expression<Func<TEntity, bool>> predicate)
+        {
+            return DbSet
+                .Count(predicate);
+        }
+
+        #endregion
+
+        #region Create
+
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Create(TEntity)" />
+        public virtual void Create(TEntity entityToAdd)
+        {
+            DbSet.Add(entityToAdd);
+        }
+
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.CreateAsync(TEntity, CancellationToken)" />
+        public virtual async Task CreateAsync(TEntity entityToAdd, CancellationToken cancellationToken = default)
+        {
+            await DbSet.AddAsync(entityToAdd, cancellationToken);
+        }
+
+        #endregion
+
+        #region Delete
+
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Delete(TEntity)" />
+        public virtual void Delete(TEntity entityToDelete)
+        {
+            DbSet.Remove(entityToDelete);
+        }
+
+        /// <inheritdoc cref="IGenericRepositoryBase{TEntity}.Delete(Expression{Func{TEntity, bool}})" />
+        public virtual void Delete(Expression<Func<TEntity, bool>> predicate)
+        {
+            var entityToDelete = GetOne(predicate);
+            DbSet.Remove(entityToDelete);
         }
 
         #endregion

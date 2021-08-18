@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using DevQuiz.Admin.Core;
 using DevQuiz.Admin.Core.Models.Entities;
 using DevQuiz.Admin.Core.Repositories;
-using DevQuiz.Admin.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevQuiz.Admin.DataAccess
@@ -15,19 +14,20 @@ namespace DevQuiz.Admin.DataAccess
         where TDbContext : DbContext
     {
         private readonly TDbContext _dbContext;
-        /// <summary>
-        /// Set of registered repositories
-        /// </summary>
-        protected Dictionary<string, object> Repositories { get; } = new();
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="dbContext">TDbContext instance</param>
         public UnitOfWork(TDbContext dbContext)
         {
             _dbContext = dbContext;
         }
+
+        /// <summary>
+        ///     Set of registered repositories
+        /// </summary>
+        protected Dictionary<string, object> Repositories { get; } = new();
 
         /// <inheritdoc cref="IUnitOfWork.Commit" />
         public int Commit()
@@ -47,7 +47,7 @@ namespace DevQuiz.Admin.DataAccess
             _dbContext.ChangeTracker.Clear();
         }
 
-        /// <inheritdoc cref="IUnitOfWork.GetBaseRepository{TEntity}"/>
+        /// <inheritdoc cref="IUnitOfWork.GetBaseRepository{TEntity}" />
         public IGenericRepositoryBase<TEntity> GetBaseRepository<TEntity>() where TEntity : class
         {
             Repositories.TryGetValue(nameof(TEntity), out var returnRepoObject);
@@ -56,8 +56,9 @@ namespace DevQuiz.Admin.DataAccess
             throw new ArgumentNullException($"Repository for type {typeof(TEntity)} is not registered");
         }
 
-        /// <inheritdoc cref="IUnitOfWork.GetRepository{TRepository, TEntity}"/>
-        public TRepository GetRepository<TRepository, TEntity>() where TRepository : IGenericRepositoryBase<TEntity> where TEntity : class
+        /// <inheritdoc cref="IUnitOfWork.GetRepository{TRepository, TEntity}" />
+        public TRepository GetRepository<TRepository, TEntity>() where TRepository : IGenericRepositoryBase<TEntity>
+            where TEntity : class
         {
             Repositories.TryGetValue(typeof(TEntity).Name, out var returnRepoObject);
             if (returnRepoObject is TRepository returnRepo)
@@ -66,7 +67,7 @@ namespace DevQuiz.Admin.DataAccess
         }
 
         /// <summary>
-        /// Dispose unit of work instance
+        ///     Dispose unit of work instance
         /// </summary>
         public void Dispose()
         {
@@ -91,33 +92,12 @@ namespace DevQuiz.Admin.DataAccess
         }
     }
 
-    /// <inheritdoc cref="IDevQuizUnitOfWork"/>
+    /// <inheritdoc cref="IDevQuizUnitOfWork" />
     public class DevQuizUnitOfWork<TDbContext> : UnitOfWork<TDbContext>, IDevQuizUnitOfWork
         where TDbContext : DbContext
     {
         /// <summary>
-        /// User repository
-        /// </summary>
-        public IGenericRepository<User> UserRepository { get; }
-        /// <summary>
-        /// Question repository
-        /// </summary>
-        public IGenericRepository<Question> QuestionRepository { get; }
-        /// <summary>
-        /// Category repository
-        /// </summary>
-        public IGenericRepository<Category> CategoryRepository { get; }
-        /// <summary>
-        /// Tag repository
-        /// </summary>
-        public IGenericRepository<Tag> TagRepository { get; }
-        /// <summary>
-        /// Answer repository
-        /// </summary>
-        public IGenericRepository<Answer> AnswerRepository { get; }
-
-        /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="genericDbContext">Current db context</param>
         /// <param name="userRepository">User repository instance</param>
@@ -137,27 +117,52 @@ namespace DevQuiz.Admin.DataAccess
             CategoryRepository = RegisterRepository<IGenericRepository<Category>, Category>(categoryRepository);
             TagRepository = RegisterRepository<IGenericRepository<Tag>, Tag>(tagRepository);
             AnswerRepository = RegisterRepository<IGenericRepository<Answer>, Answer>(answerRepository);
-        }        
+        }
+
+        /// <summary>
+        ///     User repository
+        /// </summary>
+        public IGenericRepository<User> UserRepository { get; }
+
+        /// <summary>
+        ///     Question repository
+        /// </summary>
+        public IGenericRepository<Question> QuestionRepository { get; }
+
+        /// <summary>
+        ///     Category repository
+        /// </summary>
+        public IGenericRepository<Category> CategoryRepository { get; }
+
+        /// <summary>
+        ///     Tag repository
+        /// </summary>
+        public IGenericRepository<Tag> TagRepository { get; }
+
+        /// <summary>
+        ///     Answer repository
+        /// </summary>
+        public IGenericRepository<Answer> AnswerRepository { get; }
     }
 
-    /// <inheritdoc cref="IDevQuizUserUnitOfWork"/>
+    /// <inheritdoc cref="IDevQuizUserUnitOfWork" />
     public class DevQuizUserUnitOfWork<TDbContext> : UnitOfWork<TDbContext>, IDevQuizUserUnitOfWork
         where TDbContext : DbContext
     {
         /// <summary>
-        /// User repository
-        /// </summary>
-        public IGenericRepository<User> UserRepository { get; }
-       
-        /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="genericDbContext">Current db context</param>
-        /// <param name="userRepository">User repository instance</param>        
+        /// <param name="userRepository">User repository instance</param>
         public DevQuizUserUnitOfWork(TDbContext genericDbContext,
             IGenericRepository<User> userRepository = null) : base(genericDbContext)
         {
             UserRepository = RegisterRepository<IGenericRepository<User>, User>(userRepository);
-        }        
+        }
+
+        /// <summary>
+        ///     User repository
+        /// </summary>
+        public IGenericRepository<User> UserRepository { get; }
     }
 }

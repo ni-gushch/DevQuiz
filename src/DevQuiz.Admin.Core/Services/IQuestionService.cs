@@ -5,21 +5,21 @@ using DevQuiz.Admin.Core.Models.Dto;
 namespace DevQuiz.Admin.Core.Services
 {
     /// <summary>
-    /// Service for manage Question entries
+    ///     Service for manage Question entries
     /// </summary>
     public interface IQuestionService : IBaseService<QuestionDto, QuestionDto, IList<QuestionDto>, int, bool, bool, int>
     {
         #region Categories
 
         /// <summary>
-        /// Get all categories
+        ///     Get all categories
         /// </summary>
         /// <param name="includeQuestions">Flag to include questions</param>
         /// <returns>Categories information collection</returns>
         Task<List<CategoryDto>> GetAllCategoriesAsync(bool includeQuestions);
 
         /// <summary>
-        /// Get question category by id
+        ///     Get question category by id
         /// </summary>
         /// <param name="categoryId">Category unique identifier</param>
         /// <param name="includeQuestions">Flag to include questions</param>
@@ -27,7 +27,7 @@ namespace DevQuiz.Admin.Core.Services
         Task<CategoryDto> GetCategoryByIdAsync(int categoryId, bool includeQuestions);
 
         /// <summary>
-        /// Get category by name
+        ///     Get category by name
         /// </summary>
         /// <param name="categoryName">Category name</param>
         /// <param name="includeQuestions">Flag to include questions</param>
@@ -35,21 +35,21 @@ namespace DevQuiz.Admin.Core.Services
         Task<CategoryDto> GetCategoryByNameAsync(string categoryName, bool includeQuestions);
 
         /// <summary>
-        /// Create new category entry
+        ///     Create new category entry
         /// </summary>
         /// <param name="categoryToCreate">Category new entry</param>
         /// <returns>Unique identifier of new category</returns>
         Task<int> CreateCategoryAsync(CategoryDto categoryToCreate);
 
         /// <summary>
-        /// Update category information
+        ///     Update category information
         /// </summary>
         /// <param name="categoryToUpdate">Category to update</param>
         /// <returns>Method execution status</returns>
         Task<bool> UpdateCategoryAsync(CategoryDto categoryToUpdate);
 
         /// <summary>
-        /// Delete category from store
+        ///     Delete category from store
         /// </summary>
         /// <param name="categoryId">Category unique identifier</param>
         /// <returns>Method execution status</returns>
@@ -60,14 +60,14 @@ namespace DevQuiz.Admin.Core.Services
         #region Tags
 
         /// <summary>
-        /// Get all tags
+        ///     Get all tags
         /// </summary>
         /// <param name="includeQuestions">Flag to include questions</param>
         /// <returns>Tag information collection</returns>
         Task<List<TagDto>> GetAllTagsAsync(bool includeQuestions);
 
         /// <summary>
-        /// Get tag by id
+        ///     Get tag by id
         /// </summary>
         /// <param name="tagId">Unique identifier of tag</param>
         /// <param name="includeQuestions">Flag to include questions</param>
@@ -75,7 +75,7 @@ namespace DevQuiz.Admin.Core.Services
         Task<TagDto> GetTagByIdAsync(int tagId, bool includeQuestions);
 
         /// <summary>
-        /// Get tag by name
+        ///     Get tag by name
         /// </summary>
         /// <param name="tagName">Name of tag</param>
         /// <param name="includeQuestions">Flag to include questions</param>
@@ -83,21 +83,21 @@ namespace DevQuiz.Admin.Core.Services
         Task<TagDto> GetTagByNameAsync(string tagName, bool includeQuestions);
 
         /// <summary>
-        /// Create new tag entry
+        ///     Create new tag entry
         /// </summary>
         /// <param name="tagToCreate">Tag new entry</param>
         /// <returns>Unique identifier of new tag</returns>
         Task<int> CreateTagAsync(TagDto tagToCreate);
 
         /// <summary>
-        /// Update tag information
+        ///     Update tag information
         /// </summary>
         /// <param name="tagToUpdate">Tag to update</param>
         /// <returns>Method execution status</returns>
         Task<bool> UpdateTagAsync(TagDto tagToUpdate);
 
         /// <summary>
-        /// Delete tag from store
+        ///     Delete tag from store
         /// </summary>
         /// <param name="tagId">Unique identifier of tag</param>
         /// <returns>Method execution status</returns>

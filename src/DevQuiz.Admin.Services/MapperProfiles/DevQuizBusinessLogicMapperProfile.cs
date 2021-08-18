@@ -6,17 +6,16 @@ using DevQuiz.Admin.Services.Commands;
 namespace DevQuiz.Admin.Services.MapperProfiles
 {
     /// <summary>
-    /// Mapper profile for business logic layer
+    ///     Mapper profile for business logic layer
     /// </summary>
     public class DevQuizBusinessLogicMapperProfile : Profile
     {
         /// <summary>
-        /// 
         /// </summary>
         public DevQuizBusinessLogicMapperProfile()
         {
             CreateMap<Category, CategoryModel>(MemberList.Destination);
-            
+
             CreateCommandsToEntitiesMaps();
             CreateEntitiesToCommandResponsesMaps();
         }
@@ -26,14 +25,13 @@ namespace DevQuiz.Admin.Services.MapperProfiles
             CreateMap<CreateQuestionCommand, Question>(MemberList.Destination)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom((src, dest) => default(int)))
                 ;
-            
+
             CreateMap<UpdateQuestionCommand, Question>(MemberList.Destination)
                 ;
         }
 
         private void CreateEntitiesToCommandResponsesMaps()
         {
-            
         }
     }
 }
