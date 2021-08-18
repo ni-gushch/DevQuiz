@@ -8,6 +8,8 @@ namespace DevQuiz.TelegramBot.MediatR.Commands
     public record StartCommand : BaseBotCommand
     {
         /// <inheritdoc />
-        public StartCommand(Message message) : base(message) { }
+        public StartCommand(Message message) : base(message)
+        {
+        }
     }
 }

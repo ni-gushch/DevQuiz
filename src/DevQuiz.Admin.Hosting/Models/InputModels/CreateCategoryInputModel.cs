@@ -3,12 +3,12 @@
 namespace DevQuiz.Admin.Hosting.Models.InputModels
 {
     /// <summary>
-    /// Input model for creating new question category
+    ///     Input model for creating new question category
     /// </summary>
     public class CreateCategoryInputModel
     {
         /// <summary>
-        /// Category name
+        ///     Category name
         /// </summary>
         [Required]
         public string Name { get; set; }

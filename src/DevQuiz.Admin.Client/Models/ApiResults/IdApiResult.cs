@@ -1,22 +1,23 @@
 ﻿using System;
-using DevQuiz.Admin.Core.Models;
+using DevQuiz.Shared.Models.Abstractions;
 
-namespace DevQuiz.Admin.Hosting.Models.ApiResults
+namespace DevQuiz.Admin.Client.Models.ApiResults
 {
     /// <summary>
-    /// Api Result with id of new entry
+    ///     Api Result with id of new entry
     /// </summary>
     public class IdApiResult<TKey> : IHasKey<TKey>
         where TKey : IEquatable<TKey>
     {
         /// <summary>
-        /// Constructor without parameters
+        ///     Constructor without parameters
         /// </summary>
         public IdApiResult()
-        { }
+        {
+        }
 
         /// <summary>
-        /// Constructor with parameter
+        ///     Constructor with parameter
         /// </summary>
         /// <param name="id">Unique identifier</param>
         public IdApiResult(TKey id)
@@ -24,7 +25,7 @@ namespace DevQuiz.Admin.Hosting.Models.ApiResults
             Id = id;
         }
 
-        /// <inheritdoc cref="IHasKey{TKey}.Id"/>
+        /// <inheritdoc cref="IHasKey{TKey}.Id" />
         public TKey Id { get; set; }
     }
 }

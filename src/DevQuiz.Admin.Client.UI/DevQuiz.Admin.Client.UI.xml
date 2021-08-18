@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevQuiz.Admin.Client.UI</name>
+    </assembly>
+    <members>
+        <member name="T:DevQuiz.Admin.Client.UI.Abstractions.IQuestionService">
+            <inheritdoc cref="T:DevQuiz.Admin.Client.Abstractions.IQuestionReadService"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Client.UI.Abstractions.IQuestionService.CreateQuestion(DevQuiz.Admin.Client.UI.Models.InputModels.CreateQuestionInputModel,System.Threading.CancellationToken)">
+            <summary>
+                Create new Question
+            </summary>
+            <param name="value">Create question model</param>
+            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken" /></param>
+            <returns>Identifier of new question</returns>
+        </member>
+        <member name="T:DevQuiz.Admin.Client.UI.Models.InputModels.CreateQuestionInputModel">
+            <summary>
+                Input model for creating new question
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.UI.Models.InputModels.CreateQuestionInputModel.Text">
+            <summary>
+                Set question text
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.UI.Models.InputModels.CreateQuestionInputModel.RightAnswerExplanation">
+            <summary>
+                Get or set right answer explanation
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.UI.Models.InputModels.CreateQuestionInputModel.CategoryId">
+            <summary>
+                Identifier of selected category
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Client.UI.QuestionService">
+            <inheritdoc cref="T:DevQuiz.Admin.Client.UI.Abstractions.IQuestionService"/>
+        </member>
+        <member name="M:DevQuiz.Admin.Client.UI.QuestionService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Client.UI.QuestionService})">
+            <summary>
+            Constructor with parameters
+            </summary>
+            <param name="httpClient">Instance of <see cref="T:System.Net.Http.HttpClient"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Client.UI.QuestionService.CreateQuestion(DevQuiz.Admin.Client.UI.Models.InputModels.CreateQuestionInputModel,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Client.UI.QuestionService.CreateQuestion(DevQuiz.Admin.Client.UI.Models.InputModels.CreateQuestionInputModel,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+                Class for registration additional services
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizAdminUIClient(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Register client for dev quiz admin service
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

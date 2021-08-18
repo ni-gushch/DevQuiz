@@ -13,18 +13,19 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Extensions for IServiceCollection instance
+    ///     Extensions for IServiceCollection instance
     /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Register DbContexts for DevQuiz
+        ///     Register DbContexts for DevQuiz
         /// </summary>
         /// <typeparam name="TDbContext">Target db context</typeparam>
         /// <param name="services">IServiceCollection instance</param>
         /// <param name="configuration">IConfiguration instance</param>
         /// <returns>IServiceCollection</returns>
-        public static IServiceCollection AddDevQuizDbContexts<TDbContext>(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDevQuizDbContexts<TDbContext>(this IServiceCollection services,
+            IConfiguration configuration)
             where TDbContext : DbContext
         {
             var migrationAssembly = typeof(InitialMigration).GetTypeInfo().Assembly.GetName().Name;
@@ -38,7 +39,7 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Register Repositories for DevQuiz
+        ///     Register Repositories for DevQuiz
         /// </summary>
         /// <typeparam name="TDbContext">Target db context</typeparam>
         /// <param name="services">IServiceCollection instance</param>

@@ -1,12 +1,12 @@
-﻿using DevQuiz.TelegramBot.Constants;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using DevQuiz.TelegramBot.Constants;
 using DevQuiz.TelegramBot.MediatR.Commands;
 using DevQuiz.TelegramBot.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Xunit;
@@ -23,11 +23,12 @@ namespace TelegramBot.Tests.Services
             var service = new BotMessageService(null, mockLogger);
             var message = new Message
             {
-                Chat = new(),
-                Entities = new MessageEntity[] { new() }
+                Chat = new Chat(),
+                Entities = new MessageEntity[] {new()}
             };
-            var update = new Update() { 
-                Message = message                
+            var update = new Update
+            {
+                Message = message
             };
 
             await service.ProcessUpdateAsync(update);
@@ -40,15 +41,15 @@ namespace TelegramBot.Tests.Services
         [Fact]
         public async Task ProcessUpdateAsync_StartCommand_MediatorSendStartCommand()
         {
-            var mockMediator = Substitute.For<IMediator>();            
+            var mockMediator = Substitute.For<IMediator>();
             var service = new BotMessageService(mockMediator);
             var message = new Message
             {
-                Chat = new(),
-                Entities = new MessageEntity[] { new() { Type = MessageEntityType.BotCommand } },
+                Chat = new Chat(),
+                Entities = new MessageEntity[] {new() {Type = MessageEntityType.BotCommand}},
                 Text = BotCommands.Start
             };
-            var update = new Update()
+            var update = new Update
             {
                 Message = message
             };

@@ -1,28 +1,29 @@
 ﻿using System;
-using DevQuiz.Admin.Core.Models;
+using DevQuiz.Shared.Models;
+using DevQuiz.Shared.Models.Abstractions;
 
-namespace DevQuiz.Admin.Hosting.Models
+namespace DevQuiz.Admin.Client.Models
 {
     /// <summary>
-    /// Model with value
+    ///     Model with value
     /// </summary>
     public class ValueModel
     {
         /// <summary>
-        /// Value of entry
+        ///     Value of entry
         /// </summary>
         public string Value { get; set; }
     }
 
     /// <summary>
-    /// Model with value and unique identifier
+    ///     Model with value and unique identifier
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     public class ValueModel<TKey> : ValueModel, IHasKey<TKey>
         where TKey : IEquatable<TKey>
     {
         /// <summary>
-        /// Unique identifier of entry
+        ///     Unique identifier of entry
         /// </summary>
         public TKey Id { get; set; }
     }

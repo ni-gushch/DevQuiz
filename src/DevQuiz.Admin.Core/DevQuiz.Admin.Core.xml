@@ -6,100 +6,100 @@
     <members>
         <member name="T:DevQuiz.Admin.Core.Configurations.DataBaseConfiguration">
             <summary>
-            Configurations for data base connection
+                Configurations for data base connection
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Configurations.DataBaseConfiguration.ConnectionString">
             <summary>
-            Data base connection string
+                Data base connection string
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Extensions.StringExtensions">
             <summary>
-            Extensions for string objects
+                Extensions for string objects
             </summary>
         </member>
         <member name="M:DevQuiz.Admin.Core.Extensions.StringExtensions.ToSnakeCase(System.String)">
             <summary>
-            Extension method for transforming string in CamelCase to SnakeCase format.
+                Extension method for transforming string in CamelCase to SnakeCase format.
             </summary>
             <param name="input"> Format string. </param>
             <returns> Formatted string. </returns>
         </member>
         <member name="T:DevQuiz.Admin.Core.IDevQuizUnitOfWork">
             <summary>
-            DevQuiz UnitOfWork
+                DevQuiz UnitOfWork
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.IDevQuizUnitOfWork.UserRepository">
             <summary>
-            User repository
+                User repository
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.IDevQuizUnitOfWork.QuestionRepository">
             <summary>
-            Question repository
+                Question repository
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.IDevQuizUnitOfWork.CategoryRepository">
             <summary>
-            Category repository
+                Category repository
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.IDevQuizUnitOfWork.TagRepository">
             <summary>
-            Tag repository
+                Tag repository
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.IDevQuizUnitOfWork.AnswerRepository">
             <summary>
-            Answer repository
+                Answer repository
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.IDevQuizUserUnitOfWork">
             <summary>
-            DevQuiz UnitOfWork
+                DevQuiz UnitOfWork
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.IDevQuizUserUnitOfWork.UserRepository">
             <summary>
-            User repository
+                User repository
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.IUnitOfWork">
             <summary>
-            Unit of work interface
+                Unit of work interface
             </summary>
         </member>
         <member name="M:DevQuiz.Admin.Core.IUnitOfWork.Commit">
             <summary>
-            Save all changes
+                Save all changes
             </summary>
             <returns>Operation status</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.IUnitOfWork.CommitAsync(System.Threading.CancellationToken)">
             <summary>
-            Save all changes
+                Save all changes
             </summary>
             <param name="cancellationToken">Token for cancel operation</param>
             <returns>Operation status</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.IUnitOfWork.ClearChangeTracker">
             <summary>
-            Clear db context tracker
-            <remarks>Need if you don't want Dispose DbContext but want change tracked elements</remarks>
+                Clear db context tracker
+                <remarks>Need if you don't want Dispose DbContext but want change tracked elements</remarks>
             </summary>
         </member>
         <member name="M:DevQuiz.Admin.Core.IUnitOfWork.GetBaseRepository``1">
             <summary>
-            Get base repository instance
+                Get base repository instance
             </summary>
             <typeparam name="TEntity">Type of TEntity</typeparam>
             <returns>Base repository instance</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.IUnitOfWork.GetRepository``2">
             <summary>
-            Get instance of concrete repository
+                Get instance of concrete repository
             </summary>
             <typeparam name="TRepository">Type of repository</typeparam>
             <typeparam name="TEntity">Type of TEntity</typeparam>
@@ -107,163 +107,163 @@
         </member>
         <member name="T:DevQuiz.Admin.Core.Mappers.QuestionMapperProfile">
             <summary>
-            Profile class for mapper user models
+                Profile class for mapper user models
             </summary>
         </member>
         <member name="M:DevQuiz.Admin.Core.Mappers.QuestionMapperProfile.#ctor">
             <summary>
-            Constructor
+                Constructor
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Mappers.UserMapperProfile">
             <summary>
-            Profile class for mapper user models
+                Profile class for mapper user models
             </summary>
         </member>
         <member name="M:DevQuiz.Admin.Core.Mappers.UserMapperProfile.#ctor">
             <summary>
-            Constructor
+                Constructor
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.CategoryModel">
             <summary>
-            Model with base category info
+                Model with base category info
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.CategoryModel.Name">
             <summary>
-            CAtegory name
+                CAtegory name
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Dto.AnswerDto">
             <summary>
-            Base answer model
+                Base answer model
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.AnswerDto.Text">
             <summary>
-            Get or set answer text
+                Get or set answer text
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.AnswerDto.QuestionId">
             <summary>
-            Get or set unique identifier of question
+                Get or set unique identifier of question
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Dto.CategoryDto">
             <summary>
-            Base model of question category
+                Base model of question category
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.CategoryDto.Name">
             <summary>
-            Get or set category name
+                Get or set category name
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.CategoryDto.Questions">
             <summary>
-            Linked questions
+                Linked questions
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Dto.DtoBase`1">
             <summary>
-            Base dto model
+                Base dto model
             </summary>
             <typeparam name="TKey">Type of entry unique identifier </typeparam>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.DtoBase`1.Id">
             <summary>
-            Get or set unique identifier of entry
+                Get or set unique identifier of entry
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Dto.QuestionDto">
             <summary>
-            Base question model
+                Base question model
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.QuestionDto.Text">
             <summary>
-            Get or set question text
+                Get or set question text
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.QuestionDto.RightAnswerId">
             <summary>
-            Get or set unique identifier right answer
+                Get or set unique identifier right answer
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.QuestionDto.RightAnswerExplanation">
             <summary>
-            Get or set right answer explanation
+                Get or set right answer explanation
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.QuestionDto.CategoryId">
             <summary>
-            Get or set unique identifier of category
+                Get or set unique identifier of category
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.QuestionDto.Answers">
             <summary>
-            Get or set list of answers
+                Get or set list of answers
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.QuestionDto.Category">
             <summary>
-            Category object
+                Category object
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.QuestionDto.Tags">
             <summary>
-            Get or set tags list
+                Get or set tags list
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Dto.TagDto">
             <summary>
-            Base model of question tag
+                Base model of question tag
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.TagDto.Name">
             <summary>
-            Get or set tag name
+                Get or set tag name
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.TagDto.Questions">
             <summary>
-            Get or set questions list
+                Get or set questions list
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Dto.UserDto">
             <summary>
-            User dto model
+                User dto model
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.UserDto.UserName">
             <summary>
-            Get or set user name (login)
+                Get or set user name (login)
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.UserDto.FirstName">
             <summary>
-            Get or set user first name
+                Get or set user first name
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.UserDto.LastName">
             <summary>
-            Get or set user last name
+                Get or set user last name
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.UserDto.TelegramChatId">
             <summary>
-            Unique identifier of telegram chat for current user
+                Unique identifier of telegram chat for current user
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Dto.UserDto.TelegramId">
             <summary>
-            Unique identifier of user in Telegram
+                Unique identifier of user in Telegram
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Entities.AggregateEntity`1">
             <summary>
-            Base model for aggregated entities
+                Base model for aggregated entities
             </summary>
             <typeparam name="TKey">Type of entity unique index </typeparam>
         </member>
@@ -278,170 +278,159 @@
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Entities.Answer">
             <summary>
-            Base answer model
+                Base answer model
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Answer.Text">
             <summary>
-            Get or set answer text
+                Get or set answer text
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Answer.QuestionId">
             <summary>
-            Get or set unique identifier of question
+                Get or set unique identifier of question
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Entities.Category">
             <summary>
-            Base model of question category
+                Base model of question category
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Category.Name">
             <summary>
-            Get or set category name
+                Get or set category name
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Category.Questions">
             <summary>
-            Linked questions
+                Linked questions
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Entities.EntityBase`1">
             <summary>
-            Base entity class
+                Base entity class
             </summary>
             <typeparam name="TKey">Type of unique identifier</typeparam>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.EntityBase`1.Id">
             <summary>
-            Get or set unique identifier of entity
+                Get or set unique identifier of entity
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Entities.IAuditEntity">
             <summary>
-            Interface for models which need audit information
+                Interface for models which need audit information
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.IAuditEntity.CreatedDate">
             <summary>
-            Created Date
+                Created Date
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.IAuditEntity.CreatedBy">
             <summary>
-            Who create entity
+                Who create entity
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.IAuditEntity.UpdatedDate">
             <summary>
-            Update Date
+                Update Date
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Entities.Question">
             <summary>
-            Base question model
+                Base question model
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Question.Text">
             <summary>
-            Get or set question text
+                Get or set question text
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Question.RightAnswerId">
             <summary>
-            Get or set unique identifier right answer
+                Get or set unique identifier right answer
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Question.RightAnswerExplanation">
             <summary>
-            Get or set right answer explanation
+                Get or set right answer explanation
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Question.CategoryId">
             <summary>
-            Get or set unique identifier of category
+                Get or set unique identifier of category
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Question.Answers">
             <summary>
-            Get or set list of answers
+                Get or set list of answers
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Question.Category">
             <summary>
-            Category object
+                Category object
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Question.Tags">
             <summary>
-            Get or set tags list
+                Get or set tags list
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Entities.Tag">
             <summary>
-            Base model of question tag
+                Base model of question tag
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Tag.Name">
             <summary>
-            Get or set tag name
+                Get or set tag name
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.Tag.Questions">
             <summary>
-            Get or set questions list
+                Get or set questions list
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Models.Entities.User">
             <summary>
-            Base UserModel
+                Base UserModel
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.User.UserName">
             <summary>
-            Get or set user name (login)
+                Get or set user name (login)
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.User.FirstName">
             <summary>
-            Get or set user first name
+                Get or set user first name
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.User.LastName">
             <summary>
-            Get or set user last name
+                Get or set user last name
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.User.TelegramChatId">
             <summary>
-            Unique identifier of telegram chat for current user
+                Unique identifier of telegram chat for current user
             </summary>
         </member>
         <member name="P:DevQuiz.Admin.Core.Models.Entities.User.TelegramId">
             <summary>
-            Unique identifier of user in Telegram
-            </summary>
-        </member>
-        <member name="T:DevQuiz.Admin.Core.Models.IHasKey`1">
-            <summary>
-            Generic interface for entries which has a unique key
-            </summary>
-            <typeparam name="TKey">Unique key type</typeparam>
-        </member>
-        <member name="P:DevQuiz.Admin.Core.Models.IHasKey`1.Id">
-            <summary>
-            Unique key
+                Unique identifier of user in Telegram
             </summary>
         </member>
         <member name="T:DevQuiz.Admin.Core.Repositories.IGenericRepository`1">
             <summary>
-            Generic repository
+                Generic repository
             </summary>
             <typeparam name="TEntity">Type of entity</typeparam>
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
-            Get all entities with filter order and paging and included tables
+                Get all entities with filter order and paging and included tables
             </summary>
             <param name="predicate">Filter for entities</param>
             <param name="include">Tables to include</param>
@@ -452,7 +441,7 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
-            Get all entities with filter order and paging and included tables
+                Get all entities with filter order and paging and included tables
             </summary>
             <param name="predicate">Filter for entities</param>
             <param name="include">Tables to include</param>
@@ -463,7 +452,7 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepository`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Func{System.Linq.IQueryable{`0},System.Linq.IOrderedQueryable{`0}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
-            Get all entities with filter order and paging and included tables
+                Get all entities with filter order and paging and included tables
             </summary>
             <param name="predicate">Filter for entities</param>
             <param name="include">Tables to include</param>
@@ -475,7 +464,7 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepository`1.GetOne(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}})">
             <summary>
-            Get one entity
+                Get one entity
             </summary>
             <param name="predicate">Filter for entities</param>
             <param name="include">Tables to include</param>
@@ -483,7 +472,7 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepository`1.GetOneAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Func{System.Linq.IQueryable{`0},Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{`0,System.Object}},System.Threading.CancellationToken)">
             <summary>
-            Get one entity
+                Get one entity
             </summary>
             <param name="predicate">Filter for entities</param>
             <param name="include">Tables to include</param>
@@ -492,27 +481,40 @@
         </member>
         <member name="T:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1">
             <summary>
-            Base generic repository interface
+                Base generic repository interface
             </summary>
             <typeparam name="TEntity">Type of entity</typeparam>
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
-            Get all entities with filter
+                Get all entities with filter
             </summary>
             <param name="predicate">Filter for entities</param>
             <returns>IQueryable collection of entities</returns>
         </member>
+        <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.Update(`0)">
+            <summary>
+                Update entity information
+            </summary>
+            <param name="entityToUpdate">Entity information</param>
+        </member>
+        <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.GetOne(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+                Get one entity
+            </summary>
+            <param name="predicate">Filter for entities</param>
+            <returns>One entity</returns>
+        </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
-            Get list entities by passed expression
+                Get list entities by passed expression
             </summary>
             <param name="predicate">Filter for entities</param>
             <returns>List collection of entities</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.ListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)">
             <summary>
-            Get list entities by passed expression
+                Get list entities by passed expression
             </summary>
             <param name="predicate">Filter for entities</param>
             <param name="cancellationToken">Cancellation token</param>
@@ -520,58 +522,45 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.Count">
             <summary>
-            Count of entities
+                Count of entities
             </summary>
             <returns>Number of entities in db</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
-            Count of entities with filter
+                Count of entities with filter
             </summary>
             <param name="predicate">Filter for entities</param>
             <returns>Number of entities in db</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.Create(`0)">
             <summary>
-            Create new entity
+                Create new entity
             </summary>
             <param name="entityToAdd">Entity to add model</param>
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.CreateAsync(`0,System.Threading.CancellationToken)">
             <summary>
-            Create new entity
+                Create new entity
             </summary>
             <param name="entityToAdd">Entity model</param>
             <param name="cancellationToken">Cancellation token</param>
         </member>
-        <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.Update(`0)">
-            <summary>
-            Update entity information
-            </summary>
-            <param name="entityToUpdate">Entity information</param>
-        </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.Delete(`0)">
             <summary>
-            Delete entity from the store
+                Delete entity from the store
             </summary>
             <param name="entityToDelete">Entity instance</param>
         </member>
         <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
-            Delete entity from the store
+                Delete entity from the store
             </summary>
             <param name="predicate">Searching function</param>
         </member>
-        <member name="M:DevQuiz.Admin.Core.Repositories.IGenericRepositoryBase`1.GetOne(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
-            <summary>
-            Get one entity
-            </summary>
-            <param name="predicate">Filter for entities</param>
-            <returns>One entity</returns>
-        </member>
         <member name="T:DevQuiz.Admin.Core.Services.IBaseService`7">
             <summary>
-            Base service for manage entries
+                Base service for manage entries
             </summary>
             <typeparam name="TEntryDto">Entry dto for add or update</typeparam>
             <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
@@ -583,14 +572,14 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IBaseService`7.GetAllAsync(System.Threading.CancellationToken)">
             <summary>
-            Get all entries
+                Get all entries
             </summary>
             <param name="cancellationToken">Cancellation Token</param>
             <returns>All entries result</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IBaseService`7.GetByIdAsync(`6,System.Threading.CancellationToken)">
             <summary>
-            Get one entry
+                Get one entry
             </summary>
             <param name="idDto">Parameter with unique identifier</param>
             <param name="cancellationToken">Cancellation Token</param>
@@ -598,7 +587,7 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IBaseService`7.CreateAsync(`0,System.Threading.CancellationToken)">
             <summary>
-            Create new entry
+                Create new entry
             </summary>
             <param name="entryToAdd">Model with information about new entry</param>
             <param name="cancellationToken">Cancellation Token</param>
@@ -606,7 +595,7 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IBaseService`7.UpdateAsync(`0,System.Threading.CancellationToken)">
             <summary>
-            Update entry
+                Update entry
             </summary>
             <param name="entryToUpdate">Model with information to update</param>
             <param name="cancellationToken">Cancellation Token</param>
@@ -614,7 +603,7 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IBaseService`7.DeleteAsync(`6,System.Threading.CancellationToken)">
             <summary>
-            Delete entry
+                Delete entry
             </summary>
             <param name="idDto">Parameter with unique identifier</param>
             <param name="cancellationToken">Cancellation Token</param>
@@ -622,19 +611,19 @@
         </member>
         <member name="T:DevQuiz.Admin.Core.Services.IQuestionService">
             <summary>
-            Service for manage Question entries
+                Service for manage Question entries
             </summary>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.GetAllCategoriesAsync(System.Boolean)">
             <summary>
-            Get all categories
+                Get all categories
             </summary>
             <param name="includeQuestions">Flag to include questions</param>
             <returns>Categories information collection</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.GetCategoryByIdAsync(System.Int32,System.Boolean)">
             <summary>
-            Get question category by id
+                Get question category by id
             </summary>
             <param name="categoryId">Category unique identifier</param>
             <param name="includeQuestions">Flag to include questions</param>
@@ -642,7 +631,7 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.GetCategoryByNameAsync(System.String,System.Boolean)">
             <summary>
-            Get category by name
+                Get category by name
             </summary>
             <param name="categoryName">Category name</param>
             <param name="includeQuestions">Flag to include questions</param>
@@ -650,35 +639,35 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.CreateCategoryAsync(DevQuiz.Admin.Core.Models.Dto.CategoryDto)">
             <summary>
-            Create new category entry
+                Create new category entry
             </summary>
             <param name="categoryToCreate">Category new entry</param>
             <returns>Unique identifier of new category</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.UpdateCategoryAsync(DevQuiz.Admin.Core.Models.Dto.CategoryDto)">
             <summary>
-            Update category information
+                Update category information
             </summary>
             <param name="categoryToUpdate">Category to update</param>
             <returns>Method execution status</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.DeleteCategoryAsync(System.Int32)">
             <summary>
-            Delete category from store
+                Delete category from store
             </summary>
             <param name="categoryId">Category unique identifier</param>
             <returns>Method execution status</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.GetAllTagsAsync(System.Boolean)">
             <summary>
-            Get all tags
+                Get all tags
             </summary>
             <param name="includeQuestions">Flag to include questions</param>
             <returns>Tag information collection</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.GetTagByIdAsync(System.Int32,System.Boolean)">
             <summary>
-            Get tag by id
+                Get tag by id
             </summary>
             <param name="tagId">Unique identifier of tag</param>
             <param name="includeQuestions">Flag to include questions</param>
@@ -686,7 +675,7 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.GetTagByNameAsync(System.String,System.Boolean)">
             <summary>
-            Get tag by name
+                Get tag by name
             </summary>
             <param name="tagName">Name of tag</param>
             <param name="includeQuestions">Flag to include questions</param>
@@ -694,33 +683,33 @@
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.CreateTagAsync(DevQuiz.Admin.Core.Models.Dto.TagDto)">
             <summary>
-            Create new tag entry
+                Create new tag entry
             </summary>
             <param name="tagToCreate">Tag new entry</param>
             <returns>Unique identifier of new tag</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.UpdateTagAsync(DevQuiz.Admin.Core.Models.Dto.TagDto)">
             <summary>
-            Update tag information
+                Update tag information
             </summary>
             <param name="tagToUpdate">Tag to update</param>
             <returns>Method execution status</returns>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IQuestionService.DeleteTagAsync(System.Int32)">
             <summary>
-            Delete tag from store
+                Delete tag from store
             </summary>
             <param name="tagId">Unique identifier of tag</param>
             <returns>Method execution status</returns>
         </member>
         <member name="T:DevQuiz.Admin.Core.Services.IUserService">
             <summary>
-            Service for manage users
+                Service for manage users
             </summary>
         </member>
         <member name="M:DevQuiz.Admin.Core.Services.IUserService.GetByChatIdAsync(System.Int64,System.Threading.CancellationToken)">
             <summary>
-            Get user information by chat id
+                Get user information by chat id
             </summary>
             <param name="telegramChatId">User chat id with current bot</param>
             <param name="cancellationToken">Cancellation Token</param>

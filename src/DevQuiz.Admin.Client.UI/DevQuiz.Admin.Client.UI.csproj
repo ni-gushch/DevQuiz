@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DevQuiz.Admin.Client\DevQuiz.Admin.Client.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\ApiResults" />
+    </ItemGroup>
+
+</Project>

@@ -16,7 +16,7 @@ namespace DevQuiz.Admin.DataAccess.Tests
         public TagRepositoryTests()
         {
             var serviceCollection = new ServiceCollection()
-                .AddScoped(_ => new DevQuizDbContext(this.ContextOptions))
+                .AddScoped(_ => new DevQuizDbContext(ContextOptions))
                 .AddScoped<IGenericRepository<Question>, GenericRepository<DevQuizDbContext, Question>>()
                 .AddScoped<IGenericRepository<Answer>, GenericRepository<DevQuizDbContext, Answer>>()
                 .AddScoped<IGenericRepository<Category>, GenericRepository<DevQuizDbContext, Category>>()

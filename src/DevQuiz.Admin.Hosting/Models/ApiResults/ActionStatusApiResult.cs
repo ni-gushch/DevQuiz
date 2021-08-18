@@ -1,18 +1,19 @@
 ﻿namespace DevQuiz.Admin.Hosting.Models.ApiResults
 {
     /// <summary>
-    /// Api result with action complete status
+    ///     Api result with action complete status
     /// </summary>
     public class ActionStatusApiResult
     {
         /// <summary>
-        /// Constructor without parameters
+        ///     Constructor without parameters
         /// </summary>
         public ActionStatusApiResult()
-        { }
+        {
+        }
 
         /// <summary>
-        /// Constructor with parameter
+        ///     Constructor with parameter
         /// </summary>
         /// <param name="status">Action status</param>
         public ActionStatusApiResult(bool status)
@@ -21,7 +22,7 @@
         }
 
         /// <summary>
-        /// Complete status
+        ///     Complete status
         /// </summary>
         public bool ActionStatus { get; set; }
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevQuiz.Shared.Models</name>
+    </assembly>
+    <members>
+        <member name="T:DevQuiz.Shared.Models.Abstractions.IHasKey`1">
+            <summary>
+                Generic interface for entries which has a unique key
+            </summary>
+            <typeparam name="TKey">Unique key type</typeparam>
+        </member>
+        <member name="P:DevQuiz.Shared.Models.Abstractions.IHasKey`1.Id">
+            <summary>
+                Unique key
+            </summary>
+        </member>
+    </members>
+</doc>

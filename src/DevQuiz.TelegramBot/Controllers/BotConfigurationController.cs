@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Runtime.Serialization;
@@ -14,29 +12,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using Telegram.Bot.Exceptions;
 
 namespace DevQuiz.TelegramBot.Controllers
 {
     /// <summary>
-    /// Controller for manage Bot Configuration
+    ///     Controller for manage Bot Configuration
     /// </summary>
     [ApiController]
     [Route("/api/[controller]")]
     public class BotConfigurationController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly BotConfiguration _botConfiguration;
+        private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<BotConfigurationController> _logger;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="httpClientFactory">Factory for creating http clients</param>
         /// <param name="botOptions">Bot options</param>
         /// <param name="logger">ILogger instance</param>
-        public BotConfigurationController(IHttpClientFactory httpClientFactory, 
+        public BotConfigurationController(IHttpClientFactory httpClientFactory,
             IOptions<BotConfiguration> botOptions,
             ILogger<BotConfigurationController> logger = null)
         {
@@ -46,7 +43,7 @@ namespace DevQuiz.TelegramBot.Controllers
         }
 
         /// <summary>
-        /// Set web hook for current bot
+        ///     Set web hook for current bot
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -54,11 +51,12 @@ namespace DevQuiz.TelegramBot.Controllers
         {
             _logger.LogDebug($"Creating typed HttpClient for type {TypedHttpClients.TelegramApi}");
             var client = _httpClientFactory.CreateClient(TypedHttpClients.TelegramApi.ToString());
-            var requestContent = new FormUrlEncodedContent(new []
+            var requestContent = new FormUrlEncodedContent(new[]
             {
-                new KeyValuePair<string, string>("url", value.WebHookUri) 
+                new KeyValuePair<string, string>("url", value.WebHookUri)
             });
-            var response = await client.PostAsync($"/bot{_botConfiguration.AccessToken}/setWebhook", requestContent, CancellationToken.None);
+            var response = await client.PostAsync($"/bot{_botConfiguration.AccessToken}/setWebhook", requestContent,
+                CancellationToken.None);
             if (!response.IsSuccessStatusCode)
             {
                 var responseWithError = await response.Content.ReadFromJsonAsync<SetWebHookApiResult>();
@@ -67,6 +65,7 @@ namespace DevQuiz.TelegramBot.Controllers
                         $"Exception while serialization error response from SetWebHook Telegram Api to type {nameof(SetWebHookApiResult)}");
                 throw new ApiRequestException(responseWithError.Description, responseWithError.Error_code);
             }
+
             _logger.LogDebug("WebHook was set successfully");
             var responseSuccess = await response.Content.ReadFromJsonAsync<SetWebHookApiResult>();
             if (responseSuccess == null)

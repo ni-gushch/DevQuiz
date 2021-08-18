@@ -19,7 +19,7 @@ namespace DevQuiz.Admin.DataAccess.Tests
         public QuestionRepositoryTests()
         {
             var serviceCollection = new ServiceCollection()
-                .AddScoped(_ => new DevQuizDbContext(this.ContextOptions))
+                .AddScoped(_ => new DevQuizDbContext(ContextOptions))
                 .AddScoped<IGenericRepository<Question>, GenericRepository<DevQuizDbContext, Question>>()
                 .AddScoped<IGenericRepository<Answer>, GenericRepository<DevQuizDbContext, Answer>>()
                 .AddScoped<IGenericRepository<Category>, GenericRepository<DevQuizDbContext, Category>>()
@@ -40,10 +40,10 @@ namespace DevQuiz.Admin.DataAccess.Tests
                 .SeedQuestions(4, true, true, true)
                 .CommitAsync();
 
-            var newQuestion = new Question()
+            var newQuestion = new Question
             {
                 Text = "NewQuestionText",
-                CategoryId = (int)_dbContext.Categories.FirstOrDefault()?.Id
+                CategoryId = (int) _dbContext.Categories.FirstOrDefault()?.Id
             };
 
             //Act

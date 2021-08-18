@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevQuiz.Admin.Client</name>
+    </assembly>
+    <members>
+        <member name="T:DevQuiz.Admin.Client.Abstractions.IQuestionReadService">
+            <summary>
+                Client service for get access to questions
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Client.Abstractions.IQuestionReadService.GetAll(System.Threading.CancellationToken)">
+            <summary>
+                Get information about all available questions
+            </summary>
+            <param name="cancellationToken">Instance of <see cref="T:System.Threading.CancellationToken" /></param>
+            <returns>Collection of available questions</returns>
+        </member>
+        <member name="T:DevQuiz.Admin.Client.Base.ClientServiceBase">
+            <summary>
+            Base service client realization 
+            </summary>
+        </member>
+        <member name="F:DevQuiz.Admin.Client.Base.ClientServiceBase.HttpClient">
+            <summary>
+            Instance of <see cref="F:DevQuiz.Admin.Client.Base.ClientServiceBase.HttpClient"/> 
+            </summary>
+        </member>
+        <member name="F:DevQuiz.Admin.Client.Base.ClientServiceBase.Logger">
+            <summary>
+            Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/>
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Client.Base.ClientServiceBase.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Base constructor
+            </summary>
+            <param name="httpClient">Instance of <see cref="F:DevQuiz.Admin.Client.Base.ClientServiceBase.HttpClient"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/></param>
+        </member>
+        <member name="T:DevQuiz.Admin.Client.Models.ApiResults.IdApiResult`1">
+            <summary>
+                Api Result with id of new entry
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Client.Models.ApiResults.IdApiResult`1.#ctor">
+            <summary>
+                Constructor without parameters
+            </summary>
+        </member>
+        <member name="M:DevQuiz.Admin.Client.Models.ApiResults.IdApiResult`1.#ctor(`0)">
+            <summary>
+                Constructor with parameter
+            </summary>
+            <param name="id">Unique identifier</param>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.Models.ApiResults.IdApiResult`1.Id">
+            <inheritdoc cref="P:DevQuiz.Shared.Models.Abstractions.IHasKey`1.Id" />
+        </member>
+        <member name="T:DevQuiz.Admin.Client.Models.ApiResults.QuestionApiResult">
+            <summary>
+                ApiResult for represent question information
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.Models.ApiResults.QuestionApiResult.Text">
+            <summary>
+                Get question text
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.Models.ApiResults.QuestionApiResult.RightAnswer">
+            <summary>
+                Get category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.Models.ApiResults.QuestionApiResult.Category">
+            <summary>
+                Get category
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.Models.ApiResults.QuestionApiResult.Answers">
+            <summary>
+                Get list of answers
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.Models.ApiResults.QuestionApiResult.Tags">
+            <summary>
+                Get tags list
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.Models.ApiResults.QuestionApiResult.Id">
+            <inheritdoc cref="P:DevQuiz.Shared.Models.Abstractions.IHasKey`1.Id" />
+        </member>
+        <member name="T:DevQuiz.Admin.Client.Models.ValueModel">
+            <summary>
+                Model with value
+            </summary>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.Models.ValueModel.Value">
+            <summary>
+                Value of entry
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Client.Models.ValueModel`1">
+            <summary>
+                Model with value and unique identifier
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:DevQuiz.Admin.Client.Models.ValueModel`1.Id">
+            <summary>
+                Unique identifier of entry
+            </summary>
+        </member>
+        <member name="T:DevQuiz.Admin.Client.QuestionReadService">
+            <inheritdoc cref="T:DevQuiz.Admin.Client.Abstractions.IQuestionReadService"/> 
+        </member>
+        <member name="M:DevQuiz.Admin.Client.QuestionReadService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{DevQuiz.Admin.Client.QuestionReadService})">
+            <summary>
+            Constructor with parameters
+            </summary>
+            <param name="httpClient">Instance of <see cref="T:System.Net.Http.HttpClient"/></param>
+            <param name="logger">Instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/></param>
+        </member>
+        <member name="M:DevQuiz.Admin.Client.QuestionReadService.GetAll(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:DevQuiz.Admin.Client.QuestionReadService.GetAll(System.Threading.CancellationToken)"/>
+        </member>
+        <member name="T:DevQuiz.Admin.Client.Routes.QuestionServiceRoutes">
+            <summary>
+            Routes collection for Question service
+            </summary>
+        </member>
+        <member name="F:DevQuiz.Admin.Client.Routes.QuestionServiceRoutes.GetAll">
+            <summary>
+            Route for GetAll method
+            </summary>
+        </member>
+        <member name="F:DevQuiz.Admin.Client.Routes.QuestionServiceRoutes.GetById">
+            <summary>
+            Route for GetById method
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+                Class for registration additional services
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDevQuizAdminClient(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Register client for dev quiz admin service
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

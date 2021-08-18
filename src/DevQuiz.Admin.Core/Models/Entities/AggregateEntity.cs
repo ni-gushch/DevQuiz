@@ -3,7 +3,7 @@ using System;
 namespace DevQuiz.Admin.Core.Models.Entities
 {
     /// <summary>
-    /// Base model for aggregated entities
+    ///     Base model for aggregated entities
     /// </summary>
     /// <typeparam name="TKey">Type of entity unique index </typeparam>
     public class AggregateEntity<TKey> : EntityBase<TKey>, IAuditEntity

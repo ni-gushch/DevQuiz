@@ -9,23 +9,23 @@ using Microsoft.Extensions.Hosting;
 namespace DevQuiz.Admin.Hosting
 {
     /// <summary>
-    /// Startup class
+    ///     Startup class
     /// </summary>
     public class Startup
     {
-        private IConfiguration Configuration { get; }
-        
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
-        /// <param name="configuration">Instance of <see cref="IConfiguration"/></param>
+        /// <param name="configuration">Instance of <see cref="IConfiguration" /></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-        
+
+        private IConfiguration Configuration { get; }
+
         /// <summary>
-        /// Method for configure services of application
+        ///     Method for configure services of application
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
@@ -34,21 +34,21 @@ namespace DevQuiz.Admin.Hosting
                 .AddCustomServices()
                 .AddCustomSwagger()
                 .AddCustomAutoMapper();
-            
+
             services.AddDevQuizMediatrServices(new[] {Assembly.GetExecutingAssembly()});
-            
+
             services.AddDevQuizDbContexts<DevQuizDbContext>(Configuration);
             services.AddDevQuizRepositories<DevQuizDbContext>();
             services.AddDevQuizServices();
-            
+
             services.AddControllers();
         }
-        
+
         /// <summary>
-        /// Method for configure middlewares pipeline of application
+        ///     Method for configure middlewares pipeline of application
         /// </summary>
-        /// <param name="app">Instance of <see cref="IApplicationBuilder"/></param>
-        /// <param name="env">Instance of <see cref="IWebHostEnvironment"/></param>
+        /// <param name="app">Instance of <see cref="IApplicationBuilder" /></param>
+        /// <param name="env">Instance of <see cref="IWebHostEnvironment" /></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -61,7 +61,7 @@ namespace DevQuiz.Admin.Hosting
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+
             app.UseSwagger();
             app.UseSwaggerUI(cfg =>
             {
@@ -72,11 +72,8 @@ namespace DevQuiz.Admin.Hosting
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors();
-            
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

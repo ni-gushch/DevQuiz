@@ -1,9 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using DevQuiz.TelegramBot.Interfaces;
 using DevQuiz.TelegramBot.MediatR.Commands;
 using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
 namespace DevQuiz.TelegramBot.MediatR.Handlers
@@ -13,9 +13,10 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
     /// </summary>
     public class StartCommandHandler : IRequestHandler<StartCommand>
     {
+        private readonly IBotService _botService;
+
         //private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        private readonly IBotService _botService;
 
         private CancellationToken _cancellationToken;
         private Chat _chat;
@@ -25,7 +26,7 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
         /// </summary>
         /// <param name="userService"> Service for manage users </param>
         /// <param name="mapper"> Mapper instance </param>
-        public StartCommandHandler(/*IUserService userService,*/
+        public StartCommandHandler( /*IUserService userService,*/
             IMapper mapper,
             IBotService botService = null)
         {
@@ -41,7 +42,7 @@ namespace DevQuiz.TelegramBot.MediatR.Handlers
         /// <param name="cancellationToken"> Cancellation token </param>
         /// <returns></returns>
         public async Task<Unit> Handle(StartCommand request, CancellationToken cancellationToken)
-        {            
+        {
             _chat = request.Chat;
             _cancellationToken = cancellationToken;
 

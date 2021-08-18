@@ -10,22 +10,12 @@ using Microsoft.Extensions.Hosting;
 namespace DevQuiz.TelegramBot
 {
     /// <summary>
-    /// Startup class
+    ///     Startup class
     /// </summary>
     public class Startup
     {
         /// <summary>
-        /// Configuration of web application
-        /// </summary>
-        private IConfiguration Configuration { get; }
-
-        /// <summary>
-        /// Application web host environment
-        /// </summary>
-        private IWebHostEnvironment WebHostEnvironment { get; }
-
-        /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="configuration">IConfiguration instance</param>
         /// <param name="webHostEnvironment">WebHostEnvironment instance</param>
@@ -36,7 +26,17 @@ namespace DevQuiz.TelegramBot
         }
 
         /// <summary>
-        /// Method for configure web app services
+        ///     Configuration of web application
+        /// </summary>
+        private IConfiguration Configuration { get; }
+
+        /// <summary>
+        ///     Application web host environment
+        /// </summary>
+        private IWebHostEnvironment WebHostEnvironment { get; }
+
+        /// <summary>
+        ///     Method for configure web app services
         /// </summary>
         /// <param name="services">Web app services collection</param>
         public void ConfigureServices(IServiceCollection services)
@@ -57,16 +57,13 @@ namespace DevQuiz.TelegramBot
         }
 
         /// <summary>
-        ///  This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        ///     This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// </summary>
         /// <param name="app">IApplication Builder object</param>
         /// <param name="env">IWwbHostEnvironment object</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseSwagger();
             app.UseSwaggerUI(cfg =>

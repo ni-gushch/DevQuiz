@@ -3,7 +3,7 @@
 namespace DevQuiz.Admin.Services
 {
     /// <summary>
-    /// Base interface for query with response
+    ///     Base interface for query with response
     /// </summary>
     /// <typeparam name="TQueryResponse">Type of query response</typeparam>
     public interface IBaseQuery<out TQueryResponse> : IRequest<TQueryResponse>

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 namespace DevQuiz.Admin.Core.Models.Dto
 {
     /// <summary>
-    /// Base model of question category
+    ///     Base model of question category
     /// </summary>
     public class CategoryDto : DtoBase<int>
     {
         /// <summary>
-        /// Get or set category name
+        ///     Get or set category name
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Linked questions
+        ///     Linked questions
         /// </summary>
-        public List<QuestionDto> Questions { get; set; } = new List<QuestionDto>();
+        public List<QuestionDto> Questions { get; set; } = new();
     }
 }

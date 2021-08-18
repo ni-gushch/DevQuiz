@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace DevQuiz.TelegramBot.Extensions
 {
     /// <summary>
-    /// Extensions for IServiceCollection instance
+    ///     Extensions for IServiceCollection instance
     /// </summary>
     public static class ServiceCollectionExtensions
     {
@@ -29,10 +29,11 @@ namespace DevQuiz.TelegramBot.Extensions
             services.AddSwaggerGen(_ => { }).ConfigureSwaggerGen(options =>
             {
                 options.CustomSchemaIds(x => x.FullName);
-                options.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(), "DevQuiz.DevQuiz.TelegramBot.xml"));
+                options.IncludeXmlComments(Path.Combine(Directory.GetCurrentDirectory(),
+                    "DevQuiz.DevQuiz.TelegramBot.xml"));
             });
             services.AddSwaggerGenNewtonsoftSupport();
-            
+
             return services;
         }
 
@@ -41,16 +42,13 @@ namespace DevQuiz.TelegramBot.Extensions
             services.AddSingleton<IBotService, BotService>()
                 .AddScoped<IBotMessageService, BotMessageService>()
                 .AddScoped<IRequestHandler<StartCommand, Unit>, StartCommandHandler>();
-            
+
             return services;
         }
 
         internal static IServiceCollection AddCustomAutoMapper(this IServiceCollection services)
         {
-            services.AddAutoMapper(config =>
-            {
-                config.AddProfile<UserBotMapperProfile>();
-            });
+            services.AddAutoMapper(config => { config.AddProfile<UserBotMapperProfile>(); });
 
             return services;
         }

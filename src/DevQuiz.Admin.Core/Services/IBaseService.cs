@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace DevQuiz.Admin.Core.Services
 {
     /// <summary>
-    /// Base service for manage entries
+    ///     Base service for manage entries
     /// </summary>
     /// <typeparam name="TEntryDto">Entry dto for add or update</typeparam>
     /// <typeparam name="TKey">Parameter with unique identifier of entry</typeparam>
@@ -22,14 +22,14 @@ namespace DevQuiz.Admin.Core.Services
         where TKey : IEquatable<TKey>
     {
         /// <summary>
-        /// Get all entries
+        ///     Get all entries
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>All entries result</returns>
         Task<TAllEntriesResult> GetAllAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get one entry
+        ///     Get one entry
         /// </summary>
         /// <param name="idDto">Parameter with unique identifier</param>
         /// <param name="cancellationToken">Cancellation Token</param>
@@ -37,7 +37,7 @@ namespace DevQuiz.Admin.Core.Services
         Task<TOneEntryResult> GetByIdAsync(TKey idDto, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Create new entry
+        ///     Create new entry
         /// </summary>
         /// <param name="entryToAdd">Model with information about new entry</param>
         /// <param name="cancellationToken">Cancellation Token</param>
@@ -45,7 +45,7 @@ namespace DevQuiz.Admin.Core.Services
         Task<TCreateEntryResult> CreateAsync(TEntryDto entryToAdd, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Update entry
+        ///     Update entry
         /// </summary>
         /// <param name="entryToUpdate">Model with information to update</param>
         /// <param name="cancellationToken">Cancellation Token</param>
@@ -53,7 +53,7 @@ namespace DevQuiz.Admin.Core.Services
         Task<TUpdateEntryResult> UpdateAsync(TEntryDto entryToUpdate, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Delete entry
+        ///     Delete entry
         /// </summary>
         /// <param name="idDto">Parameter with unique identifier</param>
         /// <param name="cancellationToken">Cancellation Token</param>

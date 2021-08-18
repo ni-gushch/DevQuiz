@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Class with extensions for register additional services
+    ///     Class with extensions for register additional services
     /// </summary>
     internal static class ServiceCollectionExtensions
     {
@@ -16,7 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             IConfiguration configuration)
         {
             services.Configure<DataBaseConfiguration>(configuration.GetSection(nameof(DataBaseConfiguration)));
-            
+
             return services;
         }
 
@@ -31,13 +31,12 @@ namespace Microsoft.Extensions.DependencyInjection
                         $"{fullName.Split(',')[0]}.xml"));
             });
             services.AddSwaggerGenNewtonsoftSupport();
-            
+
             return services;
         }
 
         internal static IServiceCollection AddCustomServices(this IServiceCollection services)
         {
-            
             return services;
         }
 
