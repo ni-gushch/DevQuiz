@@ -148,8 +148,8 @@
             <summary>
                 Register client for dev quiz admin service
             </summary>
-            <param name="services"></param>
-            <returns></returns>
+            <param name="services">Instance of <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/></param>
+            <returns>Original instance of <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/></returns>
         </member>
     </members>
 </doc>
